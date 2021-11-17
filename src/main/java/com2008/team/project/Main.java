@@ -26,6 +26,8 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Property Booking System");
+        setIconImage((new javax.swing.ImageIcon(getClass().getResource("/images/Home_Icon_rasterized.png"))).getImage());
         setPreferredSize(new java.awt.Dimension(1024, 576));
         setSize(new java.awt.Dimension(1024, 576));
 
@@ -36,6 +38,7 @@ public class Main extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User_Icon_Wikipedia_Resized.png"))); // NOI18N
         jButton1.setText("Account");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +90,10 @@ public class Main extends javax.swing.JFrame {
     
     void changePanelToDefault() {
         jScrollPane1.setViewportView(jPanel1);
+    }
+    
+    void changePanelToSpecific(javax.swing.JPanel jPanel) {
+        jScrollPane1.setViewportView(jPanel);
     }
     
     /**

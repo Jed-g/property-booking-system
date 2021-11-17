@@ -15,6 +15,11 @@ com2008/team/project/Bedroom.java
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
+ com2008.team.project.User$2
+ com2008.team.project.User$3
+ com2008.team.project.User$4
+ com2008.team.project.User$5
+ com2008.team.project.User$6
 com2008/team/project/Main.java
  com2008.team.project.Main
  com2008.team.project.Main$1

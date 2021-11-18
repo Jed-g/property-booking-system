@@ -3,3 +3,5 @@ User_Icon_Wikipedia_Resized.png - https://www.wikipedia.org/
 Home_Icon.svg - https://www.wikipedia.org/
 back_arrow.png - https://www.flaticon.com/
 back_arrow_resized.png - https://www.flaticon.com/
+warning_icon.png - https://www.flaticon.com/
+warning_icon_resized.png - https://www.flaticon.com/

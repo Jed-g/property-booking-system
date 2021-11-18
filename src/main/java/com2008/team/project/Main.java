@@ -4,6 +4,7 @@ public class Main extends javax.swing.JFrame {
 
     private String email;
     private String passwordHashed;
+    private Boolean hostView = false;
     
     /**
      * Creates new form Main
@@ -87,7 +88,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        User userPanel = new User(this, email, passwordHashed);
+        User userPanel = new User(this, email, passwordHashed, hostView);
         jScrollPane1.setViewportView(userPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
     
@@ -100,8 +101,12 @@ public class Main extends javax.swing.JFrame {
     }
     
     void createNewUserPanelInstance() {
-        User userPanel = new User(this, email, passwordHashed);
+        User userPanel = new User(this, email, passwordHashed, hostView);
         jScrollPane1.setViewportView(userPanel);
+    }
+    
+    void setHostView(Boolean newValue) {
+        hostView = newValue;
     }
     
     /**

@@ -109,6 +109,13 @@ public class Main extends javax.swing.JFrame {
         hostView = newValue;
     }
     
+    void setEmail(String email) {
+        this.email = email;
+    }
+    
+    void setPasswordHashed(String passwordHashed){
+        this.passwordHashed = passwordHashed;
+    }
     /**
      * @param args the command line arguments
      */

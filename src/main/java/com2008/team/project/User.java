@@ -665,9 +665,17 @@ public class User extends javax.swing.JPanel {
         String errorMessage = "Example error message:\nerror1\nerror2";
         javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         
+        // If email changed
+        String newEmail = email;
+        email = newEmail;
+        jFrameInstance.setEmail(newEmail);
+        
         jFrameInstance.createNewUserPanelInstance();
     }
 
+    void setPasswordHashed(String passwordHashed){
+        this.passwordHashed = passwordHashed;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

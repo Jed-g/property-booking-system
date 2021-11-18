@@ -236,6 +236,11 @@ public class ChangePassword extends javax.swing.JPanel {
         String errorMessage = "Example error message:\nerror1\nerror2";
         javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         
+        // If password changed
+        String newPasswordHashed = passwordHashed;
+        jFrameInstance.setPasswordHashed(newPasswordHashed);
+        userPanelInstance.setPasswordHashed(newPasswordHashed);
+        
         jFrameInstance.changePanelToSpecific(userPanelInstance);
     }
 

@@ -10,8 +10,6 @@ com2008/team/project/Property.java
  com2008.team.project.Property
 com2008/team/project/ChargeBand.java
  com2008.team.project.ChargeBand
-com2008/team/project/Bedroom.java
- com2008.team.project.Bedroom
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
@@ -38,3 +36,17 @@ com2008/team/project/ChangePassword.java
  com2008.team.project.ChangePassword$2
  com2008.team.project.ChangePassword$3
  com2008.team.project.ChangePassword$4
+com2008/team/project/Bedroom.java
+ com2008.team.project.Bedroom
+com2008/team/project/HostRequests.java
+ com2008.team.project.HostRequests
+ com2008.team.project.HostRequests$1
+com2008/team/project/HostPreviousBookings.java
+ com2008.team.project.HostPreviousBookings
+ com2008.team.project.HostPreviousBookings$1
+com2008/team/project/HostUpcomingBookings.java
+ com2008.team.project.HostUpcomingBookings
+ com2008.team.project.HostUpcomingBookings$1
+com2008/team/project/HostMyProperties.java
+ com2008.team.project.HostMyProperties
+ com2008.team.project.HostMyProperties$1

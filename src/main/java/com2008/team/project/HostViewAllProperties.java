@@ -382,8 +382,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAccountActionPerformed
-        User userPanel = new User(this, email, passwordHashed, hostView);
-        jScrollPane1.setViewportView(userPanel);
+
     }//GEN-LAST:event_ViewAccountActionPerformed
 
     private void ViewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewAllPropertiesActionPerformed

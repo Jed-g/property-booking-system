@@ -2,8 +2,9 @@ package com2008.team.project;
 
 public class Main extends javax.swing.JFrame {
 
-    private String email;
-    private String passwordHashed;
+    // For testing DB. Normally email & passwordHashed should not be initialized.
+    private String email = "admin";
+    private String passwordHashed = "admin";
     private Boolean hostView = false;
     
     /**

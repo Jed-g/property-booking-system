@@ -1,5 +1,7 @@
 package com2008.team.project;
 
+import java.sql.*;
+
 public class User extends javax.swing.JPanel {
 
     private Main jFrameInstance;
@@ -17,6 +19,8 @@ public class User extends javax.swing.JPanel {
         this.email = email;
         this.passwordHashed = passwordHashed;
         this.hostView = hostView;
+               
+        DriverManager.setLoginTimeout(2);
         
         fetchUserData();
     }
@@ -417,6 +421,7 @@ public class User extends javax.swing.JPanel {
         hostViewChangeButton.setBackground(new java.awt.Color(204, 204, 204));
         hostViewChangeButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         hostViewChangeButton.setText("Disabled");
+        hostViewChangeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         hostViewChangeButton.setEnabled(false);
         hostViewChangeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -618,12 +623,12 @@ public class User extends javax.swing.JPanel {
                 javax.swing.JOptionPane.QUESTION_MESSAGE, icon, options, null);
         
         if (answer != javax.swing.JOptionPane.CLOSED_OPTION && answer != 1) {
-            // Guest wants to become host. Do DB stuff.
-            
-            // Value to be determined from DB update
-            Boolean successfulUpdate = true;
-            
-            if (successfulUpdate) {
+            try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+
+                PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET isHost = 1 WHERE email=?");
+                pstmt.setString(1, email);
+                int count = pstmt.executeUpdate();
+
                 becomeHostButton.setVisible(false);
                 hostViewChangeButton.setEnabled(true);
                 hostView = !hostView;
@@ -631,9 +636,16 @@ public class User extends javax.swing.JPanel {
 
                 hostViewChangeButton.setText(hostView ? "Disable" : "Enable");
                 hostViewChangeButton.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
+
+                pstmt.close();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+                
+                String errorMessage = "Connection to database failed. University VPN is required.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
-        
     }//GEN-LAST:event_becomeHostButtonActionPerformed
 
     private void hostViewChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostViewChangeButtonActionPerformed
@@ -645,10 +657,42 @@ public class User extends javax.swing.JPanel {
     }//GEN-LAST:event_hostViewChangeButtonActionPerformed
 
     private void fetchUserData() {
-        // DB stuff
-        
+
         // Value to be determined from DB
         Boolean isHost = false;
+        
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+           
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Users WHERE email=?");
+            pstmt.setString(1, email);
+            ResultSet res = pstmt.executeQuery();
+                        
+            if (res.next()) {
+                name.setText(res.getString("forename") + " " + res.getString("surname"));
+                
+                emailTextField.setText(res.getString("email"));
+                titleTextField.setText(res.getString("title"));
+                firstNameTextField.setText(res.getString("forename"));
+                surnameTextField.setText(res.getString("surname"));
+                phoneNumberTextField.setText(res.getString("phoneNo"));
+                houseNumberTextField.setText(res.getString("privateHouseNumber"));
+                streetNameTextField.setText(res.getString("privateStreetName"));
+                townCityTextField.setText(res.getString("privatePlaceName"));
+                postCodeTextField.setText(res.getString("privatePostCode"));
+                
+                isHost = res.getBoolean("isHost");
+            }
+            
+            res.close();
+            pstmt.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
         
         if (isHost) {
             becomeHostButton.setVisible(false);

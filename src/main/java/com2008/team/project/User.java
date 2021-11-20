@@ -6,21 +6,19 @@ public class User extends javax.swing.JPanel {
 
     private Main jFrameInstance;
     private String email;
-    private String passwordHashed;
     private Boolean editMode = false;
     private Boolean hostView;
     
     /**
      * Creates new form User
      */
-    public User(Main jFrameInstance, String email, String passwordHashed, Boolean hostView) {
+    public User(Main jFrameInstance, String email, Boolean hostView) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
-        this.passwordHashed = passwordHashed;
         this.hostView = hostView;
                
-        DriverManager.setLoginTimeout(2);
+        DriverManager.setLoginTimeout(3);
         
         fetchUserData();
     }
@@ -578,37 +576,44 @@ public class User extends javax.swing.JPanel {
     }//GEN-LAST:event_postCodeTextFieldActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        
-        if (editMode) {
-            updateUserData();
-        }
-        editMode = true;
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            if (editMode) {
+                updateUserData();
+            }
+            editMode = true;
 
-        emailTextField.setEditable(true);
-        emailTextField.setBackground(new java.awt.Color(255, 255, 255));
-        titleTextField.setEditable(true);
-        titleTextField.setBackground(new java.awt.Color(255, 255, 255));
-        firstNameTextField.setEditable(true);
-        firstNameTextField.setBackground(new java.awt.Color(255, 255, 255));
-        surnameTextField.setEditable(true);
-        surnameTextField.setBackground(new java.awt.Color(255, 255, 255));
-        phoneNumberTextField.setEditable(true);
-        phoneNumberTextField.setBackground(new java.awt.Color(255, 255, 255));
-        houseNumberTextField.setEditable(true);
-        houseNumberTextField.setBackground(new java.awt.Color(255, 255, 255));
-        streetNameTextField.setEditable(true);
-        streetNameTextField.setBackground(new java.awt.Color(255, 255, 255));
-        townCityTextField.setEditable(true);
-        townCityTextField.setBackground(new java.awt.Color(255, 255, 255));
-        postCodeTextField.setEditable(true);
-        postCodeTextField.setBackground(new java.awt.Color(255, 255, 255));
-        button1.setText("Save Changes");
-        button2.setText("Cancel");
+            emailTextField.setEditable(true);
+            emailTextField.setBackground(new java.awt.Color(255, 255, 255));
+            titleTextField.setEditable(true);
+            titleTextField.setBackground(new java.awt.Color(255, 255, 255));
+            firstNameTextField.setEditable(true);
+            firstNameTextField.setBackground(new java.awt.Color(255, 255, 255));
+            surnameTextField.setEditable(true);
+            surnameTextField.setBackground(new java.awt.Color(255, 255, 255));
+            phoneNumberTextField.setEditable(true);
+            phoneNumberTextField.setBackground(new java.awt.Color(255, 255, 255));
+            houseNumberTextField.setEditable(true);
+            houseNumberTextField.setBackground(new java.awt.Color(255, 255, 255));
+            streetNameTextField.setEditable(true);
+            streetNameTextField.setBackground(new java.awt.Color(255, 255, 255));
+            townCityTextField.setEditable(true);
+            townCityTextField.setBackground(new java.awt.Color(255, 255, 255));
+            postCodeTextField.setEditable(true);
+            postCodeTextField.setBackground(new java.awt.Color(255, 255, 255));
+            button1.setText("Save Changes");
+            button2.setText("Cancel");
+        } catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
     }//GEN-LAST:event_button1ActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         if (!editMode){
-            ChangePassword changePasswordPanel = new ChangePassword(jFrameInstance, this, email, passwordHashed, name.getText());
+            ChangePassword changePasswordPanel = new ChangePassword(jFrameInstance, this, email, name.getText());
             jFrameInstance.changePanelToSpecific(changePasswordPanel);
         } else {
             jFrameInstance.createNewUserPanelInstance();
@@ -625,7 +630,7 @@ public class User extends javax.swing.JPanel {
         if (answer != javax.swing.JOptionPane.CLOSED_OPTION && answer != 1) {
             try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
 
-                PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET isHost = 1 WHERE email=?");
+                PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET isHost=1 WHERE email=?");
                 pstmt.setString(1, email);
                 int count = pstmt.executeUpdate();
 
@@ -657,7 +662,6 @@ public class User extends javax.swing.JPanel {
     }//GEN-LAST:event_hostViewChangeButtonActionPerformed
 
     private void fetchUserData() {
-
         // Value to be determined from DB
         Boolean isHost = false;
         
@@ -687,7 +691,7 @@ public class User extends javax.swing.JPanel {
             pstmt.close();
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+            ex.printStackTrace();            
             
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
             String errorMessage = "Connection to database failed. University VPN is required.";
@@ -703,23 +707,101 @@ public class User extends javax.swing.JPanel {
     }
     
     private void updateUserData() {
-        // DB stuff
-        
-        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-        String errorMessage = "Example error message:\nerror1\nerror2";
-        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        
-        // If email changed
-        String newEmail = email;
-        email = newEmail;
-        jFrameInstance.setEmail(newEmail);
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET email=?, title=?, forename=?, surname=?, phoneNo=?,"
+                    + " privateHouseNumber=?, privateStreetName=?, privatePlaceName=?, privatePostCode=? WHERE email=?");
+            
+            String errorMessage = "";
+            
+            // Remove whitespace
+            String postCodeTruncated = postCodeTextField.getText().replaceAll("\\s","");
+            
+            String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+            
+            // Regex check for email
+            if (!emailTextField.getText().matches(emailRegex)) {
+                errorMessage += "\nEmail is not valid.";
+            }            
+            if (emailTextField.getText().length() > 50) {
+                errorMessage += "\nEmail too long. Maximum 50 characters allowed.";
+            }
+            if (titleTextField.getText().length() > 5) {
+                errorMessage += "\nTitle too long. Maximum 5 characters allowed.";
+            }
+            if (firstNameTextField.getText().length() > 30) {
+                errorMessage += "\nFirst name too long. Maximum 30 characters allowed.";
+            }
+            if (surnameTextField.getText().length() > 30) {
+                errorMessage += "\nSurname too long. Maximum 30 characters allowed.";
+            }
+            if (phoneNumberTextField.getText().length() > 15) {
+                errorMessage += "\nPhone number too long. Maximum 15 characters allowed.";
+            }
+            if (houseNumberTextField.getText().length() > 5) {
+                errorMessage += "\nHouse number too long. Maximum 5 characters allowed.";
+            }
+            if (streetNameTextField.getText().length() > 45) {
+                errorMessage += "\nStreet name too long. Maximum 45 characters allowed.";
+            }
+            if (townCityTextField.getText().length() > 45) {
+                errorMessage += "\nTown / City too long. Maximum 45 characters allowed.";
+            }
+            if (postCodeTruncated.length() > 8) {
+                errorMessage += "\nPostcode too long. Maximum 8 characters allowed.";
+            }
+            
+            if (errorMessage.length() > 0){
+                // Remove '\n' at the beginning
+                errorMessage = errorMessage.substring(1);
+                
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                
+                return;
+            }
+            
+            pstmt.setString(1, emailTextField.getText());
+            pstmt.setString(2, titleTextField.getText());
+            pstmt.setString(3, firstNameTextField.getText());
+            pstmt.setString(4, surnameTextField.getText());
+            pstmt.setString(5, phoneNumberTextField.getText());
+            pstmt.setString(6, houseNumberTextField.getText());
+            pstmt.setString(7, streetNameTextField.getText());
+            pstmt.setString(8, townCityTextField.getText());
+            pstmt.setString(9, postCodeTruncated);
+            
+            pstmt.setString(10, email);
+            
+            try {
+            int count = pstmt.executeUpdate();
+
+            pstmt.close();
+            } catch (Exception ex) {
+                if (ex.toString().contains("Duplicate")){
+                    javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                    errorMessage = "Another user with the same email already exists.";
+                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                    
+                    return;
+                } else {
+                    System.out.println(ex);
+                }
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+
+        jFrameInstance.setEmail(emailTextField.getText());
         
         jFrameInstance.createNewUserPanelInstance();
     }
-
-    void setPasswordHashed(String passwordHashed){
-        this.passwordHashed = passwordHashed;
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton becomeHostButton;
     private javax.swing.JButton button1;

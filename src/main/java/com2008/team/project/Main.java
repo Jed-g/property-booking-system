@@ -2,9 +2,8 @@ package com2008.team.project;
 
 public class Main extends javax.swing.JFrame {
 
-    // For testing DB. Normally email & passwordHashed should not be initialized.
+    // For testing DB. Normally email should not be initialized.
     private String email = "admin";
-    private String passwordHashed = "admin";
     private Boolean hostView = false;
     
     /**
@@ -89,7 +88,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        User userPanel = new User(this, email, passwordHashed, hostView);
+        User userPanel = new User(this, email, hostView);
         jScrollPane1.setViewportView(userPanel);
     }//GEN-LAST:event_accountButtonActionPerformed
     
@@ -102,7 +101,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     void createNewUserPanelInstance() {
-        User userPanel = new User(this, email, passwordHashed, hostView);
+        User userPanel = new User(this, email, hostView);
         jScrollPane1.setViewportView(userPanel);
     }
     
@@ -114,9 +113,6 @@ public class Main extends javax.swing.JFrame {
         this.email = email;
     }
     
-    void setPasswordHashed(String passwordHashed){
-        this.passwordHashed = passwordHashed;
-    }
     /**
      * @param args the command line arguments
      */

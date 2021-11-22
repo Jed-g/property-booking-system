@@ -37,6 +37,7 @@ public class Login extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
+        loginErrorLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -72,11 +73,20 @@ public class Login extends javax.swing.JPanel {
 
         passwordField.setText("jPasswordField1");
 
+        loginErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        loginErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        loginErrorLabel.setText("Incorrect login details. Please try again");
+        loginErrorLabel.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(422, 422, 422)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(389, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,11 +103,10 @@ public class Login extends javax.swing.JPanel {
                                 .addGap(401, 401, 401))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(loginButton)
-                        .addGap(460, 460, 460))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(422, 422, 422)
-                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(460, 460, 460))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(loginErrorLabel)
+                        .addGap(383, 383, 383))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,9 +121,11 @@ public class Login extends javax.swing.JPanel {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76)
+                .addGap(29, 29, 29)
+                .addComponent(loginErrorLabel)
+                .addGap(34, 34, 34)
                 .addComponent(loginButton)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(160, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,13 +160,11 @@ public class Login extends javax.swing.JPanel {
                 if (res.next()) {
                     String passwordInDB = res.getString("password");
                     if (hashString(password).equals(passwordInDB)) {
-                    return true;
+                        return true;
                     }
-                else return false;
+                    else return false;
                 }
-                else {
-                    throw new Exception("Email not found");
-                }
+                else throw new Exception("Email not found");
             }
             catch (Exception ex) {
                 ex.printStackTrace();
@@ -184,6 +193,12 @@ public class Login extends javax.swing.JPanel {
         String password = new String(passwordField.getPassword());
         if (checkDetails(email, password)) {
             jFrameInstance.setEmail(email);
+            //redirect to guest homepage
+            guestHomepage guestHomePanel = new guestHomepage();
+            jFrameInstance.changePanelToSpecific(guestHomePanel);
+        }
+        else {
+            loginErrorLabel.setEnabled(true);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -193,6 +208,7 @@ public class Login extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
+    private javax.swing.JLabel loginErrorLabel;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables

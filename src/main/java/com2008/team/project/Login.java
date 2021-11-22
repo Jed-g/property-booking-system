@@ -118,6 +118,27 @@ public class Login extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private String hashString(String stringToHash){
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA3-512");
+            byte[] result = md.digest(stringToHash.getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder(result.length * 2);
+
+            for(byte b: result)
+               sb.append(String.format("%02x", b));
+            return sb.toString();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Error during hashing password";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        return "";
+    }
+    
     private boolean checkDetails(String email, String password) {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
             try {
@@ -127,15 +148,14 @@ public class Login extends javax.swing.JPanel {
 
                 if (res.next()) {
                     String passwordInDB = res.getString("password");
+                    if (hashString(password).equals(passwordInDB)) {
+                    return true;
+                    }
+                else return false;
                 }
                 else {
                     throw new Exception("Email not found");
                 }
-                
-                if ChangePassword.hashString(password).equals(passwordInDB) {
-                    return true;
-                }
-                else return false;
             }
             catch (Exception ex) {
                 ex.printStackTrace();
@@ -148,6 +168,7 @@ public class Login extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
+        return false;
     }
     
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed

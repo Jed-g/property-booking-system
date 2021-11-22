@@ -11,11 +11,6 @@ com2008/team/project/enquireSearchpage.java
  com2008.team.project.enquireSearchpage
  com2008.team.project.enquireSearchpage$1
  com2008.team.project.enquireSearchpage$2
-com2008/team/project/elogin.java
- com2008.team.project.elogin
- com2008.team.project.elogin$1
- com2008.team.project.elogin$2
- com2008.team.project.elogin$3
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
@@ -49,6 +44,8 @@ com2008/team/project/guestHomepage.java
 com2008/team/project/Login.java
  com2008.team.project.Login
  com2008.team.project.Login$1
+ com2008.team.project.Login$2
+ com2008.team.project.Login$3
 com2008/team/project/Review.java
  com2008.team.project.Review
 com2008/team/project/enquireHomepage.java

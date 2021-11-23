@@ -31,7 +31,7 @@ public class Login extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        registerButton = new javax.swing.JButton();
+        goToRegistrationButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -41,11 +41,11 @@ public class Login extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
-        registerButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        registerButton.setText("Register");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
+        goToRegistrationButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        goToRegistrationButton.setText("Register");
+        goToRegistrationButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
+                goToRegistrationButtonActionPerformed(evt);
             }
         });
 
@@ -93,7 +93,7 @@ public class Login extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(goToRegistrationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,7 +112,7 @@ public class Login extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(goToRegistrationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,7 +159,7 @@ public class Login extends javax.swing.JPanel {
 
                 if (res.next()) {
                     String passwordInDB = res.getString("password");
-                    if (hashString(password).equals(passwordInDB)) {
+                    if (Main.hashString(password).equals(passwordInDB)) {
                         return true;
                     }
                     else return false;
@@ -180,9 +180,9 @@ public class Login extends javax.swing.JPanel {
         return false;
     }
     
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+    private void goToRegistrationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToRegistrationButtonActionPerformed
         
-    }//GEN-LAST:event_registerButtonActionPerformed
+    }//GEN-LAST:event_goToRegistrationButtonActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
@@ -205,11 +205,11 @@ public class Login extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailTextField;
+    private javax.swing.JButton goToRegistrationButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel loginErrorLabel;
     private javax.swing.JPasswordField passwordField;
-    private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
 }

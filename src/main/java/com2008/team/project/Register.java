@@ -27,10 +27,10 @@ public class Register extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        registerButton = new javax.swing.JButton();
+        goToLoginButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         emailTextField = new javax.swing.JTextField();
-        loginButton = new javax.swing.JButton();
+        registerButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         emailTextField1 = new javax.swing.JTextField();
@@ -55,11 +55,11 @@ public class Register extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
-        registerButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        registerButton.setText("Log in");
-        registerButton.addActionListener(new java.awt.event.ActionListener() {
+        goToLoginButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        goToLoginButton.setText("Log in");
+        goToLoginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
+                goToLoginButtonActionPerformed(evt);
             }
         });
 
@@ -73,11 +73,11 @@ public class Register extends javax.swing.JPanel {
             }
         });
 
-        loginButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        loginButton.setText("Log in");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        registerButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        registerButton.setText("Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                registerButtonActionPerformed(evt);
             }
         });
 
@@ -192,7 +192,7 @@ public class Register extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(goToLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,8 +244,8 @@ public class Register extends javax.swing.JPanel {
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel9))
                                     .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(201, 201, 201)
-                                .addComponent(loginButton)))))
+                                .addGap(194, 194, 194)
+                                .addComponent(registerButton)))))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(117, 117, 117)
@@ -258,7 +258,7 @@ public class Register extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(registerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(goToLoginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -315,20 +315,20 @@ public class Register extends javax.swing.JPanel {
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(loginButton))
+                    .addComponent(registerButton))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+    private void goToLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToLoginButtonActionPerformed
 
-    }//GEN-LAST:event_registerButtonActionPerformed
+    }//GEN-LAST:event_goToLoginButtonActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         String email = emailTextField.getText();
         String password = new String(passwordField.getPassword());
         if (checkDetails(email, password)) {
@@ -337,7 +337,7 @@ public class Register extends javax.swing.JPanel {
             guestHomepage guestHomePanel = new guestHomepage();
             jFrameInstance.changePanelToSpecific(guestHomePanel);
         }
-    }//GEN-LAST:event_loginButtonActionPerformed
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     private void emailTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField1ActionPerformed
         // TODO add your handling code here:
@@ -390,6 +390,7 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JTextField emailTextField6;
     private javax.swing.JTextField emailTextField7;
     private javax.swing.JTextField emailTextField8;
+    private javax.swing.JButton goToLoginButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -404,7 +405,6 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JButton loginButton;
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
 }

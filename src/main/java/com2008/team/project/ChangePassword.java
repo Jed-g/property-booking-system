@@ -249,7 +249,7 @@ public class ChangePassword extends javax.swing.JPanel {
                     res.close();
                     pstmt.close();
                     
-                    if (!hashString(currentPassword).equals(currentPasswordInDB)) {
+                    if (!Main.hashString(currentPassword).equals(currentPasswordInDB)) {
                         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
                         String errorMessage = "Current password is not valid.";
                         javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
@@ -286,7 +286,7 @@ public class ChangePassword extends javax.swing.JPanel {
 
             try {
                 PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET password=? WHERE email=?");
-                pstmt.setString(1, hashString(newPassword));
+                pstmt.setString(1, Main.hashString(newPassword));
                 pstmt.setString(2, email);
                 int count = pstmt.executeUpdate();
 
@@ -309,27 +309,6 @@ public class ChangePassword extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-    }
-
-    private String hashString(String stringToHash){
-        try {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA3-512");
-            byte[] result = md.digest(stringToHash.getBytes("UTF-8"));
-            StringBuilder sb = new StringBuilder(result.length * 2);
-
-            for(byte b: result)
-               sb.append(String.format("%02x", b));
-            return sb.toString();
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();            
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Error during hashing password";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        
-        return "";
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

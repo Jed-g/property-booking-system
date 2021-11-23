@@ -7,7 +7,7 @@ import com2008.team.project.Main;
 import java.sql.*;
 /**
  *
- * @author serio
+ * @author Matyas Szert
  */
 public class Register extends javax.swing.JPanel {
 
@@ -29,29 +29,29 @@ public class Register extends javax.swing.JPanel {
 
         goToLoginButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        emailTextField = new javax.swing.JTextField();
+        rEmailTextField = new javax.swing.JTextField();
         registerButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        emailTextField1 = new javax.swing.JTextField();
+        titleTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        emailTextField2 = new javax.swing.JTextField();
+        firstNameTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        emailTextField3 = new javax.swing.JTextField();
+        surnameTextField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        emailTextField4 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        phoneTextField = new javax.swing.JTextField();
+        regPasswordField = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        regConfirmPasswordField = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        emailTextField5 = new javax.swing.JTextField();
+        houseNoField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        emailTextField6 = new javax.swing.JTextField();
+        streetNameTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        emailTextField7 = new javax.swing.JTextField();
+        townTextField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        emailTextField8 = new javax.swing.JTextField();
+        postcodeTextField = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -67,9 +67,9 @@ public class Register extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Email");
 
-        emailTextField.addActionListener(new java.awt.event.ActionListener() {
+        rEmailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextFieldActionPerformed(evt);
+                rEmailTextFieldActionPerformed(evt);
             }
         });
 
@@ -88,9 +88,9 @@ public class Register extends javax.swing.JPanel {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Title");
 
-        emailTextField1.addActionListener(new java.awt.event.ActionListener() {
+        titleTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField1ActionPerformed(evt);
+                titleTextFieldActionPerformed(evt);
             }
         });
 
@@ -98,9 +98,9 @@ public class Register extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("First Name");
 
-        emailTextField2.addActionListener(new java.awt.event.ActionListener() {
+        firstNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField2ActionPerformed(evt);
+                firstNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -108,9 +108,9 @@ public class Register extends javax.swing.JPanel {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Surname");
 
-        emailTextField3.addActionListener(new java.awt.event.ActionListener() {
+        surnameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField3ActionPerformed(evt);
+                surnameTextFieldActionPerformed(evt);
             }
         });
 
@@ -118,16 +118,15 @@ public class Register extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Phone number");
 
-        emailTextField4.addActionListener(new java.awt.event.ActionListener() {
+        phoneTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField4ActionPerformed(evt);
+                phoneTextFieldActionPerformed(evt);
             }
         });
 
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        regPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                regPasswordFieldActionPerformed(evt);
             }
         });
 
@@ -135,10 +134,9 @@ public class Register extends javax.swing.JPanel {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Password");
 
-        jPasswordField2.setText("jPasswordField1");
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        regConfirmPasswordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                regConfirmPasswordFieldActionPerformed(evt);
             }
         });
 
@@ -150,9 +148,9 @@ public class Register extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("House number");
 
-        emailTextField5.addActionListener(new java.awt.event.ActionListener() {
+        houseNoField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField5ActionPerformed(evt);
+                houseNoFieldActionPerformed(evt);
             }
         });
 
@@ -160,9 +158,9 @@ public class Register extends javax.swing.JPanel {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Street name");
 
-        emailTextField6.addActionListener(new java.awt.event.ActionListener() {
+        streetNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField6ActionPerformed(evt);
+                streetNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -170,9 +168,9 @@ public class Register extends javax.swing.JPanel {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Town/City");
 
-        emailTextField7.addActionListener(new java.awt.event.ActionListener() {
+        townTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField7ActionPerformed(evt);
+                townTextFieldActionPerformed(evt);
             }
         });
 
@@ -180,9 +178,9 @@ public class Register extends javax.swing.JPanel {
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Post Code");
 
-        emailTextField8.addActionListener(new java.awt.event.ActionListener() {
+        postcodeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTextField8ActionPerformed(evt);
+                postcodeTextFieldActionPerformed(evt);
             }
         });
 
@@ -215,11 +213,11 @@ public class Register extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(emailTextField)
-                                    .addComponent(emailTextField1)
-                                    .addComponent(emailTextField2)
-                                    .addComponent(emailTextField3)
-                                    .addComponent(emailTextField4))
+                                    .addComponent(rEmailTextField)
+                                    .addComponent(titleTextField)
+                                    .addComponent(firstNameTextField)
+                                    .addComponent(surnameTextField)
+                                    .addComponent(phoneTextField))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(190, 190, 190)
@@ -227,23 +225,23 @@ public class Register extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(165, 165, 165)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(emailTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(emailTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(emailTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(streetNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(houseNoField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(25, 25, 25)
                                                 .addComponent(jLabel11))
-                                            .addComponent(emailTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(postcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(34, 34, 34)
                                                 .addComponent(jLabel13))))))
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(regPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addComponent(jLabel9))
-                                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(regConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(194, 194, 194)
                                 .addComponent(registerButton)))))
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -266,55 +264,55 @@ public class Register extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(3, 3, 3)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(houseNoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(streetNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(townTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(postcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(emailTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(regPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(regConfirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(registerButton))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
@@ -324,73 +322,59 @@ public class Register extends javax.swing.JPanel {
 
     }//GEN-LAST:event_goToLoginButtonActionPerformed
 
-    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
+    private void rEmailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rEmailTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextFieldActionPerformed
+    }//GEN-LAST:event_rEmailTextFieldActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        String email = emailTextField.getText();
-        String password = new String(passwordField.getPassword());
-        if (checkDetails(email, password)) {
-            jFrameInstance.setEmail(email);
-            //redirect to guest homepage
-            guestHomepage guestHomePanel = new guestHomepage();
-            jFrameInstance.changePanelToSpecific(guestHomePanel);
-        }
+
     }//GEN-LAST:event_registerButtonActionPerformed
 
-    private void emailTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField1ActionPerformed
+    private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField1ActionPerformed
+    }//GEN-LAST:event_titleTextFieldActionPerformed
 
-    private void emailTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField2ActionPerformed
+    private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField2ActionPerformed
+    }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
-    private void emailTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField3ActionPerformed
+    private void surnameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField3ActionPerformed
+    }//GEN-LAST:event_surnameTextFieldActionPerformed
 
-    private void emailTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField4ActionPerformed
+    private void phoneTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField4ActionPerformed
+    }//GEN-LAST:event_phoneTextFieldActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void regPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regPasswordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_regPasswordFieldActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void regConfirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regConfirmPasswordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
+    }//GEN-LAST:event_regConfirmPasswordFieldActionPerformed
 
-    private void emailTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField5ActionPerformed
+    private void houseNoFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseNoFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField5ActionPerformed
+    }//GEN-LAST:event_houseNoFieldActionPerformed
 
-    private void emailTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField6ActionPerformed
+    private void streetNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField6ActionPerformed
+    }//GEN-LAST:event_streetNameTextFieldActionPerformed
 
-    private void emailTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField7ActionPerformed
+    private void townTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField7ActionPerformed
+    }//GEN-LAST:event_townTextFieldActionPerformed
 
-    private void emailTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextField8ActionPerformed
+    private void postcodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postcodeTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_emailTextField8ActionPerformed
+    }//GEN-LAST:event_postcodeTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField emailTextField;
-    private javax.swing.JTextField emailTextField1;
-    private javax.swing.JTextField emailTextField2;
-    private javax.swing.JTextField emailTextField3;
-    private javax.swing.JTextField emailTextField4;
-    private javax.swing.JTextField emailTextField5;
-    private javax.swing.JTextField emailTextField6;
-    private javax.swing.JTextField emailTextField7;
-    private javax.swing.JTextField emailTextField8;
+    private javax.swing.JTextField firstNameTextField;
     private javax.swing.JButton goToLoginButton;
+    private javax.swing.JTextField houseNoField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -403,8 +387,15 @@ public class Register extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
+    private javax.swing.JTextField phoneTextField;
+    private javax.swing.JTextField postcodeTextField;
+    private javax.swing.JTextField rEmailTextField;
+    private javax.swing.JPasswordField regConfirmPasswordField;
+    private javax.swing.JPasswordField regPasswordField;
     private javax.swing.JButton registerButton;
+    private javax.swing.JTextField streetNameTextField;
+    private javax.swing.JTextField surnameTextField;
+    private javax.swing.JTextField titleTextField;
+    private javax.swing.JTextField townTextField;
     // End of variables declaration//GEN-END:variables
 }

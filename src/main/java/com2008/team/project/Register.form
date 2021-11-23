@@ -51,11 +51,11 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel2" max="32767" attributes="0"/>
                                   <Component id="jLabel1" max="32767" attributes="0"/>
-                                  <Component id="emailTextField" max="32767" attributes="0"/>
-                                  <Component id="emailTextField1" max="32767" attributes="0"/>
-                                  <Component id="emailTextField2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="emailTextField3" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="emailTextField4" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="rEmailTextField" max="32767" attributes="0"/>
+                                  <Component id="titleTextField" max="32767" attributes="0"/>
+                                  <Component id="firstNameTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="surnameTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="phoneTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
@@ -65,14 +65,14 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="emailTextField6" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
-                                          <Component id="emailTextField5" min="-2" pref="164" max="-2" attributes="0"/>
-                                          <Component id="emailTextField7" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                          <Component id="streetNameTextField" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                          <Component id="houseNoField" min="-2" pref="164" max="-2" attributes="0"/>
+                                          <Component id="townTextField" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                                           <Group type="102" attributes="0">
                                               <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
                                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="emailTextField8" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
+                                          <Component id="postcodeTextField" alignment="0" min="-2" pref="164" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="34" pref="34" max="-2" attributes="0"/>
                                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -81,14 +81,14 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jPasswordField1" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                          <Component id="regPasswordField" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jPasswordField2" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
+                                  <Component id="regConfirmPasswordField" alignment="0" min="-2" pref="162" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
                               <Component id="registerButton" min="-2" max="-2" attributes="0"/>
@@ -119,12 +119,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                      <Component id="emailTextField" min="-2" max="-2" attributes="0"/>
+                      <Component id="rEmailTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel10" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField5" min="-2" max="-2" attributes="0"/>
+                      <Component id="houseNoField" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -132,12 +132,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel4" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="titleTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel11" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField6" min="-2" max="-2" attributes="0"/>
+                      <Component id="streetNameTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -145,12 +145,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel5" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField2" min="-2" max="-2" attributes="0"/>
+                      <Component id="firstNameTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel12" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField7" min="-2" max="-2" attributes="0"/>
+                      <Component id="townTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -158,12 +158,12 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel6" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField3" min="-2" max="-2" attributes="0"/>
+                      <Component id="surnameTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel13" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField8" min="-2" max="-2" attributes="0"/>
+                      <Component id="postcodeTextField" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -171,15 +171,15 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel7" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="emailTextField4" min="-2" max="-2" attributes="0"/>
+                      <Component id="phoneTextField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPasswordField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="regPasswordField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPasswordField2" min="-2" max="-2" attributes="0"/>
+                      <Component id="regConfirmPasswordField" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="registerButton" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -209,9 +209,9 @@
         <Property name="text" type="java.lang.String" value="Email"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField">
+    <Component class="javax.swing.JTextField" name="rEmailTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rEmailTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="registerButton">
@@ -242,9 +242,9 @@
         <Property name="text" type="java.lang.String" value="Title"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField1">
+    <Component class="javax.swing.JTextField" name="titleTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="titleTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -256,9 +256,9 @@
         <Property name="text" type="java.lang.String" value="First Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField2">
+    <Component class="javax.swing.JTextField" name="firstNameTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="firstNameTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -270,9 +270,9 @@
         <Property name="text" type="java.lang.String" value="Surname"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField3">
+    <Component class="javax.swing.JTextField" name="surnameTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="surnameTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
@@ -284,17 +284,14 @@
         <Property name="text" type="java.lang.String" value="Phone number"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField4">
+    <Component class="javax.swing.JTextField" name="phoneTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="phoneTextFieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
+    <Component class="javax.swing.JPasswordField" name="regPasswordField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regPasswordFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
@@ -306,12 +303,9 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="jPasswordField2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
-      </Properties>
+    <Component class="javax.swing.JPasswordField" name="regConfirmPasswordField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jPasswordField2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regConfirmPasswordFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
@@ -332,9 +326,9 @@
         <Property name="text" type="java.lang.String" value="House number"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField5">
+    <Component class="javax.swing.JTextField" name="houseNoField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="houseNoFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
@@ -346,9 +340,9 @@
         <Property name="text" type="java.lang.String" value="Street name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField6">
+    <Component class="javax.swing.JTextField" name="streetNameTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="streetNameTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
@@ -360,9 +354,9 @@
         <Property name="text" type="java.lang.String" value="Town/City"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField7">
+    <Component class="javax.swing.JTextField" name="townTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="townTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
@@ -374,9 +368,9 @@
         <Property name="text" type="java.lang.String" value="Post Code"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailTextField8">
+    <Component class="javax.swing.JTextField" name="postcodeTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailTextField8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="postcodeTextFieldActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

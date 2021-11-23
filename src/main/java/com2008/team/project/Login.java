@@ -4,13 +4,12 @@
  */
 
 package com2008.team.project;
-import com2008.team.project.Main;
 import java.sql.*;
 
 
 /**
  *
- * @author serio
+ * @author Matyas Szert
  */
 public class Login extends javax.swing.JPanel {
 
@@ -20,6 +19,7 @@ public class Login extends javax.swing.JPanel {
      */
     public Login(Main jFrameInstance) {
         initComponents();
+        this.jFrameInstance = jFrameInstance;
     }
 
     /**
@@ -70,8 +70,6 @@ public class Login extends javax.swing.JPanel {
                 loginButtonActionPerformed(evt);
             }
         });
-
-        passwordField.setText("jPasswordField1");
 
         loginErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         loginErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
@@ -128,28 +126,7 @@ public class Login extends javax.swing.JPanel {
                 .addContainerGap(160, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private String hashString(String stringToHash){
-        try {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA3-512");
-            byte[] result = md.digest(stringToHash.getBytes("UTF-8"));
-            StringBuilder sb = new StringBuilder(result.length * 2);
-
-            for(byte b: result)
-               sb.append(String.format("%02x", b));
-            return sb.toString();
-            
-        } catch (Exception ex) {
-            ex.printStackTrace();            
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Error during hashing password";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        
-        return "";
-    }
-    
+  
     private boolean checkDetails(String email, String password) {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
             try {

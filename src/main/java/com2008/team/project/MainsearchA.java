@@ -213,12 +213,12 @@ private String people;
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-     java util.Date date1;
-     java util.Date date2;
+     java.util.Date date1;
+     java.util.Date date2;
      try{
          date1 = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField2.getText());
          date2 = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField1.getText());
-         System.out.println(date1,date2);
+         System.out.println(date1 + " " + date2);
      }
      catch (Exception ex){
          

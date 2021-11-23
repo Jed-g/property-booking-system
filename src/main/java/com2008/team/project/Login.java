@@ -14,12 +14,16 @@ import java.sql.*;
 public class Login extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    
+    String email;
+    String password;
     /**
      * Creates new form LoginPanel
      */
     public Login(Main jFrameInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        loginErrorLabel.setVisible(false);
     }
 
     /**
@@ -74,7 +78,7 @@ public class Login extends javax.swing.JPanel {
         loginErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         loginErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
         loginErrorLabel.setText("Incorrect login details. Please try again");
-        loginErrorLabel.setEnabled(false);
+        loginErrorLabel.setOpaque(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,7 +143,10 @@ public class Login extends javax.swing.JPanel {
                     if (Main.hashString(password).equals(passwordInDB)) {
                         return true;
                     }
-                    else return false;
+                    else { 
+                        loginErrorLabel.setVisible(true);
+                        return false;
+                    }
                 }
                 else throw new Exception("Email not found");
             }
@@ -166,16 +173,13 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String email = emailTextField.getText();
-        String password = new String(passwordField.getPassword());
+        email = emailTextField.getText();
+        password = new String(passwordField.getPassword());
         if (checkDetails(email, password)) {
             jFrameInstance.setEmail(email);
             //redirect to guest homepage
             guestHomepage guestHomePanel = new guestHomepage();
             jFrameInstance.changePanelToSpecific(guestHomePanel);
-        }
-        else {
-            loginErrorLabel.setEnabled(true);
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 

@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package com2008.team.project;
-import com2008.team.project.Main;
+import java.util.ArrayList;
 import java.sql.*;
 /**
  *
@@ -11,11 +11,28 @@ import java.sql.*;
  */
 public class Register extends javax.swing.JPanel {
 
+    private Main jFrameInstance;
+    
+    private String email;
+    private String title;
+    private String firstname;
+    private String surname;
+    private String phoneNo;
+    private String password;
+    private String confirmPassword;
+    
+    private String houseNo;
+    private String street;
+    private String town;
+    private String postcode;
+    
+    private ArrayList<String> details;
     /**
      * Creates new form Register
      */
-    public Register() {
+    public Register(Main jFrameInstance) {
         initComponents();
+        this.jFrameInstance = jFrameInstance;
     }
 
     /**
@@ -318,8 +335,12 @@ public class Register extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void detailsToDB(String email, String title, String firstname, String surname, String phoneNo, String password) {
+        
+    }
     private void goToLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToLoginButtonActionPerformed
-
+        Login loginPage = new Login(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(loginPage);
     }//GEN-LAST:event_goToLoginButtonActionPerformed
 
     private void rEmailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rEmailTextFieldActionPerformed
@@ -327,7 +348,18 @@ public class Register extends javax.swing.JPanel {
     }//GEN-LAST:event_rEmailTextFieldActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-
+        email = rEmailTextField.getText();
+        title = titleTextField.getText();
+        firstname = firstNameTextField.getText();
+        surname = surnameTextField.getText();
+        phoneNo = phoneTextField.getText();
+        password = new String (regPasswordField.getPassword());
+        confirmPassword = new String (regConfirmPasswordField.getPassword());
+        
+        if (password.equals(confirmPassword)) {
+            detailsToDB(email, title, firstname, surname, phoneNo, password);
+        }
+        
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed

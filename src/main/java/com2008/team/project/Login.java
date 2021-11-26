@@ -133,7 +133,6 @@ public class Login extends javax.swing.JPanel {
   
     private boolean checkDetails(String email, String password) {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-            try {
                 PreparedStatement pstmt = con.prepareStatement("SELECT password FROM Users WHERE email=?");
                 pstmt.setString(1, email);
                 ResultSet res = pstmt.executeQuery();
@@ -143,17 +142,21 @@ public class Login extends javax.swing.JPanel {
                     if (Main.hashString(password).equals(passwordInDB)) {
                         return true;
                     }
-                    else { 
-                        loginErrorLabel.setVisible(true);
+                    else {
+                        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                        String errorMessage = "Incorrect details";
+                        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
                         return false;
                     }
                 }
-                else throw new Exception("Email not found");
+                else {
+                    javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                    String errorMessage = "Email not found";
+                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                    
+                    return false;
+                }
             }
-            catch (Exception ex) {
-                ex.printStackTrace();
-            }
-        }
         catch (Exception ex) {
             ex.printStackTrace();
             

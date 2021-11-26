@@ -280,7 +280,9 @@ public class Register extends javax.swing.JPanel {
                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(postcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(129, 129, 129)
+                .addGap(86, 86, 86)
+                .addComponent(hostRegisterBox)
+                .addGap(18, 18, 18)
                 .addComponent(registerButton)
                 .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -305,9 +307,7 @@ public class Register extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(hostRegisterBox))
+                .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -336,35 +336,38 @@ public class Register extends javax.swing.JPanel {
         if (!rEmailTextField.getText().matches(emailRegex)) {
             errorMessage += "\nEmail is not valid.";
         }            
-        if (rEmailTextField.getText().length() > 50) {
-            errorMessage += "\nEmail too long. Maximum 50 characters allowed.";
+        if (rEmailTextField.getText().length() < 1 || rEmailTextField.getText().length() > 50) {
+            errorMessage += "\nEmail must be between 1 and 50 characters.";
         }
-        if (titleTextField.getText().length() > 5) {
-            errorMessage += "\nTitle too long. Maximum 5 characters allowed.";
+        if (titleTextField.getText().length() < 1 || titleTextField.getText().length() > 5) {
+            errorMessage += "\ntitle must be between 1 and 5 characters";
         }
-        if (firstNameTextField.getText().length() > 30) {
-            errorMessage += "\nFirst name too long. Maximum 30 characters allowed.";
+        if (firstNameTextField.getText().length() < 1 || firstNameTextField.getText().length() > 30) {
+            errorMessage += "\nFirst name must be between 1 and 30 charracters.";
         }
-        if (surnameTextField.getText().length() > 30) {
-            errorMessage += "\nSurname too long. Maximum 30 characters allowed.";
+        if (surnameTextField.getText().length() < 1 || surnameTextField.getText().length() > 30) {
+            errorMessage += "\nSurname must be between 1 and 30 characters.";
         }
-        if (phoneTextField.getText().length() > 15) {
-            errorMessage += "\nPhone number too long. Maximum 15 characters allowed.";
+        if (phoneTextField.getText().length() < 1 || phoneTextField.getText().length() > 15) {
+            errorMessage += "\nPhone number must be between 1 and 15 characters.";
+        }
+        if (password.length() < 1) {
+            errorMessage += "\nPlease enter a password.";
         }
         if (!password.equals(confirmPassword)) {
             errorMessage += "\nPasswords do not match.";
         }
-        if (houseNoField.getText().length() > 5) {
-            errorMessage += "\nHouse number too long. Maximum 5 characters allowed.";
+        if (houseNoField.getText().length() < 1 || houseNoField.getText().length() > 5) {
+            errorMessage += "\nHouse number must be between 1 and 5 characters.";
         }
-        if (streetNameTextField.getText().length() > 45) {
-            errorMessage += "\nStreet name too long. Maximum 45 characters allowed.";
+        if (streetNameTextField.getText().length() < 1 || streetNameTextField.getText().length() > 45) {
+            errorMessage += "\nStreet name must be between 1 and 45 characters.";
         }
-        if (townTextField.getText().length() > 45) {
-            errorMessage += "\nTown / City too long. Maximum 45 characters allowed.";
+        if (townTextField.getText().length() < 1 || townTextField.getText().length() > 45) {
+            errorMessage += "\nTown / City must be between 1 and 45 characters.";
         }
-        if (postCodeTruncated.length() > 8) {
-            errorMessage += "\nPostcode too long. Maximum 8 characters allowed.";
+        if (postCodeTruncated.length() < 1 || postCodeTruncated.length() > 8) {
+            errorMessage += "\nPostcode must be between 1 and 8 characters.";
         }
 
         if (errorMessage.length() > 0){
@@ -375,20 +378,35 @@ public class Register extends javax.swing.JPanel {
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        
         return valid;
     }
     
     private void detailsToDB(ArrayList<String> details, boolean isHost) {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
             
-            PreparedStatement pstmt = con.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?)");
-            for (int i=0;i<10;i++){
-                pstmt.setString(i+1, details.get(i));
-            }
-            pstmt.setBoolean(11, isHost);
+            PreparedStatement checkEmailPstmt = con.prepareStatement("SELECT * from Users WHERE email=?");
+            String email = details.get(0);
+            String password = details.get(1);
+            
+            checkEmailPstmt.setString(1, email);
+            ResultSet res = checkEmailPstmt.executeQuery();
+            
+            if (!res.next()) {
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, ?, ? , ?, ?, ?, ?, ?)");
+                pstmt.setString(1, email);
+                pstmt.setString(2, Main.hashString(password));
+                for (int i=2;i<10;i++){
+                    pstmt.setString(i+1, details.get(i));
+                }
+                pstmt.setBoolean(11, isHost);
 
-            pstmt.executeUpdate();
+                pstmt.executeUpdate();
+            }
+            else {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "That email has already been used.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+            }
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -426,6 +444,9 @@ public class Register extends javax.swing.JPanel {
             details.add(postcodeTextField.getText());
             
             detailsToDB(details, isHost);
+            
+            Login loginPage = new Login(jFrameInstance);
+            jFrameInstance.changePanelToSpecific(loginPage);
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 

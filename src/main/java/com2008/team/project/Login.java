@@ -165,7 +165,8 @@ public class Login extends javax.swing.JPanel {
     }
     
     private void goToRegistrationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToRegistrationButtonActionPerformed
-        
+        Register registrationPage = new Register(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(registrationPage);
     }//GEN-LAST:event_goToRegistrationButtonActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed

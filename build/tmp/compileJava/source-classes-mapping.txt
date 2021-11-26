@@ -12,12 +12,19 @@ com2008/team/project/Property.java
  com2008.team.project.Property
 com2008/team/project/ChargeBand.java
  com2008.team.project.ChargeBand
+<<<<<<< HEAD
 com2008/team/project/ChangePassword.java
  com2008.team.project.ChangePassword
  com2008.team.project.ChangePassword$1
  com2008.team.project.ChangePassword$2
  com2008.team.project.ChangePassword$3
  com2008.team.project.ChangePassword$4
+=======
+com2008/team/project/Bedroom.java
+ com2008.team.project.Bed
+ com2008.team.project.Bedroom
+ com2008.team.project.Bedroom$1
+>>>>>>> master
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1

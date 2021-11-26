@@ -86,9 +86,9 @@
                   <Component id="returnButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="name" alignment="3" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="myDetailsText" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="myAddressText" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>

@@ -380,11 +380,11 @@ public class Review extends javax.swing.JPanel {
             
             if (n <= 3){
                 removeReviewSections(3-n);
-                fillInReviewBoxes(0);
             } else {
                 nextButton.setEnabled(true);
             }
             
+            fillInReviewBoxes(0);
             numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
             pages.setText("1/" + numberOfPages);
         }
@@ -403,32 +403,32 @@ public class Review extends javax.swing.JPanel {
             amountOfBoxesToFillIn = reviewList.length - indexOfFirstReviewOnPage;
         }
         if (amountOfBoxesToFillIn >= 1){
-            review1Desc.setText(reviewList[indexOfFirstReviewOnPage*3].getReviewDesc());
-            review1Label.setText(reviewList[indexOfFirstReviewOnPage*3].getForename()+" "+
-                    reviewList[indexOfFirstReviewOnPage*3].getLastname().substring(0,1)+".");
-            review1Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3].getRating());
+            review1Desc.setText(reviewList[indexOfFirstReviewOnPage].getReviewDesc());
+            review1Label.setText(reviewList[indexOfFirstReviewOnPage].getForename()+" "+
+                    reviewList[indexOfFirstReviewOnPage].getLastname().substring(0,1)+".");
+            review1Rating.setText("" + reviewList[indexOfFirstReviewOnPage].getRating());
         }
         if (amountOfBoxesToFillIn >= 2){
-            review2Desc.setText(reviewList[indexOfFirstReviewOnPage*3+1].getReviewDesc());
-            review2Label.setText(reviewList[indexOfFirstReviewOnPage*3+1].getForename()+" "+
-            reviewList[indexOfFirstReviewOnPage*3+1].getLastname().substring(0,1)+".");
-            review2Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3+1].getRating());
+            review2Desc.setText(reviewList[indexOfFirstReviewOnPage+1].getReviewDesc());
+            review2Label.setText(reviewList[indexOfFirstReviewOnPage+1].getForename()+" "+
+            reviewList[indexOfFirstReviewOnPage+1].getLastname().substring(0,1)+".");
+            review2Rating.setText("" + reviewList[indexOfFirstReviewOnPage+1].getRating());
         }
         if (amountOfBoxesToFillIn == 3){
-            review3Desc.setText(reviewList[indexOfFirstReviewOnPage*3+2].getReviewDesc());
-            review3Label.setText(reviewList[indexOfFirstReviewOnPage*3+2].getForename()+" "+
-            reviewList[indexOfFirstReviewOnPage*3+2].getLastname().substring(0,1)+".");
-            review3Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3+2].getRating());
+            review3Desc.setText(reviewList[indexOfFirstReviewOnPage+2].getReviewDesc());
+            review3Label.setText(reviewList[indexOfFirstReviewOnPage+2].getForename()+" "+
+            reviewList[indexOfFirstReviewOnPage+2].getLastname().substring(0,1)+".");
+            review3Rating.setText("" + reviewList[indexOfFirstReviewOnPage+2].getRating());
         }
     }
     
     private void removeReviewSections(int number){
-        if (number == 1){
+        if (number >= 1){
             review3Desc.setVisible(false);
             review3Label.setVisible(false);
             review3Rating.setVisible(false);
         }
-        if (number == 2){
+        if (number >= 2){
             review2Desc.setVisible(false);
             review2Label.setVisible(false);
             review2Rating.setVisible(false);

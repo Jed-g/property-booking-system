@@ -11,7 +11,6 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        changePanelToSpecific(new Review(this, "1"));
     }
 
     /**
@@ -54,7 +53,7 @@ public class Main extends javax.swing.JFrame {
         defaultPanelLayout.setHorizontalGroup(
             defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defaultPanelLayout.createSequentialGroup()
-                .addContainerGap(847, Short.MAX_VALUE)
+                .addContainerGap(846, Short.MAX_VALUE)
                 .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jSeparator1)
@@ -64,9 +63,9 @@ public class Main extends javax.swing.JFrame {
             .addGroup(defaultPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(484, Short.MAX_VALUE))
+                .addContainerGap(490, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(defaultPanel);

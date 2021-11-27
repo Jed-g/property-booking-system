@@ -73,6 +73,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         guestName4 = new javax.swing.JLabel();
         previousPage = new javax.swing.JButton();
         nextPage = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -556,6 +558,18 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             }
         });
 
+        searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        searchButton.setText("SEARCH");
+        searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchInput.setText("Search...");
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout previousBkgsLayout = new javax.swing.GroupLayout(previousBkgs);
         previousBkgs.setLayout(previousBkgsLayout);
         previousBkgsLayout.setHorizontalGroup(
@@ -577,6 +591,10 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGroup(previousBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(previousBkgsLayout.createSequentialGroup()
                         .addComponent(lblPreviousBookings)
+                        .addGap(124, 124, 124)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(previousBkgsLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -588,7 +606,11 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             previousBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(previousBkgsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPreviousBookings)
+                .addGroup(previousBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPreviousBookings)
+                    .addGroup(previousBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(previousBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(previous1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -694,6 +716,10 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nextPageActionPerformed
 
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactGuest1;
@@ -740,6 +766,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     private javax.swing.JButton reviews2;
     private javax.swing.JButton reviews3;
     private javax.swing.JButton reviews4;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JButton upcomingBookings;
     private javax.swing.JButton viewAccount;
     private javax.swing.JButton viewAllProperties;

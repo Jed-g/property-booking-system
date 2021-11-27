@@ -65,6 +65,8 @@ public class HostRequests extends javax.swing.JPanel {
         datesRequested4 = new javax.swing.JLabel();
         previousPage = new javax.swing.JButton();
         nextPage = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -484,6 +486,18 @@ public class HostRequests extends javax.swing.JPanel {
             }
         });
 
+        searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchInput.setText("Search...");
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
+        searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        searchButton.setText("SEARCH");
+        searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
         javax.swing.GroupLayout bookingRequestsLayout = new javax.swing.GroupLayout(bookingRequests);
         bookingRequests.setLayout(bookingRequestsLayout);
         bookingRequestsLayout.setHorizontalGroup(
@@ -493,6 +507,10 @@ public class HostRequests extends javax.swing.JPanel {
                 .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bookingRequestsLayout.createSequentialGroup()
                         .addComponent(lblBookingRequests)
+                        .addGap(148, 148, 148)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(bookingRequestsLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
@@ -514,7 +532,11 @@ public class HostRequests extends javax.swing.JPanel {
             bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bookingRequestsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblBookingRequests)
+                .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblBookingRequests)
+                    .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(request1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,11 +574,11 @@ public class HostRequests extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bookingRequests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -620,6 +642,10 @@ public class HostRequests extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nextPageActionPerformed
 
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptBooking1;
@@ -658,6 +684,8 @@ public class HostRequests extends javax.swing.JPanel {
     private javax.swing.JPanel request3;
     private javax.swing.JPanel request4;
     private javax.swing.JButton requests;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JButton upcomingBookings;
     private javax.swing.JButton viewAccount;
     private javax.swing.JButton viewAllProperties;

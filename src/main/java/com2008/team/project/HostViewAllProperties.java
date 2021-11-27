@@ -70,6 +70,8 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propRemove4 = new javax.swing.JButton();
         nextPage = new javax.swing.JButton();
         previousPage = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -509,6 +511,18 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             }
         });
 
+        searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchInput.setText("Search...");
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
+        searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        searchButton.setText("SEARCH");
+        searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
         javax.swing.GroupLayout viewPropertiesLayout = new javax.swing.GroupLayout(viewProperties);
         viewProperties.setLayout(viewPropertiesLayout);
         viewPropertiesLayout.setHorizontalGroup(
@@ -521,7 +535,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addGroup(viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPropertiesLayout.createSequentialGroup()
                                 .addComponent(lblMyProperties)
-                                .addGap(701, 701, 701)
+                                .addGap(162, 162, 162)
+                                .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(177, 177, 177)
                                 .addComponent(addAProperty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(viewPropertiesLayout.createSequentialGroup()
@@ -541,10 +559,17 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         viewPropertiesLayout.setVerticalGroup(
             viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewPropertiesLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMyProperties)
-                    .addComponent(addAProperty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewPropertiesLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblMyProperties)
+                            .addComponent(addAProperty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(viewPropertiesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(viewPropertiesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(property1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -659,6 +684,10 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_previousPageActionPerformed
 
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAProperty;
@@ -701,6 +730,8 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     private javax.swing.JPanel property3;
     private javax.swing.JPanel property4;
     private javax.swing.JButton requests;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JButton upcomingBookings;
     private javax.swing.JButton viewAccount;
     private javax.swing.JButton viewAllProperties;

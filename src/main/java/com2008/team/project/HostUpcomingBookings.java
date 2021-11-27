@@ -82,6 +82,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         guestName4 = new javax.swing.JLabel();
         previousPage = new javax.swing.JButton();
         nextPage = new javax.swing.JButton();
+        searchInput = new javax.swing.JTextField();
+        searchButton = new javax.swing.JButton();
 
         Property6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Property6.setPreferredSize(new java.awt.Dimension(515, 130));
@@ -654,6 +656,18 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             }
         });
 
+        searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        searchInput.setText("Search...");
+        searchInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchInputActionPerformed(evt);
+            }
+        });
+
+        searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        searchButton.setText("SEARCH");
+        searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
         javax.swing.GroupLayout upcomingBkgsLayout = new javax.swing.GroupLayout(upcomingBkgs);
         upcomingBkgs.setLayout(upcomingBkgsLayout);
         upcomingBkgsLayout.setHorizontalGroup(
@@ -673,6 +687,10 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGroup(upcomingBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(upcomingBkgsLayout.createSequentialGroup()
                         .addComponent(lblUpcomingBookings)
+                        .addGap(126, 126, 126)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(upcomingBkgsLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -684,7 +702,11 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             upcomingBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(upcomingBkgsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblUpcomingBookings, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(upcomingBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUpcomingBookings, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(upcomingBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(upcomingBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(upcoming1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -800,6 +822,10 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nextPageActionPerformed
 
+    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchInputActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton PropEdit;
@@ -871,6 +897,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     private javax.swing.JLabel propName3;
     private javax.swing.JLabel propName4;
     private javax.swing.JButton requests;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchInput;
     private javax.swing.JPanel upcoming1;
     private javax.swing.JPanel upcoming2;
     private javax.swing.JPanel upcoming3;

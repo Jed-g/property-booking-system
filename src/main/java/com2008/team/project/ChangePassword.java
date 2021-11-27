@@ -1,23 +1,25 @@
 package com2008.team.project;
 
+import java.sql.*;
+
 public class ChangePassword extends javax.swing.JPanel {
     
     private Main jFrameInstance;
     private User userPanelInstance;
     private String email;
-    private String passwordHashed;
     
     /**
      * Creates new form ChangePassword
      */
-    public ChangePassword(Main jFrameInstance, User userPanelInstance, String email, String passwordHashed, String name) {
+    public ChangePassword(Main jFrameInstance, User userPanelInstance, String email, String name) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.userPanelInstance = userPanelInstance;
         this.email = email;
-        this.passwordHashed = passwordHashed;
         
         this.name.setText(name);
+        
+        DriverManager.setLoginTimeout(3);
     }
 
     /**
@@ -192,9 +194,9 @@ public class ChangePassword extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
+                .addGap(65, 65, 65)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,25 +227,90 @@ public class ChangePassword extends javax.swing.JPanel {
     }//GEN-LAST:event_confirmNewPasswordFieldActionPerformed
 
     private void updateUserData() {
-        // DB stuff
-        
-        // Clear fields for security
-        confirmNewPasswordField.setText("");
-        newPasswordField.setText("");
-        currentPasswordField.setText("");
-        
-        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-        String errorMessage = "Example error message:\nerror1\nerror2";
-        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        
-        // If password changed
-        String newPasswordHashed = passwordHashed;
-        jFrameInstance.setPasswordHashed(newPasswordHashed);
-        userPanelInstance.setPasswordHashed(newPasswordHashed);
-        
-        jFrameInstance.changePanelToSpecific(userPanelInstance);
-    }
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            
+            String currentPassword = String.valueOf(currentPasswordField.getPassword());
+            String newPassword = String.valueOf(newPasswordField.getPassword());
+            String confirmNewPassword = String.valueOf(confirmNewPasswordField.getPassword());
+            
+            // Clear fields for security
+            currentPasswordField.setText("");
+            confirmNewPasswordField.setText("");
+            newPasswordField.setText("");
+            
+            try {
+                PreparedStatement pstmt = con.prepareStatement("SELECT password FROM Users WHERE email=?");
+                pstmt.setString(1, email);
+                ResultSet res = pstmt.executeQuery();
+                
+                if (res.next()) {
+                    String currentPasswordInDB = res.getString("password");
+                    
+                    res.close();
+                    pstmt.close();
+                    
+                    if (!Main.hashString(currentPassword).equals(currentPasswordInDB)) {
+                        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                        String errorMessage = "Current password is not valid.";
+                        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                        
+                        return;
+                    }
+                }
+                
+            } catch (Exception ex) {
+                ex.printStackTrace();            
+            
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "Connection to database failed. University VPN is required.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                
+                return;
+            }
+            
+            if (newPassword.length() == 0) {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "Password cannot be empty.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                
+                return;
+            }
+            
+            if (!newPassword.equals(confirmNewPassword)){
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "Passwords do not match.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                
+                return;
+            }
 
+            try {
+                PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET password=? WHERE email=?");
+                pstmt.setString(1, Main.hashString(newPassword));
+                pstmt.setString(2, email);
+                int count = pstmt.executeUpdate();
+
+                pstmt.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();            
+            
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "Error during updating password.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                
+                return;
+            }
+            
+        jFrameInstance.changePanelToSpecific(userPanelInstance);
+        } catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton changePasswordButton;

@@ -11,4 +11,11 @@ repositories {
 
 dependencies {
     testImplementation     'junit:junit:4.13'
+    implementation fileTree(dir: 'lib', include: '*.jar')
+}
+
+jar {
+	manifest {
+		attributes "Main-class": "$mainClassName"
+	}
 }

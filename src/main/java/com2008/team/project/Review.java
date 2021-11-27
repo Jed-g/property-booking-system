@@ -153,6 +153,7 @@ public class Review extends javax.swing.JPanel {
         pages.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pages.setText("awaiting DB fetch");
 
+        review2Desc.setEditable(false);
         review2Desc.setColumns(20);
         review2Desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         review2Desc.setLineWrap(true);
@@ -160,6 +161,7 @@ public class Review extends javax.swing.JPanel {
         review2Desc.setText("awaiting DB fetch");
         jScrollPane1.setViewportView(review2Desc);
 
+        review3Desc.setEditable(false);
         review3Desc.setColumns(20);
         review3Desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         review3Desc.setLineWrap(true);
@@ -167,6 +169,7 @@ public class Review extends javax.swing.JPanel {
         review3Desc.setText("awaiting DB fetch");
         jScrollPane2.setViewportView(review3Desc);
 
+        review1Desc.setEditable(false);
         review1Desc.setColumns(20);
         review1Desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         review1Desc.setLineWrap(true);
@@ -372,7 +375,7 @@ public class Review extends javax.swing.JPanel {
                     sum += i.getRating();
                 }
                 
-                averageRatingTextField.setText(String.format("%.2f", (float)sum/n));
+                averageRatingTextField.setText(String.format("%.1f", (float)sum/n)+"/5");
             }
             
             if (n <= 3){
@@ -399,22 +402,21 @@ public class Review extends javax.swing.JPanel {
         if (indexOfFirstReviewOnPage + 3 > reviewList.length){
             amountOfBoxesToFillIn = reviewList.length - indexOfFirstReviewOnPage;
         }
-        
         if (amountOfBoxesToFillIn >= 1){
             review1Desc.setText(reviewList[indexOfFirstReviewOnPage*3].getReviewDesc());
-            review1Label.setText(reviewList[indexOfFirstReviewOnPage*3].getForename()+
+            review1Label.setText(reviewList[indexOfFirstReviewOnPage*3].getForename()+" "+
                     reviewList[indexOfFirstReviewOnPage*3].getLastname().substring(0,1)+".");
             review1Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3].getRating());
         }
         if (amountOfBoxesToFillIn >= 2){
             review2Desc.setText(reviewList[indexOfFirstReviewOnPage*3+1].getReviewDesc());
-            review2Label.setText(reviewList[indexOfFirstReviewOnPage*3+1].getForename()+
+            review2Label.setText(reviewList[indexOfFirstReviewOnPage*3+1].getForename()+" "+
             reviewList[indexOfFirstReviewOnPage*3+1].getLastname().substring(0,1)+".");
             review2Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3+1].getRating());
         }
         if (amountOfBoxesToFillIn == 3){
             review3Desc.setText(reviewList[indexOfFirstReviewOnPage*3+2].getReviewDesc());
-            review3Label.setText(reviewList[indexOfFirstReviewOnPage*3+2].getForename()+
+            review3Label.setText(reviewList[indexOfFirstReviewOnPage*3+2].getForename()+" "+
             reviewList[indexOfFirstReviewOnPage*3+2].getLastname().substring(0,1)+".");
             review3Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3+2].getRating());
         }

@@ -55,7 +55,7 @@ public class ReviewList {
             
             for (int i = 0; i < numberOfReviews; i++){
                 if (res.next()){
-                    reviewList[i] = new ReviewList(res.getString("forename"), res.getString("lastname"),
+                    reviewList[i] = new ReviewList(res.getString("forename"), res.getString("surname"),
                             res.getInt("rating"), res.getString("reviewDescription"));
                 }
             }

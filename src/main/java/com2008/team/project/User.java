@@ -1,22 +1,24 @@
 package com2008.team.project;
 
+import java.sql.*;
+
 public class User extends javax.swing.JPanel {
 
     private Main jFrameInstance;
     private String email;
-    private String passwordHashed;
     private Boolean editMode = false;
     private Boolean hostView;
     
     /**
      * Creates new form User
      */
-    public User(Main jFrameInstance, String email, String passwordHashed, Boolean hostView) {
+    public User(Main jFrameInstance, String email, Boolean hostView) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
-        this.passwordHashed = passwordHashed;
         this.hostView = hostView;
+               
+        DriverManager.setLoginTimeout(3);
         
         fetchUserData();
     }
@@ -30,208 +32,208 @@ public class User extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        myDetailsText = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        emailTextField = new javax.swing.JTextField();
+        emailText = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        titleTextField = new javax.swing.JTextField();
+        titleText = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        firstNameTextField = new javax.swing.JTextField();
+        firstNameText = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        surnameTextField = new javax.swing.JTextField();
+        surnameText = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        phoneNumberTextField = new javax.swing.JTextField();
+        phoneNumberText = new javax.swing.JLabel();
+        myAddressText = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
+        houseNumberTextField = new javax.swing.JTextField();
+        houseNumberText = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        streetNameTextField = new javax.swing.JTextField();
+        streetNameText = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        townCityTextField = new javax.swing.JTextField();
+        townCityText = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jLabel13 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        postCodeTextField = new javax.swing.JTextField();
+        postCodeText = new javax.swing.JLabel();
+        button1 = new javax.swing.JButton();
+        button2 = new javax.swing.JButton();
+        hostViewText = new javax.swing.JLabel();
+        hostViewChangeButton = new javax.swing.JButton();
+        becomeHostButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
-        jButton1.setBackground(new java.awt.Color(194, 123, 160));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back_arrow_resized.png"))); // NOI18N
-        jButton1.setText("Return");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setIconTextGap(8);
-        jButton1.setMaximumSize(new java.awt.Dimension(168, 54));
-        jButton1.setMinimumSize(new java.awt.Dimension(168, 54));
-        jButton1.setPreferredSize(new java.awt.Dimension(168, 54));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        returnButton.setBackground(new java.awt.Color(194, 123, 160));
+        returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back_arrow_resized.png"))); // NOI18N
+        returnButton.setText("Return");
+        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        returnButton.setIconTextGap(8);
+        returnButton.setMaximumSize(new java.awt.Dimension(168, 54));
+        returnButton.setMinimumSize(new java.awt.Dimension(168, 54));
+        returnButton.setPreferredSize(new java.awt.Dimension(168, 54));
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                returnButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        jLabel1.setText("awaiting DB fetch");
+        name.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        name.setText("awaiting DB fetch");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("My Details:");
+        myDetailsText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        myDetailsText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        myDetailsText.setText("My Details:");
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField1.setText("awaiting DB fetch");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        emailTextField.setEditable(false);
+        emailTextField.setBackground(new java.awt.Color(204, 204, 204));
+        emailTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        emailTextField.setText("awaiting DB fetch");
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                emailTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel3.setText("Email");
+        emailText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        emailText.setText("Email");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField1)
+            .addComponent(emailTextField)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(emailText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField2.setText("awaiting DB fetch");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        titleTextField.setEditable(false);
+        titleTextField.setBackground(new java.awt.Color(204, 204, 204));
+        titleTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        titleTextField.setText("awaiting DB fetch");
+        titleTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                titleTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel4.setText("Title");
+        titleText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        titleText.setText("Title");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField2)
+            .addComponent(titleTextField)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(titleText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(titleTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField3.setText("awaiting DB fetch");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        firstNameTextField.setEditable(false);
+        firstNameTextField.setBackground(new java.awt.Color(204, 204, 204));
+        firstNameTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        firstNameTextField.setText("awaiting DB fetch");
+        firstNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                firstNameTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel5.setText("First Name");
+        firstNameText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        firstNameText.setText("First Name");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField3)
+            .addComponent(firstNameTextField)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(firstNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(firstNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField4.setText("awaiting DB fetch");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        surnameTextField.setEditable(false);
+        surnameTextField.setBackground(new java.awt.Color(204, 204, 204));
+        surnameTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        surnameTextField.setText("awaiting DB fetch");
+        surnameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                surnameTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel6.setText("Surname");
+        surnameText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        surnameText.setText("Surname");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(surnameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(surnameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(surnameText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(surnameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField5.setEditable(false);
-        jTextField5.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField5.setText("awaiting DB fetch");
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        phoneNumberTextField.setEditable(false);
+        phoneNumberTextField.setBackground(new java.awt.Color(204, 204, 204));
+        phoneNumberTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        phoneNumberTextField.setText("awaiting DB fetch");
+        phoneNumberTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                phoneNumberTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel7.setText("Phone Number");
+        phoneNumberText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        phoneNumberText.setText("Phone Number");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -239,200 +241,201 @@ public class User extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
-            .addComponent(jTextField5)
+                .addComponent(phoneNumberText, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE))
+            .addComponent(phoneNumberTextField)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(phoneNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(phoneNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("My Address:");
+        myAddressText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        myAddressText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        myAddressText.setText("My Address:");
 
-        jTextField6.setEditable(false);
-        jTextField6.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField6.setText("awaiting DB fetch");
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        houseNumberTextField.setEditable(false);
+        houseNumberTextField.setBackground(new java.awt.Color(204, 204, 204));
+        houseNumberTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        houseNumberTextField.setText("awaiting DB fetch");
+        houseNumberTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                houseNumberTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel9.setText("House Number");
+        houseNumberText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        houseNumberText.setText("House Number");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(houseNumberTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(houseNumberText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(houseNumberText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(houseNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField7.setEditable(false);
-        jTextField7.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField7.setText("awaiting DB fetch");
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        streetNameTextField.setEditable(false);
+        streetNameTextField.setBackground(new java.awt.Color(204, 204, 204));
+        streetNameTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        streetNameTextField.setText("awaiting DB fetch");
+        streetNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                streetNameTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel10.setText("Street Name");
+        streetNameText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        streetNameText.setText("Street Name");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(streetNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(streetNameText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(streetNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(streetNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField8.setEditable(false);
-        jTextField8.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField8.setText("awaiting DB fetch");
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        townCityTextField.setEditable(false);
+        townCityTextField.setBackground(new java.awt.Color(204, 204, 204));
+        townCityTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        townCityTextField.setText("awaiting DB fetch");
+        townCityTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                townCityTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel11.setText("Town / City");
+        townCityText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        townCityText.setText("Town / City");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(townCityTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(townCityText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(townCityText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(townCityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField9.setEditable(false);
-        jTextField9.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jTextField9.setText("awaiting DB fetch");
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        postCodeTextField.setEditable(false);
+        postCodeTextField.setBackground(new java.awt.Color(204, 204, 204));
+        postCodeTextField.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        postCodeTextField.setText("awaiting DB fetch");
+        postCodeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                postCodeTextFieldActionPerformed(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel12.setText("Post Code");
+        postCodeText.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        postCodeText.setText("Post Code");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(postCodeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(postCodeText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postCodeText, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postCodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jButton2.setBackground(new java.awt.Color(194, 123, 160));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Edit Details");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setMaximumSize(new java.awt.Dimension(168, 54));
-        jButton2.setMinimumSize(new java.awt.Dimension(168, 54));
-        jButton2.setPreferredSize(new java.awt.Dimension(168, 54));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        button1.setBackground(new java.awt.Color(194, 123, 160));
+        button1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        button1.setText("Edit Details");
+        button1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        button1.setMaximumSize(new java.awt.Dimension(168, 54));
+        button1.setMinimumSize(new java.awt.Dimension(168, 54));
+        button1.setPreferredSize(new java.awt.Dimension(168, 54));
+        button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                button1ActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(194, 123, 160));
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton3.setText("Change Password");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setMaximumSize(new java.awt.Dimension(168, 54));
-        jButton3.setMinimumSize(new java.awt.Dimension(168, 54));
-        jButton3.setPreferredSize(new java.awt.Dimension(168, 54));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        button2.setBackground(new java.awt.Color(194, 123, 160));
+        button2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        button2.setText("Change Password");
+        button2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        button2.setMaximumSize(new java.awt.Dimension(168, 54));
+        button2.setMinimumSize(new java.awt.Dimension(168, 54));
+        button2.setPreferredSize(new java.awt.Dimension(168, 54));
+        button2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                button2ActionPerformed(evt);
             }
         });
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Host View:");
+        hostViewText.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        hostViewText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hostViewText.setText("Host View:");
 
-        jButton4.setBackground(new java.awt.Color(204, 204, 204));
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton4.setText("Disabled");
-        jButton4.setEnabled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        hostViewChangeButton.setBackground(new java.awt.Color(204, 204, 204));
+        hostViewChangeButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        hostViewChangeButton.setText("Disabled");
+        hostViewChangeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        hostViewChangeButton.setEnabled(false);
+        hostViewChangeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                hostViewChangeButtonActionPerformed(evt);
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton5.setText("Become A Host");
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton5.setMaximumSize(new java.awt.Dimension(83, 25));
-        jButton5.setMinimumSize(new java.awt.Dimension(83, 25));
-        jButton5.setPreferredSize(new java.awt.Dimension(83, 25));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        becomeHostButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        becomeHostButton.setText("Become A Host");
+        becomeHostButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        becomeHostButton.setMaximumSize(new java.awt.Dimension(83, 25));
+        becomeHostButton.setMinimumSize(new java.awt.Dimension(83, 25));
+        becomeHostButton.setPreferredSize(new java.awt.Dimension(83, 25));
+        becomeHostButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                becomeHostButtonActionPerformed(evt);
             }
         });
 
@@ -443,14 +446,14 @@ public class User extends javax.swing.JPanel {
             .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(myDetailsText, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -462,7 +465,7 @@ public class User extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(myAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -473,14 +476,14 @@ public class User extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(button2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(hostViewChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hostViewText, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(becomeHostButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -488,14 +491,14 @@ public class User extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(myDetailsText, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(myAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -519,98 +522,105 @@ public class User extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hostViewText, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(hostViewChangeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(becomeHostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(56, 56, 56))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
         jFrameInstance.changePanelToDefault();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_returnButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_emailTextFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void titleTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_titleTextFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void surnameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_surnameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_surnameTextFieldActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void phoneNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNumberTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_phoneNumberTextFieldActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void houseNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseNumberTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_houseNumberTextFieldActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void streetNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_streetNameTextFieldActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void townCityTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_townCityTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_townCityTextFieldActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void postCodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postCodeTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_postCodeTextFieldActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        if (editMode) {
-            updateUserData();
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            if (editMode) {
+                updateUserData();
+            }
+            editMode = true;
+
+            emailTextField.setEditable(true);
+            emailTextField.setBackground(new java.awt.Color(255, 255, 255));
+            titleTextField.setEditable(true);
+            titleTextField.setBackground(new java.awt.Color(255, 255, 255));
+            firstNameTextField.setEditable(true);
+            firstNameTextField.setBackground(new java.awt.Color(255, 255, 255));
+            surnameTextField.setEditable(true);
+            surnameTextField.setBackground(new java.awt.Color(255, 255, 255));
+            phoneNumberTextField.setEditable(true);
+            phoneNumberTextField.setBackground(new java.awt.Color(255, 255, 255));
+            houseNumberTextField.setEditable(true);
+            houseNumberTextField.setBackground(new java.awt.Color(255, 255, 255));
+            streetNameTextField.setEditable(true);
+            streetNameTextField.setBackground(new java.awt.Color(255, 255, 255));
+            townCityTextField.setEditable(true);
+            townCityTextField.setBackground(new java.awt.Color(255, 255, 255));
+            postCodeTextField.setEditable(true);
+            postCodeTextField.setBackground(new java.awt.Color(255, 255, 255));
+            button1.setText("Save Changes");
+            button2.setText("Cancel");
+        } catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        editMode = true;
+    }//GEN-LAST:event_button1ActionPerformed
 
-        jTextField1.setEditable(true);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.setEditable(true);
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setEditable(true);
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setEditable(true);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField5.setEditable(true);
-        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setEditable(true);
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField7.setEditable(true);
-        jTextField7.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField8.setEditable(true);
-        jTextField8.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.setEditable(true);
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Save Changes");
-        jButton3.setText("Cancel");
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         if (!editMode){
-            ChangePassword changePasswordPanel = new ChangePassword(jFrameInstance, this, email, passwordHashed, jLabel1.getText());
+            ChangePassword changePasswordPanel = new ChangePassword(jFrameInstance, this, email, name.getText());
             jFrameInstance.changePanelToSpecific(changePasswordPanel);
         } else {
             jFrameInstance.createNewUserPanelInstance();
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_button2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void becomeHostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_becomeHostButtonActionPerformed
         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
         String confirmationMessage = "Are you sure you want to become a host?";
         String[] options = {"Yes", "No"};
@@ -618,83 +628,192 @@ public class User extends javax.swing.JPanel {
                 javax.swing.JOptionPane.QUESTION_MESSAGE, icon, options, null);
         
         if (answer != javax.swing.JOptionPane.CLOSED_OPTION && answer != 1) {
-            // Guest wants to become host. Do DB stuff.
-            
-            // Value to be determined from DB update
-            Boolean successfulUpdate = true;
-            
-            if (successfulUpdate) {
-                jButton5.setVisible(false);
-                jButton4.setEnabled(true);
+            try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+
+                PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET isHost=1 WHERE email=?");
+                pstmt.setString(1, email);
+                int count = pstmt.executeUpdate();
+
+                becomeHostButton.setVisible(false);
+                hostViewChangeButton.setEnabled(true);
                 hostView = !hostView;
                 jFrameInstance.setHostView(hostView);
 
-                jButton4.setText(hostView ? "Disable" : "Enable");
-                jButton4.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
+                hostViewChangeButton.setText(hostView ? "Disable" : "Enable");
+                hostViewChangeButton.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
+
+                pstmt.close();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+                
+                String errorMessage = "Connection to database failed. University VPN is required.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
-        
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_becomeHostButtonActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void hostViewChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostViewChangeButtonActionPerformed
         hostView = !hostView;
         jFrameInstance.setHostView(hostView);
         
-        jButton4.setText(hostView ? "Disable" : "Enable");
-        jButton4.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
-    }//GEN-LAST:event_jButton4ActionPerformed
+        hostViewChangeButton.setText(hostView ? "Disable" : "Enable");
+        hostViewChangeButton.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
+    }//GEN-LAST:event_hostViewChangeButtonActionPerformed
 
     private void fetchUserData() {
-        // DB stuff
-        
         // Value to be determined from DB
         Boolean isHost = false;
         
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+           
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Users WHERE email=?");
+            pstmt.setString(1, email);
+            ResultSet res = pstmt.executeQuery();
+                        
+            if (res.next()) {
+                name.setText(res.getString("forename") + " " + res.getString("surname"));
+                
+                emailTextField.setText(res.getString("email"));
+                titleTextField.setText(res.getString("title"));
+                firstNameTextField.setText(res.getString("forename"));
+                surnameTextField.setText(res.getString("surname"));
+                phoneNumberTextField.setText(res.getString("phoneNo"));
+                houseNumberTextField.setText(res.getString("privateHouseNumber"));
+                streetNameTextField.setText(res.getString("privateStreetName"));
+                townCityTextField.setText(res.getString("privatePlaceName"));
+                postCodeTextField.setText(res.getString("privatePostCode"));
+                
+                isHost = res.getBoolean("isHost");
+            }
+            
+            res.close();
+            pstmt.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
         if (isHost) {
-            jButton5.setVisible(false);
-            jButton4.setEnabled(true);
-            jButton4.setText(hostView ? "Disable" : "Enable");
-            jButton4.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
+            becomeHostButton.setVisible(false);
+            hostViewChangeButton.setEnabled(true);
+            hostViewChangeButton.setText(hostView ? "Disable" : "Enable");
+            hostViewChangeButton.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
         }
     }
     
     private void updateUserData() {
-        // DB stuff
-        
-        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-        String errorMessage = "Example error message:\nerror1\nerror2";
-        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        
-        // If email changed
-        String newEmail = email;
-        email = newEmail;
-        jFrameInstance.setEmail(newEmail);
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Users SET email=?, title=?, forename=?, surname=?, phoneNo=?,"
+                    + " privateHouseNumber=?, privateStreetName=?, privatePlaceName=?, privatePostCode=? WHERE email=?");
+            
+            String errorMessage = "";
+            
+            // Remove whitespace
+            String postCodeTruncated = postCodeTextField.getText().replaceAll("\\s","");
+            
+            String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+            
+            // Regex check for email
+            if (!emailTextField.getText().matches(emailRegex)) {
+                errorMessage += "\nEmail is not valid.";
+            }
+            if (emailTextField.getText().length() == 0 || emailTextField.getText().length() > 50) {
+            errorMessage += "\nEmail must be between 1 and 50 characters.";
+            }
+            if (titleTextField.getText().length() == 0 || titleTextField.getText().length() > 5) {
+            errorMessage += "\nTitle must be between 1 and 5 characters";
+            }
+            if (firstNameTextField.getText().length() == 0 || firstNameTextField.getText().length() > 30) {
+            errorMessage += "\nFirst name must be between 1 and 30 charracters.";
+            }
+            if (surnameTextField.getText().length() == 0 || surnameTextField.getText().length() > 30) {
+            errorMessage += "\nSurname must be between 1 and 30 characters.";
+            }
+            if (phoneNumberTextField.getText().length() == 0 || phoneNumberTextField.getText().length() > 15) {
+            errorMessage += "\nPhone number must be between 1 and 15 characters.";
+            }
+            if (houseNumberTextField.getText().length() == 0 || houseNumberTextField.getText().length() > 5) {
+            errorMessage += "\nHouse number must be between 1 and 5 characters.";
+            }
+            if (streetNameTextField.getText().length() == 0 || streetNameTextField.getText().length() > 45) {
+            errorMessage += "\nStreet name must be between 1 and 45 characters.";
+            }
+            if (townCityTextField.getText().length() == 0 || townCityTextField.getText().length() > 45) {
+            errorMessage += "\nTown / City must be between 1 and 45 characters.";
+            }
+            if (postCodeTruncated.length() == 0 || postCodeTruncated.length() > 8) {
+            errorMessage += "\nPostcode must be between 1 and 8 characters.";
+            }
+            
+            if (errorMessage.length() > 0){
+                // Remove '\n' at the beginning
+                errorMessage = errorMessage.substring(1);
+                
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                
+                return;
+            }
+            
+            pstmt.setString(1, emailTextField.getText());
+            pstmt.setString(2, titleTextField.getText());
+            pstmt.setString(3, firstNameTextField.getText());
+            pstmt.setString(4, surnameTextField.getText());
+            pstmt.setString(5, phoneNumberTextField.getText());
+            pstmt.setString(6, houseNumberTextField.getText());
+            pstmt.setString(7, streetNameTextField.getText());
+            pstmt.setString(8, townCityTextField.getText());
+            pstmt.setString(9, postCodeTruncated);
+            
+            pstmt.setString(10, email);
+            
+            try {
+            int count = pstmt.executeUpdate();
+
+            pstmt.close();
+            } catch (Exception ex) {
+                if (ex.toString().contains("Duplicate")){
+                    javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                    errorMessage = "Another user with the same email already exists.";
+                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                    
+                    return;
+                } else {
+                    System.out.println(ex);
+                }
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+
+        jFrameInstance.setEmail(emailTextField.getText());
         
         jFrameInstance.createNewUserPanelInstance();
     }
-
-    void setPasswordHashed(String passwordHashed){
-        this.passwordHashed = passwordHashed;
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton becomeHostButton;
+    private javax.swing.JButton button1;
+    private javax.swing.JButton button2;
+    private javax.swing.JLabel emailText;
+    private javax.swing.JTextField emailTextField;
+    private javax.swing.JLabel firstNameText;
+    private javax.swing.JTextField firstNameTextField;
+    private javax.swing.JButton hostViewChangeButton;
+    private javax.swing.JLabel hostViewText;
+    private javax.swing.JLabel houseNumberText;
+    private javax.swing.JTextField houseNumberTextField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -705,14 +824,21 @@ public class User extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel myAddressText;
+    private javax.swing.JLabel myDetailsText;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel phoneNumberText;
+    private javax.swing.JTextField phoneNumberTextField;
+    private javax.swing.JLabel postCodeText;
+    private javax.swing.JTextField postCodeTextField;
+    private javax.swing.JButton returnButton;
+    private javax.swing.JLabel streetNameText;
+    private javax.swing.JTextField streetNameTextField;
+    private javax.swing.JLabel surnameText;
+    private javax.swing.JTextField surnameTextField;
+    private javax.swing.JLabel titleText;
+    private javax.swing.JTextField titleTextField;
+    private javax.swing.JLabel townCityText;
+    private javax.swing.JTextField townCityTextField;
     // End of variables declaration//GEN-END:variables
 }

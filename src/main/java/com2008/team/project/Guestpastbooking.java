@@ -5,6 +5,7 @@
  */
 package com2008.team.project;
 
+import java.sql.*;
 
 
 
@@ -18,7 +19,8 @@ private String location;
 private String location1;
 private String location2;
 private String location3;
-
+private String startdate;
+private String enddate;
 
 
     /**
@@ -47,12 +49,12 @@ private String location3;
         jButton3 = new javax.swing.JButton();
         locationname = new javax.swing.JTextField();
         java.text.DateFormat dateFormat1 = new java.text.SimpleDateFormat("dd/MM/yyyy");
-        jFormattedTextField1 =  new javax.swing.JFormattedTextField(dateFormat1);
+        enddatefield =  new javax.swing.JFormattedTextField(dateFormat1);
         jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
-        jFormattedTextField2 =  new javax.swing.JFormattedTextField(dateFormat);
+        startdatefield =  new javax.swing.JFormattedTextField(dateFormat);
         jLabel3 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -110,14 +112,14 @@ private String location3;
 
         try{
             javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
-            dateMask.install(jFormattedTextField1);
+            dateMask.install(enddatefield);
         } catch (Exception ex){
 
         }
-        jFormattedTextField1.setText(dateFormat1.format(new java.util.Date()));
-        jFormattedTextField1.addActionListener(new java.awt.event.ActionListener() {
+        enddatefield.setText(dateFormat1.format(new java.util.Date()));
+        enddatefield.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField1ActionPerformed(evt);
+                enddatefieldActionPerformed(evt);
             }
         });
 
@@ -134,16 +136,21 @@ private String location3;
 
         try{
             javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
-            dateMask.install(jFormattedTextField1);
+            dateMask.install(enddatefield);
         } catch (Exception ex){
 
         }
-        jFormattedTextField2.setText(dateFormat.format(new java.util.Date()));
+        startdatefield.setText(dateFormat.format(new java.util.Date()));
 
         jLabel3.setText("Location:");
 
         jButton6.setBackground(new java.awt.Color(255, 204, 153));
         jButton6.setText("Search");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jTextField1.setText("jTextField1");
         jTabbedPane1.addTab("Location ", jTextField1);
@@ -250,7 +257,7 @@ private String location3;
                     .addGroup(layout.createSequentialGroup()
                         .addGap(192, 192, 192)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startdatefield, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -266,7 +273,7 @@ private String location3;
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(enddatefield, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton8)))))
                         .addGap(77, 77, 77)
@@ -337,9 +344,9 @@ private String location3;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(startdatefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enddatefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton8))))
                         .addGap(44, 44, 44)
                         .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -368,7 +375,46 @@ private String location3;
     }// </editor-fold>//GEN-END:initComponents
 
 
+    private boolean search(String location,String startdate,String enddate) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+                PreparedStatement pstmt = con.prepareStatement("SELECT Information FROM Porperty location=?,startdate=?,enddate=?");
+                pstmt.setString(1,location);
+                pstmt.setString(2,startdate);
+                pstmt.setString(2,enddate);
+                ResultSet res1 = pstmt.executeQuery();
 
+                if (res1.next()) {
+                    String locationInDB = res1.getString("location");  
+                    String startdateInDB = res1.getString("startdate");
+                    String enddateInDB = res1.getString("enddate");                   
+                    if ((Main.hashString(location).equals(locationInDB))|| (Main.hashString(startdate).equals(startdateInDB))&&(Main.hashString(enddate).equals(enddateInDB)) ){                  
+                        return true;
+                    }
+                    else {                       
+                        String errorMessage = "Incorrect details";
+                        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                        return false;
+                    }
+                }
+                else {
+                    
+                    String errorMessage = "The accomodation of this location is not found";
+                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                    
+                    return false;
+                }    
+            }
+
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return false;
+        
+    }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -381,8 +427,8 @@ private String location3;
      java.util.Date date1;
      java.util.Date date2;
      try{
-         date1 = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField2.getText());
-         date2 = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(jFormattedTextField1.getText());
+         date1 = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(startdatefield.getText());
+         date2 = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(enddatefield.getText());
          System.out.println(date1 + " " + date2);
      }
      catch (Exception ex){
@@ -390,9 +436,9 @@ private String location3;
      }
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
+    private void enddatefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enddatefieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+    }//GEN-LAST:event_enddatefieldActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -406,8 +452,23 @@ private String location3;
         jFrameInstance.changePanelToSpecific(guestupcomingbooking);
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        location = locationname.getText();
+        locationname.setText("");
+        startdate = startdatefield.getText();
+        startdatefield.setText("");
+        enddate = enddatefield.getText();
+        enddatefield.setText("");
+        
+        if (search(location,startdate,enddate)) {
+                       
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField enddatefield;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -425,8 +486,6 @@ private String location3;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -449,5 +508,6 @@ private String location3;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField locationname;
+    private javax.swing.JFormattedTextField startdatefield;
     // End of variables declaration//GEN-END:variables
 }

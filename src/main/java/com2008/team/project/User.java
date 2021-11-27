@@ -493,9 +493,9 @@ public class User extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(myDetailsText, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(myAddressText, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -722,33 +722,33 @@ public class User extends javax.swing.JPanel {
             // Regex check for email
             if (!emailTextField.getText().matches(emailRegex)) {
                 errorMessage += "\nEmail is not valid.";
-            }            
-            if (emailTextField.getText().length() > 50) {
-                errorMessage += "\nEmail too long. Maximum 50 characters allowed.";
             }
-            if (titleTextField.getText().length() > 5) {
-                errorMessage += "\nTitle too long. Maximum 5 characters allowed.";
+            if (emailTextField.getText().length() == 0 || emailTextField.getText().length() > 50) {
+            errorMessage += "\nEmail must be between 1 and 50 characters.";
             }
-            if (firstNameTextField.getText().length() > 30) {
-                errorMessage += "\nFirst name too long. Maximum 30 characters allowed.";
+            if (titleTextField.getText().length() == 0 || titleTextField.getText().length() > 5) {
+            errorMessage += "\nTitle must be between 1 and 5 characters";
             }
-            if (surnameTextField.getText().length() > 30) {
-                errorMessage += "\nSurname too long. Maximum 30 characters allowed.";
+            if (firstNameTextField.getText().length() == 0 || firstNameTextField.getText().length() > 30) {
+            errorMessage += "\nFirst name must be between 1 and 30 charracters.";
             }
-            if (phoneNumberTextField.getText().length() > 15) {
-                errorMessage += "\nPhone number too long. Maximum 15 characters allowed.";
+            if (surnameTextField.getText().length() == 0 || surnameTextField.getText().length() > 30) {
+            errorMessage += "\nSurname must be between 1 and 30 characters.";
             }
-            if (houseNumberTextField.getText().length() > 5) {
-                errorMessage += "\nHouse number too long. Maximum 5 characters allowed.";
+            if (phoneNumberTextField.getText().length() == 0 || phoneNumberTextField.getText().length() > 15) {
+            errorMessage += "\nPhone number must be between 1 and 15 characters.";
             }
-            if (streetNameTextField.getText().length() > 45) {
-                errorMessage += "\nStreet name too long. Maximum 45 characters allowed.";
+            if (houseNumberTextField.getText().length() == 0 || houseNumberTextField.getText().length() > 5) {
+            errorMessage += "\nHouse number must be between 1 and 5 characters.";
             }
-            if (townCityTextField.getText().length() > 45) {
-                errorMessage += "\nTown / City too long. Maximum 45 characters allowed.";
+            if (streetNameTextField.getText().length() == 0 || streetNameTextField.getText().length() > 45) {
+            errorMessage += "\nStreet name must be between 1 and 45 characters.";
             }
-            if (postCodeTruncated.length() > 8) {
-                errorMessage += "\nPostcode too long. Maximum 8 characters allowed.";
+            if (townCityTextField.getText().length() == 0 || townCityTextField.getText().length() > 45) {
+            errorMessage += "\nTown / City must be between 1 and 45 characters.";
+            }
+            if (postCodeTruncated.length() == 0 || postCodeTruncated.length() > 8) {
+            errorMessage += "\nPostcode must be between 1 and 8 characters.";
             }
             
             if (errorMessage.length() > 0){

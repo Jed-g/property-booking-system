@@ -32,6 +32,7 @@ public class Main extends javax.swing.JFrame {
         setIconImage((new javax.swing.ImageIcon(getClass().getResource("/images/Home_Icon_rasterized.png"))).getImage());
         setSize(new java.awt.Dimension(1024, 576));
 
+        jScrollPane1.setBorder(null);
         jScrollPane1.setViewportView(defaultPanel);
 
         defaultPanel.setPreferredSize(new java.awt.Dimension(1024, 576));
@@ -52,7 +53,7 @@ public class Main extends javax.swing.JFrame {
         defaultPanelLayout.setHorizontalGroup(
             defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defaultPanelLayout.createSequentialGroup()
-                .addContainerGap(846, Short.MAX_VALUE)
+                .addContainerGap(847, Short.MAX_VALUE)
                 .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jSeparator1)
@@ -64,7 +65,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(483, Short.MAX_VALUE))
+                .addContainerGap(484, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(defaultPanel);

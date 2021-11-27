@@ -1,8 +1,13 @@
 package com2008.team.project;
 
+import java.sql.*;
+
 public class Review extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private ReviewList[] reviewList;
+    private int numberOfPages;
+    private int currentPage = 1;
     
     /**
      * Creates new form Review
@@ -10,6 +15,8 @@ public class Review extends javax.swing.JPanel {
     public Review(Main jFrameInstance, String propertyId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        
+        DriverManager.setLoginTimeout(3);
         
         fetchData(propertyId);
     }
@@ -25,28 +32,32 @@ public class Review extends javax.swing.JPanel {
 
         returnButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        panelTitle = new javax.swing.JLabel();
+        propertyNameText = new javax.swing.JLabel();
+        propertyNameTextField = new javax.swing.JLabel();
+        locationTextField = new javax.swing.JLabel();
+        locationText = new javax.swing.JLabel();
+        averageRatingTextField = new javax.swing.JLabel();
+        averageRatingText = new javax.swing.JLabel();
+        descriptionText = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
+        review1Label = new javax.swing.JLabel();
+        review1Rating = new javax.swing.JLabel();
+        review2Label = new javax.swing.JLabel();
+        review2Rating = new javax.swing.JLabel();
+        review3Label = new javax.swing.JLabel();
+        review3Rating = new javax.swing.JLabel();
+        nextButton = new javax.swing.JButton();
+        previousButton = new javax.swing.JButton();
+        pages = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        review2Desc = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        review3Desc = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        review1Desc = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        descriptionTextField = new javax.swing.JTextArea();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -65,83 +76,103 @@ public class Review extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        jLabel1.setText("Reviews");
+        panelTitle.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        panelTitle.setText("Reviews");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel2.setText("Property Name");
+        propertyNameText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        propertyNameText.setText("Property Name");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel3.setText("awaiting DB fetch");
+        propertyNameTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        propertyNameTextField.setText("awaiting DB fetch");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel4.setText("awaiting DB fetch");
+        locationTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        locationTextField.setText("awaiting DB fetch");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel5.setText("Location");
+        locationText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        locationText.setText("Location");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel6.setText("awaiting DB fetch");
+        averageRatingTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        averageRatingTextField.setText("awaiting DB fetch");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel7.setText("Average Rating");
+        averageRatingText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        averageRatingText.setText("Average Rating");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel8.setText("awaiting DB fetch");
-        jLabel8.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        descriptionText.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        descriptionText.setText("Description");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel9.setText("Description");
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 3));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel10.setText("awaiting DB fetch");
+        review1Label.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        review1Label.setText("awaiting DB fetch");
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel11.setText("awaiting DB fetch");
+        review1Rating.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        review1Rating.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        review1Rating.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star_resized.png"))); // NOI18N
+        review1Rating.setText("awaiting DB fetch");
+        review1Rating.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel12.setText("awaiting DB fetch");
-        jLabel12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        review2Label.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        review2Label.setText("awaiting DB fetch");
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel13.setText("awaiting DB fetch");
+        review2Rating.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        review2Rating.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        review2Rating.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star_resized.png"))); // NOI18N
+        review2Rating.setText("awaiting DB fetch");
+        review2Rating.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel14.setText("awaiting DB fetch");
-        jLabel14.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        review3Label.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        review3Label.setText("awaiting DB fetch");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel15.setText("awaiting DB fetch");
+        review3Rating.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        review3Rating.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        review3Rating.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/star_resized.png"))); // NOI18N
+        review3Rating.setText("awaiting DB fetch");
+        review3Rating.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel16.setText("awaiting DB fetch");
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        jLabel17.setText("awaiting DB fetch");
-        jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel18.setText("awaiting DB fetch");
-
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Next");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nextButton.setText("Next");
+        nextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nextButton.setEnabled(false);
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText("Previous");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        previousButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        previousButton.setText("Previous");
+        previousButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        previousButton.setEnabled(false);
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                previousButtonActionPerformed(evt);
             }
         });
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setText("awaiting DB fetch");
+        pages.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pages.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pages.setText("awaiting DB fetch");
+
+        review2Desc.setColumns(20);
+        review2Desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        review2Desc.setLineWrap(true);
+        review2Desc.setRows(4);
+        review2Desc.setText("awaiting DB fetch");
+        jScrollPane1.setViewportView(review2Desc);
+
+        review3Desc.setColumns(20);
+        review3Desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        review3Desc.setLineWrap(true);
+        review3Desc.setRows(4);
+        review3Desc.setText("awaiting DB fetch");
+        jScrollPane2.setViewportView(review3Desc);
+
+        review1Desc.setColumns(20);
+        review1Desc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        review1Desc.setLineWrap(true);
+        review1Desc.setRows(4);
+        review1Desc.setText("awaiting DB fetch");
+        jScrollPane3.setViewportView(review1Desc);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,30 +181,30 @@ public class Review extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(previousButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pages, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(review1Label, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(review1Rating, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(review2Label, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(review2Rating, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(review3Label, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(review3Rating, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,29 +212,38 @@ public class Review extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(review1Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(review1Rating, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15))
+                    .addComponent(review2Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(review2Rating))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel18))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(review3Label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(review3Rating))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pages, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(nextButton)
+                        .addComponent(previousButton)))
+                .addContainerGap())
         );
+
+        descriptionTextField.setEditable(false);
+        descriptionTextField.setColumns(20);
+        descriptionTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        descriptionTextField.setLineWrap(true);
+        descriptionTextField.setRows(5);
+        descriptionTextField.setText("awaiting DB fetch");
+        jScrollPane4.setViewportView(descriptionTextField);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,21 +254,23 @@ public class Review extends javax.swing.JPanel {
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(descriptionText)
+                            .addComponent(locationText)
+                            .addComponent(averageRatingText)
+                            .addComponent(propertyNameText)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(averageRatingTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
+                                .addComponent(locationTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(propertyNameTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -237,29 +279,29 @@ public class Review extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(panelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(propertyNameText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
+                        .addComponent(propertyNameTextField)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5)
+                        .addComponent(locationText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
+                        .addComponent(locationTextField)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addComponent(averageRatingText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel6)
+                        .addComponent(averageRatingTextField)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
+                        .addComponent(descriptionText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -267,43 +309,175 @@ public class Review extends javax.swing.JPanel {
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_returnButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        if (currentPage == 1){
+            previousButton.setEnabled(true);
+        }
+        ++currentPage;
+        if (currentPage == numberOfPages){
+            nextButton.setEnabled(false);
+        }
+        
+        int indexOfFirstReviewOnPage = (currentPage-1)*3;
+        
+        pages.setText(currentPage + "/" + numberOfPages);
+        fillInReviewBoxes(indexOfFirstReviewOnPage);
+        resetReviewSections();
+        if (indexOfFirstReviewOnPage + 3 > reviewList.length){
+            removeReviewSections(indexOfFirstReviewOnPage - reviewList.length + 3);
+        }
+    }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousButtonActionPerformed
+        if (currentPage == numberOfPages){
+            nextButton.setEnabled(true);
+        }
+        --currentPage;
+        if (currentPage == 1){
+            previousButton.setEnabled(false);
+        }
+
+        int indexOfFirstReviewOnPage = (currentPage-1)*3;
+        
+        pages.setText(currentPage + "/" + numberOfPages);
+        fillInReviewBoxes(indexOfFirstReviewOnPage);
+        resetReviewSections();
+    }//GEN-LAST:event_previousButtonActionPerformed
 
     private void fetchData(String propertyId){
-        
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+           
+            PreparedStatement pstmt = con.prepareStatement("SELECT propertyName, location, description FROM Properties WHERE propertyId = ?;");
+            pstmt.setString(1, propertyId);
+            ResultSet res = pstmt.executeQuery();
+                        
+            if (res.next()) {
+                propertyNameTextField.setText(res.getString("propertyName"));
+                locationTextField.setText(res.getString("location"));
+                descriptionTextField.setText(res.getString("description"));
+            }
+            
+            res.close();
+            pstmt.close();
+            
+            reviewList = ReviewList.getList(propertyId);
+            
+            int n = reviewList.length;
+            
+            if (n == 0){
+                averageRatingTextField.setText("No rating yet.");
+            } else {
+                int sum = 0;
+                for (ReviewList i : reviewList){
+                    sum += i.getRating();
+                }
+                
+                averageRatingTextField.setText(String.format("%.2f", (float)sum/n));
+            }
+            
+            if (n <= 3){
+                removeReviewSections(3-n);
+                fillInReviewBoxes(0);
+            } else {
+                nextButton.setEnabled(true);
+            }
+            
+            numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+            pages.setText("1/" + numberOfPages);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
     }
 
+    private void fillInReviewBoxes(int indexOfFirstReviewOnPage){
+        int amountOfBoxesToFillIn = 3;
+        if (indexOfFirstReviewOnPage + 3 > reviewList.length){
+            amountOfBoxesToFillIn = reviewList.length - indexOfFirstReviewOnPage;
+        }
+        
+        if (amountOfBoxesToFillIn >= 1){
+            review1Desc.setText(reviewList[indexOfFirstReviewOnPage*3].getReviewDesc());
+            review1Label.setText(reviewList[indexOfFirstReviewOnPage*3].getForename()+
+                    reviewList[indexOfFirstReviewOnPage*3].getLastname().substring(0,1)+".");
+            review1Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3].getRating());
+        }
+        if (amountOfBoxesToFillIn >= 2){
+            review2Desc.setText(reviewList[indexOfFirstReviewOnPage*3+1].getReviewDesc());
+            review2Label.setText(reviewList[indexOfFirstReviewOnPage*3+1].getForename()+
+            reviewList[indexOfFirstReviewOnPage*3+1].getLastname().substring(0,1)+".");
+            review2Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3+1].getRating());
+        }
+        if (amountOfBoxesToFillIn == 3){
+            review3Desc.setText(reviewList[indexOfFirstReviewOnPage*3+2].getReviewDesc());
+            review3Label.setText(reviewList[indexOfFirstReviewOnPage*3+2].getForename()+
+            reviewList[indexOfFirstReviewOnPage*3+2].getLastname().substring(0,1)+".");
+            review3Rating.setText("" + reviewList[indexOfFirstReviewOnPage*3+2].getRating());
+        }
+    }
+    
+    private void removeReviewSections(int number){
+        if (number == 1){
+            review3Desc.setVisible(false);
+            review3Label.setVisible(false);
+            review3Rating.setVisible(false);
+        }
+        if (number == 2){
+            review2Desc.setVisible(false);
+            review2Label.setVisible(false);
+            review2Rating.setVisible(false);
+        }
+        if (number == 3){
+            review1Desc.setVisible(false);
+            review1Label.setVisible(false);
+            review1Rating.setVisible(false);
+        }   
+    }
+    
+    private void resetReviewSections(){
+        review1Desc.setVisible(true);
+        review1Label.setVisible(true);
+        review1Rating.setVisible(true);
+        review2Desc.setVisible(true);
+        review2Label.setVisible(true);
+        review2Rating.setVisible(true);
+        review3Desc.setVisible(true);
+        review3Label.setVisible(true);
+        review3Rating.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton button2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel averageRatingText;
+    private javax.swing.JLabel averageRatingTextField;
+    private javax.swing.JLabel descriptionText;
+    private javax.swing.JTextArea descriptionTextField;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel locationText;
+    private javax.swing.JLabel locationTextField;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JLabel pages;
+    private javax.swing.JLabel panelTitle;
+    private javax.swing.JButton previousButton;
+    private javax.swing.JLabel propertyNameText;
+    private javax.swing.JLabel propertyNameTextField;
     private javax.swing.JButton returnButton;
+    private javax.swing.JTextArea review1Desc;
+    private javax.swing.JLabel review1Label;
+    private javax.swing.JLabel review1Rating;
+    private javax.swing.JTextArea review2Desc;
+    private javax.swing.JLabel review2Label;
+    private javax.swing.JLabel review2Rating;
+    private javax.swing.JTextArea review3Desc;
+    private javax.swing.JLabel review3Label;
+    private javax.swing.JLabel review3Rating;
     // End of variables declaration//GEN-END:variables
 }

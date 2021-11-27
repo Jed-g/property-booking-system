@@ -15,7 +15,9 @@ package com2008.team.project;
 public class Guestsearch extends javax.swing.JPanel {
 private Main jFrameInstance;
 private String location;
-
+private String location1;
+private String location2;
+private String location3;
 
 
 
@@ -208,9 +210,19 @@ private String location;
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton13.setBackground(new java.awt.Color(255, 204, 153));
         jButton13.setText("Upcoming Booking");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jTextField17.setText("Guest name");
 
@@ -354,7 +366,8 @@ private String location;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-     
+     Guestmain main = new Guestmain(jFrameInstance);
+     jFrameInstance.changePanelToSpecific(main);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -374,6 +387,18 @@ private String location;
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        Guestpastbooking guestpastbooking =new Guestpastbooking(jFrameInstance,location2);
+        jFrameInstance.changePanelToSpecific(guestpastbooking);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+         Guestupcomingbooking guestupcomingbooking =new Guestupcomingbooking(jFrameInstance,location3);
+        jFrameInstance.changePanelToSpecific(guestupcomingbooking);
+    }//GEN-LAST:event_jButton13ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

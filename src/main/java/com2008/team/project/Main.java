@@ -17,7 +17,26 @@ public class Main extends javax.swing.JFrame {
         initComponents();
        
     }
+    static String hashString(String stringToHash){
+        try {
+            java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA3-512");
+            byte[] result = md.digest(stringToHash.getBytes("UTF-8"));
+            StringBuilder sb = new StringBuilder(result.length * 2);
 
+            for(byte b: result)
+               sb.append(String.format("%02x", b));
+            return sb.toString();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(javax.swing.ImageIcon.class.getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Error during hashing password";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        return "";
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,9 +114,19 @@ public class Main extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 204, 204));
         jButton3.setText("CREATE AN ACCOUNT");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 204, 204));
         jButton4.setText("Login ");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jTextField5.setText("jTextField1");
         jTabbedPane2.addTab("Location ", jTextField5);
@@ -272,9 +301,21 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        User userPanel = new User(this, email, passwordHashed, hostView);
+        User userPanel = new User(this, email, hostView);
         jScrollPane1.setViewportView(userPanel);
     }//GEN-LAST:event_accountButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Register registrationPage = new Register(this);
+        jScrollPane1.setViewportView(registrationPage);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login(this);
+        jScrollPane1.setViewportView(login);
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     void changePanelToDefault() {
         jScrollPane1.setViewportView(defaultPanel);
@@ -285,7 +326,7 @@ public class Main extends javax.swing.JFrame {
     }
     
     void createNewUserPanelInstance() {
-        User userPanel = new User(this, email, passwordHashed, hostView);
+        User userPanel = new User(this, email, hostView);
         jScrollPane1.setViewportView(userPanel);
     }
     

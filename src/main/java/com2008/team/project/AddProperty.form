@@ -935,6 +935,9 @@
                 <Property name="text" type="java.lang.String" value="&gt;"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bathingNextButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bathingPrevButton">
               <Properties>
@@ -944,6 +947,9 @@
                 <Property name="text" type="java.lang.String" value="&lt;"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bathingPrevButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="bathingNewButton">
               <Properties>
@@ -964,6 +970,9 @@
                 <Property name="text" type="java.lang.String" value="Delete"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bathingDeleteButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="toiletCheckbox">
               <Properties>

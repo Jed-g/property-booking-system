@@ -629,10 +629,20 @@ public class AddProperty extends javax.swing.JPanel {
         bathingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bathingNextButton.setText(">");
         bathingNextButton.setEnabled(false);
+        bathingNextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingNextButtonActionPerformed(evt);
+            }
+        });
 
         bathingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bathingPrevButton.setText("<");
         bathingPrevButton.setEnabled(false);
+        bathingPrevButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingPrevButtonActionPerformed(evt);
+            }
+        });
 
         bathingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bathingNewButton.setText("New Bathroom");
@@ -645,6 +655,11 @@ public class AddProperty extends javax.swing.JPanel {
         bathingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bathingDeleteButton.setText("Delete");
         bathingDeleteButton.setEnabled(false);
+        bathingDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingDeleteButtonActionPerformed(evt);
+            }
+        });
 
         toiletCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         toiletCheckbox.setText("Toilet");
@@ -1166,7 +1181,22 @@ public class AddProperty extends javax.swing.JPanel {
     }//GEN-LAST:event_sharedCheckboxActionPerformed
 
     private void bathingNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingNewButtonActionPerformed
-        // TODO add your handling code here:
+        if (currentBathroomPage == 1){
+            bathingPrevButton.setEnabled(true);
+            bathingDeleteButton.setEnabled(true);
+        }
+        
+        updateCurrentBathroomInArray();
+        
+        if (currentBathroomPage == bathrooms.size()){
+            bathrooms.add(new Bathroom());
+        } else {
+            bathrooms.add(currentBathroomPage, new Bathroom());
+        }
+        
+        currentBathroomPage++;
+        resetBathroomGUIComponents();
+        updateBathroomPageInfo();
     }//GEN-LAST:event_bathingNewButtonActionPerformed
 
     private void dishwasherCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishwasherCheckboxActionPerformed
@@ -1209,7 +1239,7 @@ public class AddProperty extends javax.swing.JPanel {
     }//GEN-LAST:event_sleepingNextButtonActionPerformed
 
     private void sleepingNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingNewButtonActionPerformed
-        if (bedrooms.size() == 1){
+        if (currentBedroomPage == 1){
             sleepingPrevButton.setEnabled(true);
             sleepingDeleteButton.setEnabled(true);
         }
@@ -1257,6 +1287,52 @@ public class AddProperty extends javax.swing.JPanel {
         updateBedroomGUIComponents();
         updateBedroomPageInfo();
     }//GEN-LAST:event_sleepingDeleteButtonActionPerformed
+
+    private void bathingPrevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingPrevButtonActionPerformed
+        if (currentBathroomPage == bathrooms.size()){
+            bathingNextButton.setEnabled(true);
+        }
+
+        updateCurrentBathroomInArray();
+        currentBathroomPage--;
+        updateBathroomGUIComponents();
+        updateBathroomPageInfo();
+        
+        if (currentBathroomPage == 1){
+            bathingPrevButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_bathingPrevButtonActionPerformed
+
+    private void bathingNextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingNextButtonActionPerformed
+        if (currentBathroomPage == 1){
+            bathingPrevButton.setEnabled(true);
+        }
+        
+        updateCurrentBathroomInArray();
+        currentBathroomPage++;
+        updateBathroomGUIComponents();
+        updateBathroomPageInfo();
+        
+        if (currentBathroomPage == bathrooms.size()){
+            bathingNextButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_bathingNextButtonActionPerformed
+
+    private void bathingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingDeleteButtonActionPerformed
+        if (bathrooms.size() == 2){
+            bathingPrevButton.setEnabled(false);
+            bathingNextButton.setEnabled(false);
+            bathingDeleteButton.setEnabled(false);
+        }
+        
+        bathrooms.remove(currentBathroomPage-1);
+        
+        if (currentBathroomPage > 1){
+            currentBathroomPage--;
+        }
+        updateBathroomGUIComponents();
+        updateBathroomPageInfo();
+    }//GEN-LAST:event_bathingDeleteButtonActionPerformed
 
     private void updateCurrentBedroomInArray(){
         bedrooms.get(currentBedroomPage-1).setBed1(bed1Combobox.getSelectedItem().toString());

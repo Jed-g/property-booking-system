@@ -11,7 +11,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        changePanelToSpecific(new AddProperty2(this, "admin"));
+        changePanelToSpecific(new AddProperty(this, "admin"));
     }
 
     /**

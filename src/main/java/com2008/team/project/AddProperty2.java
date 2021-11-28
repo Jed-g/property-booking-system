@@ -1,17 +1,26 @@
 package com2008.team.project;
 
+import java.util.ArrayList;
+
 public class AddProperty2 extends javax.swing.JPanel {
 
+    private class Chargeband{
+        private Chargeband(){
+            
+        }
+    }
+    
     private Main jFrameInstance;
-    private String email;
+    private AddProperty addPropertyInstance;
+    private ArrayList<Chargeband> chargebands;
     
     /**
      * Creates new form AddProperty
      */
-    public AddProperty2(Main jFrameInstance, String email) {
+    public AddProperty2(Main jFrameInstance, AddProperty addPropertyInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
-        this.email = email;
+        this.addPropertyInstance = addPropertyInstance;
     }
 
     /**
@@ -47,7 +56,7 @@ public class AddProperty2 extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         addPropertyButton = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        prevButton = new javax.swing.JButton();
 
         returnButton.setBackground(new java.awt.Color(194, 123, 160));
         returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -74,15 +83,18 @@ public class AddProperty2 extends javax.swing.JPanel {
 
         nextChargebandButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nextChargebandButton.setText(">");
+        nextChargebandButton.setEnabled(false);
 
         prevChargebandButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         prevChargebandButton.setText("<");
+        prevChargebandButton.setEnabled(false);
 
         newButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newButton.setText("New Chargeband");
 
         deleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteButton.setText("Delete");
+        deleteButton.setEnabled(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Start date:");
@@ -199,9 +211,19 @@ public class AddProperty2 extends javax.swing.JPanel {
 
         addPropertyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addPropertyButton.setText("Add Property");
+        addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addPropertyButtonActionPerformed(evt);
+            }
+        });
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton6.setText("Previous");
+        prevButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        prevButton.setText("Previous");
+        prevButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -209,7 +231,7 @@ public class AddProperty2 extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -220,7 +242,7 @@ public class AddProperty2 extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -265,14 +287,30 @@ public class AddProperty2 extends javax.swing.JPanel {
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_returnButtonActionPerformed
 
+    private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
+        jFrameInstance.changePanelToSpecific(addPropertyInstance);
+    }//GEN-LAST:event_prevButtonActionPerformed
 
+    private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
+        if (addPropertyInstance.saveNewProperty() == 0){
+            if (saveChargebands() == 0){
+                jFrameInstance.changePanelToDefault();
+            }
+        } else {
+            jFrameInstance.changePanelToSpecific(addPropertyInstance);
+        }
+    }//GEN-LAST:event_addPropertyButtonActionPerformed
+
+    private int saveChargebands(){
+        return 0;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPropertyButton;
     private javax.swing.JLabel chargebandText;
     private javax.swing.JFormattedTextField cleaningChargeFormatted;
     private javax.swing.JButton deleteButton;
     private javax.swing.JFormattedTextField endDateFormatted;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -287,6 +325,7 @@ public class AddProperty2 extends javax.swing.JPanel {
     private javax.swing.JButton newButton;
     private javax.swing.JButton nextChargebandButton;
     private javax.swing.JLabel panelTitle;
+    private javax.swing.JButton prevButton;
     private javax.swing.JButton prevChargebandButton;
     private javax.swing.JFormattedTextField pricePerNightFormatted;
     private javax.swing.JButton returnButton;

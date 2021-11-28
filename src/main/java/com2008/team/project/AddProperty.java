@@ -1,9 +1,103 @@
 package com2008.team.project;
 
-public class AddProperty extends javax.swing.JPanel {
+import java.util.ArrayList;
 
+public class AddProperty extends javax.swing.JPanel {
+    
+    private class Bedroom{
+        private Bed bed1;
+        private Bed bed2;
+        private Bedroom(){
+        }
+        private void setBed1(String bed1){
+            switch(bed1){
+                case "Single bed":
+                    this.bed1 = Bed.SINGLE;
+                    break;
+                case "Double bed":
+                    this.bed1 = Bed.DOUBLE;
+                    break;
+                case "Kingsize bed":
+                    this.bed1 = Bed.KINGSIZE;
+                    break;
+                case "Bunk bed":
+                    this.bed1 = Bed.BUNK;
+                    break;
+                default:
+                    this.bed1 = Bed.SINGLE;
+                    break;
+            }
+        }
+        private void setBed2(String bed2){
+            switch(bed2){
+                case "Single bed":
+                    this.bed2 = Bed.SINGLE;
+                    break;
+                case "Double bed":
+                    this.bed2 = Bed.DOUBLE;
+                    break;
+                case "Kingsize bed":
+                    this.bed2 = Bed.KINGSIZE;
+                    break;
+                case "Bunk bed":
+                    this.bed2 = Bed.BUNK;
+                    break;
+                default:
+                    this.bed2 = null;
+                    break;
+            }
+        }
+        private String getBed1String(){
+            switch(bed1){
+                case SINGLE:
+                    return "Single bed";
+                case DOUBLE:
+                    return "Double bed";
+                case KINGSIZE:
+                    return "Kingsize bed";
+                case BUNK:
+                    return "Bunk bed";
+                default:
+                    return "Single bed";
+            }
+        }
+        private String getBed2String(){
+            if (bed2 == null){
+                return "None";
+            }
+            switch(bed2){
+                case SINGLE:
+                    return "Single bed";
+                case DOUBLE:
+                    return "Double bed";
+                case KINGSIZE:
+                    return "Kingsize bed";
+                case BUNK:
+                    return "Bunk bed";
+                default:
+                    return "None";
+            }
+        }
+    }
+    
+    private class Bathroom{
+        private boolean toilet;
+        private boolean bath;
+        private boolean shower;
+        private boolean shared;
+        private Bathroom(){
+        }
+    }
+
+    private ArrayList<Bedroom> bedrooms = new ArrayList<>();
+    private ArrayList<Bathroom> bathrooms = new ArrayList<>();
+    
+    private AddProperty2 addProperty2Instance;
     private Main jFrameInstance;
     private String email;
+    
+    private int currentBedroomPage = 1;
+    private int currentBathroomPage = 1;
     
     /**
      * Creates new form AddProperty
@@ -12,6 +106,9 @@ public class AddProperty extends javax.swing.JPanel {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
+        addProperty2Instance = new AddProperty2(jFrameInstance, this);
+        bedrooms.add(new Bedroom());
+        bathrooms.add(new Bathroom());
     }
 
     /**
@@ -361,15 +458,38 @@ public class AddProperty extends javax.swing.JPanel {
 
         sleepingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         sleepingNextButton.setText(">");
+        sleepingNextButton.setEnabled(false);
+        sleepingNextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingNextButtonActionPerformed(evt);
+            }
+        });
 
         sleepingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         sleepingPrevButton.setText("<");
+        sleepingPrevButton.setEnabled(false);
+        sleepingPrevButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingPrevButtonActionPerformed(evt);
+            }
+        });
 
         sleepingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sleepingNewButton.setText("New Bedroom");
+        sleepingNewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingNewButtonActionPerformed(evt);
+            }
+        });
 
         sleepingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         sleepingDeleteButton.setText("Delete");
+        sleepingDeleteButton.setEnabled(false);
+        sleepingDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingDeleteButtonActionPerformed(evt);
+            }
+        });
 
         bed1Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
 
@@ -508,9 +628,11 @@ public class AddProperty extends javax.swing.JPanel {
 
         bathingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bathingNextButton.setText(">");
+        bathingNextButton.setEnabled(false);
 
         bathingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         bathingPrevButton.setText("<");
+        bathingPrevButton.setEnabled(false);
 
         bathingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bathingNewButton.setText("New Bathroom");
@@ -522,6 +644,7 @@ public class AddProperty extends javax.swing.JPanel {
 
         bathingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         bathingDeleteButton.setText("Delete");
+        bathingDeleteButton.setEnabled(false);
 
         toiletCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         toiletCheckbox.setText("Toilet");
@@ -1000,7 +1123,10 @@ public class AddProperty extends javax.swing.JPanel {
     }//GEN-LAST:event_postcodeTextFieldActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        // TODO add your handling code here:
+        updateCurrentBedroomInArray();
+        updateCurrentBathroomInArray();
+        
+        jFrameInstance.changePanelToSpecific(addProperty2Instance);
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void bedLinenCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bedLinenCheckboxActionPerformed
@@ -1067,7 +1193,119 @@ public class AddProperty extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_bbqCheckboxActionPerformed
 
+    private void sleepingNextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingNextButtonActionPerformed
+        if (currentBedroomPage == 1){
+            sleepingPrevButton.setEnabled(true);
+        }
+        
+        updateCurrentBedroomInArray();
+        currentBedroomPage++;
+        updateBedroomGUIComponents();
+        updateBedroomPageInfo();
+        
+        if (currentBedroomPage == bedrooms.size()){
+            sleepingNextButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_sleepingNextButtonActionPerformed
 
+    private void sleepingNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingNewButtonActionPerformed
+        if (bedrooms.size() == 1){
+            sleepingPrevButton.setEnabled(true);
+            sleepingDeleteButton.setEnabled(true);
+        }
+        
+        updateCurrentBedroomInArray();
+        
+        if (currentBedroomPage == bedrooms.size()){
+            bedrooms.add(new Bedroom());
+        } else {
+            bedrooms.add(currentBedroomPage, new Bedroom());
+        }
+        
+        currentBedroomPage++;
+        resetBedroomGUIComponents();
+        updateBedroomPageInfo();
+    }//GEN-LAST:event_sleepingNewButtonActionPerformed
+
+    private void sleepingPrevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingPrevButtonActionPerformed
+        if (currentBedroomPage == bedrooms.size()){
+            sleepingNextButton.setEnabled(true);
+        }
+
+        updateCurrentBedroomInArray();
+        currentBedroomPage--;
+        updateBedroomGUIComponents();
+        updateBedroomPageInfo();
+        
+        if (currentBedroomPage == 1){
+            sleepingPrevButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_sleepingPrevButtonActionPerformed
+
+    private void sleepingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingDeleteButtonActionPerformed
+        if (bedrooms.size() == 2){
+            sleepingPrevButton.setEnabled(false);
+            sleepingNextButton.setEnabled(false);
+            sleepingDeleteButton.setEnabled(false);
+        }
+        
+        bedrooms.remove(currentBedroomPage-1);
+        
+        if (currentBedroomPage > 1){
+            currentBedroomPage--;
+        }
+        updateBedroomGUIComponents();
+        updateBedroomPageInfo();
+    }//GEN-LAST:event_sleepingDeleteButtonActionPerformed
+
+    private void updateCurrentBedroomInArray(){
+        bedrooms.get(currentBedroomPage-1).setBed1(bed1Combobox.getSelectedItem().toString());
+        bedrooms.get(currentBedroomPage-1).setBed2(bed2Combobox.getSelectedItem().toString());
+    }
+    
+    private void updateCurrentBathroomInArray(){
+        bathrooms.get(currentBathroomPage-1).toilet = toiletCheckbox.isSelected();
+        bathrooms.get(currentBathroomPage-1).bath = bathCheckbox.isSelected();
+        bathrooms.get(currentBathroomPage-1).shower = showerCheckbox.isSelected();
+        bathrooms.get(currentBathroomPage-1).shared = sharedCheckbox.isSelected();
+    }
+    
+    private void updateBedroomGUIComponents(){
+        bed1Combobox.setSelectedItem(bedrooms.get(currentBedroomPage-1).getBed1String());
+        bed2Combobox.setSelectedItem(bedrooms.get(currentBedroomPage-1).getBed2String());
+    }
+    
+    private void updateBathroomGUIComponents(){
+        toiletCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).toilet);
+        bathCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).bath);
+        showerCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).shower);
+        sharedCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).shared);
+    }
+    
+    private void resetBedroomGUIComponents(){
+        bed1Combobox.setSelectedItem("Single bed");
+        bed2Combobox.setSelectedItem("None");
+    }
+    
+    private void resetBathroomGUIComponents(){
+        toiletCheckbox.setSelected(false);
+        bathCheckbox.setSelected(false);
+        showerCheckbox.setSelected(false);
+        sharedCheckbox.setSelected(false);
+    }
+    
+    private void updateBedroomPageInfo(){
+        bedroomText.setText("Bedroom " + currentBedroomPage + "/" + bedrooms.size());
+    }
+    
+    private void updateBathroomPageInfo(){
+        bathroomText.setText("Bedroom " + currentBathroomPage + "/" + bathrooms.size());
+    }
+    
+    int saveNewProperty(){
+        return 0;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addPropertyText;
     private javax.swing.JCheckBox basicProvisionsCheckbox;

@@ -74,7 +74,13 @@ com2008/team/project/AddProperty.java
  com2008.team.project.AddProperty$16
  com2008.team.project.AddProperty$17
  com2008.team.project.AddProperty$18
+ com2008.team.project.AddProperty$19
  com2008.team.project.AddProperty$2
+ com2008.team.project.AddProperty$20
+ com2008.team.project.AddProperty$21
+ com2008.team.project.AddProperty$22
+ com2008.team.project.AddProperty$23
+ com2008.team.project.AddProperty$24
  com2008.team.project.AddProperty$3
  com2008.team.project.AddProperty$4
  com2008.team.project.AddProperty$5

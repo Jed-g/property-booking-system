@@ -66,12 +66,9 @@ com2008/team/project/Review.java
  com2008.team.project.Review$1
  com2008.team.project.Review$2
  com2008.team.project.Review$3
-com2008/team/project/ChangePassword.java
- com2008.team.project.ChangePassword
- com2008.team.project.ChangePassword$1
- com2008.team.project.ChangePassword$2
- com2008.team.project.ChangePassword$3
- com2008.team.project.ChangePassword$4
+com2008/team/project/AddProperty2.java
+ com2008.team.project.AddProperty2
+ com2008.team.project.AddProperty2$1
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
@@ -88,10 +85,13 @@ com2008/team/project/User.java
  com2008.team.project.User$7
  com2008.team.project.User$8
  com2008.team.project.User$9
-com2008/team/project/AddProperty2.java
- com2008.team.project.AddProperty2
- com2008.team.project.AddProperty2$1
 com2008/team/project/Main.java
  com2008.team.project.Main
  com2008.team.project.Main$1
  com2008.team.project.Main$2
+com2008/team/project/ChangePassword.java
+ com2008.team.project.ChangePassword
+ com2008.team.project.ChangePassword$1
+ com2008.team.project.ChangePassword$2
+ com2008.team.project.ChangePassword$3
+ com2008.team.project.ChangePassword$4

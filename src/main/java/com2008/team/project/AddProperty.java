@@ -25,91 +25,91 @@ public class AddProperty extends javax.swing.JPanel {
 
         jSeparator1 = new javax.swing.JSeparator();
         returnButton = new javax.swing.JButton();
-        panelTitle = new javax.swing.JLabel();
+        addPropertyText = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
+        propertyNameTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        locationTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
+        houseNumberTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        streetNameTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
+        postcodeTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
+        placeNameTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descriptionTextField = new javax.swing.JTextArea();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        bedroomText = new javax.swing.JLabel();
+        sleepingNextButton = new javax.swing.JButton();
+        sleepingPrevButton = new javax.swing.JButton();
+        sleepingNewButton = new javax.swing.JButton();
+        sleepingDeleteButton = new javax.swing.JButton();
+        bed1Combobox = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        bed2Combobox = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        bedLinenCheckbox = new javax.swing.JCheckBox();
+        towelsCheckbox = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jCheckBox6 = new javax.swing.JCheckBox();
-        jCheckBox7 = new javax.swing.JCheckBox();
-        jCheckBox8 = new javax.swing.JCheckBox();
-        jCheckBox9 = new javax.swing.JCheckBox();
+        bathroomText = new javax.swing.JLabel();
+        bathingNextButton = new javax.swing.JButton();
+        bathingPrevButton = new javax.swing.JButton();
+        bathingNewButton = new javax.swing.JButton();
+        bathingDeleteButton = new javax.swing.JButton();
+        toiletCheckbox = new javax.swing.JCheckBox();
+        showerCheckbox = new javax.swing.JCheckBox();
+        bathCheckbox = new javax.swing.JCheckBox();
+        sharedCheckbox = new javax.swing.JCheckBox();
         jPanel13 = new javax.swing.JPanel();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
+        hairDryerCheckbox = new javax.swing.JCheckBox();
+        shampooCheckbox = new javax.swing.JCheckBox();
+        toiletPaperCheckbox = new javax.swing.JCheckBox();
         jPanel14 = new javax.swing.JPanel();
-        jCheckBox20 = new javax.swing.JCheckBox();
-        jCheckBox19 = new javax.swing.JCheckBox();
-        jCheckBox18 = new javax.swing.JCheckBox();
+        tvCheckbox = new javax.swing.JCheckBox();
+        wifiCheckbox = new javax.swing.JCheckBox();
+        satelliteCheckbox = new javax.swing.JCheckBox();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jCheckBox17 = new javax.swing.JCheckBox();
-        jCheckBox16 = new javax.swing.JCheckBox();
-        jCheckBox15 = new javax.swing.JCheckBox();
-        jCheckBox14 = new javax.swing.JCheckBox();
-        jCheckBox13 = new javax.swing.JCheckBox();
-        jCheckBox12 = new javax.swing.JCheckBox();
-        jCheckBox11 = new javax.swing.JCheckBox();
-        jCheckBox10 = new javax.swing.JCheckBox();
-        jCheckBox21 = new javax.swing.JCheckBox();
-        jCheckBox22 = new javax.swing.JCheckBox();
-        jCheckBox23 = new javax.swing.JCheckBox();
-        jCheckBox24 = new javax.swing.JCheckBox();
-        jCheckBox25 = new javax.swing.JCheckBox();
-        jCheckBox26 = new javax.swing.JCheckBox();
-        jCheckBox27 = new javax.swing.JCheckBox();
+        basicProvisionsCheckbox = new javax.swing.JCheckBox();
+        cookwareCheckbox = new javax.swing.JCheckBox();
+        tablewareCheckbox = new javax.swing.JCheckBox();
+        dishwasherCheckbox = new javax.swing.JCheckBox();
+        ovenCheckbox = new javax.swing.JCheckBox();
+        stoveCheckbox = new javax.swing.JCheckBox();
+        microwaveCheckbox = new javax.swing.JCheckBox();
+        refrigeratorCheckbox = new javax.swing.JCheckBox();
+        onRoadParkingCheckbox = new javax.swing.JCheckBox();
+        patioCheckbox = new javax.swing.JCheckBox();
+        freeOnSiteParkingCheckbox = new javax.swing.JCheckBox();
+        paidCarParkCheckbox = new javax.swing.JCheckBox();
+        streamingCheckbox = new javax.swing.JCheckBox();
+        dvdPlayerCheckbox = new javax.swing.JCheckBox();
+        boardGamesCheckbox = new javax.swing.JCheckBox();
         jLabel18 = new javax.swing.JLabel();
-        jCheckBox28 = new javax.swing.JCheckBox();
-        jCheckBox29 = new javax.swing.JCheckBox();
-        jCheckBox30 = new javax.swing.JCheckBox();
-        jCheckBox31 = new javax.swing.JCheckBox();
-        jCheckBox32 = new javax.swing.JCheckBox();
-        jCheckBox33 = new javax.swing.JCheckBox();
+        centralHeatingCheckbox = new javax.swing.JCheckBox();
+        washingMachineCheckbox = new javax.swing.JCheckBox();
+        dryingMachineCheckbox = new javax.swing.JCheckBox();
+        fireExtinguisherCheckbox = new javax.swing.JCheckBox();
+        firstAidCheckbox = new javax.swing.JCheckBox();
+        smokeAlarmCheckbox = new javax.swing.JCheckBox();
         jLabel17 = new javax.swing.JLabel();
-        jCheckBox34 = new javax.swing.JCheckBox();
+        bbqCheckbox = new javax.swing.JCheckBox();
 
         returnButton.setBackground(new java.awt.Color(194, 123, 160));
         returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -126,13 +126,13 @@ public class AddProperty extends javax.swing.JPanel {
             }
         });
 
-        panelTitle.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        panelTitle.setText("Add Property");
+        addPropertyText.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        addPropertyText.setText("Add Property");
 
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        propertyNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        propertyNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                propertyNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -147,7 +147,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)))
+                    .addComponent(propertyNameTextField)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,14 +155,14 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(propertyNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        locationTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        locationTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                locationTextFieldActionPerformed(evt);
             }
         });
 
@@ -177,7 +177,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2))
+                    .addComponent(locationTextField))
                 .addGap(0, 0, 0))
         );
         jPanel2Layout.setVerticalGroup(
@@ -186,14 +186,14 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        houseNumberTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        houseNumberTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                houseNumberTextFieldActionPerformed(evt);
             }
         });
 
@@ -208,7 +208,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField4)))
+                    .addComponent(houseNumberTextField)))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,14 +216,14 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(houseNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jTextField3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        streetNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        streetNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                streetNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -238,7 +238,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3))
+                    .addComponent(streetNameTextField))
                 .addGap(0, 0, 0))
         );
         jPanel3Layout.setVerticalGroup(
@@ -247,14 +247,14 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(streetNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTextField6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        postcodeTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        postcodeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                postcodeTextFieldActionPerformed(evt);
             }
         });
 
@@ -269,7 +269,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField6))
+                    .addComponent(postcodeTextField))
                 .addGap(0, 0, 0))
         );
         jPanel6Layout.setVerticalGroup(
@@ -278,14 +278,14 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(postcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        jTextField5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        placeNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        placeNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                placeNameTextFieldActionPerformed(evt);
             }
         });
 
@@ -300,7 +300,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                    .addComponent(jTextField5)))
+                    .addComponent(placeNameTextField)))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,28 +308,28 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(placeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Next");
-        jButton1.setMaximumSize(new java.awt.Dimension(168, 54));
-        jButton1.setMinimumSize(new java.awt.Dimension(168, 54));
-        jButton1.setPreferredSize(new java.awt.Dimension(168, 54));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nextButton.setText("Next");
+        nextButton.setMaximumSize(new java.awt.Dimension(168, 54));
+        nextButton.setMinimumSize(new java.awt.Dimension(168, 54));
+        nextButton.setPreferredSize(new java.awt.Dimension(168, 54));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Description");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descriptionTextField.setColumns(20);
+        descriptionTextField.setLineWrap(true);
+        descriptionTextField.setRows(5);
+        jScrollPane1.setViewportView(descriptionTextField);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -356,27 +356,27 @@ public class AddProperty extends javax.swing.JPanel {
 
         jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Bedroom 1/1");
+        bedroomText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bedroomText.setText("Bedroom 1/1");
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setText(">");
+        sleepingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        sleepingNextButton.setText(">");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("<");
+        sleepingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        sleepingPrevButton.setText("<");
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton4.setText("New Bedroom");
+        sleepingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sleepingNewButton.setText("New Bedroom");
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton5.setText("Delete");
+        sleepingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sleepingDeleteButton.setText("Delete");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
+        bed1Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setText("Bed 1:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
+        bed2Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Bed 2:");
@@ -389,28 +389,28 @@ public class AddProperty extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(bedroomText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(sleepingNewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(sleepingPrevButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(sleepingDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                                         .addComponent(jLabel14)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(bed2Combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(bed1Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
+                        .addComponent(sleepingNextButton)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -418,39 +418,39 @@ public class AddProperty extends javax.swing.JPanel {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jButton4))
+                    .addComponent(bedroomText)
+                    .addComponent(sleepingNewButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bed1Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bed2Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(sleepingNextButton)
+                    .addComponent(sleepingPrevButton)
+                    .addComponent(sleepingDeleteButton))
                 .addContainerGap())
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jCheckBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox1.setText("Bed Linen");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        bedLinenCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bedLinenCheckbox.setText("Bed Linen");
+        bedLinenCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                bedLinenCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox2.setText("Towels");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        towelsCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        towelsCheckbox.setText("Towels");
+        towelsCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                towelsCheckboxActionPerformed(evt);
             }
         });
 
@@ -461,17 +461,17 @@ public class AddProperty extends javax.swing.JPanel {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
+                    .addComponent(bedLinenCheckbox)
+                    .addComponent(towelsCheckbox))
                 .addGap(0, 22, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox1)
+                .addComponent(bedLinenCheckbox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox2)
+                .addComponent(towelsCheckbox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -503,55 +503,55 @@ public class AddProperty extends javax.swing.JPanel {
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Bathroom 1/1");
+        bathroomText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathroomText.setText("Bathroom 1/1");
 
-        jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton6.setText(">");
+        bathingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bathingNextButton.setText(">");
 
-        jButton7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton7.setText("<");
+        bathingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bathingPrevButton.setText("<");
 
-        jButton8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton8.setText("New Bathroom");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        bathingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathingNewButton.setText("New Bathroom");
+        bathingNewButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                bathingNewButtonActionPerformed(evt);
             }
         });
 
-        jButton14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton14.setText("Delete");
+        bathingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathingDeleteButton.setText("Delete");
 
-        jCheckBox6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox6.setText("Toilet");
-        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+        toiletCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toiletCheckbox.setText("Toilet");
+        toiletCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox6ActionPerformed(evt);
+                toiletCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox7.setText("Shower");
-        jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
+        showerCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        showerCheckbox.setText("Shower");
+        showerCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox7ActionPerformed(evt);
+                showerCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox8.setText("Bath");
-        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+        bathCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathCheckbox.setText("Bath");
+        bathCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox8ActionPerformed(evt);
+                bathCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox9.setText("Shared with host");
-        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
+        sharedCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sharedCheckbox.setText("Shared with host");
+        sharedCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox9ActionPerformed(evt);
+                sharedCheckboxActionPerformed(evt);
             }
         });
 
@@ -563,23 +563,23 @@ public class AddProperty extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(bathroomText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton8))
+                        .addComponent(bathingNewButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addComponent(jButton7)
+                        .addComponent(bathingPrevButton)
                         .addGap(10, 10, 10)
-                        .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bathingDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6))
+                        .addComponent(bathingNextButton))
                     .addGroup(jPanel12Layout.createSequentialGroup()
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox6)
-                            .addComponent(jCheckBox8))
+                            .addComponent(toiletCheckbox)
+                            .addComponent(bathCheckbox))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox9)
-                            .addComponent(jCheckBox7))
+                            .addComponent(sharedCheckbox)
+                            .addComponent(showerCheckbox))
                         .addGap(0, 6, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -588,47 +588,47 @@ public class AddProperty extends javax.swing.JPanel {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jButton8))
+                    .addComponent(bathroomText)
+                    .addComponent(bathingNewButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7))
+                    .addComponent(toiletCheckbox)
+                    .addComponent(showerCheckbox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox8)
-                    .addComponent(jCheckBox9))
+                    .addComponent(bathCheckbox)
+                    .addComponent(sharedCheckbox))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton14))
+                    .addComponent(bathingNextButton)
+                    .addComponent(bathingPrevButton)
+                    .addComponent(bathingDeleteButton))
                 .addContainerGap())
         );
 
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
-        jCheckBox3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox3.setText("Hair Dryer");
-        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+        hairDryerCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        hairDryerCheckbox.setText("Hair Dryer");
+        hairDryerCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox3ActionPerformed(evt);
+                hairDryerCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox4.setText("Shampoo");
-        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+        shampooCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        shampooCheckbox.setText("Shampoo");
+        shampooCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox4ActionPerformed(evt);
+                shampooCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jCheckBox5.setText("Toilet Paper");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+        toiletPaperCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toiletPaperCheckbox.setText("Toilet Paper");
+        toiletPaperCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
+                toiletPaperCheckboxActionPerformed(evt);
             }
         });
 
@@ -639,20 +639,20 @@ public class AddProperty extends javax.swing.JPanel {
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox5))
+                    .addComponent(hairDryerCheckbox)
+                    .addComponent(shampooCheckbox)
+                    .addComponent(toiletPaperCheckbox))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jCheckBox3)
+                .addComponent(hairDryerCheckbox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox4)
+                .addComponent(shampooCheckbox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox5)
+                .addComponent(toiletPaperCheckbox)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -671,16 +671,16 @@ public class AddProperty extends javax.swing.JPanel {
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        jCheckBox20.setText("Television");
+        tvCheckbox.setText("Television");
 
-        jCheckBox19.setText("Wifi");
-        jCheckBox19.addActionListener(new java.awt.event.ActionListener() {
+        wifiCheckbox.setText("Wifi");
+        wifiCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox19ActionPerformed(evt);
+                wifiCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox18.setText("Satellite");
+        satelliteCheckbox.setText("Satellite");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Living");
@@ -688,78 +688,78 @@ public class AddProperty extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setText("Kitchen");
 
-        jCheckBox17.setText("Basic Provisions");
+        basicProvisionsCheckbox.setText("Basic Provisions");
 
-        jCheckBox16.setText("Cookware");
+        cookwareCheckbox.setText("Cookware");
 
-        jCheckBox15.setText("Tableware");
+        tablewareCheckbox.setText("Tableware");
 
-        jCheckBox14.setText("Dishwasher");
-        jCheckBox14.addActionListener(new java.awt.event.ActionListener() {
+        dishwasherCheckbox.setText("Dishwasher");
+        dishwasherCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox14ActionPerformed(evt);
+                dishwasherCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox13.setText("Oven");
+        ovenCheckbox.setText("Oven");
 
-        jCheckBox12.setText("Stove");
+        stoveCheckbox.setText("Stove");
 
-        jCheckBox11.setText("Microwave");
+        microwaveCheckbox.setText("Microwave");
 
-        jCheckBox10.setText("Refrigerator");
+        refrigeratorCheckbox.setText("Refrigerator");
 
-        jCheckBox21.setText("On-road Parking");
-        jCheckBox21.addActionListener(new java.awt.event.ActionListener() {
+        onRoadParkingCheckbox.setText("On-road Parking");
+        onRoadParkingCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox21ActionPerformed(evt);
+                onRoadParkingCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox22.setText("Patio");
-        jCheckBox22.addActionListener(new java.awt.event.ActionListener() {
+        patioCheckbox.setText("Patio");
+        patioCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox22ActionPerformed(evt);
+                patioCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox23.setText("Free On-site Parking");
+        freeOnSiteParkingCheckbox.setText("Free On-site Parking");
 
-        jCheckBox24.setText("Paid Car-park");
+        paidCarParkCheckbox.setText("Paid Car-park");
 
-        jCheckBox25.setText("Streaming");
+        streamingCheckbox.setText("Streaming");
 
-        jCheckBox26.setText("DVD Player");
+        dvdPlayerCheckbox.setText("DVD Player");
 
-        jCheckBox27.setText("Board Games");
+        boardGamesCheckbox.setText("Board Games");
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setText("Utility");
 
-        jCheckBox28.setText("Central Heating");
-        jCheckBox28.addActionListener(new java.awt.event.ActionListener() {
+        centralHeatingCheckbox.setText("Central Heating");
+        centralHeatingCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox28ActionPerformed(evt);
+                centralHeatingCheckboxActionPerformed(evt);
             }
         });
 
-        jCheckBox29.setText("Washing Machine");
+        washingMachineCheckbox.setText("Washing Machine");
 
-        jCheckBox30.setText("Drying Machine");
+        dryingMachineCheckbox.setText("Drying Machine");
 
-        jCheckBox31.setText("Fire Extinguisher");
+        fireExtinguisherCheckbox.setText("Fire Extinguisher");
 
-        jCheckBox32.setText("First Aid Kit");
+        firstAidCheckbox.setText("First Aid Kit");
 
-        jCheckBox33.setText("Smoke alarm");
+        smokeAlarmCheckbox.setText("Smoke alarm");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setText("Outdoors");
 
-        jCheckBox34.setText("Barbeque");
-        jCheckBox34.addActionListener(new java.awt.event.ActionListener() {
+        bbqCheckbox.setText("Barbeque");
+        bbqCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox34ActionPerformed(evt);
+                bbqCheckboxActionPerformed(evt);
             }
         });
 
@@ -774,51 +774,51 @@ public class AddProperty extends javax.swing.JPanel {
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox23)
-                            .addComponent(jCheckBox21))
+                            .addComponent(freeOnSiteParkingCheckbox)
+                            .addComponent(onRoadParkingCheckbox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox24)
+                            .addComponent(paidCarParkCheckbox)
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(jCheckBox22)
+                                .addComponent(patioCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jCheckBox34)))
+                                .addComponent(bbqCheckbox)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox19)
-                                    .addComponent(jCheckBox20)
-                                    .addComponent(jCheckBox18))
+                                    .addComponent(wifiCheckbox)
+                                    .addComponent(tvCheckbox)
+                                    .addComponent(satelliteCheckbox))
                                 .addGap(26, 26, 26)
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox26)
-                                    .addComponent(jCheckBox27)
-                                    .addComponent(jCheckBox25)))
+                                    .addComponent(dvdPlayerCheckbox)
+                                    .addComponent(boardGamesCheckbox)
+                                    .addComponent(streamingCheckbox)))
                             .addGroup(jPanel14Layout.createSequentialGroup()
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox10)
-                                    .addComponent(jCheckBox11)
-                                    .addComponent(jCheckBox13)
-                                    .addComponent(jCheckBox12))
+                                    .addComponent(refrigeratorCheckbox)
+                                    .addComponent(microwaveCheckbox)
+                                    .addComponent(ovenCheckbox)
+                                    .addComponent(stoveCheckbox))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jCheckBox14)
-                                    .addComponent(jCheckBox15)
-                                    .addComponent(jCheckBox16)
-                                    .addComponent(jCheckBox17)))
+                                    .addComponent(dishwasherCheckbox)
+                                    .addComponent(tablewareCheckbox)
+                                    .addComponent(cookwareCheckbox)
+                                    .addComponent(basicProvisionsCheckbox)))
                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox29)
-                            .addComponent(jCheckBox30)
-                            .addComponent(jCheckBox31)
-                            .addComponent(jCheckBox33)
-                            .addComponent(jCheckBox32)
+                            .addComponent(washingMachineCheckbox)
+                            .addComponent(dryingMachineCheckbox)
+                            .addComponent(fireExtinguisherCheckbox)
+                            .addComponent(smokeAlarmCheckbox)
+                            .addComponent(firstAidCheckbox)
                             .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCheckBox28, javax.swing.GroupLayout.Alignment.LEADING)))
+                                .addComponent(centralHeatingCheckbox, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -831,63 +831,63 @@ public class AddProperty extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(jCheckBox10)
+                                .addComponent(refrigeratorCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox11)
+                                .addComponent(microwaveCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox13)
+                                .addComponent(ovenCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox12))
+                                .addComponent(stoveCheckbox))
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(jCheckBox14)
+                                .addComponent(dishwasherCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox15)
+                                .addComponent(tablewareCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox16)
+                                .addComponent(cookwareCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox17)))
+                                .addComponent(basicProvisionsCheckbox)))
                         .addGap(0, 0, 0)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(jCheckBox19)
+                                .addComponent(wifiCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox20)
+                                .addComponent(tvCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox18))
+                                .addComponent(satelliteCheckbox))
                             .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addComponent(jCheckBox25)
+                                .addComponent(streamingCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox26)
+                                .addComponent(dvdPlayerCheckbox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox27))))
+                                .addComponent(boardGamesCheckbox))))
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jCheckBox28)
+                        .addComponent(centralHeatingCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox29)
+                        .addComponent(washingMachineCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox30)
+                        .addComponent(dryingMachineCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox31)
+                        .addComponent(fireExtinguisherCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox33)
+                        .addComponent(smokeAlarmCheckbox)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox32)))
+                        .addComponent(firstAidCheckbox)))
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox23)
-                            .addComponent(jCheckBox24))
+                            .addComponent(freeOnSiteParkingCheckbox)
+                            .addComponent(paidCarParkCheckbox))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCheckBox21)
-                            .addComponent(jCheckBox22)
-                            .addComponent(jCheckBox34))))
+                            .addComponent(onRoadParkingCheckbox)
+                            .addComponent(patioCheckbox)
+                            .addComponent(bbqCheckbox))))
                 .addGap(0, 0, 0))
         );
 
@@ -900,7 +900,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(panelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addPropertyText, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -926,7 +926,7 @@ public class AddProperty extends javax.swing.JPanel {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -935,7 +935,7 @@ public class AddProperty extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(addPropertyText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -966,7 +966,7 @@ public class AddProperty extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -975,147 +975,126 @@ public class AddProperty extends javax.swing.JPanel {
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_returnButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void propertyNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertyNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_propertyNameTextFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void locationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_locationTextFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void streetNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_streetNameTextFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void houseNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseNumberTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_houseNumberTextFieldActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void placeNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_placeNameTextFieldActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void postcodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postcodeTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_postcodeTextFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void bedLinenCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bedLinenCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_bedLinenCheckboxActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void towelsCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_towelsCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_towelsCheckboxActionPerformed
 
-    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+    private void hairDryerCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hairDryerCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox3ActionPerformed
+    }//GEN-LAST:event_hairDryerCheckboxActionPerformed
 
-    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+    private void shampooCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shampooCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox4ActionPerformed
+    }//GEN-LAST:event_shampooCheckboxActionPerformed
 
-    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+    private void toiletPaperCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toiletPaperCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox5ActionPerformed
+    }//GEN-LAST:event_toiletPaperCheckboxActionPerformed
 
-    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+    private void toiletCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toiletCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox6ActionPerformed
+    }//GEN-LAST:event_toiletCheckboxActionPerformed
 
-    private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
+    private void showerCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showerCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox7ActionPerformed
+    }//GEN-LAST:event_showerCheckboxActionPerformed
 
-    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+    private void bathCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox8ActionPerformed
+    }//GEN-LAST:event_bathCheckboxActionPerformed
 
-    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
+    private void sharedCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sharedCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox9ActionPerformed
+    }//GEN-LAST:event_sharedCheckboxActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void bathingNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingNewButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_bathingNewButtonActionPerformed
 
-    private void jCheckBox14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox14ActionPerformed
+    private void dishwasherCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishwasherCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox14ActionPerformed
+    }//GEN-LAST:event_dishwasherCheckboxActionPerformed
 
-    private void jCheckBox21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox21ActionPerformed
+    private void onRoadParkingCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onRoadParkingCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox21ActionPerformed
+    }//GEN-LAST:event_onRoadParkingCheckboxActionPerformed
 
-    private void jCheckBox28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox28ActionPerformed
+    private void centralHeatingCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centralHeatingCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox28ActionPerformed
+    }//GEN-LAST:event_centralHeatingCheckboxActionPerformed
 
-    private void jCheckBox22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox22ActionPerformed
+    private void patioCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patioCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox22ActionPerformed
+    }//GEN-LAST:event_patioCheckboxActionPerformed
 
-    private void jCheckBox19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox19ActionPerformed
+    private void wifiCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wifiCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox19ActionPerformed
+    }//GEN-LAST:event_wifiCheckboxActionPerformed
 
-    private void jCheckBox34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox34ActionPerformed
+    private void bbqCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbqCheckboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox34ActionPerformed
+    }//GEN-LAST:event_bbqCheckboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox10;
-    private javax.swing.JCheckBox jCheckBox11;
-    private javax.swing.JCheckBox jCheckBox12;
-    private javax.swing.JCheckBox jCheckBox13;
-    private javax.swing.JCheckBox jCheckBox14;
-    private javax.swing.JCheckBox jCheckBox15;
-    private javax.swing.JCheckBox jCheckBox16;
-    private javax.swing.JCheckBox jCheckBox17;
-    private javax.swing.JCheckBox jCheckBox18;
-    private javax.swing.JCheckBox jCheckBox19;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox20;
-    private javax.swing.JCheckBox jCheckBox21;
-    private javax.swing.JCheckBox jCheckBox22;
-    private javax.swing.JCheckBox jCheckBox23;
-    private javax.swing.JCheckBox jCheckBox24;
-    private javax.swing.JCheckBox jCheckBox25;
-    private javax.swing.JCheckBox jCheckBox26;
-    private javax.swing.JCheckBox jCheckBox27;
-    private javax.swing.JCheckBox jCheckBox28;
-    private javax.swing.JCheckBox jCheckBox29;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox30;
-    private javax.swing.JCheckBox jCheckBox31;
-    private javax.swing.JCheckBox jCheckBox32;
-    private javax.swing.JCheckBox jCheckBox33;
-    private javax.swing.JCheckBox jCheckBox34;
-    private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
-    private javax.swing.JCheckBox jCheckBox6;
-    private javax.swing.JCheckBox jCheckBox7;
-    private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JCheckBox jCheckBox9;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel addPropertyText;
+    private javax.swing.JCheckBox basicProvisionsCheckbox;
+    private javax.swing.JCheckBox bathCheckbox;
+    private javax.swing.JButton bathingDeleteButton;
+    private javax.swing.JButton bathingNewButton;
+    private javax.swing.JButton bathingNextButton;
+    private javax.swing.JButton bathingPrevButton;
+    private javax.swing.JLabel bathroomText;
+    private javax.swing.JCheckBox bbqCheckbox;
+    private javax.swing.JComboBox<String> bed1Combobox;
+    private javax.swing.JComboBox<String> bed2Combobox;
+    private javax.swing.JCheckBox bedLinenCheckbox;
+    private javax.swing.JLabel bedroomText;
+    private javax.swing.JCheckBox boardGamesCheckbox;
+    private javax.swing.JCheckBox centralHeatingCheckbox;
+    private javax.swing.JCheckBox cookwareCheckbox;
+    private javax.swing.JTextArea descriptionTextField;
+    private javax.swing.JCheckBox dishwasherCheckbox;
+    private javax.swing.JCheckBox dryingMachineCheckbox;
+    private javax.swing.JCheckBox dvdPlayerCheckbox;
+    private javax.swing.JCheckBox fireExtinguisherCheckbox;
+    private javax.swing.JCheckBox firstAidCheckbox;
+    private javax.swing.JCheckBox freeOnSiteParkingCheckbox;
+    private javax.swing.JCheckBox hairDryerCheckbox;
+    private javax.swing.JTextField houseNumberTextField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -1130,7 +1109,6 @@ public class AddProperty extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -1147,14 +1125,36 @@ public class AddProperty extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JLabel panelTitle;
+    private javax.swing.JTextField locationTextField;
+    private javax.swing.JCheckBox microwaveCheckbox;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JCheckBox onRoadParkingCheckbox;
+    private javax.swing.JCheckBox ovenCheckbox;
+    private javax.swing.JCheckBox paidCarParkCheckbox;
+    private javax.swing.JCheckBox patioCheckbox;
+    private javax.swing.JTextField placeNameTextField;
+    private javax.swing.JTextField postcodeTextField;
+    private javax.swing.JTextField propertyNameTextField;
+    private javax.swing.JCheckBox refrigeratorCheckbox;
     private javax.swing.JButton returnButton;
+    private javax.swing.JCheckBox satelliteCheckbox;
+    private javax.swing.JCheckBox shampooCheckbox;
+    private javax.swing.JCheckBox sharedCheckbox;
+    private javax.swing.JCheckBox showerCheckbox;
+    private javax.swing.JButton sleepingDeleteButton;
+    private javax.swing.JButton sleepingNewButton;
+    private javax.swing.JButton sleepingNextButton;
+    private javax.swing.JButton sleepingPrevButton;
+    private javax.swing.JCheckBox smokeAlarmCheckbox;
+    private javax.swing.JCheckBox stoveCheckbox;
+    private javax.swing.JCheckBox streamingCheckbox;
+    private javax.swing.JTextField streetNameTextField;
+    private javax.swing.JCheckBox tablewareCheckbox;
+    private javax.swing.JCheckBox toiletCheckbox;
+    private javax.swing.JCheckBox toiletPaperCheckbox;
+    private javax.swing.JCheckBox towelsCheckbox;
+    private javax.swing.JCheckBox tvCheckbox;
+    private javax.swing.JCheckBox washingMachineCheckbox;
+    private javax.swing.JCheckBox wifiCheckbox;
     // End of variables declaration//GEN-END:variables
 }

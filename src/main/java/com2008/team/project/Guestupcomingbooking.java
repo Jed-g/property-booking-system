@@ -246,6 +246,11 @@ private String enddate;
 
         jButton14.setBackground(new java.awt.Color(255, 153, 153));
         jButton14.setText("Contact host");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setBackground(new java.awt.Color(255, 153, 153));
         jButton15.setText("Contact host");
@@ -522,6 +527,12 @@ private String enddate;
                        
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+       Booking guestupcomingbooking =new Booking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(guestupcomingbooking);
+    }//GEN-LAST:event_jButton14ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

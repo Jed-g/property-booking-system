@@ -285,8 +285,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //Guestmain search = new Guestmain(this);
-        MainsearchA search = new MainsearchA(this,location);
+        Guestmain search = new Guestmain(this);
+        //MainsearchA search = new MainsearchA(this,location);
         //Guestupcomingbooking search = new Guestupcomingbooking(this,location);
         jScrollPane1.setViewportView(search);
 

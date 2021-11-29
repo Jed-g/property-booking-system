@@ -1384,7 +1384,7 @@ public class AddProperty extends javax.swing.JPanel {
     // Return 0 if error or newly generated propertyId otherwise
     int saveNewProperty(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-                        
+
             String statementString = "INSERT INTO Properties VALUES(NULL, ";
             for (int i = 0; i < 40; i++){
                 statementString += "?, ";
@@ -1439,8 +1439,6 @@ public class AddProperty extends javax.swing.JPanel {
             if (result.next()){
                 return result.getInt(1);   
             }
-            
-            return 0;
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -1450,6 +1448,73 @@ public class AddProperty extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
         return 0;
+    }
+    
+    // Return 1 if error, 0 otherwise
+    int saveBedrooms(int propertyId){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            for (Bedroom i : bedrooms){
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Bedrooms VALUES(NULL, ?, ?, ?)");
+                pstmt.setInt(1, propertyId);
+                pstmt.setString(2, i.bed1.toString());
+                
+                if (i.bed2 == null){
+                    pstmt.setNull(3, Types.VARCHAR);
+                } else {
+                    pstmt.setString(3, i.bed2.toString());
+                }
+                
+                pstmt.executeUpdate();
+            }
+            return 0;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return 1;
+    }
+    
+    // Return 1 if error, 0 otherwise
+    int saveBathrooms(int propertyId){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            for (Bathroom i : bathrooms){
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Bathrooms VALUES(NULL, ?, ?, ?, ?, ?)");
+                pstmt.setInt(1, propertyId);
+                pstmt.setBoolean(2, i.toilet);
+                pstmt.setBoolean(3, i.bath);
+                pstmt.setBoolean(4, i.shower);
+                pstmt.setBoolean(5, i.shared);
+                
+                pstmt.executeUpdate();
+            }
+            return 0;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return 1;
+    }
+    
+    // If error occured somewhere, delete property and all linked rows in tables
+    // Cascade on delete is set to ON
+    void deleteProperty(int propertyId){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Properties WHERE propertyId = ?");
+            
+            pstmt.setInt(1, propertyId);
+            
+            pstmt.executeUpdate();
+        }
+        catch (Exception ex) {
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

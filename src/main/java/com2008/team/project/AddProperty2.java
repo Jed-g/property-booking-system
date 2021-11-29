@@ -354,13 +354,18 @@ public class AddProperty2 extends javax.swing.JPanel {
 
     private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
         updateCurrentChargebandInArray();
-        
-        if (addPropertyInstance.saveNewProperty() == 0){
-            if (saveChargebands() == 0){
-                jFrameInstance.changePanelToDefault();
+
+        int propertyId = addPropertyInstance.saveNewProperty();
+        if (propertyId != 0){
+            if (addPropertyInstance.saveBedrooms(propertyId) == 0){
+                if (addPropertyInstance.saveBathrooms(propertyId) == 0){
+                    jFrameInstance.changePanelToDefault();
+                } else{
+                    addPropertyInstance.deleteProperty(propertyId);
+                }
+            } else {
+                addPropertyInstance.deleteProperty(propertyId);
             }
-        } else {
-            jFrameInstance.changePanelToSpecific(addPropertyInstance);
         }
     }//GEN-LAST:event_addPropertyButtonActionPerformed
 

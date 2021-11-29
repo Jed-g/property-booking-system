@@ -1,20 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package com2008.team.project;
 
-/**
- *
- * @author isabe
- */
+import java.sql.*;
+
 public class HostPreviousBookings extends javax.swing.JPanel {
+
+    private Main jFrameInstance;
 
     /**
      * Creates new form HostPreviousBookings
      */
-    public HostPreviousBookings() {
+    public HostPreviousBookings(Main jFrameInstance) {
         initComponents();
+        this.jFrameInstance = jFrameInstance;
+        
+        DriverManager.setLoginTimeout(3);
     }
 
     /**
@@ -31,8 +31,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         navigation = new javax.swing.JPanel();
         viewAllProperties = new javax.swing.JButton();
         requests = new javax.swing.JButton();
-        upcomingBookings = new javax.swing.JButton();
         previousBookings = new javax.swing.JButton();
+        upcomingBookings = new javax.swing.JButton();
         previousBkgs = new javax.swing.JPanel();
         lblPreviousBookings = new javax.swing.JLabel();
         previous1 = new javax.swing.JPanel();
@@ -120,25 +120,25 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             }
         });
 
-        upcomingBookings.setBackground(new java.awt.Color(153, 153, 153));
-        upcomingBookings.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        upcomingBookings.setText("Previous Bookings");
-        upcomingBookings.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 5, true));
-        upcomingBookings.setPreferredSize(new java.awt.Dimension(237, 50));
-        upcomingBookings.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                upcomingBookingsActionPerformed(evt);
-            }
-        });
-
         previousBookings.setBackground(new java.awt.Color(153, 153, 153));
         previousBookings.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        previousBookings.setText("Upcoming Bookings");
-        previousBookings.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
+        previousBookings.setText("Previous Bookings");
+        previousBookings.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 255), 5, true));
         previousBookings.setPreferredSize(new java.awt.Dimension(237, 50));
         previousBookings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 previousBookingsActionPerformed(evt);
+            }
+        });
+
+        upcomingBookings.setBackground(new java.awt.Color(153, 153, 153));
+        upcomingBookings.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        upcomingBookings.setText("Upcoming Bookings");
+        upcomingBookings.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 5, true));
+        upcomingBookings.setPreferredSize(new java.awt.Dimension(237, 50));
+        upcomingBookings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upcomingBookingsActionPerformed(evt);
             }
         });
 
@@ -152,9 +152,9 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(requests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(previousBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(upcomingBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(previousBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         navigationLayout.setVerticalGroup(
@@ -163,8 +163,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGap(13, 13, 13)
                 .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(previousBookings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(upcomingBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(upcomingBookings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(previousBookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(navigationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(requests, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(viewAllProperties, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -661,19 +661,22 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed
-        // TODO add your handling code here:
+        HostRequests requestsPage = new HostRequests(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(requestsPage);
     }//GEN-LAST:event_requestsActionPerformed
 
-    private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_previousBookingsActionPerformed
-
     private void upcomingBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcomingBookingsActionPerformed
-        // TODO add your handling code here:
+        HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(upcomingPage);
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
+    private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
+        
+    }//GEN-LAST:event_previousBookingsActionPerformed
+
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed
-        // TODO add your handling code here:
+        HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(propertiesPage);
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void contactGuest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest1ActionPerformed

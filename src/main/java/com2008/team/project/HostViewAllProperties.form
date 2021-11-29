@@ -119,9 +119,9 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="requests" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="previousBookings" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="upcomingBookings" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="previousBookings" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -132,8 +132,8 @@
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="previousBookings" alignment="3" max="-2" attributes="0"/>
-                          <Component id="upcomingBookings" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="upcomingBookings" alignment="3" max="-2" attributes="0"/>
+                          <Component id="previousBookings" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="requests" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -194,7 +194,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="requestsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="upcomingBookings">
+        <Component class="javax.swing.JButton" name="previousBookings">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -215,10 +215,10 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="upcomingBookingsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="previousBookingsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="previousBookings">
+        <Component class="javax.swing.JButton" name="upcomingBookings">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="99" type="rgb"/>
@@ -239,7 +239,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="previousBookingsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="upcomingBookingsActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

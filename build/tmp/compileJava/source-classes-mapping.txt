@@ -1,45 +1,27 @@
-com2008/team/project/ReviewList.java
- com2008.team.project.ReviewList
 com2008/team/project/Booking.java
  com2008.team.project.Booking
-<<<<<<< HEAD
-com2008/team/project/Login.java
- com2008.team.project.Login
-com2008/team/project/ReviewList.java
- com2008.team.project.ReviewList
-=======
-com2008/team/project/Bedroom.java
- com2008.team.project.Bedroom
-com2008/team/project/Review.java
- com2008.team.project.Review
->>>>>>> master
+com2008/team/project/HostRequests.java
+ com2008.team.project.HostRequests
+ com2008.team.project.HostRequests$1
+ com2008.team.project.HostRequests$10
+ com2008.team.project.HostRequests$11
+ com2008.team.project.HostRequests$12
+ com2008.team.project.HostRequests$13
+ com2008.team.project.HostRequests$14
+ com2008.team.project.HostRequests$15
+ com2008.team.project.HostRequests$16
+ com2008.team.project.HostRequests$2
+ com2008.team.project.HostRequests$3
+ com2008.team.project.HostRequests$4
+ com2008.team.project.HostRequests$5
+ com2008.team.project.HostRequests$6
+ com2008.team.project.HostRequests$7
+ com2008.team.project.HostRequests$8
+ com2008.team.project.HostRequests$9
 com2008/team/project/Bathroom.java
  com2008.team.project.Bathroom
 com2008/team/project/Property.java
  com2008.team.project.Property
-com2008/team/project/ChargeBand.java
- com2008.team.project.ChargeBand
-<<<<<<< HEAD
-com2008/team/project/ChangePassword.java
- com2008.team.project.ChangePassword
- com2008.team.project.ChangePassword$1
- com2008.team.project.ChangePassword$2
- com2008.team.project.ChangePassword$3
- com2008.team.project.ChangePassword$4
-=======
-com2008/team/project/Bedroom.java
- com2008.team.project.Bed
- com2008.team.project.Bedroom
- com2008.team.project.Bedroom$1
-<<<<<<< HEAD
-com2008/team/project/Review.java
- com2008.team.project.Review
- com2008.team.project.Review$1
- com2008.team.project.Review$2
- com2008.team.project.Review$3
-=======
->>>>>>> master
->>>>>>> master
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
@@ -60,6 +42,32 @@ com2008/team/project/Main.java
  com2008.team.project.Main
  com2008.team.project.Main$1
  com2008.team.project.Main$2
+com2008/team/project/ChangePassword.java
+ com2008.team.project.ChangePassword
+ com2008.team.project.ChangePassword$1
+ com2008.team.project.ChangePassword$2
+ com2008.team.project.ChangePassword$3
+ com2008.team.project.ChangePassword$4
+com2008/team/project/HostUpcomingBookings.java
+ com2008.team.project.HostUpcomingBookings
+ com2008.team.project.HostUpcomingBookings$1
+ com2008.team.project.HostUpcomingBookings$10
+ com2008.team.project.HostUpcomingBookings$11
+ com2008.team.project.HostUpcomingBookings$12
+ com2008.team.project.HostUpcomingBookings$13
+ com2008.team.project.HostUpcomingBookings$14
+ com2008.team.project.HostUpcomingBookings$15
+ com2008.team.project.HostUpcomingBookings$16
+ com2008.team.project.HostUpcomingBookings$17
+ com2008.team.project.HostUpcomingBookings$18
+ com2008.team.project.HostUpcomingBookings$2
+ com2008.team.project.HostUpcomingBookings$3
+ com2008.team.project.HostUpcomingBookings$4
+ com2008.team.project.HostUpcomingBookings$5
+ com2008.team.project.HostUpcomingBookings$6
+ com2008.team.project.HostUpcomingBookings$7
+ com2008.team.project.HostUpcomingBookings$8
+ com2008.team.project.HostUpcomingBookings$9
 com2008/team/project/Register.java
  com2008.team.project.Register
  com2008.team.project.Register$1
@@ -77,9 +85,61 @@ com2008/team/project/Register.java
  com2008.team.project.Register$7
  com2008.team.project.Register$8
  com2008.team.project.Register$9
+com2008/team/project/HostViewAllProperties.java
+ com2008.team.project.HostViewAllProperties
+ com2008.team.project.HostViewAllProperties$1
+ com2008.team.project.HostViewAllProperties$10
+ com2008.team.project.HostViewAllProperties$11
+ com2008.team.project.HostViewAllProperties$12
+ com2008.team.project.HostViewAllProperties$13
+ com2008.team.project.HostViewAllProperties$14
+ com2008.team.project.HostViewAllProperties$15
+ com2008.team.project.HostViewAllProperties$16
+ com2008.team.project.HostViewAllProperties$17
+ com2008.team.project.HostViewAllProperties$2
+ com2008.team.project.HostViewAllProperties$3
+ com2008.team.project.HostViewAllProperties$4
+ com2008.team.project.HostViewAllProperties$5
+ com2008.team.project.HostViewAllProperties$6
+ com2008.team.project.HostViewAllProperties$7
+ com2008.team.project.HostViewAllProperties$8
+ com2008.team.project.HostViewAllProperties$9
+com2008/team/project/NewClass.java
+ com2008.team.project.NewClass
 com2008/team/project/Login.java
  com2008.team.project.Login
  com2008.team.project.Login$1
  com2008.team.project.Login$2
  com2008.team.project.Login$3
  com2008.team.project.Login$4
+com2008/team/project/Review.java
+ com2008.team.project.Review
+ com2008.team.project.Review$1
+ com2008.team.project.Review$2
+ com2008.team.project.Review$3
+com2008/team/project/HostPreviousBookings.java
+ com2008.team.project.HostPreviousBookings
+ com2008.team.project.HostPreviousBookings$1
+ com2008.team.project.HostPreviousBookings$10
+ com2008.team.project.HostPreviousBookings$11
+ com2008.team.project.HostPreviousBookings$12
+ com2008.team.project.HostPreviousBookings$13
+ com2008.team.project.HostPreviousBookings$14
+ com2008.team.project.HostPreviousBookings$15
+ com2008.team.project.HostPreviousBookings$16
+ com2008.team.project.HostPreviousBookings$2
+ com2008.team.project.HostPreviousBookings$3
+ com2008.team.project.HostPreviousBookings$4
+ com2008.team.project.HostPreviousBookings$5
+ com2008.team.project.HostPreviousBookings$6
+ com2008.team.project.HostPreviousBookings$7
+ com2008.team.project.HostPreviousBookings$8
+ com2008.team.project.HostPreviousBookings$9
+com2008/team/project/ChargeBand.java
+ com2008.team.project.ChargeBand
+com2008/team/project/Bedroom.java
+ com2008.team.project.Bed
+ com2008.team.project.Bedroom
+ com2008.team.project.Bedroom$1
+com2008/team/project/ReviewList.java
+ com2008.team.project.ReviewList

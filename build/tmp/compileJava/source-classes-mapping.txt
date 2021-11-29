@@ -62,6 +62,10 @@ com2008/team/project/Review.java
  com2008.team.project.Review$1
  com2008.team.project.Review$2
  com2008.team.project.Review$3
+com2008/team/project/Main.java
+ com2008.team.project.Main
+ com2008.team.project.Main$1
+ com2008.team.project.Main$2
 com2008/team/project/AddProperty.java
  com2008.team.project.AddProperty
  com2008.team.project.AddProperty$1
@@ -109,7 +113,3 @@ com2008/team/project/AddProperty2.java
  com2008.team.project.AddProperty2$7
  com2008.team.project.AddProperty2$8
  com2008.team.project.AddProperty2$Chargeband
-com2008/team/project/Main.java
- com2008.team.project.Main
- com2008.team.project.Main$1
- com2008.team.project.Main$2

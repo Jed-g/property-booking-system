@@ -359,8 +359,12 @@ public class AddProperty2 extends javax.swing.JPanel {
         if (propertyId != 0){
             if (addPropertyInstance.saveBedrooms(propertyId) == 0){
                 if (addPropertyInstance.saveBathrooms(propertyId) == 0){
-                    jFrameInstance.changePanelToDefault();
-                } else{
+                    if (saveChargebands(propertyId) == 0){
+                        jFrameInstance.changePanelToDefault();
+                    } else {
+                        addPropertyInstance.deleteProperty(propertyId);
+                    }
+                } else {
                     addPropertyInstance.deleteProperty(propertyId);
                 }
             } else {
@@ -439,14 +443,30 @@ public class AddProperty2 extends javax.swing.JPanel {
     }//GEN-LAST:event_pricePerNightFormattedActionPerformed
 
     private void updateCurrentChargebandInArray(){
-        chargebands.get(currentChargebandPage-1).pricePerNight = Float.parseFloat(pricePerNightFormatted.getText());
-        chargebands.get(currentChargebandPage-1).serviceCharge = Float.parseFloat(serviceChargeFormatted.getText());
-        chargebands.get(currentChargebandPage-1).cleaningCharge = Float.parseFloat(cleaningChargeFormatted.getText());
+        try {
+            chargebands.get(currentChargebandPage-1).pricePerNight = Float.parseFloat(pricePerNightFormatted.getText());
+        } catch (Exception ex){
+            chargebands.get(currentChargebandPage-1).pricePerNight = 0;
+        }
+        try {
+            chargebands.get(currentChargebandPage-1).serviceCharge = Float.parseFloat(serviceChargeFormatted.getText());
+        } catch (Exception ex){
+            chargebands.get(currentChargebandPage-1).serviceCharge = 0;
+        }
+        try {
+            chargebands.get(currentChargebandPage-1).cleaningCharge = Float.parseFloat(cleaningChargeFormatted.getText());
+        } catch (Exception ex){
+            chargebands.get(currentChargebandPage-1).cleaningCharge = 0;
+        }
         try {
             chargebands.get(currentChargebandPage-1).startDate = new Date(new java.text.SimpleDateFormat("dd/MM/yyyy").parse(startDateFormatted.getText()).getTime());
             chargebands.get(currentChargebandPage-1).endDate = new Date(new java.text.SimpleDateFormat("dd/MM/yyyy").parse(endDateFormatted.getText()).getTime());
         } catch (Exception ex){
-        // Invalid date
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Error during parsing dates.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
     
@@ -476,8 +496,30 @@ public class AddProperty2 extends javax.swing.JPanel {
         chargebandText.setText("Chargeband " + currentChargebandPage + "/" + chargebands.size());
     }
     
-    private int saveChargebands(){
-        return 0;
+    // Return 1 if error, 0 otherwise
+    private int saveChargebands(int propertyId){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            for (Chargeband i : chargebands){
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Chargebands VALUES(?, ?, ?, ?, ?, ?)");
+                pstmt.setInt(1, propertyId);
+                pstmt.setDate(2, i.startDate);
+                pstmt.setDate(3, i.endDate);
+                pstmt.setDouble(4, i.pricePerNight);
+                pstmt.setDouble(5, i.serviceCharge);
+                pstmt.setDouble(6, i.cleaningCharge);
+                
+                pstmt.executeUpdate();
+            }
+            return 0;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return 1;
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

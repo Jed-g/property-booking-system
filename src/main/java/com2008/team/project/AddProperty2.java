@@ -354,21 +354,39 @@ public class AddProperty2 extends javax.swing.JPanel {
 
     private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
         updateCurrentChargebandInArray();
-
-        int propertyId = addPropertyInstance.saveNewProperty();
-        if (propertyId != 0){
-            if (addPropertyInstance.saveBedrooms(propertyId) == 0){
-                if (addPropertyInstance.saveBathrooms(propertyId) == 0){
-                    if (saveChargebands(propertyId) == 0){
-                        jFrameInstance.changePanelToDefault();
+        
+        String errorMessage1 = addPropertyInstance.validateData();
+        String errorMessage2 = validateData();
+        
+        if (errorMessage1 != null || errorMessage2 != null){
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = null;
+            
+            if (errorMessage1 == null){
+                errorMessage = errorMessage2;
+            } else if (errorMessage2 == null){
+                errorMessage = errorMessage1;
+            } else {
+                errorMessage = errorMessage1 + "\n" + errorMessage2;
+            }
+            
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        } else {
+            int propertyId = addPropertyInstance.saveNewProperty();
+            if (propertyId != 0){
+                if (addPropertyInstance.saveBedrooms(propertyId) == 0){
+                    if (addPropertyInstance.saveBathrooms(propertyId) == 0){
+                        if (saveChargebands(propertyId) == 0){
+                            jFrameInstance.changePanelToDefault();
+                        } else {
+                            addPropertyInstance.deleteProperty(propertyId);
+                        }
                     } else {
                         addPropertyInstance.deleteProperty(propertyId);
                     }
                 } else {
                     addPropertyInstance.deleteProperty(propertyId);
                 }
-            } else {
-                addPropertyInstance.deleteProperty(propertyId);
             }
         }
     }//GEN-LAST:event_addPropertyButtonActionPerformed
@@ -494,6 +512,11 @@ public class AddProperty2 extends javax.swing.JPanel {
 
     private void updateChargebandPageInfo(){
         chargebandText.setText("Chargeband " + currentChargebandPage + "/" + chargebands.size());
+    }
+    
+    // Returns errorMessage or null if everything is ok
+    String validateData(){
+        return null;
     }
     
     // Return 1 if error, 0 otherwise

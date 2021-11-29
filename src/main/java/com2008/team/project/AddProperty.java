@@ -359,7 +359,7 @@ public class AddProperty extends javax.swing.JPanel {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Postcode");
+        jLabel6.setText("Post Code");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -424,7 +424,7 @@ public class AddProperty extends javax.swing.JPanel {
         });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Description");
+        jLabel7.setText("Description (not required)");
 
         descriptionTextField.setColumns(20);
         descriptionTextField.setLineWrap(true);
@@ -1379,6 +1379,38 @@ public class AddProperty extends javax.swing.JPanel {
     
     private void updateBathroomPageInfo(){
         bathroomText.setText("Bedroom " + currentBathroomPage + "/" + bathrooms.size());
+    }
+    
+    // Returns errorMessage or null if everything is ok
+    String validateData(){
+        String errorMessage = "";
+        
+        // Remove whitespace
+        String postCodeTruncated = postcodeTextField.getText().replaceAll("\\s","");
+        
+        if (propertyNameTextField.getText().length() == 0 || propertyNameTextField.getText().length() > 30){
+            errorMessage += "\nProperty name must be between 1 and 30 characters.";
+        }
+        if (descriptionTextField.getText().length() > 500){
+            errorMessage += "\nDescription can have a maximum of 500 characters.";
+        }
+        if (locationTextField.getText().length() == 0 || locationTextField.getText().length() > 20){
+            errorMessage += "\nGeneral location must be between 1 and 20 characters.";
+        }
+        if (houseNumberTextField.getText().length() == 0 || houseNumberTextField.getText().length() > 5){
+            errorMessage += "\nProperty house no. must be between 1 and 5 characters.";
+        }
+        if (streetNameTextField.getText().length() == 0 || streetNameTextField.getText().length() > 45){
+            errorMessage += "\nProperty street name must be between 1 and 45 characters.";
+        }
+        if (placeNameTextField.getText().length() == 0 || placeNameTextField.getText().length() > 45){
+            errorMessage += "\nProperty place name must be between 1 and 45 characters.";
+        }
+        if (postCodeTruncated.length() == 0 || postCodeTruncated.length() > 8){
+            errorMessage += "\nProperty postcode must be between 1 and 8 characters.";
+        }
+        
+        return errorMessage.length() > 0 ? errorMessage.substring(1) : null;
     }
     
     // Return 0 if error or newly generated propertyId otherwise

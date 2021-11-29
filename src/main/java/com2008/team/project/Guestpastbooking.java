@@ -175,6 +175,11 @@ private String enddate;
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
         jButton10.setText("Leave a review");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jTextField10.setText("jTextField10");
         jTabbedPane3.addTab("Rating", jTextField10);
@@ -221,16 +226,21 @@ private String enddate;
         jLabel5.setText("Guest name:");
 
         jButton14.setBackground(new java.awt.Color(255, 153, 153));
-        jButton14.setText("Edit the used review");
+        jButton14.setText("Review");
 
         jButton15.setBackground(new java.awt.Color(255, 153, 153));
-        jButton15.setText("Edit the used review");
+        jButton15.setText("Review");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setBackground(new java.awt.Color(255, 153, 153));
-        jButton16.setText("Edit the used review");
+        jButton16.setText("Review");
 
         jButton17.setBackground(new java.awt.Color(255, 153, 153));
-        jButton17.setText("Edit the used review");
+        jButton17.setText("Review");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -465,6 +475,16 @@ private String enddate;
                        
         }
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        ReviewComment1 comment = new ReviewComment1(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(comment);
+    }//GEN-LAST:event_jButton10ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

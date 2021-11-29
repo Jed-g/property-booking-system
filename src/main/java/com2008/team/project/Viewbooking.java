@@ -92,6 +92,7 @@ public class Viewbooking extends javax.swing.JPanel {
         review3Label.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         review3Label.setText("awaiting DB fetch");
 
+        nextButton.setBackground(new java.awt.Color(204, 204, 255));
         nextButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         nextButton.setText("Next");
         nextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -102,6 +103,7 @@ public class Viewbooking extends javax.swing.JPanel {
             }
         });
 
+        previousButton.setBackground(new java.awt.Color(204, 204, 255));
         previousButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         previousButton.setText("Previous");
         previousButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -112,6 +114,7 @@ public class Viewbooking extends javax.swing.JPanel {
             }
         });
 
+        pages.setBackground(new java.awt.Color(255, 255, 255));
         pages.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         pages.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pages.setText("awaiting DB fetch");
@@ -267,6 +270,11 @@ public class Viewbooking extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(204, 204, 255));
         jButton1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         jButton1.setText("Status");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(204, 204, 255));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
@@ -297,11 +305,12 @@ public class Viewbooking extends javax.swing.JPanel {
                     .addGap(1, 1, 1)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(33, 33, 33)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
@@ -403,6 +412,11 @@ public class Viewbooking extends javax.swing.JPanel {
         fillInReviewBoxes(indexOfFirstReviewOnPage);
         resetReviewSections();
     }//GEN-LAST:event_previousButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void fillInReviewBoxes(int indexOfFirstReviewOnPage){
         int amountOfBoxesToFillIn = 3;

@@ -1,18 +1,25 @@
 package com2008.team.project;
 
 import java.util.ArrayList;
+import java.sql.*;
 
 public class AddProperty2 extends javax.swing.JPanel {
 
     private class Chargeband{
+        private Date startDate;
+        private Date endDate;
+        private float pricePerNight;
+        private float serviceCharge;
+        private float cleaningCharge;
         private Chargeband(){
-            
         }
     }
     
     private Main jFrameInstance;
     private AddProperty addPropertyInstance;
-    private ArrayList<Chargeband> chargebands;
+    private ArrayList<Chargeband> chargebands = new ArrayList<>();
+    
+    private int currentChargebandPage = 1;
     
     /**
      * Creates new form AddProperty
@@ -21,6 +28,7 @@ public class AddProperty2 extends javax.swing.JPanel {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.addPropertyInstance = addPropertyInstance;
+        chargebands.add(new Chargeband());
     }
 
     /**
@@ -42,10 +50,11 @@ public class AddProperty2 extends javax.swing.JPanel {
         prevChargebandButton = new javax.swing.JButton();
         newButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
-        startDateFormatted = new javax.swing.JFormattedTextField();
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
+        startDateFormatted = new javax.swing.JFormattedTextField(dateFormat);
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        endDateFormatted = new javax.swing.JFormattedTextField();
+        endDateFormatted = new javax.swing.JFormattedTextField(dateFormat);
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -53,6 +62,7 @@ public class AddProperty2 extends javax.swing.JPanel {
         pricePerNightFormatted = new javax.swing.JFormattedTextField();
         serviceChargeFormatted = new javax.swing.JFormattedTextField();
         cleaningChargeFormatted = new javax.swing.JFormattedTextField();
+        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         addPropertyButton = new javax.swing.JButton();
@@ -84,23 +94,55 @@ public class AddProperty2 extends javax.swing.JPanel {
         nextChargebandButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nextChargebandButton.setText(">");
         nextChargebandButton.setEnabled(false);
+        nextChargebandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextChargebandButtonActionPerformed(evt);
+            }
+        });
 
         prevChargebandButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         prevChargebandButton.setText("<");
         prevChargebandButton.setEnabled(false);
+        prevChargebandButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevChargebandButtonActionPerformed(evt);
+            }
+        });
 
         newButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         newButton.setText("New Chargeband");
+        newButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newButtonActionPerformed(evt);
+            }
+        });
 
         deleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         deleteButton.setText("Delete");
         deleteButton.setEnabled(false);
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
+        try{
+            javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
+            dateMask.install(startDateFormatted);
+        } catch (Exception ex) {}
+        startDateFormatted.setText(dateFormat.format(new java.util.Date()));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Start date:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("End date:");
+
+        try{
+            javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
+            dateMask.install(endDateFormatted);
+        } catch (Exception ex) {}
+        endDateFormatted.setText(dateFormat.format(new java.util.Date()));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Price per night:");
@@ -115,10 +157,20 @@ public class AddProperty2 extends javax.swing.JPanel {
         jLabel6.setText("Cleaning charge:");
 
         pricePerNightFormatted.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        pricePerNightFormatted.setText("0.00");
+        pricePerNightFormatted.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pricePerNightFormattedActionPerformed(evt);
+            }
+        });
 
         serviceChargeFormatted.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        serviceChargeFormatted.setText("0.00");
 
         cleaningChargeFormatted.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        cleaningChargeFormatted.setText("0.00");
+
+        jLabel7.setText("Date format: dd/mm/yyyy");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -135,30 +187,33 @@ public class AddProperty2 extends javax.swing.JPanel {
                         .addComponent(nextChargebandButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(chargebandText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
                         .addComponent(newButton))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4)
                             .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(endDateFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                                    .addComponent(startDateFormatted))
-                                .addGap(47, 47, 47)
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel2))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(startDateFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
+                                            .addComponent(endDateFormatted)))
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pricePerNightFormatted)
+                                    .addComponent(pricePerNightFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                                     .addComponent(serviceChargeFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                                     .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))))
-                        .addGap(0, 17, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -181,9 +236,11 @@ public class AddProperty2 extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(serviceChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -288,10 +345,14 @@ public class AddProperty2 extends javax.swing.JPanel {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
+        updateCurrentChargebandInArray();
+        
         jFrameInstance.changePanelToSpecific(addPropertyInstance);
     }//GEN-LAST:event_prevButtonActionPerformed
 
     private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
+        updateCurrentChargebandInArray();
+        
         if (addPropertyInstance.saveNewProperty() == 0){
             if (saveChargebands() == 0){
                 jFrameInstance.changePanelToDefault();
@@ -301,6 +362,113 @@ public class AddProperty2 extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_addPropertyButtonActionPerformed
 
+    private void prevChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevChargebandButtonActionPerformed
+        if (currentChargebandPage == chargebands.size()){
+            nextChargebandButton.setEnabled(true);
+        }
+
+        updateCurrentChargebandInArray();
+        currentChargebandPage--;
+        updateChargebandGUIComponents();
+        updateChargebandPageInfo();
+        
+        if (currentChargebandPage == 1){
+            prevChargebandButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_prevChargebandButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        if (chargebands.size() == 2){
+            prevChargebandButton.setEnabled(false);
+            nextChargebandButton.setEnabled(false);
+            deleteButton.setEnabled(false);
+        }
+        
+        chargebands.remove(currentChargebandPage-1);
+        
+        if (currentChargebandPage > 1){
+            currentChargebandPage--;
+        }
+        updateChargebandGUIComponents();
+        updateChargebandPageInfo();
+    }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void nextChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextChargebandButtonActionPerformed
+        if (currentChargebandPage == 1){
+            prevChargebandButton.setEnabled(true);
+        }
+        
+        updateCurrentChargebandInArray();
+        currentChargebandPage++;
+        updateChargebandGUIComponents();
+        updateChargebandPageInfo();
+        
+        if (currentChargebandPage == chargebands.size()){
+            nextChargebandButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_nextChargebandButtonActionPerformed
+
+    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+        if (currentChargebandPage == 1){
+            prevChargebandButton.setEnabled(true);
+            deleteButton.setEnabled(true);
+        }
+        
+        updateCurrentChargebandInArray();
+        
+        if (currentChargebandPage == chargebands.size()){
+            chargebands.add(new Chargeband());
+        } else {
+            chargebands.add(currentChargebandPage, new Chargeband());
+        }
+        
+        currentChargebandPage++;
+        resetChargebandGUIComponents();
+        updateChargebandPageInfo();
+    }//GEN-LAST:event_newButtonActionPerformed
+
+    private void pricePerNightFormattedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerNightFormattedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pricePerNightFormattedActionPerformed
+
+    private void updateCurrentChargebandInArray(){
+        chargebands.get(currentChargebandPage-1).pricePerNight = Float.parseFloat(pricePerNightFormatted.getText());
+        chargebands.get(currentChargebandPage-1).serviceCharge = Float.parseFloat(serviceChargeFormatted.getText());
+        chargebands.get(currentChargebandPage-1).cleaningCharge = Float.parseFloat(cleaningChargeFormatted.getText());
+        try {
+            chargebands.get(currentChargebandPage-1).startDate = new Date(new java.text.SimpleDateFormat("dd/MM/yyyy").parse(startDateFormatted.getText()).getTime());
+            chargebands.get(currentChargebandPage-1).endDate = new Date(new java.text.SimpleDateFormat("dd/MM/yyyy").parse(endDateFormatted.getText()).getTime());
+        } catch (Exception ex){
+        // Invalid date
+        }
+    }
+    
+    private void updateChargebandGUIComponents(){
+        pricePerNightFormatted.setText(String.format("%.2f", chargebands.get(currentChargebandPage-1).pricePerNight));
+        serviceChargeFormatted.setText(String.format("%.2f", chargebands.get(currentChargebandPage-1).serviceCharge));
+        cleaningChargeFormatted.setText(String.format("%.2f", chargebands.get(currentChargebandPage-1).cleaningCharge));
+        
+        java.time.LocalDate startDateLocalDate = chargebands.get(currentChargebandPage-1).startDate.toLocalDate();
+        java.time.LocalDate endDateLocalDate = chargebands.get(currentChargebandPage-1).endDate.toLocalDate();
+        
+        startDateFormatted.setText("" + startDateLocalDate.getDayOfMonth() + "/" + startDateLocalDate.getMonthValue() + "/" + startDateLocalDate.getYear());
+        endDateFormatted.setText("" + endDateLocalDate.getDayOfMonth() + "/" + endDateLocalDate.getMonthValue() + "/" + endDateLocalDate.getYear());
+    }
+    
+    private void resetChargebandGUIComponents(){
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
+        startDateFormatted.setText(dateFormat.format(new java.util.Date()));
+        endDateFormatted.setText(dateFormat.format(new java.util.Date()));
+        
+        pricePerNightFormatted.setText("0.00");
+        serviceChargeFormatted.setText("0.00");
+        cleaningChargeFormatted.setText("0.00");
+    }
+
+    private void updateChargebandPageInfo(){
+        chargebandText.setText("Chargeband " + currentChargebandPage + "/" + chargebands.size());
+    }
+    
     private int saveChargebands(){
         return 0;
     }
@@ -317,6 +485,7 @@ public class AddProperty2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;

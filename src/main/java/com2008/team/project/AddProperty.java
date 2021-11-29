@@ -1417,6 +1417,9 @@ public class AddProperty extends javax.swing.JPanel {
     int saveNewProperty(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
 
+            // Remove whitespace
+            String postCodeTruncated = postcodeTextField.getText().replaceAll("\\s","");
+            
             String statementString = "INSERT INTO Properties VALUES(NULL, ";
             for (int i = 0; i < 40; i++){
                 statementString += "?, ";
@@ -1430,7 +1433,7 @@ public class AddProperty extends javax.swing.JPanel {
             pstmt.setNull(4, Types.DOUBLE);
             pstmt.setString(5, houseNumberTextField.getText());
             pstmt.setString(6, streetNameTextField.getText());
-            pstmt.setString(7, postcodeTextField.getText());
+            pstmt.setString(7, postCodeTruncated);
             pstmt.setString(8, email);
             pstmt.setBoolean(9, centralHeatingCheckbox.isSelected());
             pstmt.setBoolean(10, washingMachineCheckbox.isSelected());

@@ -65,6 +65,11 @@ public class AddProperty2 extends javax.swing.JPanel {
         serviceChargeFormatted = new javax.swing.JFormattedTextField();
         cleaningChargeFormatted = new javax.swing.JFormattedTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         addPropertyButton = new javax.swing.JButton();
@@ -132,7 +137,7 @@ public class AddProperty2 extends javax.swing.JPanel {
             javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
             dateMask.install(startDateFormatted);
         } catch (Exception ex) {}
-        startDateFormatted.setText(dateFormat.format(new java.util.Date()));
+        startDateFormatted.setText("01/01/2022");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Start date:");
@@ -144,7 +149,7 @@ public class AddProperty2 extends javax.swing.JPanel {
             javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
             dateMask.install(endDateFormatted);
         } catch (Exception ex) {}
-        endDateFormatted.setText(dateFormat.format(new java.util.Date()));
+        endDateFormatted.setText("01/01/2022");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Price per night:");
@@ -172,29 +177,39 @@ public class AddProperty2 extends javax.swing.JPanel {
         cleaningChargeFormatted.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         cleaningChargeFormatted.setText("0.00");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel7.setText("Date format: dd/mm/yyyy");
+
+        jLabel9.setText("Ensure continuous coverage:");
+
+        jLabel10.setText("between 01/01/2022 - 31/12/2022");
+
+        jLabel11.setText("End dates and Start dates of ");
+
+        jLabel12.setText("consecutive chargebands have");
+
+        jLabel13.setText("to differ by exactly 1 day");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(prevChargebandButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nextChargebandButton))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addComponent(chargebandText)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
-                        .addComponent(newButton))
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(chargebandText, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel9Layout.createSequentialGroup()
                                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,20 +217,31 @@ public class AddProperty2 extends javax.swing.JPanel {
                                             .addComponent(jLabel2))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(startDateFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE)
-                                            .addComponent(endDateFormatted)))
-                                    .addComponent(jLabel7))
-                                .addGap(18, 18, 18)
+                                            .addComponent(startDateFormatted)
+                                            .addComponent(endDateFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel13))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pricePerNightFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                                    .addComponent(serviceChargeFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
-                                    .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addGroup(jPanel9Layout.createSequentialGroup()
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pricePerNightFormatted)
+                                            .addComponent(serviceChargeFormatted)
+                                            .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jLabel4))
+                                .addGap(35, 35, 35)))))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -237,15 +263,28 @@ public class AddProperty2 extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
                     .addComponent(serviceChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4)
+                        .addGap(14, 14, 14))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jLabel11)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel12)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextChargebandButton)
                     .addComponent(prevChargebandButton)
@@ -317,11 +356,11 @@ public class AddProperty2 extends javax.swing.JPanel {
                 .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(303, 310, Short.MAX_VALUE)
+                .addContainerGap(245, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(303, 303, 303))
+                .addContainerGap(245, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -495,15 +534,15 @@ public class AddProperty2 extends javax.swing.JPanel {
         
         java.time.LocalDate startDateLocalDate = chargebands.get(currentChargebandPage-1).startDate.toLocalDate();
         java.time.LocalDate endDateLocalDate = chargebands.get(currentChargebandPage-1).endDate.toLocalDate();
-        
+
         startDateFormatted.setText("" + startDateLocalDate.getDayOfMonth() + "/" + startDateLocalDate.getMonthValue() + "/" + startDateLocalDate.getYear());
         endDateFormatted.setText("" + endDateLocalDate.getDayOfMonth() + "/" + endDateLocalDate.getMonthValue() + "/" + endDateLocalDate.getYear());
     }
     
     private void resetChargebandGUIComponents(){
         java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
-        startDateFormatted.setText(dateFormat.format(new java.util.Date()));
-        endDateFormatted.setText(dateFormat.format(new java.util.Date()));
+        startDateFormatted.setText("01/01/2022");
+        endDateFormatted.setText("01/01/2022");
         
         pricePerNightFormatted.setText("0.00");
         serviceChargeFormatted.setText("0.00");
@@ -516,7 +555,30 @@ public class AddProperty2 extends javax.swing.JPanel {
     
     // Returns errorMessage or null if everything is ok
     String validateData(){
-        return null;
+        String errorMessage = "";
+        
+        for (Chargeband i : chargebands){
+            if (i.pricePerNight < 0 || i.serviceCharge < 0 || i.cleaningCharge < 0){
+                errorMessage += "\nPrice/Cost can't be negative.";
+                break;
+            }
+        }
+                
+        if (!(chargebands.get(0).startDate.getTime() <= new Date(2022 - 1900, 0, 1).getTime()) ||
+                !(chargebands.get(chargebands.size() - 1).endDate.getTime() >= new Date(2022 - 1900, 11, 31).getTime())){
+            errorMessage += "\nStart and end dates of chargebands don't cover the whole of 01/01/2022 - 31/12/2022";
+        }
+        
+        for (int i = 1; i < chargebands.size(); i++){
+            // 24*60*60*1000 = number of miliseconds in a day
+            if (chargebands.get(i).startDate.getTime() - chargebands.get(i-1).endDate.getTime() != 24*60*60*1000){
+                errorMessage += "\nEnd dates and Start dates of consecutive chargebands have to differ by exactly 1 day\n"
+                        + "e.g. End dates and Start dates of consecutive chargebands\ncould be 30/06/2022 and 01/07/2022";
+                break;
+            }
+        }
+        
+        return errorMessage.length() > 0 ? errorMessage.substring(1) : null;
     }
     
     // Return 1 if error, 0 otherwise
@@ -552,6 +614,10 @@ public class AddProperty2 extends javax.swing.JPanel {
     private javax.swing.JButton deleteButton;
     private javax.swing.JFormattedTextField endDateFormatted;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -559,6 +625,7 @@ public class AddProperty2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

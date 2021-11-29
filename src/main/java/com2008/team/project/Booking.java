@@ -235,7 +235,6 @@ public class Booking extends javax.swing.JPanel {
             enddateTextField.setBackground(new java.awt.Color(255, 255, 255));
             
             jButton2.setText("Save Changes");
-            jButton4.setText("Cancel");
         } catch (Exception ex) {
             ex.printStackTrace();            
             

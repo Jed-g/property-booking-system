@@ -254,24 +254,59 @@ private String enddate;
 
         jButton15.setBackground(new java.awt.Color(255, 153, 153));
         jButton15.setText("Contact host");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setBackground(new java.awt.Color(255, 153, 153));
         jButton16.setText("Contact host");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jButton17.setBackground(new java.awt.Color(255, 153, 153));
         jButton17.setText("Contact host");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setBackground(new java.awt.Color(255, 153, 153));
-        jButton18.setText("Cancel booking");
+        jButton18.setText("View Booking");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setBackground(new java.awt.Color(255, 153, 153));
-        jButton19.setText("Cancel booking");
+        jButton19.setText("View booking");
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         jButton20.setBackground(new java.awt.Color(255, 153, 153));
-        jButton20.setText("Cancel booking");
+        jButton20.setText("View booking");
+        jButton20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton20ActionPerformed(evt);
+            }
+        });
 
         jButton21.setBackground(new java.awt.Color(255, 153, 153));
-        jButton21.setText("Cancel booking");
+        jButton21.setText("View booking");
+        jButton21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton21ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -530,9 +565,52 @@ private String enddate;
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-       Booking guestupcomingbooking =new Booking(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(guestupcomingbooking);
+       Booking guestupcomingbooking1 =new Booking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(guestupcomingbooking1);
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        Booking guestupcomingbooking2 =new Booking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(guestupcomingbooking2);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+        Booking guestupcomingbooking3 =new Booking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(guestupcomingbooking3);
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        Booking guestupcomingbooking4 =new Booking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(guestupcomingbooking4);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        
+        Viewbooking booking1 =new Viewbooking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(booking1);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
+        // TODO add your handling code here:
+        Viewbooking booking2 =new Viewbooking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(booking2);
+    }//GEN-LAST:event_jButton21ActionPerformed
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        // TODO add your handling code here:
+        Viewbooking booking3 =new Viewbooking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(booking3);
+    }//GEN-LAST:event_jButton20ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        // TODO add your handling code here:
+        Viewbooking booking4 =new Viewbooking(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(booking4);
+    }//GEN-LAST:event_jButton19ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

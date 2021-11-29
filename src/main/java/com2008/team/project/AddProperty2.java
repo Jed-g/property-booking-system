@@ -29,6 +29,8 @@ public class AddProperty2 extends javax.swing.JPanel {
         this.jFrameInstance = jFrameInstance;
         this.addPropertyInstance = addPropertyInstance;
         chargebands.add(new Chargeband());
+        
+        DriverManager.setLoginTimeout(3);
     }
 
     /**

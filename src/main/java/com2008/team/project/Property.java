@@ -3,6 +3,7 @@ package com2008.team.project;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.sql.*;
+import java.time.LocalDate;
 /**
  *
  * @author Matyas Szert
@@ -10,8 +11,10 @@ import java.sql.*;
 public class Property extends javax.swing.JPanel {
 
     enum PageView {
+        ENQUIRER,
         GUEST,
-        GUESTBOOKED,
+        GUESTPROVISIONAL,
+        GUESTPAST,
         HOST
     }
     
@@ -28,6 +31,7 @@ public class Property extends javax.swing.JPanel {
     int numBedrooms;
     int numBeds;
     int numSleepers;
+    float avgRating;
     Date startDate;
     Date endDate;
     
@@ -46,6 +50,7 @@ public class Property extends javax.swing.JPanel {
         getBedroomInfo(this.propertyId);
         getBathroomInfo(this.propertyId);
         setPageView();
+        calculateRating();
         update();
         
         DriverManager.setLoginTimeout(3);
@@ -976,7 +981,7 @@ public class Property extends javax.swing.JPanel {
         numBathrooms = Bathroom.getList(propertyId).length;
     }
     
-    private float calculateRating() {
+    private void calculateRating() {
         float avgRating = 0;
         float ratingsTotal = 0;
         int numRatings = 0;
@@ -998,7 +1003,19 @@ public class Property extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
         
-        return avgRating;
+        this.avgRating = avgRating;
+    }
+    
+    private void checkBookings () {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT email FROM Bookings WHERE propertyId = ?");
+            
+        }
+        catch (Exception ex) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
     }
     
     private void setIcon(String amenity, javax.swing.JLabel icon) {
@@ -1050,11 +1067,14 @@ public class Property extends javax.swing.JPanel {
         numSleepersLabel.setText("" + numSleepers);
         numBathroomsLabel.setText("" + numBathrooms);
         
+        ratingLabel.setText("" + avgRating);
+        
         if (view == PageView.HOST) {
             multiUseButton1.setText("Edit Property");
         }
     }
-    //Static Name, Location, rating, description methods
+    
+    //Functions to return data
     
     public String getName() {
         return strDetails.get("Name");
@@ -1065,8 +1085,7 @@ public class Property extends javax.swing.JPanel {
     }
     
     public float getRating() {
-        //return rating
-        return 0;
+        return avgRating;
     }
     
     public String getDescription() {
@@ -1074,9 +1093,48 @@ public class Property extends javax.swing.JPanel {
     }
     
     private void setPageView() {
-        if (hostEmail.equals(userEmail)) {
-            view = PageView.HOST;
+        String guestEmail = "";
+        Date today = new java.sql.Date(System.currentTimeMillis());
+        Date startDate = new java.sql.Date(System.currentTimeMillis());
+        Date endDate = new java.sql.Date(System.currentTimeMillis());
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Bookings WHERE propertyId = ?");
+            pstmt.setInt(1, propertyId);
+            ResultSet res = pstmt.executeQuery();
+            
+            while (res.next()) {
+                guestEmail = res.getString("email");
+                startDate = res.getDate("startDate");
+                endDate = res.getDate("endDate");
+            }
+            res.close();
+
+            if (userEmail.isEmpty()) {
+                view = PageView.ENQUIRER;
+            }
+            else if (hostEmail.equals(userEmail)) {
+                view = PageView.HOST;
+            }
+            else if (userEmail.equals(guestEmail)) {
+                if (endDate.before(today)) {
+                    view = PageView.GUESTPAST;
+                }
+                else if (endDate.after(today)) {
+                    view = PageView.GUESTPROVISIONAL;
+                }
+            }
+            else {
+                view = PageView.GUEST;
+            }
+
+            }
+        catch (Exception ex) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
+        
+        
         //check if a booking matching the guest email and this property ID exists
     }
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed

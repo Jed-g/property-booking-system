@@ -32,7 +32,7 @@ public class Bathroom {
         return isShared;
     }
     
-    static Bathroom[] getList(String propertyId){
+    static Bathroom[] getList(int propertyId){
         DriverManager.setLoginTimeout(3);
         
         Bathroom[] bathrooms = null;
@@ -41,7 +41,7 @@ public class Bathroom {
            
             PreparedStatement pstmt = con.prepareStatement("SELECT toilet, bath, shower, isShared FROM Bathrooms JOIN Properties WHERE Bathrooms.propertyId=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, propertyId);
+            pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
                         
             int numberOfBathrooms = 0;

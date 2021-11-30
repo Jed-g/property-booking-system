@@ -1,18 +1,51 @@
 package com2008.team.project;
 
+import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Date;
+import java.sql.*;
+/**
+ *
+ * @author Matyas Szert
+ */
 public class Property extends javax.swing.JPanel {
 
     Main jFrameInstance;
+    int propertyId;
     String email;
     boolean hostView;
+    
+    HashMap<String, String> strDetails = new HashMap();
+    HashMap<String, Boolean> amenitiesDetails = new HashMap();
+    HashMap<String, String> confidentialDetails = new HashMap();
+    int numBathrooms;
+    int numBedrooms;
+    int numBeds;
+    int numSleepers;
+    Date startDate;
+    Date endDate;
+    boolean confirmedBooking;
+    
+    
     /**
      * Creates new form Property
      */
-    public Property(Main jFrameInstance, String email, boolean hostView) {
+    public Property(Main jFrameInstance, int propertyId, String email, boolean hostView) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.propertyId = propertyId;
         this.email = email;
         this.hostView = hostView;
+        getPropertyInfo(this.propertyId);
+        getBedroomInfo(this.propertyId);
+        getBathroomInfo(this.propertyId);
+        update();
+        if (hostView) {
+            EditProperty editProperty = new EditProperty(propertyId, strDetails, amenitiesDetails, confidentialDetails);
+            jFrameInstance.changePanelToSpecific(editProperty);
+        }
+        
+        DriverManager.setLoginTimeout(3);
     }
 
     /**
@@ -37,34 +70,23 @@ public class Property extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        refrigeratorIcon = new javax.swing.JLabel();
-        stoveIcon = new javax.swing.JLabel();
         stoveIcon1 = new javax.swing.JLabel();
-        microwaveIcon = new javax.swing.JLabel();
-        dishwasherIcon = new javax.swing.JLabel();
-        ovenIcon = new javax.swing.JLabel();
-        tablewareIcon = new javax.swing.JLabel();
-        cookwareIcon = new javax.swing.JLabel();
-        provisionsIcon = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         hairDryerIcon = new javax.swing.JLabel();
-        toiletPaperIcon = new javax.swing.JLabel();
-        noOfBathrooms = new javax.swing.JLabel();
-        shampooIcon = new javax.swing.JLabel();
+        numBathroomsLabel = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        noOfBedrooms = new javax.swing.JLabel();
+        numBedroomsLabel = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        noOfBeds = new javax.swing.JLabel();
-        noOfSleepers = new javax.swing.JLabel();
+        numBedsLabel = new javax.swing.JLabel();
+        numSleepersLabel = new javax.swing.JLabel();
         noOfBeds1 = new javax.swing.JLabel();
         bedLinenIcon = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        towelsIcon = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -73,38 +95,61 @@ public class Property extends javax.swing.JPanel {
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        wifiIcon = new javax.swing.JLabel();
-        dvdPlayerIcon = new javax.swing.JLabel();
-        tvIcon = new javax.swing.JLabel();
-        boardGamesIcon = new javax.swing.JLabel();
-        satelliteIcon = new javax.swing.JLabel();
-        streamingIcon = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        heatingIcon = new javax.swing.JLabel();
-        smokeAlarmIcon = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        washingMachineIcon = new javax.swing.JLabel();
-        firstAidIcon = new javax.swing.JLabel();
-        fireExtinguisherIcon = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        dryingMachineIcon = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        freeParkingIcon = new javax.swing.JLabel();
-        patioIcon = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        onRoadParkingIcon = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
-        paidParkingIcon = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        bbqIcon = new javax.swing.JLabel();
         accountButton1 = new javax.swing.JButton();
-        requestBookingButton = new javax.swing.JButton();
+        multiUseButton1 = new javax.swing.JButton();
+        jLabel40 = new javax.swing.JLabel();
+        towelsIcon = new javax.swing.JLabel();
+        shampooIcon = new javax.swing.JLabel();
+        toiletPaperIcon = new javax.swing.JLabel();
+        refrigeratorIcon = new javax.swing.JLabel();
+        stoveIcon = new javax.swing.JLabel();
+        microwaveIcon = new javax.swing.JLabel();
+        dishwasherIcon = new javax.swing.JLabel();
+        ovenIcon = new javax.swing.JLabel();
+        tablewareIcon = new javax.swing.JLabel();
+        cookwareIcon = new javax.swing.JLabel();
+        basicProvisionsIcon = new javax.swing.JLabel();
+        wifiIcon = new javax.swing.JLabel();
+        dvdPlayerIcon = new javax.swing.JLabel();
+        televisionIcon = new javax.swing.JLabel();
+        boardGamesIcon = new javax.swing.JLabel();
+        satelliteIcon = new javax.swing.JLabel();
+        streamingIcon = new javax.swing.JLabel();
+        freeOnSiteParkingIcon = new javax.swing.JLabel();
+        patioIcon = new javax.swing.JLabel();
+        onRoadParkingIcon = new javax.swing.JLabel();
+        barbequeIcon = new javax.swing.JLabel();
+        paidCarParkingIcon = new javax.swing.JLabel();
+        heatingIcon = new javax.swing.JLabel();
+        smokeAlarmIcon = new javax.swing.JLabel();
+        firstAidIcon = new javax.swing.JLabel();
+        washingMachineIcon = new javax.swing.JLabel();
+        dryingMachineIcon = new javax.swing.JLabel();
+        fireExtinguisherIcon = new javax.swing.JLabel();
+        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
+        startDateField = new javax.swing.JFormattedTextField(dateFormat);
+        jLabel41 = new javax.swing.JLabel();
+        endDateField = new javax.swing.JFormattedTextField(dateFormat);
+        jLabel42 = new javax.swing.JLabel();
+        price = new javax.swing.JLabel();
+        applyDatesButton = new javax.swing.JButton();
+        houseNumber = new javax.swing.JLabel();
+        placeName = new javax.swing.JLabel();
+        streetName = new javax.swing.JLabel();
+        postcode = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -145,30 +190,6 @@ public class Property extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Basic provisions");
 
-        refrigeratorIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        refrigeratorIcon.setText("O");
-
-        stoveIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        stoveIcon.setText("O");
-
-        microwaveIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        microwaveIcon.setText("O");
-
-        dishwasherIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        dishwasherIcon.setText("O");
-
-        ovenIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ovenIcon.setText("O");
-
-        tablewareIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tablewareIcon.setText("O");
-
-        cookwareIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cookwareIcon.setText("O");
-
-        provisionsIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        provisionsIcon.setText("O");
-
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel12.setText("Toilet paper");
 
@@ -176,16 +197,10 @@ public class Property extends javax.swing.JPanel {
         jLabel13.setText("Shampoo");
 
         hairDryerIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        hairDryerIcon.setText("O");
+        hairDryerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
 
-        toiletPaperIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        toiletPaperIcon.setText("O");
-
-        noOfBathrooms.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        noOfBathrooms.setText("0");
-
-        shampooIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        shampooIcon.setText("O");
+        numBathroomsLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        numBathroomsLabel.setText("0");
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Bathrooms");
@@ -202,29 +217,26 @@ public class Property extends javax.swing.JPanel {
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel20.setText("Number of Bedrooms: ");
 
-        noOfBedrooms.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        noOfBedrooms.setText("0");
+        numBedroomsLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        numBedroomsLabel.setText("0");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel21.setText("Number of Beds: ");
 
-        noOfBeds.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        noOfBeds.setText("0");
+        numBedsLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        numBedsLabel.setText("0");
 
-        noOfSleepers.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        noOfSleepers.setText("0");
+        numSleepersLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        numSleepersLabel.setText("0");
 
         noOfBeds1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         noOfBeds1.setText("Number of Sleepers: ");
 
         bedLinenIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        bedLinenIcon.setText("O");
+        bedLinenIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel22.setText("Bed linen");
-
-        towelsIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        towelsIcon.setText("O");
 
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel23.setText("Towels");
@@ -250,24 +262,6 @@ public class Property extends javax.swing.JPanel {
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel27.setText("Streaming");
 
-        wifiIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        wifiIcon.setText("O");
-
-        dvdPlayerIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        dvdPlayerIcon.setText("O");
-
-        tvIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tvIcon.setText("O");
-
-        boardGamesIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        boardGamesIcon.setText("O");
-
-        satelliteIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        satelliteIcon.setText("O");
-
-        streamingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        streamingIcon.setText("O");
-
         jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel26.setText("Utilities");
 
@@ -277,32 +271,14 @@ public class Property extends javax.swing.JPanel {
         jLabel29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel29.setText("Smoke alarm");
 
-        heatingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        heatingIcon.setText("O");
-
-        smokeAlarmIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        smokeAlarmIcon.setText("O");
-
         jLabel30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel30.setText("Washing machine");
 
         jLabel31.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel31.setText("First aid kit");
 
-        washingMachineIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        washingMachineIcon.setText("O");
-
-        firstAidIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        firstAidIcon.setText("O");
-
-        fireExtinguisherIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        fireExtinguisherIcon.setText("O");
-
         jLabel32.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel32.setText("Drying machine");
-
-        dryingMachineIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        dryingMachineIcon.setText("O");
 
         jLabel33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel33.setText("Fire extinguisher");
@@ -316,29 +292,14 @@ public class Property extends javax.swing.JPanel {
         jLabel36.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel36.setText("Patio");
 
-        freeParkingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        freeParkingIcon.setText("O");
-
-        patioIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        patioIcon.setText("O");
-
         jLabel37.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel37.setText("On-road parking");
-
-        onRoadParkingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        onRoadParkingIcon.setText("O");
 
         jLabel38.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel38.setText("Paid car park");
 
-        paidParkingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        paidParkingIcon.setText("O");
-
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel39.setText("Barbecue");
-
-        bbqIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        bbqIcon.setText("O");
 
         accountButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         accountButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User_Icon_Wikipedia_Resized.png"))); // NOI18N
@@ -351,13 +312,143 @@ public class Property extends javax.swing.JPanel {
             }
         });
 
-        requestBookingButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        requestBookingButton.setText("Request to book");
-        requestBookingButton.addActionListener(new java.awt.event.ActionListener() {
+        multiUseButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        multiUseButton1.setText("Request to book");
+        multiUseButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                requestBookingButtonActionPerformed(evt);
+                multiUseButton1ActionPerformed(evt);
             }
         });
+
+        towelsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/green-tick-small.jpg"))); // NOI18N
+
+        shampooIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        shampooIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        toiletPaperIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        toiletPaperIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        refrigeratorIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        refrigeratorIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        stoveIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        stoveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        microwaveIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        microwaveIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        dishwasherIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dishwasherIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        ovenIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ovenIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        tablewareIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tablewareIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        cookwareIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        cookwareIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        basicProvisionsIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        basicProvisionsIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        wifiIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        wifiIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        dvdPlayerIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dvdPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        televisionIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        televisionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        boardGamesIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        boardGamesIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        satelliteIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        satelliteIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        streamingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        streamingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        freeOnSiteParkingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        freeOnSiteParkingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        patioIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        patioIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        onRoadParkingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        onRoadParkingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        barbequeIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        barbequeIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        paidCarParkingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        paidCarParkingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        heatingIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        heatingIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        smokeAlarmIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        smokeAlarmIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        firstAidIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        firstAidIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        washingMachineIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        washingMachineIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        dryingMachineIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        dryingMachineIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        fireExtinguisherIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        fireExtinguisherIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
+
+        startDateField.setText("dd/mm/yyyy");
+        try{
+            javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
+            dateMask.install(startDateField);
+        } catch (Exception ex) {/*Ignore*/}
+        startDateField.setText(dateFormat.format(new java.util.Date()));
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel41.setText("Start Date (dd/mm/yyyy)");
+
+        endDateField.setText("dd/mm/yyyy");
+        try{
+            javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
+            dateMask.install(startDateField);
+        } catch (Exception ex) {/*Ignore*/}
+        startDateField.setText(dateFormat.format(new java.util.Date()));
+        endDateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endDateFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel42.setText("End Date (dd/mm/yyyy)");
+
+        price.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        price.setText("£0");
+
+        applyDatesButton.setText("Apply dates");
+        applyDatesButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyDatesButtonActionPerformed(evt);
+            }
+        });
+
+        houseNumber.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        houseNumber.setText("House Number");
+
+        placeName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        placeName.setText("Place Name");
+
+        streetName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        streetName.setText("Street Name");
+
+        postcode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        postcode.setText("Post Code");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -378,11 +469,27 @@ public class Property extends javax.swing.JPanel {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel16)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(noOfBathrooms))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel12)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(toiletPaperIcon)))
+                                                .addComponent(numBathroomsLabel))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(wifiIcon)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel12)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(toiletPaperIcon))
+                                                .addComponent(dvdPlayerIcon)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel26)
+                                                        .addComponent(jLabel28)
+                                                        .addComponent(jLabel29))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addGap(0, 0, Short.MAX_VALUE)
+                                                            .addComponent(heatingIcon))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(smokeAlarmIcon)
+                                                            .addGap(0, 0, Short.MAX_VALUE))))))
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addGroup(layout.createSequentialGroup()
@@ -393,34 +500,121 @@ public class Property extends javax.swing.JPanel {
                                                 .addComponent(jLabel13)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(shampooIcon)))
-                                        .addGap(0, 12, Short.MAX_VALUE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addComponent(stoveIcon1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel26)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel28)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(heatingIcon))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel29)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(smokeAlarmIcon))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(location))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(259, 259, 259)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(firstAidIcon)
+                                    .addComponent(washingMachineIcon))
+                                .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel32)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(dryingMachineIcon))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel33)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(fireExtinguisherIcon)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel40))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(98, 98, 98)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel25))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel31)
+                                            .addComponent(jLabel30))
+                                        .addGap(10, 10, 10)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(televisionIcon)
+                                    .addComponent(boardGamesIcon))
+                                .addGap(57, 57, 57)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel27)
+                                    .addComponent(jLabel17))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(satelliteIcon)
+                                    .addComponent(streamingIcon)))
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel19)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel21)
+                                            .addGap(37, 37, 37)
+                                            .addComponent(numBedsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(noOfBeds1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(numSleepersLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(26, 26, 26)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(numBedroomsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(propertyName))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(91, 91, 91)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(bedLinenIcon)
+                                                .addComponent(towelsIcon)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel23))
+                                            .addGap(60, 60, 60)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(houseNumber)
+                                            .addComponent(placeName)
+                                            .addComponent(postcode))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(streetName)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(price)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel41)
+                                .addComponent(applyDatesButton)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel36)
                                             .addComponent(jLabel35)
                                             .addComponent(jLabel34)
-                                            .addComponent(jLabel5)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel2)
+                                                    .addComponent(jLabel5))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(stoveIcon)
@@ -429,307 +623,425 @@ public class Property extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(freeParkingIcon)
+                                                    .addComponent(freeOnSiteParkingIcon)
                                                     .addComponent(patioIcon))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLabel39)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(bbqIcon))
+                                                        .addComponent(barbequeIcon))
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addComponent(jLabel37)
                                                         .addGap(18, 18, 18)
                                                         .addComponent(onRoadParkingIcon)))
-                                                .addGap(18, 18, 18)
+                                                .addGap(12, 12, 12)
                                                 .addComponent(jLabel38)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(paidParkingIcon))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(requestBookingButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jLabel6))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(microwaveIcon)
-                                                        .addComponent(dishwasherIcon))
-                                                    .addGap(30, 30, 30)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(jLabel7)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                            .addComponent(tablewareIcon))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(jLabel4)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(ovenIcon)))
-                                                    .addGap(18, 18, 18)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(jLabel9)
-                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                            .addComponent(provisionsIcon))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addComponent(jLabel8)
-                                                            .addGap(41, 41, 41)
-                                                            .addComponent(cookwareIcon)))))))
-                                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(paidCarParkingIcon)
+                                                .addGap(52, 52, 52))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jLabel6))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(microwaveIcon)
+                                                    .addComponent(dishwasherIcon))
+                                                .addGap(25, 25, 25)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel7)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(tablewareIcon))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addComponent(jLabel4)
+                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(ovenIcon)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel8)
+                                                    .addComponent(jLabel9))
+                                                .addGap(31, 31, 31))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel33)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(fireExtinguisherIcon))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel32)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(dryingMachineIcon)))))
-                        .addGap(579, 579, 579))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(propertyName)
-                            .addComponent(location)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel21)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(noOfBeds, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(noOfBeds1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(noOfSleepers, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(noOfBedrooms, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel23))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bedLinenIcon)
-                            .addComponent(towelsIcon))
-                        .addGap(1186, 1186, 1186))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel19)
-                            .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel31)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel30)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(washingMachineIcon))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addGap(109, 109, 109)
-                                            .addComponent(firstAidIcon)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(28, 28, 28)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(dvdPlayerIcon, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(wifiIcon, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addGap(61, 61, 61)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel25))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(tvIcon)
-                                            .addComponent(boardGamesIcon))))
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(satelliteIcon))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel27)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(streamingIcon)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(569, 569, 569)))
+                                    .addComponent(cookwareIcon)
+                                    .addComponent(basicProvisionsIcon)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel42)
+                                .addComponent(multiUseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(1007, 1007, 1007))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(description, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(propertyName)
-                            .addGap(18, 18, 18)
-                            .addComponent(location)
-                            .addGap(23, 23, 23)
-                            .addComponent(jLabel19)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel20)
-                                .addComponent(noOfBedrooms))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel21)
-                                .addComponent(noOfBeds))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(noOfSleepers)
-                                .addComponent(noOfBeds1)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(103, 103, 103)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel22)
-                                .addComponent(bedLinenIcon))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel23)
-                                .addComponent(towelsIcon)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(stoveIcon1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(69, 69, 69)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel8)
-                                    .addComponent(refrigeratorIcon)
-                                    .addComponent(microwaveIcon)
-                                    .addComponent(ovenIcon)
-                                    .addComponent(cookwareIcon))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel9)
-                                    .addComponent(stoveIcon)
-                                    .addComponent(dishwasherIcon)
-                                    .addComponent(tablewareIcon)
-                                    .addComponent(provisionsIcon)))
+                                    .addComponent(propertyName)
+                                    .addComponent(houseNumber)
+                                    .addComponent(streetName))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addComponent(location)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jLabel19))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(placeName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(postcode)
+                                        .addGap(31, 31, 31))))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(jLabel40)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel20)
+                                    .addComponent(numBedroomsLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel21)
+                                    .addComponent(numBedsLabel))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(numSleepersLabel)
+                                    .addComponent(noOfBeds1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bedLinenIcon)
+                                    .addComponent(jLabel22))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel23)
+                                    .addComponent(towelsIcon))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel18)
-                                    .addComponent(noOfBathrooms)
+                                    .addComponent(numBathroomsLabel)
                                     .addComponent(hairDryerIcon))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(toiletPaperIcon)
-                                    .addComponent(jLabel13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(shampooIcon)
-                                    .addComponent(jLabel12))))))
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel34))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel17)
-                            .addComponent(wifiIcon)
-                            .addComponent(tvIcon)
-                            .addComponent(satelliteIcon))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel25)
-                            .addComponent(dvdPlayerIcon)
-                            .addComponent(boardGamesIcon)
-                            .addComponent(jLabel27)
-                            .addComponent(streamingIcon)
-                            .addComponent(jLabel24)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel35)
-                            .addComponent(freeParkingIcon)
-                            .addComponent(jLabel37)
-                            .addComponent(onRoadParkingIcon)
-                            .addComponent(jLabel38)
-                            .addComponent(paidParkingIcon))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel39)
-                            .addComponent(bbqIcon)
-                            .addComponent(patioIcon))))
-                .addGap(33, 33, 33)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel32)
-                            .addComponent(dryingMachineIcon))
+                                    .addComponent(toiletPaperIcon)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel13)
+                                        .addComponent(jLabel12))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addComponent(stoveIcon1)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(requestBookingButton, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wifiIcon)
+                                    .addComponent(televisionIcon))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(dvdPlayerIcon))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(boardGamesIcon)))
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabel26))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel14)
+                                        .addComponent(jLabel17))
+                                    .addComponent(satelliteIcon))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(streamingIcon)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel25)
+                                        .addComponent(jLabel27)
+                                        .addComponent(jLabel24)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel32)
+                                    .addComponent(dryingMachineIcon))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel33)
-                                    .addComponent(fireExtinguisherIcon))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel30)
-                                .addComponent(washingMachineIcon))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel31)
-                                .addComponent(firstAidIcon)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel28)
-                                .addComponent(heatingIcon))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel29)
-                                .addComponent(smokeAlarmIcon)))))
-                .addGap(39, 39, 39))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(fireExtinguisherIcon)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel30)
+                                        .addComponent(heatingIcon)
+                                        .addComponent(washingMachineIcon))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel31)
+                                            .addComponent(smokeAlarmIcon, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addComponent(firstAidIcon)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel28)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel29))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cookwareIcon)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(basicProvisionsIcon)
+                        .addGap(192, 192, 192)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(multiUseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(price)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel8))
+                                    .addComponent(refrigeratorIcon)
+                                    .addComponent(ovenIcon))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(stoveIcon, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jLabel9)))
+                                    .addComponent(tablewareIcon)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(microwaveIcon)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(dishwasherIcon)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel35)
+                                        .addComponent(jLabel37)
+                                        .addComponent(jLabel38))
+                                    .addComponent(onRoadParkingIcon)
+                                    .addComponent(paidCarParkingIcon))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(patioIcon)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel36)
+                                        .addComponent(jLabel39))
+                                    .addComponent(barbequeIcon)))
+                            .addComponent(freeOnSiteParkingIcon))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel42)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel41)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(applyDatesButton)
+                        .addGap(41, 41, 41)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void getPropertyInfo(int propertyId) {
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Properties WHERE propertyId = ?");
+            pstmt.setInt(1, propertyId);
+            ResultSet res = pstmt.executeQuery();
+            
+            while (res.next()) {
+                confidentialDetails.put("houseNumber", res.getString("propertyHouseNumber"));
+                confidentialDetails.put("streetName", res.getString("propertyStreetName"));
+                confidentialDetails.put("placeName", res.getString("propertyPlaceName"));
+                confidentialDetails.put("postCode", res.getString("propertyPostCode"));
+                
+                strDetails.put("Name", res.getString("propertyName"));
+                strDetails.put("Description", res.getString("description"));
+                strDetails.put("Location", res.getString("location"));
+                
+                amenitiesDetails.put("heating",res.getBoolean("heating"));
+                amenitiesDetails.put("washingMachine",res.getBoolean("washingMachine"));
+                amenitiesDetails.put("dryingMachine",res.getBoolean("dryingMachine"));
+                amenitiesDetails.put("fireExtinguisher",res.getBoolean("fireExtinguisher"));
+                amenitiesDetails.put("smokeAlarm",res.getBoolean("smokeAlarm"));
+                amenitiesDetails.put("firstAid",res.getBoolean("firstAid"));
+                amenitiesDetails.put("wifi",res.getBoolean("wifi"));
+                amenitiesDetails.put("television",res.getBoolean("television"));
+                amenitiesDetails.put("satellite",res.getBoolean("satellite"));
+                amenitiesDetails.put("streaming",res.getBoolean("streaming"));
+                amenitiesDetails.put("DVDPlayer",res.getBoolean("DVDPlayer"));
+                amenitiesDetails.put("boardGames",res.getBoolean("boardGames"));
+                amenitiesDetails.put("freeOnSiteParking",res.getBoolean("freeOnSiteParking"));
+                amenitiesDetails.put("onRoadParking",res.getBoolean("onRoadParking"));
+                amenitiesDetails.put("paidCarParking",res.getBoolean("paidCarParking"));
+                amenitiesDetails.put("patio",res.getBoolean("patio"));
+                amenitiesDetails.put("barbeque",res.getBoolean("barbeque"));
+                amenitiesDetails.put("tableware",res.getBoolean("tableware"));
+                amenitiesDetails.put("cookware",res.getBoolean("cookware"));
+                amenitiesDetails.put("basicProvisions",res.getBoolean("basicProvisions"));
+                amenitiesDetails.put("hairDryer",res.getBoolean("hairDryer"));
+                amenitiesDetails.put("shampoo",res.getBoolean("shampoo"));
+                amenitiesDetails.put("toiletPaper",res.getBoolean("toiletPaper"));
+                amenitiesDetails.put("towels",res.getBoolean("towels"));
+                amenitiesDetails.put("bedLinen",res.getBoolean("bedLinen"));
+                amenitiesDetails.put("refrigerator",res.getBoolean("refrigerator"));
+                amenitiesDetails.put("microwave",res.getBoolean("microwave"));
+                amenitiesDetails.put("oven",res.getBoolean("oven"));
+                amenitiesDetails.put("stove",res.getBoolean("stove"));
+                amenitiesDetails.put("dishwasher",res.getBoolean("dishwasher"));
+            }
+            res.close();
+        }
+        catch (Exception ex) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
+    
+    private void getBedroomInfo(int propertyId) {
+        
+        Bedroom [] bedrooms = Bedroom.getList(propertyId);
+        numBedrooms = bedrooms.length;
+        
+        for (Bedroom bedroom : bedrooms) {
+            numSleepers += bedroom.getBedroomCapacity();
+            numBeds += bedroom.getBedAmount();
+        }
+    }
+    
+    private void getBathroomInfo(int propertyId) {
+        numBathrooms = Bathroom.getList(propertyId).length;
+    }
+    
+    
+    private void setIcon(String amenity, javax.swing.JLabel icon) {
+        if (amenitiesDetails.get(amenity)) {
+            icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/green-tick-small.jpg")));
+        }
+        else {
+            icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg")));
+        }
+    }
+    private void update() {
+        propertyName.setText(strDetails.get("Name"));
+        location.setText(strDetails.get("Location"));
+        description.setText(strDetails.get("Description"));
+        //I know this should be a loop but I couldn't find a way to make it work in Netbeans in a way that makes it worth it.
+        setIcon("bedLinen", bedLinenIcon);
+        setIcon("towels", towelsIcon);
+        setIcon("hairDryer", hairDryerIcon);
+        setIcon("heating", heatingIcon);
+        setIcon("washingMachine", washingMachineIcon);
+        setIcon("dryingMachine", dryingMachineIcon);
+        setIcon("fireExtinguisher", fireExtinguisherIcon);
+        setIcon("smokeAlarm", smokeAlarmIcon);
+        setIcon("firstAid", firstAidIcon);
+        setIcon("wifi", wifiIcon);
+        setIcon("television", televisionIcon);
+        setIcon("satellite", satelliteIcon);
+        setIcon("streaming", streamingIcon);
+        setIcon("DVDPlayer", dvdPlayerIcon);
+        setIcon("boardGames", boardGamesIcon);
+        setIcon("freeOnSiteParking", freeOnSiteParkingIcon);
+        setIcon("onRoadParking", onRoadParkingIcon);
+        setIcon("paidCarParking", paidCarParkingIcon);
+        setIcon("patio", patioIcon);
+        setIcon("barbeque", barbequeIcon);
+        setIcon("tableware", tablewareIcon);
+        setIcon("cookware", cookwareIcon);
+        setIcon("basicProvisions", basicProvisionsIcon);
+        setIcon("shampoo", shampooIcon);
+        setIcon("toiletPaper", toiletPaperIcon);
+        setIcon("refrigerator", refrigeratorIcon);
+        setIcon("microwave", microwaveIcon);
+        setIcon("oven", ovenIcon);
+        setIcon("stove", stoveIcon);
+        setIcon("dishwasher", dishwasherIcon);
+        
+        numBedroomsLabel.setText("" + numBedrooms);
+        numBedsLabel.setText("" + numBeds);
+        numSleepersLabel.setText("" + numSleepers);
+        numBathroomsLabel.setText("" + numBathrooms);
+        
+        if (hostView) {
+            multiUseButton1.setText("Edit Property");
+        }
+    }
+    
+    private void setBookingStatus() {
+        //check if a booking matching the guest email and this property ID exists
+    }
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_accountButton1ActionPerformed
 
-    private void requestBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestBookingButtonActionPerformed
+    private void multiUseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButton1ActionPerformed
+        if (hostView) {
+            EditProperty editProperty = new EditProperty(propertyId, strDetails, amenitiesDetails, confidentialDetails);
+            jFrameInstance.changePanelToSpecific(editProperty);
+        }
+        else {
+            //create new booking object
+        }
+    }//GEN-LAST:event_multiUseButton1ActionPerformed
+
+    private void endDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_requestBookingButtonActionPerformed
+    }//GEN-LAST:event_endDateFieldActionPerformed
+
+    private void applyDatesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyDatesButtonActionPerformed
+        //calculate price with chargeband class
+    }//GEN-LAST:event_applyDatesButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton1;
-    private javax.swing.JLabel bbqIcon;
+    private javax.swing.JButton applyDatesButton;
+    private javax.swing.JLabel barbequeIcon;
+    private javax.swing.JLabel basicProvisionsIcon;
     private javax.swing.JLabel bedLinenIcon;
     private javax.swing.JLabel boardGamesIcon;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -738,11 +1050,13 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel dishwasherIcon;
     private javax.swing.JLabel dryingMachineIcon;
     private javax.swing.JLabel dvdPlayerIcon;
+    private javax.swing.JFormattedTextField endDateField;
     private javax.swing.JLabel fireExtinguisherIcon;
     private javax.swing.JLabel firstAidIcon;
-    private javax.swing.JLabel freeParkingIcon;
+    private javax.swing.JLabel freeOnSiteParkingIcon;
     private javax.swing.JLabel hairDryerIcon;
     private javax.swing.JLabel heatingIcon;
+    private javax.swing.JLabel houseNumber;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -777,6 +1091,9 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -784,29 +1101,33 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel location;
     private javax.swing.JLabel microwaveIcon;
-    private javax.swing.JLabel noOfBathrooms;
-    private javax.swing.JLabel noOfBedrooms;
-    private javax.swing.JLabel noOfBeds;
+    private javax.swing.JButton multiUseButton1;
     private javax.swing.JLabel noOfBeds1;
-    private javax.swing.JLabel noOfSleepers;
+    private javax.swing.JLabel numBathroomsLabel;
+    private javax.swing.JLabel numBedroomsLabel;
+    private javax.swing.JLabel numBedsLabel;
+    private javax.swing.JLabel numSleepersLabel;
     private javax.swing.JLabel onRoadParkingIcon;
     private javax.swing.JLabel ovenIcon;
-    private javax.swing.JLabel paidParkingIcon;
+    private javax.swing.JLabel paidCarParkingIcon;
     private javax.swing.JLabel patioIcon;
+    private javax.swing.JLabel placeName;
+    private javax.swing.JLabel postcode;
+    private javax.swing.JLabel price;
     private javax.swing.JLabel propertyName;
-    private javax.swing.JLabel provisionsIcon;
     private javax.swing.JLabel refrigeratorIcon;
-    private javax.swing.JButton requestBookingButton;
     private javax.swing.JLabel satelliteIcon;
     private javax.swing.JLabel shampooIcon;
     private javax.swing.JLabel smokeAlarmIcon;
+    private javax.swing.JFormattedTextField startDateField;
     private javax.swing.JLabel stoveIcon;
     private javax.swing.JLabel stoveIcon1;
     private javax.swing.JLabel streamingIcon;
+    private javax.swing.JLabel streetName;
     private javax.swing.JLabel tablewareIcon;
+    private javax.swing.JLabel televisionIcon;
     private javax.swing.JLabel toiletPaperIcon;
     private javax.swing.JLabel towelsIcon;
-    private javax.swing.JLabel tvIcon;
     private javax.swing.JLabel washingMachineIcon;
     private javax.swing.JLabel wifiIcon;
     // End of variables declaration//GEN-END:variables

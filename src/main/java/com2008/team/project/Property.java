@@ -2,7 +2,6 @@ package com2008.team.project;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Date;
 import java.sql.*;
 /**
  *
@@ -10,40 +9,44 @@ import java.sql.*;
  */
 public class Property extends javax.swing.JPanel {
 
+    enum PageView {
+        GUEST,
+        GUESTBOOKED,
+        HOST
+    }
+    
     Main jFrameInstance;
     int propertyId;
-    String email;
-    boolean hostView;
+    String userEmail;
+    PageView view;
     
     HashMap<String, String> strDetails = new HashMap();
     HashMap<String, Boolean> amenitiesDetails = new HashMap();
     HashMap<String, String> confidentialDetails = new HashMap();
+    String hostEmail;
     int numBathrooms;
     int numBedrooms;
     int numBeds;
     int numSleepers;
     Date startDate;
     Date endDate;
-    boolean confirmedBooking;
     
     
     /**
      * Creates new form Property
      */
-    public Property(Main jFrameInstance, int propertyId, String email, boolean hostView) {
+    public Property(Main jFrameInstance, int propertyId, String email, Date startDate, Date endDate) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.propertyId = propertyId;
-        this.email = email;
-        this.hostView = hostView;
+        this.userEmail = email;
+        this.startDate = startDate;
+        this.endDate = endDate;
         getPropertyInfo(this.propertyId);
         getBedroomInfo(this.propertyId);
         getBathroomInfo(this.propertyId);
+        setPageView();
         update();
-        if (hostView) {
-            EditProperty editProperty = new EditProperty(propertyId, strDetails, amenitiesDetails, confidentialDetails);
-            jFrameInstance.changePanelToSpecific(editProperty);
-        }
         
         DriverManager.setLoginTimeout(3);
     }
@@ -150,6 +153,8 @@ public class Property extends javax.swing.JPanel {
         placeName = new javax.swing.JLabel();
         streetName = new javax.swing.JLabel();
         postcode = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        ratingLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -450,6 +455,12 @@ public class Property extends javax.swing.JPanel {
         postcode.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         postcode.setText("Post Code");
 
+        jLabel43.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel43.setText("Rating:");
+
+        ratingLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ratingLabel.setText("jLabel44");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -604,80 +615,85 @@ public class Property extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel36)
-                                            .addComponent(jLabel35)
-                                            .addComponent(jLabel34)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel2)
-                                                    .addComponent(jLabel5))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(stoveIcon)
-                                                    .addComponent(refrigeratorIcon))))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(freeOnSiteParkingIcon)
-                                                    .addComponent(patioIcon))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel39)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(barbequeIcon))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel37)
-                                                        .addGap(18, 18, 18)
-                                                        .addComponent(onRoadParkingIcon)))
-                                                .addGap(12, 12, 12)
-                                                .addComponent(jLabel38)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(paidCarParkingIcon)
-                                                .addGap(52, 52, 52))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel6))
-                                                .addGap(18, 18, 18)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(microwaveIcon)
-                                                    .addComponent(dishwasherIcon))
-                                                .addGap(25, 25, 25)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel7)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(tablewareIcon))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabel4)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(ovenIcon)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel8)
-                                                    .addComponent(jLabel9))
-                                                .addGap(31, 31, 31))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cookwareIcon)
-                                    .addComponent(basicProvisionsIcon)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel42)
-                                .addComponent(multiUseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(multiUseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel43)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(ratingLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(25, 25, 25))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel36)
+                                                .addComponent(jLabel35)
+                                                .addComponent(jLabel34)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(jLabel5))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(stoveIcon)
+                                                        .addComponent(refrigeratorIcon))))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(freeOnSiteParkingIcon)
+                                                        .addComponent(patioIcon))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel39)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(barbequeIcon))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel37)
+                                                            .addGap(18, 18, 18)
+                                                            .addComponent(onRoadParkingIcon)))
+                                                    .addGap(12, 12, 12)
+                                                    .addComponent(jLabel38)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(paidCarParkingIcon)
+                                                    .addGap(52, 52, 52))
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel6))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(microwaveIcon)
+                                                        .addComponent(dishwasherIcon))
+                                                    .addGap(25, 25, 25)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel7)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(tablewareIcon))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jLabel4)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(ovenIcon)))
+                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel8)
+                                                        .addComponent(jLabel9))
+                                                    .addGap(31, 31, 31))))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cookwareIcon)
+                                        .addComponent(basicProvisionsIcon)))))))
                 .addGap(1007, 1007, 1007))
         );
         layout.setVerticalGroup(
@@ -691,7 +707,9 @@ public class Property extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(propertyName)
                                     .addComponent(houseNumber)
-                                    .addComponent(streetName))
+                                    .addComponent(streetName)
+                                    .addComponent(jLabel43)
+                                    .addComponent(ratingLabel))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
@@ -892,6 +910,8 @@ public class Property extends javax.swing.JPanel {
             ResultSet res = pstmt.executeQuery();
             
             while (res.next()) {
+                hostEmail = res.getString("email");
+                
                 confidentialDetails.put("houseNumber", res.getString("propertyHouseNumber"));
                 confidentialDetails.put("streetName", res.getString("propertyStreetName"));
                 confidentialDetails.put("placeName", res.getString("propertyPlaceName"));
@@ -956,6 +976,9 @@ public class Property extends javax.swing.JPanel {
         numBathrooms = Bathroom.getList(propertyId).length;
     }
     
+    private float calculateRating() {
+        
+    }
     
     private void setIcon(String amenity, javax.swing.JLabel icon) {
         if (amenitiesDetails.get(amenity)) {
@@ -1006,12 +1029,33 @@ public class Property extends javax.swing.JPanel {
         numSleepersLabel.setText("" + numSleepers);
         numBathroomsLabel.setText("" + numBathrooms);
         
-        if (hostView) {
+        if (view == PageView.HOST) {
             multiUseButton1.setText("Edit Property");
         }
     }
+    //Static Name, Location, rating, description methods
     
-    private void setBookingStatus() {
+    public String getName() {
+        return strDetails.get("Name");
+    }
+    
+    public String getPropertyLocation() {
+        return strDetails.get("Location");
+    }
+    
+    public float getRating() {
+        //return rating
+        return 0;
+    }
+    
+    public String getDescription() {
+        return strDetails.get("Description");
+    }
+    
+    private void setPageView() {
+        if (hostEmail.equals(userEmail)) {
+            view = PageView.HOST;
+        }
         //check if a booking matching the guest email and this property ID exists
     }
     private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
@@ -1019,7 +1063,7 @@ public class Property extends javax.swing.JPanel {
     }//GEN-LAST:event_accountButton1ActionPerformed
 
     private void multiUseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButton1ActionPerformed
-        if (hostView) {
+        if (view == PageView.HOST) {
             EditProperty editProperty = new EditProperty(propertyId, strDetails, amenitiesDetails, confidentialDetails);
             jFrameInstance.changePanelToSpecific(editProperty);
         }
@@ -1094,6 +1138,7 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1115,6 +1160,7 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel postcode;
     private javax.swing.JLabel price;
     private javax.swing.JLabel propertyName;
+    private javax.swing.JLabel ratingLabel;
     private javax.swing.JLabel refrigeratorIcon;
     private javax.swing.JLabel satelliteIcon;
     private javax.swing.JLabel shampooIcon;

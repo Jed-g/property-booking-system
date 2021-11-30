@@ -1,30 +1,81 @@
-com2008/team/project/ReviewList.java
- com2008.team.project.ReviewList
+com2008/team/project/Register.java
+ com2008.team.project.Register
+ com2008.team.project.Register$1
+ com2008.team.project.Register$10
+ com2008.team.project.Register$11
+ com2008.team.project.Register$12
+ com2008.team.project.Register$13
+ com2008.team.project.Register$14
+ com2008.team.project.Register$15
+ com2008.team.project.Register$2
+ com2008.team.project.Register$3
+ com2008.team.project.Register$4
+ com2008.team.project.Register$5
+ com2008.team.project.Register$6
+ com2008.team.project.Register$7
+ com2008.team.project.Register$8
+ com2008.team.project.Register$9
 com2008/team/project/Booking.java
  com2008.team.project.Booking
-com2008/team/project/Bedroom.java
- com2008.team.project.Bedroom
+com2008/team/project/EditProperty.java
+ com2008.team.project.EditProperty
+ com2008.team.project.EditProperty$1
+ com2008.team.project.EditProperty$10
+ com2008.team.project.EditProperty$11
+ com2008.team.project.EditProperty$12
+ com2008.team.project.EditProperty$13
+ com2008.team.project.EditProperty$14
+ com2008.team.project.EditProperty$15
+ com2008.team.project.EditProperty$16
+ com2008.team.project.EditProperty$17
+ com2008.team.project.EditProperty$18
+ com2008.team.project.EditProperty$19
+ com2008.team.project.EditProperty$2
+ com2008.team.project.EditProperty$20
+ com2008.team.project.EditProperty$21
+ com2008.team.project.EditProperty$22
+ com2008.team.project.EditProperty$23
+ com2008.team.project.EditProperty$24
+ com2008.team.project.EditProperty$25
+ com2008.team.project.EditProperty$26
+ com2008.team.project.EditProperty$27
+ com2008.team.project.EditProperty$28
+ com2008.team.project.EditProperty$29
+ com2008.team.project.EditProperty$3
+ com2008.team.project.EditProperty$30
+ com2008.team.project.EditProperty$31
+ com2008.team.project.EditProperty$32
+ com2008.team.project.EditProperty$33
+ com2008.team.project.EditProperty$34
+ com2008.team.project.EditProperty$35
+ com2008.team.project.EditProperty$36
+ com2008.team.project.EditProperty$37
+ com2008.team.project.EditProperty$38
+ com2008.team.project.EditProperty$39
+ com2008.team.project.EditProperty$4
+ com2008.team.project.EditProperty$5
+ com2008.team.project.EditProperty$6
+ com2008.team.project.EditProperty$7
+ com2008.team.project.EditProperty$8
+ com2008.team.project.EditProperty$9
+com2008/team/project/Login.java
+ com2008.team.project.Login
+ com2008.team.project.Login$1
+ com2008.team.project.Login$2
+ com2008.team.project.Login$3
+ com2008.team.project.Login$4
 com2008/team/project/Review.java
  com2008.team.project.Review
 com2008/team/project/Bathroom.java
  com2008.team.project.Bathroom
 com2008/team/project/Property.java
  com2008.team.project.Property
+ com2008.team.project.Property$1
+ com2008.team.project.Property$2
+ com2008.team.project.Property$3
+ com2008.team.project.Property$4
 com2008/team/project/ChargeBand.java
  com2008.team.project.ChargeBand
-<<<<<<< HEAD
-com2008/team/project/ChangePassword.java
- com2008.team.project.ChangePassword
- com2008.team.project.ChangePassword$1
- com2008.team.project.ChangePassword$2
- com2008.team.project.ChangePassword$3
- com2008.team.project.ChangePassword$4
-=======
-com2008/team/project/Bedroom.java
- com2008.team.project.Bed
- com2008.team.project.Bedroom
- com2008.team.project.Bedroom$1
->>>>>>> master
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
@@ -45,26 +96,15 @@ com2008/team/project/Main.java
  com2008.team.project.Main
  com2008.team.project.Main$1
  com2008.team.project.Main$2
-com2008/team/project/Register.java
- com2008.team.project.Register
- com2008.team.project.Register$1
- com2008.team.project.Register$10
- com2008.team.project.Register$11
- com2008.team.project.Register$12
- com2008.team.project.Register$13
- com2008.team.project.Register$14
- com2008.team.project.Register$15
- com2008.team.project.Register$2
- com2008.team.project.Register$3
- com2008.team.project.Register$4
- com2008.team.project.Register$5
- com2008.team.project.Register$6
- com2008.team.project.Register$7
- com2008.team.project.Register$8
- com2008.team.project.Register$9
-com2008/team/project/Login.java
- com2008.team.project.Login
- com2008.team.project.Login$1
- com2008.team.project.Login$2
- com2008.team.project.Login$3
- com2008.team.project.Login$4
+com2008/team/project/ChangePassword.java
+ com2008.team.project.ChangePassword
+ com2008.team.project.ChangePassword$1
+ com2008.team.project.ChangePassword$2
+ com2008.team.project.ChangePassword$3
+ com2008.team.project.ChangePassword$4
+com2008/team/project/Bedroom.java
+ com2008.team.project.Bed
+ com2008.team.project.Bedroom
+ com2008.team.project.Bedroom$1
+com2008/team/project/ReviewList.java
+ com2008.team.project.ReviewList

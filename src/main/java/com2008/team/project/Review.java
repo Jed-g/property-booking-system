@@ -370,7 +370,7 @@ public class Review extends javax.swing.JPanel {
             if (n == 0){
                 averageRatingTextField.setText("No rating yet.");
             } else {
-                int sum = 0;
+                float sum = 0;
                 for (ReviewList i : reviewList){
                     sum += i.getRating();
                 }
@@ -405,20 +405,20 @@ public class Review extends javax.swing.JPanel {
         if (amountOfBoxesToFillIn >= 1){
             review1Desc.setText(reviewList[indexOfFirstReviewOnPage].getReviewDesc());
             review1Label.setText(reviewList[indexOfFirstReviewOnPage].getForename()+" "+
-            reviewList[indexOfFirstReviewOnPage].getLastname().substring(0,1)+".");
-            review1Rating.setText("" + reviewList[indexOfFirstReviewOnPage].getRating());
+                    reviewList[indexOfFirstReviewOnPage].getLastname().substring(0,1)+".");
+            review1Rating.setText(String.format("%.1f", reviewList[indexOfFirstReviewOnPage].getRating()));
         }
         if (amountOfBoxesToFillIn >= 2){
             review2Desc.setText(reviewList[indexOfFirstReviewOnPage+1].getReviewDesc());
             review2Label.setText(reviewList[indexOfFirstReviewOnPage+1].getForename()+" "+
             reviewList[indexOfFirstReviewOnPage+1].getLastname().substring(0,1)+".");
-            review2Rating.setText("" + reviewList[indexOfFirstReviewOnPage+1].getRating());
+            review2Rating.setText(String.format("%.1f", reviewList[indexOfFirstReviewOnPage+1].getRating()));
         }
         if (amountOfBoxesToFillIn == 3){
             review3Desc.setText(reviewList[indexOfFirstReviewOnPage+2].getReviewDesc());
             review3Label.setText(reviewList[indexOfFirstReviewOnPage+2].getForename()+" "+
             reviewList[indexOfFirstReviewOnPage+2].getLastname().substring(0,1)+".");
-            review3Rating.setText("" + reviewList[indexOfFirstReviewOnPage+2].getRating());
+            review3Rating.setText(String.format("%.1f", reviewList[indexOfFirstReviewOnPage+2].getRating()));
         }
     }
     

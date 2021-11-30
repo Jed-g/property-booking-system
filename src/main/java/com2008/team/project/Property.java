@@ -977,7 +977,28 @@ public class Property extends javax.swing.JPanel {
     }
     
     private float calculateRating() {
+        float avgRating = 0;
+        float ratingsTotal = 0;
+        int numRatings = 0;
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT avgRating FROM Reviews WHERE propertyId = ?");
+            pstmt.setInt(1,propertyId);
+            ResultSet res = pstmt.executeQuery();
+            while (res.next()) {
+                ratingsTotal += res.getFloat("avgRating");
+            }
+            numRatings = res.getRow();
+            res.close();
+            
+            avgRating = ratingsTotal/numRatings;
+        }
+        catch (Exception ex) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
         
+        return avgRating;
     }
     
     private void setIcon(String amenity, javax.swing.JLabel icon) {

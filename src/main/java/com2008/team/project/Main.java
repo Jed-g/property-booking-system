@@ -15,7 +15,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-       
+       changePanelToSpecific(new ReviewComment1(this, 1));
     }
     static String hashString(String stringToHash){
         try {

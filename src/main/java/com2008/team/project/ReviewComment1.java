@@ -22,7 +22,7 @@ public class ReviewComment1 extends javax.swing.JPanel {
     private String value;
     private Boolean editComment = false;
     private int bookingId;
-    private float averagerating;
+    private double averagerating;
     private String comments;
     
    
@@ -31,9 +31,10 @@ public class ReviewComment1 extends javax.swing.JPanel {
     /**
      * Creates new form ReviewComment
      */
-    public ReviewComment1(Main jFrameInstance) {
+    public ReviewComment1(Main jFrameInstance, int bookingId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.bookingId = bookingId;
     }
 
     /**
@@ -783,6 +784,7 @@ public class ReviewComment1 extends javax.swing.JPanel {
         if(evt.getSource() == jButton2) {
            jTextField2.setText(String.valueOf(sum));
        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -795,7 +797,7 @@ public class ReviewComment1 extends javax.swing.JPanel {
                 accuracySelected ();
                 locationSelected ();
                 valueSelected ();
-                reviewToDB();
+                
             }
             editComment = true;
 
@@ -811,18 +813,31 @@ public class ReviewComment1 extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        
         cleanSelected ();
-                communicationSelected ();
-                checkinSelected ();
-                accuracySelected ();
-                locationSelected ();
-                valueSelected ();
-                reviewToDB();
+        communicationSelected ();
+        checkinSelected ();
+        accuracySelected ();
+        locationSelected ();
+        valueSelected ();
+        int a=Integer.parseInt(cleaness);
+        int b=Integer.parseInt(communication);
+        int c=Integer.parseInt(checkin);
+        int d=Integer.parseInt(accuracy);
+        int e=Integer.parseInt(location);
+        int f=Integer.parseInt(value);
+        double sum =((a+b+c+d+e+f)/6.0);
+        if(evt.getSource() == jButton2) {
+           jTextField2.setText(String.valueOf(sum));
+       }
+        reviewToDB(sum);
+       
+               
     }//GEN-LAST:event_jButton4ActionPerformed
     
   
      
-    private void reviewToDB() {
+    private void reviewToDB(double averagerating) {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
             
             PreparedStatement checkBookingIdPstmt = con.prepareStatement("SELECT * from Reviews WHERE bookingId=?");
@@ -835,9 +850,8 @@ public class ReviewComment1 extends javax.swing.JPanel {
             if (!res.next()) {
                 PreparedStatement pstmt = con.prepareStatement("INSERT INTO Reviews Value(?,?,?)");
                 pstmt.setInt(1, bookingId);
-                pstmt.setFloat(2,averagerating);
+                pstmt.setDouble(2,averagerating);
                 pstmt.setString(3,comments);
-                
 
                 pstmt.executeUpdate();
             }

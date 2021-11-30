@@ -493,8 +493,8 @@ private Boolean hostView = false;
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        ReviewComment1 comment = new ReviewComment1(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(comment);
+        //ReviewComment1 comment = new ReviewComment1(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(comment);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed

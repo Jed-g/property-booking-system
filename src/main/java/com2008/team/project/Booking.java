@@ -9,6 +9,7 @@ public class Booking extends javax.swing.JPanel {
     private Boolean provisional;
     private String location3;
     private Boolean editMode = false; 
+    private Date startdate;
     /**
      * Creates new form Booking
      */
@@ -165,7 +166,7 @@ public class Booking extends javax.swing.JPanel {
 
         propertyIdTextField.setText("Property ID");
 
-        jLabel9.setText("Price per night");
+        jLabel9.setText("Average price per night");
 
         jLabel11.setText("Service charge");
 
@@ -175,7 +176,7 @@ public class Booking extends javax.swing.JPanel {
 
         jTextField2.setText("jTextField2");
 
-        jLabel12.setText("Total chage");
+        jLabel12.setText("Total charge");
 
         jTextField3.setText("jTextField3");
 

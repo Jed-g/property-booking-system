@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com2008.team.project;
+import java.util.ArrayList;
 import java.sql.*;
 /**
  *
@@ -20,6 +21,11 @@ public class ReviewComment1 extends javax.swing.JPanel {
     private String location;
     private String value;
     private Boolean editComment = false;
+    private int bookingId;
+    private float averagerating;
+    private String comments;
+    
+   
     
   
     /**
@@ -514,6 +520,11 @@ public class ReviewComment1 extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(204, 204, 255));
         jButton4.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 18)); // NOI18N
         jButton4.setText("Save");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -784,6 +795,7 @@ public class ReviewComment1 extends javax.swing.JPanel {
                 accuracySelected ();
                 locationSelected ();
                 valueSelected ();
+                reviewToDB();
             }
             editComment = true;
 
@@ -796,20 +808,43 @@ public class ReviewComment1 extends javax.swing.JPanel {
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        cleanSelected ();
+                communicationSelected ();
+                checkinSelected ();
+                accuracySelected ();
+                locationSelected ();
+                valueSelected ();
+                reviewToDB();
+    }//GEN-LAST:event_jButton4ActionPerformed
     
-    private void updateReviewData(){
+  
+     
+    private void reviewToDB() {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-
-            PreparedStatement pstmt = con.prepareStatement("UPDATE Review SET cleaness=?,communication=?, checkin =?,accuracy =?,location =?,value =?,WHERE email=?");
+            
+            PreparedStatement checkBookingIdPstmt = con.prepareStatement("SELECT * from Reviews WHERE bookingId=?");
             
             
-        
-            try {
-            int count = pstmt.executeUpdate();
-
-            pstmt.close();
-            } catch (Exception ex) {
+            
+            checkBookingIdPstmt.setInt(1,bookingId);
+            ResultSet res = checkBookingIdPstmt.executeQuery();
+            
+            if (!res.next()) {
+                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Reviews Value(?,?,?)");
+                pstmt.setInt(1, bookingId);
+                pstmt.setFloat(2,averagerating);
+                pstmt.setString(3,comments);
                 
+
+                pstmt.executeUpdate();
+            }
+            else {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "That rating has already been existed.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
             }
         }
         catch (Exception ex) {
@@ -819,10 +854,7 @@ public class ReviewComment1 extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-    
     }
-     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel clean;
     private javax.swing.JButton jButton1;

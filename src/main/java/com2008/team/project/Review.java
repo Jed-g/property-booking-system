@@ -405,7 +405,7 @@ public class Review extends javax.swing.JPanel {
         if (amountOfBoxesToFillIn >= 1){
             review1Desc.setText(reviewList[indexOfFirstReviewOnPage].getReviewDesc());
             review1Label.setText(reviewList[indexOfFirstReviewOnPage].getForename()+" "+
-                    reviewList[indexOfFirstReviewOnPage].getLastname().substring(0,1)+".");
+            reviewList[indexOfFirstReviewOnPage].getLastname().substring(0,1)+".");
             review1Rating.setText("" + reviewList[indexOfFirstReviewOnPage].getRating());
         }
         if (amountOfBoxesToFillIn >= 2){

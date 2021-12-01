@@ -95,7 +95,7 @@ public class EditProperty extends javax.swing.JPanel {
     
     private EditProperty2 editProperty2Instance;
     private Main jFrameInstance;
-    private String email;
+    private int propertyId;
     
     private int currentBedroomPage = 1;
     private int currentBathroomPage = 1;
@@ -103,15 +103,15 @@ public class EditProperty extends javax.swing.JPanel {
     /**
      * Creates new form AddProperty
      */
-    public EditProperty(Main jFrameInstance, String email) {
+    public EditProperty(Main jFrameInstance, int propertyId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
-        this.email = email;
-        editProperty2Instance = new EditProperty2(jFrameInstance, this);
-        bedrooms.add(new Bedroom());
-        bathrooms.add(new Bathroom());
+        editProperty2Instance = new EditProperty2(jFrameInstance, this, propertyId);
+        this.propertyId = propertyId;
         
         DriverManager.setLoginTimeout(3);
+        
+        fetchData();
     }
 
     /**
@@ -227,7 +227,7 @@ public class EditProperty extends javax.swing.JPanel {
         });
 
         addPropertyText.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        addPropertyText.setText("Add Property");
+        addPropertyText.setText("Edit Property");
 
         propertyNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         propertyNameTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -1413,67 +1413,97 @@ public class EditProperty extends javax.swing.JPanel {
         return errorMessage.length() > 0 ? errorMessage.substring(1) : null;
     }
     
-    // Return 0 if error or newly generated propertyId otherwise
-    int saveNewProperty(){
+    // Return 1 if error or 0 otherwise
+    int updateProperty(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
 
             // Remove whitespace
             String postCodeTruncated = postcodeTextField.getText().replaceAll("\\s","");
             
-            String statementString = "INSERT INTO Properties VALUES(NULL, ";
-            for (int i = 0; i < 40; i++){
-                statementString += "?, ";
-            }
-            statementString = statementString.substring(0, statementString.length() - 2);
-            statementString += ")";
-            PreparedStatement pstmt = con.prepareStatement(statementString, Statement.RETURN_GENERATED_KEYS);
+            String statementString = "UPDATE Properties SET "
+                    + "propertyName=?, "
+                    + "description=?, "
+                    + "location=?, "
+                    + "propertyHouseNumber=?, "
+                    + "propertyStreetName=?, "
+                    + "propertyPostCode=?, "
+                    + "heating=?, "
+                    + "washingMachine=?, "
+                    + "dryingMachine=?, "
+                    + "fireExtinguisher=?, "
+                    + "smokeAlarm=?, "
+                    + "firstAid=?, "
+                    + "wifi=?, "
+                    + "television=?, "
+                    + "satellite=?, "
+                    + "streaming=?, "
+                    + "dvdPlayer=?, "
+                    + "boardGames=?, "
+                    + "freeOnSiteParking=?, "
+                    + "onRoadParking=?, "
+                    + "paidCarParking=?, "
+                    + "patio=?, "
+                    + "barbeque=?, "
+                    + "tableware=?, "
+                    + "cookware=?, "
+                    + "basicProvisions=?, "
+                    + "hairDryer=?, "
+                    + "shampoo=?, "
+                    + "toiletPaper=?, "
+                    + "towels=?, "
+                    + "bedLinen=?, "
+                    + "refrigirator=?, "
+                    + "microwave=?, "
+                    + "propertyPlaceName=?, "
+                    + "oven=?, "
+                    + "stove=?, "
+                    + "dishwasher=? "
+                    + "WHERE propertyId=?";
+            
+            PreparedStatement pstmt = con.prepareStatement(statementString);
             pstmt.setString(1, propertyNameTextField.getText());
             pstmt.setString(2, descriptionTextField.getText());
             pstmt.setString(3, locationTextField.getText());
-            pstmt.setNull(4, Types.DOUBLE);
-            pstmt.setString(5, houseNumberTextField.getText());
-            pstmt.setString(6, streetNameTextField.getText());
-            pstmt.setString(7, postCodeTruncated);
-            pstmt.setString(8, email);
-            pstmt.setBoolean(9, centralHeatingCheckbox.isSelected());
-            pstmt.setBoolean(10, washingMachineCheckbox.isSelected());
-            pstmt.setBoolean(11, dryingMachineCheckbox.isSelected());
-            pstmt.setBoolean(12, fireExtinguisherCheckbox.isSelected());
-            pstmt.setBoolean(13, smokeAlarmCheckbox.isSelected());
-            pstmt.setBoolean(14, firstAidCheckbox.isSelected());
-            pstmt.setBoolean(15, wifiCheckbox.isSelected());
-            pstmt.setBoolean(16, tvCheckbox.isSelected());
-            pstmt.setBoolean(17, satelliteCheckbox.isSelected());
-            pstmt.setBoolean(18, streamingCheckbox.isSelected());
-            pstmt.setBoolean(19, dvdPlayerCheckbox.isSelected());
-            pstmt.setBoolean(20, boardGamesCheckbox.isSelected());
-            pstmt.setBoolean(21, freeOnSiteParkingCheckbox.isSelected());
-            pstmt.setBoolean(22, onRoadParkingCheckbox.isSelected());
-            pstmt.setBoolean(23, paidCarParkCheckbox.isSelected());
-            pstmt.setBoolean(24, patioCheckbox.isSelected());
-            pstmt.setBoolean(25, bbqCheckbox.isSelected());
-            pstmt.setBoolean(26, tablewareCheckbox.isSelected());
-            pstmt.setBoolean(27, cookwareCheckbox.isSelected());
-            pstmt.setBoolean(28, basicProvisionsCheckbox.isSelected());
-            pstmt.setBoolean(29, hairDryerCheckbox.isSelected());
-            pstmt.setBoolean(30, shampooCheckbox.isSelected());
-            pstmt.setBoolean(31, toiletPaperCheckbox.isSelected());
-            pstmt.setNull(32, Types.BIT);
-            pstmt.setBoolean(33, towelsCheckbox.isSelected());
-            pstmt.setBoolean(34, bedLinenCheckbox.isSelected());
-            pstmt.setNull(35, Types.BIT);
-            pstmt.setBoolean(36, refrigeratorCheckbox.isSelected());
-            pstmt.setBoolean(37, microwaveCheckbox.isSelected());
-            pstmt.setString(38, propertyNameTextField.getText());
-            pstmt.setBoolean(39, ovenCheckbox.isSelected());
-            pstmt.setBoolean(40, stoveCheckbox.isSelected());          
+            pstmt.setString(4, houseNumberTextField.getText());
+            pstmt.setString(5, streetNameTextField.getText());
+            pstmt.setString(6, postCodeTruncated);
+            pstmt.setBoolean(7, centralHeatingCheckbox.isSelected());
+            pstmt.setBoolean(8, washingMachineCheckbox.isSelected());
+            pstmt.setBoolean(9, dryingMachineCheckbox.isSelected());
+            pstmt.setBoolean(10, fireExtinguisherCheckbox.isSelected());
+            pstmt.setBoolean(11, smokeAlarmCheckbox.isSelected());
+            pstmt.setBoolean(12, firstAidCheckbox.isSelected());
+            pstmt.setBoolean(13, wifiCheckbox.isSelected());
+            pstmt.setBoolean(14, tvCheckbox.isSelected());
+            pstmt.setBoolean(15, satelliteCheckbox.isSelected());
+            pstmt.setBoolean(16, streamingCheckbox.isSelected());
+            pstmt.setBoolean(17, dvdPlayerCheckbox.isSelected());
+            pstmt.setBoolean(18, boardGamesCheckbox.isSelected());
+            pstmt.setBoolean(19, freeOnSiteParkingCheckbox.isSelected());
+            pstmt.setBoolean(20, onRoadParkingCheckbox.isSelected());
+            pstmt.setBoolean(21, paidCarParkCheckbox.isSelected());
+            pstmt.setBoolean(22, patioCheckbox.isSelected());
+            pstmt.setBoolean(23, bbqCheckbox.isSelected());
+            pstmt.setBoolean(24, tablewareCheckbox.isSelected());
+            pstmt.setBoolean(25, cookwareCheckbox.isSelected());
+            pstmt.setBoolean(26, basicProvisionsCheckbox.isSelected());
+            pstmt.setBoolean(27, hairDryerCheckbox.isSelected());
+            pstmt.setBoolean(28, shampooCheckbox.isSelected());
+            pstmt.setBoolean(29, toiletPaperCheckbox.isSelected());
+            pstmt.setBoolean(30, towelsCheckbox.isSelected());
+            pstmt.setBoolean(31, bedLinenCheckbox.isSelected());
+            pstmt.setBoolean(32, refrigeratorCheckbox.isSelected());
+            pstmt.setBoolean(33, microwaveCheckbox.isSelected());
+            pstmt.setString(34, propertyNameTextField.getText());
+            pstmt.setBoolean(35, ovenCheckbox.isSelected());
+            pstmt.setBoolean(36, stoveCheckbox.isSelected());        
+            pstmt.setBoolean(37, dishwasherCheckbox.isSelected()); 
             
+            pstmt.setInt(38, propertyId);
+
             pstmt.executeUpdate();
-            ResultSet result = pstmt.getGeneratedKeys();
             
-            if (result.next()){
-                return result.getInt(1);   
-            }
+            return 0;
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -1482,14 +1512,18 @@ public class EditProperty extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        return 0;
+        return 1;
     }
     
     // Return 1 if error, 0 otherwise
-    int saveBedrooms(int propertyId){
+    int updateBedrooms(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Bedrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            pstmt.executeUpdate();
+            
             for (Bedroom i : bedrooms){
-                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Bedrooms VALUES(NULL, ?, ?, ?)");
+                pstmt = con.prepareStatement("INSERT INTO Bedrooms VALUES(NULL, ?, ?, ?)");
                 pstmt.setInt(1, propertyId);
                 pstmt.setString(2, i.bed1.toString());
                 
@@ -1514,10 +1548,14 @@ public class EditProperty extends javax.swing.JPanel {
     }
     
     // Return 1 if error, 0 otherwise
-    int saveBathrooms(int propertyId){
+    int updateBathrooms(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Bathrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            pstmt.executeUpdate();
+            
             for (Bathroom i : bathrooms){
-                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Bathrooms VALUES(NULL, ?, ?, ?, ?, ?)");
+                pstmt = con.prepareStatement("INSERT INTO Bathrooms VALUES(NULL, ?, ?, ?, ?, ?)");
                 pstmt.setInt(1, propertyId);
                 pstmt.setBoolean(2, i.toilet);
                 pstmt.setBoolean(3, i.bath);
@@ -1538,17 +1576,100 @@ public class EditProperty extends javax.swing.JPanel {
         return 1;
     }
     
-    // If error occured somewhere, delete property and all linked rows in tables
-    // Cascade on delete is set to ON
-    void deleteProperty(int propertyId){
+    private void fetchData(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Properties WHERE propertyId = ?");
-            
+            PreparedStatement pstmt = con.prepareStatement("SELECT bed1, bed2 FROM Bedrooms WHERE propertyId=?");
             pstmt.setInt(1, propertyId);
+            ResultSet res = pstmt.executeQuery();
             
-            pstmt.executeUpdate();
+            while (res.next()){
+                Bedroom bedroom = new Bedroom();
+                bedroom.bed1 = Bed.valueOf(res.getString("bed1"));
+                if (res.getString("bed2") == null){
+                    bedroom.bed2 = null;
+                } else {
+                    bedroom.bed2 = Bed.valueOf(res.getString("bed2"));
+                }
+                bedrooms.add(bedroom);
+            }
+            
+            pstmt = con.prepareStatement("SELECT toilet, bath, shower, isShared FROM Bathrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            res = pstmt.executeQuery();
+            
+            while (res.next()){
+                Bathroom bathroom = new Bathroom();
+                bathroom.toilet = res.getBoolean("toilet");
+                bathroom.bath = res.getBoolean("bath");
+                bathroom.shower = res.getBoolean("shower");
+                bathroom.shared = res.getBoolean("isShared");
+                bathrooms.add(bathroom);
+            }
+            
+            updateBathroomPageInfo();
+            updateBedroomPageInfo();
+            updateBathroomGUIComponents();
+            updateBedroomGUIComponents();
+            
+            if (bedrooms.size() > 1){
+                sleepingNextButton.setEnabled(true);
+                sleepingDeleteButton.setEnabled(true);
+            }
+            if (bathrooms.size() > 1){
+                bathingNextButton.setEnabled(true);
+                bathingDeleteButton.setEnabled(true);
+            }
+            
+            pstmt = con.prepareStatement("SELECT * FROM Properties WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            res = pstmt.executeQuery();
+            
+            if (res.next()){
+                propertyNameTextField.setText(res.getString("propertyName"));
+                descriptionTextField.setText(res.getString("description"));
+                locationTextField.setText(res.getString("location"));
+                houseNumberTextField.setText(res.getString("propertyHouseNumber"));
+                streetNameTextField.setText(res.getString("propertyStreetName"));
+                postcodeTextField.setText(res.getString("propertyPostCode"));
+                placeNameTextField.setText(res.getString("propertyPlaceName"));
+                centralHeatingCheckbox.setSelected(res.getBoolean("heating"));
+                washingMachineCheckbox.setSelected(res.getBoolean("washingMachine"));
+                dryingMachineCheckbox.setSelected(res.getBoolean("dryingMachine"));
+                fireExtinguisherCheckbox.setSelected(res.getBoolean("fireExtinguisher"));
+                smokeAlarmCheckbox.setSelected(res.getBoolean("smokeAlarm"));
+                firstAidCheckbox.setSelected(res.getBoolean("firstAid"));
+                wifiCheckbox.setSelected(res.getBoolean("wifi"));
+                tvCheckbox.setSelected(res.getBoolean("television"));
+                satelliteCheckbox.setSelected(res.getBoolean("satellite"));
+                streamingCheckbox.setSelected(res.getBoolean("streaming"));
+                dvdPlayerCheckbox.setSelected(res.getBoolean("dvdPlayer"));
+                boardGamesCheckbox.setSelected(res.getBoolean("boardGames"));
+                freeOnSiteParkingCheckbox.setSelected(res.getBoolean("freeOnSiteParking"));
+                onRoadParkingCheckbox.setSelected(res.getBoolean("onRoadParking"));
+                paidCarParkCheckbox.setSelected(res.getBoolean("paidCarParking"));
+                patioCheckbox.setSelected(res.getBoolean("patio"));
+                bbqCheckbox.setSelected(res.getBoolean("barbeque"));
+                tablewareCheckbox.setSelected(res.getBoolean("tableware"));
+                cookwareCheckbox.setSelected(res.getBoolean("cookware"));
+                basicProvisionsCheckbox.setSelected(res.getBoolean("basicProvisions"));
+                hairDryerCheckbox.setSelected(res.getBoolean("hairDryer"));
+                shampooCheckbox.setSelected(res.getBoolean("shampoo"));
+                toiletPaperCheckbox.setSelected(res.getBoolean("toiletPaper"));
+                towelsCheckbox.setSelected(res.getBoolean("towels"));
+                bedLinenCheckbox.setSelected(res.getBoolean("bedLinen"));
+                refrigeratorCheckbox.setSelected(res.getBoolean("refrigirator"));
+                microwaveCheckbox.setSelected(res.getBoolean("microwave"));
+                ovenCheckbox.setSelected(res.getBoolean("oven"));
+                stoveCheckbox.setSelected(res.getBoolean("stove"));
+                dishwasherCheckbox.setSelected(res.getBoolean("dishwasher"));
+            }
         }
         catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
     

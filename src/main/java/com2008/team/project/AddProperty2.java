@@ -535,8 +535,14 @@ public class AddProperty2 extends javax.swing.JPanel {
         java.time.LocalDate startDateLocalDate = chargebands.get(currentChargebandPage-1).startDate.toLocalDate();
         java.time.LocalDate endDateLocalDate = chargebands.get(currentChargebandPage-1).endDate.toLocalDate();
 
-        startDateFormatted.setText("" + startDateLocalDate.getDayOfMonth() + "/" + startDateLocalDate.getMonthValue() + "/" + startDateLocalDate.getYear());
-        endDateFormatted.setText("" + endDateLocalDate.getDayOfMonth() + "/" + endDateLocalDate.getMonthValue() + "/" + endDateLocalDate.getYear());
+        String startDayAndMonthString = (startDateLocalDate.getDayOfMonth() < 10 ? "0" + startDateLocalDate.getDayOfMonth() : startDateLocalDate.getDayOfMonth())
+                + "/" + (startDateLocalDate.getMonthValue() < 10 ? "0" + startDateLocalDate.getMonthValue() : startDateLocalDate.getMonthValue());
+        
+        String endDayAndMonthString = (endDateLocalDate.getDayOfMonth() < 10 ? "0" + endDateLocalDate.getDayOfMonth() : endDateLocalDate.getDayOfMonth())
+                + "/" + (endDateLocalDate.getMonthValue() < 10 ? "0" + endDateLocalDate.getMonthValue() : endDateLocalDate.getMonthValue());
+        
+        startDateFormatted.setText(startDayAndMonthString + "/" + startDateLocalDate.getYear());
+        endDateFormatted.setText(endDayAndMonthString + "/" + endDateLocalDate.getYear());
     }
     
     private void resetChargebandGUIComponents(){
@@ -567,6 +573,14 @@ public class AddProperty2 extends javax.swing.JPanel {
         if (!(chargebands.get(0).startDate.getTime() <= new Date(2022 - 1900, 0, 1).getTime()) ||
                 !(chargebands.get(chargebands.size() - 1).endDate.getTime() >= new Date(2022 - 1900, 11, 31).getTime())){
             errorMessage += "\nStart and end dates of chargebands don't cover the whole of 01/01/2022 - 31/12/2022";
+        }
+        
+        for (int i = 0; i < chargebands.size(); i++){
+            // 24*60*60*1000 = number of miliseconds in a day
+            if (chargebands.get(i).startDate.getTime() > chargebands.get(i).endDate.getTime()){
+                errorMessage += "\nStart date cannot be later than the End date";
+                break;
+            }
         }
         
         for (int i = 1; i < chargebands.size(); i++){

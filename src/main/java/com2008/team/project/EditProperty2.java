@@ -18,18 +18,22 @@ public class EditProperty2 extends javax.swing.JPanel {
     private Main jFrameInstance;
     private EditProperty editPropertyInstance;
     private ArrayList<Chargeband> chargebands = new ArrayList<>();
+    private int propertyId;
     
     private int currentChargebandPage = 1;
     
     /**
      * Creates new form AddProperty
      */
-    public EditProperty2(Main jFrameInstance, EditProperty editPropertyInstance) {
+    public EditProperty2(Main jFrameInstance, EditProperty editPropertyInstance, int propertyId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.editPropertyInstance = editPropertyInstance;
+        this.propertyId = propertyId;
         
         DriverManager.setLoginTimeout(3);
+        
+        fetchData();
     }
 
     /**
@@ -71,7 +75,7 @@ public class EditProperty2 extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        addPropertyButton = new javax.swing.JButton();
+        editPropertyButton = new javax.swing.JButton();
         prevButton = new javax.swing.JButton();
 
         returnButton.setBackground(new java.awt.Color(194, 123, 160));
@@ -90,7 +94,7 @@ public class EditProperty2 extends javax.swing.JPanel {
         });
 
         panelTitle.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        panelTitle.setText("Add Property");
+        panelTitle.setText("Edit Property");
 
         jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 3, true));
 
@@ -271,13 +275,12 @@ public class EditProperty2 extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14))
+                        .addComponent(jLabel4))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jLabel10)))
+                .addGap(9, 9, 9)
                 .addComponent(jLabel11)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel12)
@@ -304,13 +307,13 @@ public class EditProperty2 extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Add Chargebands");
+        jLabel8.setText("Edit Chargebands");
 
-        addPropertyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        addPropertyButton.setText("Add Property");
-        addPropertyButton.addActionListener(new java.awt.event.ActionListener() {
+        editPropertyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        editPropertyButton.setText("Save Changes");
+        editPropertyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addPropertyButtonActionPerformed(evt);
+                editPropertyButtonActionPerformed(evt);
             }
         });
 
@@ -330,7 +333,7 @@ public class EditProperty2 extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(editPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -338,7 +341,7 @@ public class EditProperty2 extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -390,7 +393,7 @@ public class EditProperty2 extends javax.swing.JPanel {
         jFrameInstance.changePanelToSpecific(editPropertyInstance);
     }//GEN-LAST:event_prevButtonActionPerformed
 
-    private void addPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPropertyButtonActionPerformed
+    private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
         updateCurrentChargebandInArray();
         
         String errorMessage1 = editPropertyInstance.validateData();
@@ -410,24 +413,18 @@ public class EditProperty2 extends javax.swing.JPanel {
             
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         } else {
-            int propertyId = editPropertyInstance.saveNewProperty();
-            if (propertyId != 0){
-                if (editPropertyInstance.saveBedrooms(propertyId) == 0){
-                    if (editPropertyInstance.saveBathrooms(propertyId) == 0){
-                        if (saveChargebands(propertyId) == 0){
+            
+            if (editPropertyInstance.updateProperty() == 0){
+                if (editPropertyInstance.updateBedrooms() == 0){
+                    if (editPropertyInstance.updateBathrooms() == 0){
+                        if (updateChargebands() == 0){
                             jFrameInstance.changePanelToDefault();
-                        } else {
-                            editPropertyInstance.deleteProperty(propertyId);
                         }
-                    } else {
-                        editPropertyInstance.deleteProperty(propertyId);
                     }
-                } else {
-                    editPropertyInstance.deleteProperty(propertyId);
                 }
             }
         }
-    }//GEN-LAST:event_addPropertyButtonActionPerformed
+    }//GEN-LAST:event_editPropertyButtonActionPerformed
 
     private void prevChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevChargebandButtonActionPerformed
         if (currentChargebandPage == chargebands.size()){
@@ -533,9 +530,15 @@ public class EditProperty2 extends javax.swing.JPanel {
         
         java.time.LocalDate startDateLocalDate = chargebands.get(currentChargebandPage-1).startDate.toLocalDate();
         java.time.LocalDate endDateLocalDate = chargebands.get(currentChargebandPage-1).endDate.toLocalDate();
-
-        startDateFormatted.setText("" + startDateLocalDate.getDayOfMonth() + "/" + startDateLocalDate.getMonthValue() + "/" + startDateLocalDate.getYear());
-        endDateFormatted.setText("" + endDateLocalDate.getDayOfMonth() + "/" + endDateLocalDate.getMonthValue() + "/" + endDateLocalDate.getYear());
+        
+        String startDayAndMonthString = (startDateLocalDate.getDayOfMonth() < 10 ? "0" + startDateLocalDate.getDayOfMonth() : startDateLocalDate.getDayOfMonth())
+                + "/" + (startDateLocalDate.getMonthValue() < 10 ? "0" + startDateLocalDate.getMonthValue() : startDateLocalDate.getMonthValue());
+        
+        String endDayAndMonthString = (endDateLocalDate.getDayOfMonth() < 10 ? "0" + endDateLocalDate.getDayOfMonth() : endDateLocalDate.getDayOfMonth())
+                + "/" + (endDateLocalDate.getMonthValue() < 10 ? "0" + endDateLocalDate.getMonthValue() : endDateLocalDate.getMonthValue());
+        
+        startDateFormatted.setText(startDayAndMonthString + "/" + startDateLocalDate.getYear());
+        endDateFormatted.setText(endDayAndMonthString + "/" + endDateLocalDate.getYear());
     }
     
     private void resetChargebandGUIComponents(){
@@ -568,6 +571,14 @@ public class EditProperty2 extends javax.swing.JPanel {
             errorMessage += "\nStart and end dates of chargebands don't cover the whole of 01/01/2022 - 31/12/2022";
         }
         
+        for (int i = 0; i < chargebands.size(); i++){
+            // 24*60*60*1000 = number of miliseconds in a day
+            if (chargebands.get(i).startDate.getTime() > chargebands.get(i).endDate.getTime()){
+                errorMessage += "\nStart date cannot be later than the End date";
+                break;
+            }
+        }
+        
         for (int i = 1; i < chargebands.size(); i++){
             // 24*60*60*1000 = number of miliseconds in a day
             if (chargebands.get(i).startDate.getTime() - chargebands.get(i-1).endDate.getTime() != 24*60*60*1000){
@@ -581,10 +592,14 @@ public class EditProperty2 extends javax.swing.JPanel {
     }
     
     // Return 1 if error, 0 otherwise
-    private int saveChargebands(int propertyId){
+    private int updateChargebands(){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Chargebands WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            pstmt.executeUpdate();
+            
             for (Chargeband i : chargebands){
-                PreparedStatement pstmt = con.prepareStatement("INSERT INTO Chargebands VALUES(?, ?, ?, ?, ?, ?)");
+                pstmt = con.prepareStatement("INSERT INTO Chargebands VALUES(?, ?, ?, ?, ?, ?)");
                 pstmt.setInt(1, propertyId);
                 pstmt.setDate(2, i.startDate);
                 pstmt.setDate(3, i.endDate);
@@ -606,11 +621,45 @@ public class EditProperty2 extends javax.swing.JPanel {
         return 1;
     }
     
+    private void fetchData(){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, pricePerNight, serviceCharge, cleaningCharge "
+                    + "FROM Chargebands WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            ResultSet res = pstmt.executeQuery();
+            
+            while (res.next()){
+                Chargeband chargeband = new Chargeband();
+                chargeband.pricePerNight = res.getFloat("pricePerNight");
+                chargeband.cleaningCharge = res.getFloat("cleaningCharge");
+                chargeband.serviceCharge = res.getFloat("serviceCharge");
+                chargeband.startDate = res.getDate("startDate");
+                chargeband.endDate = res.getDate("endDate");
+                chargebands.add(chargeband);
+            }
+            
+            updateChargebandPageInfo();
+            updateChargebandGUIComponents();
+            
+            if (chargebands.size() > 1){
+                nextChargebandButton.setEnabled(true);
+                deleteButton.setEnabled(true);
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addPropertyButton;
     private javax.swing.JLabel chargebandText;
     private javax.swing.JFormattedTextField cleaningChargeFormatted;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton editPropertyButton;
     private javax.swing.JFormattedTextField endDateFormatted;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

@@ -1421,7 +1421,7 @@ public class AddProperty extends javax.swing.JPanel {
             String postCodeTruncated = postcodeTextField.getText().replaceAll("\\s","");
             
             String statementString = "INSERT INTO Properties VALUES(NULL, ";
-            for (int i = 0; i < 40; i++){
+            for (int i = 0; i < 41; i++){
                 statementString += "?, ";
             }
             statementString = statementString.substring(0, statementString.length() - 2);
@@ -1466,7 +1466,8 @@ public class AddProperty extends javax.swing.JPanel {
             pstmt.setBoolean(37, microwaveCheckbox.isSelected());
             pstmt.setString(38, propertyNameTextField.getText());
             pstmt.setBoolean(39, ovenCheckbox.isSelected());
-            pstmt.setBoolean(40, stoveCheckbox.isSelected());          
+            pstmt.setBoolean(40, stoveCheckbox.isSelected());
+            pstmt.setBoolean(41, dishwasherCheckbox.isSelected());
             
             pstmt.executeUpdate();
             ResultSet result = pstmt.getGeneratedKeys();

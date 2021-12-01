@@ -4,14 +4,14 @@ import java.sql.*;
 
 public class ChargeBand {
     
-    private String propertyId;
+    private int propertyId;
     private Date startDate;
     private Date endDate;
     private float pricePerNight;
     private float serviceCharge;
     private float cleaningCharge;
     
-    private ChargeBand(String propertyId, Date startDate, Date endDate, float pricePerNight
+    private ChargeBand(int propertyId, Date startDate, Date endDate, float pricePerNight
                             , float serviceCharge, float cleaningCharge ) {
         
         this.propertyId = propertyId;
@@ -38,7 +38,7 @@ public class ChargeBand {
     //isBetweenDates compares a given date to a start and end date and determines 
     //whether the date falls in this range, and will return a Boolean value as the output
     
-    static Boolean isBetweenDates(Date startDate, Date endDate, Date givenDate) {
+    private static Boolean isBetweenDates(Date startDate, Date endDate, Date givenDate) {
         
         //Variables
         boolean isBetween = false; //If the following conditions from if loop aren't true, isBetween will return false
@@ -59,7 +59,7 @@ public class ChargeBand {
     
     //getChargeBandList finds all chargebands for a property and generates a list of them
     
-    static ChargeBand[] getChargeBandList(String propertyId) {
+    private static ChargeBand[] getChargeBandList(int propertyId) {
         DriverManager.setLoginTimeout(3);
         
         //Variables
@@ -71,7 +71,7 @@ public class ChargeBand {
             PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, startDate, endDate, pricePerNight," 
                     + "serviceCharge, cleaningCharge FROM Chargebands WHERE propertyId = ?;",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, propertyId);
+            pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
             
             //Calculate how many chargebands will be in the list
@@ -87,7 +87,7 @@ public class ChargeBand {
             //Populate list with chargeband information from the database
             for (int i = 0; i < numberOfChargeBands; i++){
                 if (res.next()){
-                    chargeBandList[i] = new ChargeBand(res.getString("propertyId"), res.getDate("startDate"), res.getDate("endDate"), 
+                    chargeBandList[i] = new ChargeBand(res.getInt("propertyId"), res.getDate("startDate"), res.getDate("endDate"), 
                             res.getFloat("pricePerNight"), res.getFloat("serviceCharge"), res.getFloat("cleaningCharge"));
                 }
             }
@@ -108,7 +108,7 @@ public class ChargeBand {
     }
     
     //PriceInfo class is a nested class used when calculating details about the cost of a booking
-    class PriceInfo {
+    static class PriceInfo {
         
         private float averagePPN;
         private float totalPPN;
@@ -145,68 +145,69 @@ public class ChargeBand {
         float getTotalCost() {
             return totalCost;
         }
-    
-        //priceInfo takes a start date and an end date for a property and calculates
-        //the cost breakdown of the stay
-
-        private PriceInfo getPriceInfo(String propertyId, Date startDate, Date endDate) {
-
-            //Variables
-            ChargeBand[] chargeBandList = null;
-            float dateRangeLength = 0;
-            int milliseconds = 24*60*60*1000; //number of milliseconds in a day
-            float totalPPN = 0; //PPN = price per night
-            float avgPPN = 0;
-            float maxServiceCharge = -10;
-            float maxCleaningCharge = -10;
-            float totalCost = 0;
-            long dateMS = startDate.getTime(); //Convert start date to milliseconds for use in loop
-
-            //List of possible chargebands for the property
-            chargeBandList = ChargeBand.getChargeBandList(propertyId);
-
-            //Calculate number of days between start and end date (inclusive)
-            dateRangeLength = ((endDate.getTime() - startDate.getTime()) / milliseconds) + 1;
-
-            //for loop that cycles through all possible dates in the date range (inclusive)
-            for (int i = 0; i < dateRangeLength; i++) {
-
-                //Calculates new date in milliseconds
-                //e.g i = 0 means start date, i = 1 means day after start date, etc.
-                dateMS = dateMS + (i * milliseconds);
-
-                //COnverts milliseconds into date ready for isBetweenDates
-                Date dateInput = new Date(dateMS);
-
-                //for loop that gets correct price info for a date range
-                for (ChargeBand j: chargeBandList) {
-                    if (isBetweenDates(j.startDate, j.endDate, dateInput)) {
-
-                        //TOTAL PRICE PER NIGHT
-                        totalPPN += j.pricePerNight;   
-
-                        //MAXIMUM SERVICE CHARGE
-                        if (j.serviceCharge >= maxServiceCharge) {
-                            maxServiceCharge = j.serviceCharge;
-                        }
-
-                        //MAXIMUM CLEANING CHARGE
-                        if (j.cleaningCharge >= maxCleaningCharge) {
-                            maxCleaningCharge = j.cleaningCharge;
-                        }
-                    }   
-                }                  
-            }
-
-            //CALCULATE AVERAGE PRICE PER NIGHT
-            avgPPN = totalPPN/dateRangeLength;
-
-            //CALCULATE TOTAL COST FOR ENTIRE BOOKING
-            totalCost = totalPPN + maxServiceCharge + maxCleaningCharge;
-
-            PriceInfo priceInfo = new PriceInfo(avgPPN, totalPPN, maxServiceCharge, maxCleaningCharge, totalCost);
-
-            return priceInfo;         
-        }
+       
     }
+    
+    //priceInfo takes a start date and an end date for a property and calculates
+    //the cost breakdown of the stay
+
+    static PriceInfo getPriceInfo(int propertyId, Date startDate, Date endDate) {
+
+        //Variables
+        ChargeBand[] chargeBandList = null;
+        float dateRangeLength = 0;
+        int milliseconds = 24*60*60*1000; //number of milliseconds in a day
+        float totalPPN = 0; //PPN = price per night
+        float avgPPN = 0;
+        float maxServiceCharge = -10;
+        float maxCleaningCharge = -10;
+        float totalCost = 0;
+        long startDateMS = startDate.getTime(); //Convert start date to milliseconds for use in loop
+
+        //List of possible chargebands for the property
+        chargeBandList = getChargeBandList(propertyId);
+
+        //Calculate number of days between start and end date (inclusive)
+        dateRangeLength = ((endDate.getTime() - startDate.getTime()) / milliseconds) + 1;
+
+        //for loop that cycles through all possible dates in the date range (inclusive)
+        for (int i = 0; i < dateRangeLength; i++) {
+
+            //Calculates new date in milliseconds
+            //e.g i = 0 means start date, i = 1 means day after start date, etc.
+            startDateMS = startDateMS + (i * milliseconds);
+
+            //Converts milliseconds into date ready for isBetweenDates
+            Date dateInput = new Date(startDateMS);
+
+            //for loop that gets correct price info for a date range
+            for (ChargeBand j: chargeBandList) {
+                if (isBetweenDates(j.startDate, j.endDate, dateInput)) {
+
+                    //TOTAL PRICE PER NIGHT
+                    totalPPN += j.pricePerNight;   
+
+                    //MAXIMUM SERVICE CHARGE
+                    if (j.serviceCharge >= maxServiceCharge) {
+                        maxServiceCharge = j.serviceCharge;
+                    }
+
+                    //MAXIMUM CLEANING CHARGE
+                    if (j.cleaningCharge >= maxCleaningCharge) {
+                        maxCleaningCharge = j.cleaningCharge;
+                    }
+                }   
+            }                  
+        }
+
+        //CALCULATE AVERAGE PRICE PER NIGHT
+        avgPPN = totalPPN/dateRangeLength;
+
+        //CALCULATE TOTAL COST FOR ENTIRE BOOKING
+        totalCost = totalPPN + maxServiceCharge + maxCleaningCharge;
+
+        PriceInfo priceInfo = new PriceInfo(avgPPN, totalPPN, maxServiceCharge, maxCleaningCharge, totalCost);
+
+        return priceInfo;         
+    }   
 }

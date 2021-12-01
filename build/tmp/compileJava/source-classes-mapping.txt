@@ -6,12 +6,13 @@ com2008/team/project/Bedroom.java
  com2008.team.project.Bedroom$1
 com2008/team/project/Bathroom.java
  com2008.team.project.Bathroom
-com2008/team/project/ChargeBand.java
- com2008.team.project.ChargeBand
-com2008/team/project/Property.java
- com2008.team.project.Property
 com2008/team/project/ReviewList.java
  com2008.team.project.ReviewList
+com2008/team/project/Property.java
+ com2008.team.project.Property
+com2008/team/project/ChargeBand.java
+ com2008.team.project.ChargeBand
+ com2008.team.project.ChargeBand$PriceInfo
 com2008/team/project/Register.java
  com2008.team.project.Register
  com2008.team.project.Register$1

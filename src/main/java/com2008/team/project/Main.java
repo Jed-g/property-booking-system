@@ -11,6 +11,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        
     }
 
     /**
@@ -91,8 +92,11 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gotoLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotoLoginButtonActionPerformed
-        Login loginPanel = new Login(this);
-        jScrollPane1.setViewportView(loginPanel);
+        int propertyId = 28;
+        Property property = new Property(this, propertyId, email);
+        jScrollPane1.setViewportView(property);
+        //Login loginPanel = new Login(this);
+        //jScrollPane1.setViewportView(loginPanel);
     }//GEN-LAST:event_gotoLoginButtonActionPerformed
     
     void changePanelToDefault() {

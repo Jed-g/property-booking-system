@@ -1,11 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package com2008.team.project;
 
+import java.sql.Date;
 import java.util.ArrayList;
-import java.sql.*;
 
-public class EditProperty2 extends javax.swing.JPanel {
-
-    private class Chargeband{
+/**
+ *
+ * @author serio
+ */
+public class Property2 extends javax.swing.JPanel {
+        private class Chargeband{
         private Date startDate;
         private Date endDate;
         private float pricePerNight;
@@ -15,25 +22,20 @@ public class EditProperty2 extends javax.swing.JPanel {
         }
     }
     
-    private Main jFrameInstance;
-    private EditProperty editPropertyInstance;
-    private ArrayList<Chargeband> chargebands = new ArrayList<>();
-    private int propertyId;
+    Main jFrameInstance;
+    Property propertyInstance;
+    int propertyId;
     
+    private ArrayList<Property2.Chargeband> chargebands = new ArrayList<>();
     private int currentChargebandPage = 1;
-    
     /**
-     * Creates new form AddProperty
+     * Creates new form Property2
      */
-    public EditProperty2(Main jFrameInstance, EditProperty editPropertyInstance, int propertyId) {
+    public Property2(Main jFrameInstance, Property propertyInstance, int propertyId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
-        this.editPropertyInstance = editPropertyInstance;
+        this.propertyInstance = propertyInstance;
         this.propertyId = propertyId;
-        
-        DriverManager.setLoginTimeout(3);
-        
-        fetchData();
     }
 
     /**
@@ -45,16 +47,14 @@ public class EditProperty2 extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         returnButton = new javax.swing.JButton();
-        panelTitle = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         chargebandText = new javax.swing.JLabel();
         nextChargebandButton = new javax.swing.JButton();
         prevChargebandButton = new javax.swing.JButton();
-        newButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
         java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
         startDateFormatted = new javax.swing.JFormattedTextField(dateFormat);
         jLabel1 = new javax.swing.JLabel();
@@ -74,9 +74,9 @@ public class EditProperty2 extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        editPropertyButton = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         prevButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         returnButton.setBackground(new java.awt.Color(194, 123, 160));
         returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -92,9 +92,6 @@ public class EditProperty2 extends javax.swing.JPanel {
                 returnButtonActionPerformed(evt);
             }
         });
-
-        panelTitle.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
-        panelTitle.setText("Edit Property");
 
         jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 3, true));
 
@@ -116,23 +113,6 @@ public class EditProperty2 extends javax.swing.JPanel {
         prevChargebandButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prevChargebandButtonActionPerformed(evt);
-            }
-        });
-
-        newButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        newButton.setText("New Chargeband");
-        newButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newButtonActionPerformed(evt);
-            }
-        });
-
-        deleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        deleteButton.setText("Delete");
-        deleteButton.setEnabled(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
             }
         });
 
@@ -201,9 +181,7 @@ public class EditProperty2 extends javax.swing.JPanel {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(prevChargebandButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nextChargebandButton))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,30 +207,25 @@ public class EditProperty2 extends javax.swing.JPanel {
                                     .addComponent(jLabel13))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(newButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                            .addGroup(jPanel9Layout.createSequentialGroup()
                                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel9Layout.createSequentialGroup()
-                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jLabel6))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(pricePerNightFormatted)
-                                            .addComponent(serviceChargeFormatted)
-                                            .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jLabel4))
-                                .addGap(35, 35, 35)))))
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(pricePerNightFormatted)
+                                    .addComponent(serviceChargeFormatted)
+                                    .addComponent(cleaningChargeFormatted, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel4))
+                        .addGap(35, 35, 35)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chargebandText)
-                    .addComponent(newButton))
+                .addComponent(chargebandText)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -288,8 +261,7 @@ public class EditProperty2 extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextChargebandButton)
-                    .addComponent(prevChargebandButton)
-                    .addComponent(deleteButton))
+                    .addComponent(prevChargebandButton))
                 .addContainerGap())
         );
 
@@ -306,15 +278,7 @@ public class EditProperty2 extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Edit Chargebands");
-
-        editPropertyButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        editPropertyButton.setText("Save Changes");
-        editPropertyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editPropertyButtonActionPerformed(evt);
-            }
-        });
+        jLabel8.setText("Chargebands");
 
         prevButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         prevButton.setText("Previous");
@@ -324,175 +288,83 @@ public class EditProperty2 extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(803, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Edit Property");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(editPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prevButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(panelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(245, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(245, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 981, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 505, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToDefault();
-    }//GEN-LAST:event_returnButtonActionPerformed
-
-    private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
-        updateCurrentChargebandInArray();
-        
-        jFrameInstance.changePanelToSpecific(editPropertyInstance);
-    }//GEN-LAST:event_prevButtonActionPerformed
-
-    private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
-        updateCurrentChargebandInArray();
-        
-        String errorMessage1 = editPropertyInstance.validateData();
-        String errorMessage2 = validateData();
-        
-        if (errorMessage1 != null || errorMessage2 != null){
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = null;
-            
-            if (errorMessage1 == null){
-                errorMessage = errorMessage2;
-            } else if (errorMessage2 == null){
-                errorMessage = errorMessage1;
-            } else {
-                errorMessage = errorMessage1 + "\n" + errorMessage2;
-            }
-            
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        } else {
-            
-            if (editPropertyInstance.updateProperty() == 0){
-                if (editPropertyInstance.updateBedrooms() == 0){
-                    if (editPropertyInstance.updateBathrooms() == 0){
-                        if (updateChargebands() == 0){
-                            jFrameInstance.changePanelToDefault();
-                        }
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_editPropertyButtonActionPerformed
-
-    private void prevChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevChargebandButtonActionPerformed
-        if (currentChargebandPage == chargebands.size()){
-            nextChargebandButton.setEnabled(true);
-        }
-
-        updateCurrentChargebandInArray();
-        currentChargebandPage--;
-        updateChargebandGUIComponents();
-        updateChargebandPageInfo();
-        
-        if (currentChargebandPage == 1){
-            prevChargebandButton.setEnabled(false);
-        }
-    }//GEN-LAST:event_prevChargebandButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        if (chargebands.size() == 2){
-            prevChargebandButton.setEnabled(false);
-            nextChargebandButton.setEnabled(false);
-            deleteButton.setEnabled(false);
-        }
-        
-        chargebands.remove(currentChargebandPage-1);
-        
-        if (currentChargebandPage > 1){
-            currentChargebandPage--;
-        }
-        updateChargebandGUIComponents();
-        updateChargebandPageInfo();
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void nextChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextChargebandButtonActionPerformed
-        if (currentChargebandPage == 1){
-            prevChargebandButton.setEnabled(true);
-        }
-        
-        updateCurrentChargebandInArray();
-        currentChargebandPage++;
-        updateChargebandGUIComponents();
-        updateChargebandPageInfo();
-        
-        if (currentChargebandPage == chargebands.size()){
-            nextChargebandButton.setEnabled(false);
-        }
-    }//GEN-LAST:event_nextChargebandButtonActionPerformed
-
-    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
-        if (currentChargebandPage == 1){
-            prevChargebandButton.setEnabled(true);
-            deleteButton.setEnabled(true);
-        }
-        
-        updateCurrentChargebandInArray();
-        
-        if (currentChargebandPage == chargebands.size()){
-            chargebands.add(new Chargeband());
-        } else {
-            chargebands.add(currentChargebandPage, new Chargeband());
-        }
-        
-        currentChargebandPage++;
-        resetChargebandGUIComponents();
-        updateChargebandPageInfo();
-    }//GEN-LAST:event_newButtonActionPerformed
-
-    private void pricePerNightFormattedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerNightFormattedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pricePerNightFormattedActionPerformed
 
     private void updateCurrentChargebandInArray(){
         try {
@@ -540,126 +412,61 @@ public class EditProperty2 extends javax.swing.JPanel {
         endDateFormatted.setText(endDayAndMonthString + "/" + endDateLocalDate.getYear());
     }
     
-    private void resetChargebandGUIComponents(){
-        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
-        startDateFormatted.setText("01/01/2022");
-        endDateFormatted.setText("01/01/2022");
-        
-        pricePerNightFormatted.setText("0.00");
-        serviceChargeFormatted.setText("0.00");
-        cleaningChargeFormatted.setText("0.00");
-    }
-
     private void updateChargebandPageInfo(){
         chargebandText.setText("Chargeband " + currentChargebandPage + "/" + chargebands.size());
     }
     
-    // Returns errorMessage or null if everything is ok
-    String validateData(){
-        String errorMessage = "";
-        
-        for (Chargeband i : chargebands){
-            if (i.pricePerNight < 0 || i.serviceCharge < 0 || i.cleaningCharge < 0){
-                errorMessage += "\nPrice/Cost can't be negative.";
-                break;
-            }
-        }
-                
-        if (!(chargebands.get(0).startDate.getTime() <= new Date(2022 - 1900, 0, 1).getTime()) ||
-                !(chargebands.get(chargebands.size() - 1).endDate.getTime() >= new Date(2022 - 1900, 11, 31).getTime())){
-            errorMessage += "\nStart and end dates of chargebands don't cover the whole of 01/01/2022 - 31/12/2022";
-        }
-        
-        for (int i = 0; i < chargebands.size(); i++){
-            // 24*60*60*1000 = number of miliseconds in a day
-            if (chargebands.get(i).startDate.getTime() > chargebands.get(i).endDate.getTime()){
-                errorMessage += "\nStart date cannot be later than the End date";
-                break;
-            }
-        }
-        
-        for (int i = 1; i < chargebands.size(); i++){
-            // 24*60*60*1000 = number of miliseconds in a day
-            if (chargebands.get(i).startDate.getTime() - chargebands.get(i-1).endDate.getTime() != 24*60*60*1000){
-                errorMessage += "\nEnd dates and Start dates of consecutive chargebands have to differ by exactly 1 day\n"
-                        + "e.g. End dates and Start dates of consecutive chargebands\ncould be 30/06/2022 and 01/07/2022";
-                break;
-            }
-        }
-        
-        return errorMessage.length() > 0 ? errorMessage.substring(1) : null;
-    }
     
-    // Return 1 if error, 0 otherwise
-    private int updateChargebands(){
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Chargebands WHERE propertyId=?");
-            pstmt.setInt(1, propertyId);
-            pstmt.executeUpdate();
-            
-            for (Chargeband i : chargebands){
-                pstmt = con.prepareStatement("INSERT INTO Chargebands VALUES(?, ?, ?, ?, ?, ?)");
-                pstmt.setInt(1, propertyId);
-                pstmt.setDate(2, i.startDate);
-                pstmt.setDate(3, i.endDate);
-                pstmt.setDouble(4, i.pricePerNight);
-                pstmt.setDouble(5, i.serviceCharge);
-                pstmt.setDouble(6, i.cleaningCharge);
-                
-                pstmt.executeUpdate();
-            }
-            return 0;
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        jFrameInstance.changePanelToDefault();
+    }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void nextChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextChargebandButtonActionPerformed
+        if (currentChargebandPage == 1){
+            prevChargebandButton.setEnabled(true);
         }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+
+        updateCurrentChargebandInArray();
+        currentChargebandPage++;
+        updateChargebandGUIComponents();
+        updateChargebandPageInfo();
+
+        if (currentChargebandPage == chargebands.size()){
+            nextChargebandButton.setEnabled(false);
         }
-        return 1;
-    }
-    
-    private void fetchData(){
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-            PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, pricePerNight, serviceCharge, cleaningCharge "
-                    + "FROM Chargebands WHERE propertyId=?");
-            pstmt.setInt(1, propertyId);
-            ResultSet res = pstmt.executeQuery();
-            
-            while (res.next()){
-                Chargeband chargeband = new Chargeband();
-                chargeband.pricePerNight = res.getFloat("pricePerNight");
-                chargeband.cleaningCharge = res.getFloat("cleaningCharge");
-                chargeband.serviceCharge = res.getFloat("serviceCharge");
-                chargeband.startDate = res.getDate("startDate");
-                chargeband.endDate = res.getDate("endDate");
-                chargebands.add(chargeband);
-            }
-            
-            updateChargebandPageInfo();
-            updateChargebandGUIComponents();
-            
-            if (chargebands.size() > 1){
-                nextChargebandButton.setEnabled(true);
-                deleteButton.setEnabled(true);
-            }
+    }//GEN-LAST:event_nextChargebandButtonActionPerformed
+
+    private void prevChargebandButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevChargebandButtonActionPerformed
+        if (currentChargebandPage == chargebands.size()){
+            nextChargebandButton.setEnabled(true);
         }
-        catch (Exception ex) {
-            ex.printStackTrace();
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+
+        updateCurrentChargebandInArray();
+        currentChargebandPage--;
+        updateChargebandGUIComponents();
+        updateChargebandPageInfo();
+
+        if (currentChargebandPage == 1){
+            prevChargebandButton.setEnabled(false);
         }
-    }
-    
+    }//GEN-LAST:event_prevChargebandButtonActionPerformed
+
+    private void pricePerNightFormattedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerNightFormattedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pricePerNightFormattedActionPerformed
+
+    private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed
+        updateCurrentChargebandInArray();
+
+        jFrameInstance.changePanelToSpecific(propertyInstance);
+    }//GEN-LAST:event_prevButtonActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chargebandText;
     private javax.swing.JFormattedTextField cleaningChargeFormatted;
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JButton editPropertyButton;
     private javax.swing.JFormattedTextField endDateFormatted;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -674,12 +481,11 @@ public class EditProperty2 extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton newButton;
     private javax.swing.JButton nextChargebandButton;
-    private javax.swing.JLabel panelTitle;
     private javax.swing.JButton prevButton;
     private javax.swing.JButton prevChargebandButton;
     private javax.swing.JFormattedTextField pricePerNightFormatted;

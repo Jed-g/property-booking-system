@@ -38,7 +38,7 @@ public class ChargeBand {
     //isBetweenDates compares a given date to a start and end date and determines 
     //whether the date falls in this range, and will return a Boolean value as the output
     
-    private Boolean isBetweenDates(Date startDate, Date endDate, Date givenDate) {
+    static Boolean isBetweenDates(Date startDate, Date endDate, Date givenDate) {
         
         //Variables
         boolean isBetween = false; //If the following conditions from if loop aren't true, isBetween will return false
@@ -107,7 +107,7 @@ public class ChargeBand {
         return chargeBandList;
     }
     
-    //PriceInfo class is a nested class used when calculating  details about the cost of a booking
+    //PriceInfo class is a nested class used when calculating details about the cost of a booking
     class PriceInfo {
         
         private float averagePPN;
@@ -126,68 +126,87 @@ public class ChargeBand {
             this.totalCost = totalCost;
         }
         
+        float getAveragePPN() {
+            return averagePPN;
+        }
+        
+        float getTotalPPN() {
+            return totalPPN;
+        }
+        
+        float getServiceCharge() {
+            return serviceCharge;
+        }
+        
+        float getCleaningCharge() {
+            return cleaningCharge;
+        }
+        
         float getTotalCost() {
-            return (totalPPN + serviceCharge + cleaningCharge);
+            return totalCost;
         }
-    }
     
-    //priceInfo takes a start date and an end date for a property and calculates
-    //the cost breakdown of the stay
-    
-    static PriceInfo[] priceInfo(String propertyId, Date startDate, Date endDate) {
-         
-        //Variables
-        ChargeBand[] chargeBandList = null;
-        
-        //List of possible chargebands for the property
-        chargeBandList = ChargeBand.getChargeBandList(propertyId);
-        
-        //Calculating total price per night
-    }
-    
-    //Length of date range between start and end date (inclusive)
-        //dateRangeLength = (endDate.getTime() - startDate.getTime()) / (24*60*60*1000) + 1;
-        
-    //Maximum Service Charge
-    
-    //Maximum Cleaning Charge
-    
-    //Total price per night
-    static Float getTotalPPN(String propertyId, Date bkgStartDate, Date bkgEndDate) {
-        
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-           
-            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, startDate, endDate, pricePerNight,"
-                    + "serviceCharge, cleeaningCharge FROM Chargebands WHERE propertyId = ?",
-                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, propertyId);
-            ResultSet res = pstmt.executeQuery();
-            
+        //priceInfo takes a start date and an end date for a property and calculates
+        //the cost breakdown of the stay
+
+        private PriceInfo getPriceInfo(String propertyId, Date startDate, Date endDate) {
+
             //Variables
-            long lengthOfStay = 0;
-            
-            //Calculate length of stay in days
-            lengthOfStay = (bkgEndDate.getTime() - bkgStartDate.getTime()) / (24*60*60*1000);
-            
-            //Adds up the cost of price, day by day
-            for (int i = 0; i < lengthOfStay; i++){
-                if (res.next()){
-                    reviewList[i] = new ReviewList(res.getString("forename"), res.getString("surname"),
-                            res.getInt("rating"), res.getString("reviewDescription"));
-                }
+            ChargeBand[] chargeBandList = null;
+            float dateRangeLength = 0;
+            int milliseconds = 24*60*60*1000; //number of milliseconds in a day
+            float totalPPN = 0; //PPN = price per night
+            float avgPPN = 0;
+            float maxServiceCharge = -10;
+            float maxCleaningCharge = -10;
+            float totalCost = 0;
+            long dateMS = startDate.getTime(); //Convert start date to milliseconds for use in loop
+
+            //List of possible chargebands for the property
+            chargeBandList = ChargeBand.getChargeBandList(propertyId);
+
+            //Calculate number of days between start and end date (inclusive)
+            dateRangeLength = ((endDate.getTime() - startDate.getTime()) / milliseconds) + 1;
+
+            //for loop that cycles through all possible dates in the date range (inclusive)
+            for (int i = 0; i < dateRangeLength; i++) {
+
+                //Calculates new date in milliseconds
+                //e.g i = 0 means start date, i = 1 means day after start date, etc.
+                dateMS = dateMS + (i * milliseconds);
+
+                //COnverts milliseconds into date ready for isBetweenDates
+                Date dateInput = new Date(dateMS);
+
+                //for loop that gets correct price info for a date range
+                for (ChargeBand j: chargeBandList) {
+                    if (isBetweenDates(j.startDate, j.endDate, dateInput)) {
+
+                        //TOTAL PRICE PER NIGHT
+                        totalPPN += j.pricePerNight;   
+
+                        //MAXIMUM SERVICE CHARGE
+                        if (j.serviceCharge >= maxServiceCharge) {
+                            maxServiceCharge = j.serviceCharge;
+                        }
+
+                        //MAXIMUM CLEANING CHARGE
+                        if (j.cleaningCharge >= maxCleaningCharge) {
+                            maxCleaningCharge = j.cleaningCharge;
+                        }
+                    }   
+                }                  
             }
+
+            //CALCULATE AVERAGE PRICE PER NIGHT
+            avgPPN = totalPPN/dateRangeLength;
+
+            //CALCULATE TOTAL COST FOR ENTIRE BOOKING
+            totalCost = totalPPN + maxServiceCharge + maxCleaningCharge;
+
+            PriceInfo priceInfo = new PriceInfo(avgPPN, totalPPN, maxServiceCharge, maxCleaningCharge, totalCost);
+
+            return priceInfo;         
         }
-        catch (Exception ex) {
-            ex.printStackTrace();            
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(javax.swing.ImageIcon.class.getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        
     }
-    
-    //Total fee
-           
-           
 }

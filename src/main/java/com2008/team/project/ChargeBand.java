@@ -23,6 +23,7 @@ public class ChargeBand {
         
     }
     
+    //get... methods
     Float getPPNight(){
         return pricePerNight;
     }
@@ -126,6 +127,7 @@ public class ChargeBand {
             this.totalCost = totalCost;
         }
         
+        //get... methods
         float getAveragePPN() {
             return averagePPN;
         }
@@ -149,38 +151,41 @@ public class ChargeBand {
     }
     
     //priceInfo takes a start date and an end date for a property and calculates
-    //the cost breakdown of the stay
+    //the cost breakdown of the stay, the last day doesn't count because it is price
+    //per night
 
     static PriceInfo getPriceInfo(int propertyId, Date startDate, Date endDate) {
 
         //Variables
         ChargeBand[] chargeBandList = null;
         float dateRangeLength = 0;
-        int milliseconds = 24*60*60*1000; //number of milliseconds in a day
         float totalPPN = 0; //PPN = price per night
         float avgPPN = 0;
         float maxServiceCharge = -10;
         float maxCleaningCharge = -10;
         float totalCost = 0;
-        long startDateMS = startDate.getTime(); //Convert start date to milliseconds for use in loop
 
+        //Constants
+        final int milliseconds = 24*60*60*1000; //number of milliseconds in a day
+        final long startDateMS = startDate.getTime(); //Convert start date to milliseconds for use in loop
+        
         //List of possible chargebands for the property
         chargeBandList = getChargeBandList(propertyId);
 
         //Calculate number of days between start and end date (inclusive)
-        dateRangeLength = ((endDate.getTime() - startDate.getTime()) / milliseconds) + 1;
+        dateRangeLength = ((endDate.getTime() - startDate.getTime()) / milliseconds);
 
-        //for loop that cycles through all possible dates in the date range (inclusive)
+        //for loop that cycles through all possible dates in the date range (start date inclusive, end date exclusive)
         for (int i = 0; i < dateRangeLength; i++) {
 
-            //Calculates new date in milliseconds
+            //Calculates current date being used in milliseconds
             //e.g i = 0 means start date, i = 1 means day after start date, etc.
-            startDateMS = startDateMS + (i * milliseconds);
+            long currentDate = startDateMS + (i * milliseconds);
 
             //Converts milliseconds into date ready for isBetweenDates
-            Date dateInput = new Date(startDateMS);
+            Date dateInput = new Date(currentDate);
 
-            //for loop that gets correct price info for a date range
+            //for loop that gets correct price info for a date range (start date inclusive, end date exclusive)
             for (ChargeBand j: chargeBandList) {
                 if (isBetweenDates(j.startDate, j.endDate, dateInput)) {
 

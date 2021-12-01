@@ -10,9 +10,6 @@ com2008/team/project/ReviewList.java
  com2008.team.project.ReviewList
 com2008/team/project/Property.java
  com2008.team.project.Property
-com2008/team/project/ChargeBand.java
- com2008.team.project.ChargeBand
- com2008.team.project.ChargeBand$PriceInfo
 com2008/team/project/Register.java
  com2008.team.project.Register
  com2008.team.project.Register$1
@@ -88,6 +85,9 @@ com2008/team/project/AddProperty2.java
  com2008.team.project.AddProperty2$7
  com2008.team.project.AddProperty2$8
  com2008.team.project.AddProperty2$Chargeband
+com2008/team/project/ChargeBand.java
+ com2008.team.project.ChargeBand
+ com2008.team.project.ChargeBand$PriceInfo
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1

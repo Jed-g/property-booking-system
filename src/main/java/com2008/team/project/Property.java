@@ -1143,7 +1143,7 @@ public class Property extends javax.swing.JPanel {
 
     private void multiUseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButton1ActionPerformed
         if (view == PageView.HOST) {
-            EditProperty editProperty = new EditProperty(propertyId, strDetails, amenitiesDetails, confidentialDetails);
+            EditPropertyOld editProperty = new EditPropertyOld(propertyId, strDetails, amenitiesDetails, confidentialDetails);
             jFrameInstance.changePanelToSpecific(editProperty);
         }
         else {

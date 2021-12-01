@@ -11,7 +11,7 @@ import java.util.HashMap;
  *
  * @author Matyas Szert
  */
-public class EditProperty extends javax.swing.JPanel {
+public class EditPropertyOld extends javax.swing.JPanel {
 
     int propertyId;
     HashMap<String, String> strDetails = new HashMap();
@@ -20,7 +20,7 @@ public class EditProperty extends javax.swing.JPanel {
     /**
      * Creates new form editPoperty
      */
-    public EditProperty(int propertyId, HashMap strDetails, HashMap amenitiesDetails, HashMap confidentialDetails) {
+    public EditPropertyOld(int propertyId, HashMap strDetails, HashMap amenitiesDetails, HashMap confidentialDetails) {
         initComponents();
         this.propertyId = propertyId;
         this.strDetails = strDetails;

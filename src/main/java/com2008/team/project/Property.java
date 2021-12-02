@@ -17,10 +17,10 @@ public class Property extends javax.swing.JPanel {
         HOST
     }
     
-    private class Bedroom{
+    private class BedroomUI{
         private Bed bed1;
         private Bed bed2;
-        private Bedroom(){
+        private BedroomUI(){
         }
         private String getBed1String(){
             switch(bed1){
@@ -72,7 +72,7 @@ public class Property extends javax.swing.JPanel {
     HashMap<String, String> strDetails = new HashMap();
     HashMap<String, Boolean> amenitiesDetails = new HashMap();
     HashMap<String, String> confidentialDetails = new HashMap();
-    private ArrayList<Property.Bedroom> bedrooms = new ArrayList<>();
+    private ArrayList<Property.BedroomUI> bedrooms = new ArrayList<>();
     private ArrayList<Property.Bathroom> bathrooms = new ArrayList<>();
     String hostEmail;
     int numBathrooms;
@@ -95,8 +95,8 @@ public class Property extends javax.swing.JPanel {
         this.jFrameInstance = jFrameInstance;
         this.propertyId = propertyId;
         this.userEmail = email;
-        //this.startDate = startDate;
-        //this.endDate = endDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
         getPropertyInfo();
         getRoomsData();
         setPageView();
@@ -151,7 +151,7 @@ public class Property extends javax.swing.JPanel {
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        nextButton = new javax.swing.JButton();
+        multiUseButton = new javax.swing.JButton();
         jLabel40 = new javax.swing.JLabel();
         refrigeratorIcon = new javax.swing.JLabel();
         stoveIcon = new javax.swing.JLabel();
@@ -229,6 +229,7 @@ public class Property extends javax.swing.JPanel {
         toiletPaperIcon = new javax.swing.JLabel();
         editPropertyButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -335,11 +336,11 @@ public class Property extends javax.swing.JPanel {
         jLabel39.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel39.setText("Barbecue");
 
-        nextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        nextButton.setText("Next");
-        nextButton.addActionListener(new java.awt.event.ActionListener() {
+        multiUseButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        multiUseButton.setText("Next");
+        multiUseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextButtonActionPerformed(evt);
+                multiUseButtonActionPerformed(evt);
             }
         });
 
@@ -612,7 +613,7 @@ public class Property extends javax.swing.JPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1002,7 +1003,7 @@ public class Property extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(multiUseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -1028,6 +1029,10 @@ public class Property extends javax.swing.JPanel {
                                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(1557, 1557, 1557))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(704, 704, 704)
+                .addComponent(jLabel15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1094,9 +1099,9 @@ public class Property extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(numSleepersLabel)
                                         .addComponent(noOfBeds1)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1120,7 +1125,7 @@ public class Property extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(applyDatesButton)
                                         .addComponent(price))
-                                    .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(multiUseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(placeName)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1207,7 +1212,9 @@ public class Property extends javax.swing.JPanel {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel39)
                                             .addComponent(barbequeIcon))))))
-                        .addGap(0, 43, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 24, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1277,7 +1284,7 @@ public class Property extends javax.swing.JPanel {
             ResultSet res = pstmt.executeQuery();
             
             while (res.next()){
-                Bedroom bedroom = new Bedroom();
+                BedroomUI bedroom = new BedroomUI();
                 bedroom.bed1 = Bed.valueOf(res.getString("bed1"));
                 if (res.getString("bed2") == null){
                     bedroom.bed2 = null;
@@ -1323,6 +1330,7 @@ public class Property extends javax.swing.JPanel {
     private void updateBedroomGUIComponents(){
         bed1Label.setText(bedrooms.get(currentBedroomPage-1).getBed1String());
         bed2Label.setText(bedrooms.get(currentBedroomPage-1).getBed2String());
+        
     }
     
     private void updateBathroomGUIComponents(){
@@ -1446,12 +1454,35 @@ public class Property extends javax.swing.JPanel {
         setIcon("stove", stoveIcon);
         setIcon("dishwasher", dishwasherIcon);
         
+        houseNumber.setText(confidentialDetails.get("houseNumber"));
+        streetName.setText(confidentialDetails.get("streetName"));
+        placeName.setText(confidentialDetails.get("placeName"));
+        postcode.setText(confidentialDetails.get("postCode"));
+        
+        
+        numSleepers = 0;
+        Bedroom[] bedroomList = Bedroom.getList(propertyId);
+        for (Bedroom bedroom : bedroomList) {
+            numSleepers += bedroom.getBedroomCapacity();
+        }
         numSleepersLabel.setText("" + numSleepers);
         
         ratingLabel.setText("" + avgRating);
         
-        if (view != PageView.HOST) {
+        if (!(view == PageView.HOST || view == PageView.GUESTPROVISIONAL)) {
+            houseNumber.setVisible(false);
+            streetName.setVisible(false);
+            placeName.setVisible(false);
+            postcode.setVisible(false);
+        }
+        
+        if (view == PageView.HOST) {
+            editPropertyButton.setVisible(true);
+            multiUseButton.setText("Next");
+        }
+        else {
             editPropertyButton.setVisible(false);
+            multiUseButton.setText("Book now");
         }
     }
     
@@ -1514,9 +1545,28 @@ public class Property extends javax.swing.JPanel {
         
         //check if a booking matching the guest email and this property ID exists
     }
-    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-
-    }//GEN-LAST:event_nextButtonActionPerformed
+    private void multiUseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButtonActionPerformed
+        if (view == PageView.HOST) { //redirect to second page
+            Property2 property2 = new Property2(jFrameInstance, this, propertyId);
+            jFrameInstance.changePanelToSpecific(property2);
+        }
+        
+        if (view == PageView.GUEST) {
+            //create new booking
+        }
+        
+        if (view == PageView.GUESTPROVISIONAL) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "You have already made a booking for this property. Go to Upcoming Bookings to manage bookings.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        if (view == PageView.ENQUIRER) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Please log in to book this property.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_multiUseButtonActionPerformed
 
     private void endDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateFieldActionPerformed
         // TODO add your handling code here:
@@ -1587,13 +1637,8 @@ public class Property extends javax.swing.JPanel {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
-        if (view == PageView.HOST) {
-            EditProperty editProperty = new EditProperty(jFrameInstance, propertyId);
-            jFrameInstance.changePanelToSpecific(editProperty);
-        }
-        else {
-            //create new booking object
-        }
+        EditProperty editProperty = new EditProperty(jFrameInstance, propertyId);
+        jFrameInstance.changePanelToSpecific(editProperty);
     }//GEN-LAST:event_editPropertyButtonActionPerformed
 
 
@@ -1630,6 +1675,7 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1678,7 +1724,7 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel location;
     private javax.swing.JLabel microwaveIcon;
-    private javax.swing.JButton nextButton;
+    private javax.swing.JButton multiUseButton;
     private javax.swing.JLabel noOfBeds1;
     private javax.swing.JLabel numSleepersLabel;
     private javax.swing.JLabel onRoadParkingIcon;

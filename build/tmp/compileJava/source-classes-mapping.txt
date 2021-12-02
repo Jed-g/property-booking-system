@@ -145,7 +145,7 @@ com2008/team/project/Property.java
  com2008.team.project.Property$8
  com2008.team.project.Property$9
  com2008.team.project.Property$Bathroom
- com2008.team.project.Property$Bedroom
+ com2008.team.project.Property$BedroomUI
  com2008.team.project.Property$PageView
 com2008/team/project/Property2.java
  com2008.team.project.Property2
@@ -153,7 +153,6 @@ com2008/team/project/Property2.java
  com2008.team.project.Property2$2
  com2008.team.project.Property2$3
  com2008.team.project.Property2$4
- com2008.team.project.Property2$5
  com2008.team.project.Property2$Chargeband
 com2008/team/project/User.java
  com2008.team.project.User

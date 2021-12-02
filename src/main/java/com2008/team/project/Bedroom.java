@@ -87,7 +87,7 @@ public class Bedroom {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT bed1, bed2 FROM Bedrooms JOIN Properties WHERE Bedrooms.propertyId=?",
+            PreparedStatement pstmt = con.prepareStatement("SELECT bed1, bed2 FROM Bedrooms WHERE propertyId=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();

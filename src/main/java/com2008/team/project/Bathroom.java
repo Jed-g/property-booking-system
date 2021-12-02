@@ -39,7 +39,7 @@ public class Bathroom {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT toilet, bath, shower, isShared FROM Bathrooms JOIN Properties WHERE Bathrooms.propertyId=?",
+            PreparedStatement pstmt = con.prepareStatement("SELECT toilet, bath, shower, isShared FROM Bathrooms WHERE propertyId=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();

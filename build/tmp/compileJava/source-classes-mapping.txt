@@ -4,12 +4,21 @@ com2008/team/project/Bedroom.java
  com2008.team.project.Bed
  com2008.team.project.Bedroom
  com2008.team.project.Bedroom$1
+<<<<<<< HEAD
 com2008/team/project/ChargeBand.java
  com2008.team.project.ChargeBand
 com2008/team/project/ReviewList.java
  com2008.team.project.ReviewList
 com2008/team/project/Bathroom.java
  com2008.team.project.Bathroom
+=======
+com2008/team/project/Bathroom.java
+ com2008.team.project.Bathroom
+com2008/team/project/ReviewList.java
+ com2008.team.project.ReviewList
+com2008/team/project/Property.java
+ com2008.team.project.Property
+>>>>>>> master
 com2008/team/project/Register.java
  com2008.team.project.Register
  com2008.team.project.Register$1
@@ -63,6 +72,7 @@ com2008/team/project/AddProperty.java
  com2008.team.project.AddProperty$9
  com2008.team.project.AddProperty$Bathroom
  com2008.team.project.AddProperty$Bedroom
+<<<<<<< HEAD
 com2008/team/project/EditProperty2.java
  com2008.team.project.EditProperty2
  com2008.team.project.EditProperty2$1
@@ -110,6 +120,8 @@ com2008/team/project/EditProperty.java
  com2008.team.project.EditProperty$9
  com2008.team.project.EditProperty$Bathroom
  com2008.team.project.EditProperty$Bedroom
+=======
+>>>>>>> master
 com2008/team/project/Login.java
  com2008.team.project.Login
  com2008.team.project.Login$1
@@ -132,6 +144,7 @@ com2008/team/project/AddProperty2.java
  com2008.team.project.AddProperty2$7
  com2008.team.project.AddProperty2$8
  com2008.team.project.AddProperty2$Chargeband
+<<<<<<< HEAD
 com2008/team/project/Property.java
  com2008.team.project.Property
  com2008.team.project.Property$1
@@ -154,6 +167,11 @@ com2008/team/project/Property2.java
  com2008.team.project.Property2$3
  com2008.team.project.Property2$4
  com2008.team.project.Property2$Chargeband
+=======
+com2008/team/project/ChargeBand.java
+ com2008.team.project.ChargeBand
+ com2008.team.project.ChargeBand$PriceInfo
+>>>>>>> master
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1

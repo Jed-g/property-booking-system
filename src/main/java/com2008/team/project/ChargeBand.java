@@ -60,7 +60,7 @@ public class ChargeBand {
     
     //getChargeBandList finds all chargebands for a property and generates a list of them
     
-    private static ChargeBand[] getChargeBandList(int propertyId) {
+    static ChargeBand[] getChargeBandList(int propertyId) {
         DriverManager.setLoginTimeout(3);
         
         //Variables

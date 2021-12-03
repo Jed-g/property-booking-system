@@ -6,16 +6,20 @@ import java.sql.*;
 public class RequestList {
     
     private String propertyName;
-    private String location;
+    private int bookingId;
     private Date startDate;
     private Date endDate;
+    private String firstName;
+    private String lastName;
     
-    private RequestList(String propertyName, String location, Date startDate, Date endDate) {
+    private RequestList(String propertyName, int bookingId, Date startDate, Date endDate, String firstName, String lastName) {
         
         this.propertyName = propertyName;
-        this.location = location;
+        this.bookingId = bookingId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.firstName = firstName;
+        this.lastName = lastName;
         
     }
     
@@ -23,8 +27,8 @@ public class RequestList {
         return propertyName;
     }
     
-    String getLocation() {
-        return location;
+    int getBookingId() {
+        return bookingId;
     }
     
     Date getStartDate() {
@@ -39,6 +43,14 @@ public class RequestList {
         return (startDate + " until " + endDate);
     }
     
+    String getFirstName() {
+        return firstName;
+    }
+    
+    String getLastName() {
+        return lastName;
+    }
+    
     static RequestList[] getRequestList(String email) {       
         DriverManager.setLoginTimeout(3);
         
@@ -46,8 +58,9 @@ public class RequestList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, location, startDate, endDate "
-                    + "FROM Bookings WHERE email = ? AND provisional = true",
+            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, bookingId, startDate, endDate, forename, surname "
+                    + "FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND"
+                    + "Bookings.email = Users.email WHERE Properties.email = ? AND provisional = true",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setString(1, email);
             ResultSet res = pstmt.executeQuery();
@@ -63,8 +76,8 @@ public class RequestList {
             for (int i = 0; i < numberOfRequests; i++){
                 if (res.next()){  
                     
-                    requestList[i] = new RequestList(res.getString("propertyName"), res.getString("location"),
-                            res.getDate("startDate"), res.getDate("endDate"));
+                    requestList[i] = new RequestList(res.getString("propertyName"), res.getInt("bookingId"),
+                            res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"));
                 }
             }
 

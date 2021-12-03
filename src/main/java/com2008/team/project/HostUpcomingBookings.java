@@ -961,7 +961,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             previousPage.setEnabled(false);
         }
 
-        int indexFirstUpcomingOnPage = (currentPage-1)*3;
+        int indexFirstUpcomingOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillUpcomingBoxes(indexFirstUpcomingOnPage);
@@ -977,13 +977,13 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             nextPage.setEnabled(false);
         }
         
-        int indexFirstUpcomingOnPage = (currentPage-1)*3;
+        int indexFirstUpcomingOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillUpcomingBoxes(indexFirstUpcomingOnPage);
         resetUpcomingBoxes();
-        if (indexFirstUpcomingOnPage + 3 > upcomingList.length){
-            removeUpcomingBoxes(indexFirstUpcomingOnPage - upcomingList.length + 3);
+        if (indexFirstUpcomingOnPage + 4 > upcomingList.length){
+            removeUpcomingBoxes(indexFirstUpcomingOnPage - upcomingList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
 

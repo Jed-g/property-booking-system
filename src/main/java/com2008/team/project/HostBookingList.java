@@ -57,7 +57,7 @@ public class HostBookingList {
            
             PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
-                    + "Bookings.email = Users.email WHERE provisional = 1 AND startDate > ? AND Properties.email = ?",
+                    + "Bookings.email = Users.email WHERE provisional = 0 AND startDate > ? AND Properties.email = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setDate(1, dateToday);
             pstmt.setString(2, email);
@@ -102,8 +102,8 @@ public class HostBookingList {
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
             PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, propertyName, location, forename, surname,"
-                    + "Users.email FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND"
-                    + "Bookings.email = Users.email WHERE provisional = 1 AND startDate <= ? AND Properties.email = ?",
+                    + "Users.email FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
+                    + "Bookings.email = Users.email WHERE provisional = 0 AND startDate <= ? AND Properties.email = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setDate(1, dateToday);
             pstmt.setString(2, email);

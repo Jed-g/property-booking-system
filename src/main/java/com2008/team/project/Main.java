@@ -13,7 +13,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        changePanelToSpecific(new HostViewAllProperties(this, "admin"));
+        changePanelToSpecific(new HostUpcomingBookings(this, "admin"));
         
         
     }

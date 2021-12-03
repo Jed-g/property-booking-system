@@ -856,7 +856,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPreviousOnPage = (currentPage-1)*3;
+        int indexFirstPreviousOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPreviousBoxes(indexFirstPreviousOnPage);
@@ -872,13 +872,13 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             nextPage.setEnabled(false);
         }
         
-        int indexFirstPreviousOnPage = (currentPage-1)*3;
+        int indexFirstPreviousOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPreviousBoxes(indexFirstPreviousOnPage);
         resetPreviousBoxes();
-        if (indexFirstPreviousOnPage + 3 > previousList.length){
-            removePreviousBoxes(indexFirstPreviousOnPage - previousList.length + 3);
+        if (indexFirstPreviousOnPage + 4 > previousList.length){
+            removePreviousBoxes(indexFirstPreviousOnPage - previousList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
 

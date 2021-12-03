@@ -3,7 +3,7 @@ package com2008.team.project;
 public class Main extends javax.swing.JFrame {
 
     // For testing DB. Normally email should not be initialized.
-    private String email = "test@gmail.com";
+    private String email = "";
     private Boolean hostView = false;
     
     /**

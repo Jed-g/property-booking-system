@@ -42,32 +42,36 @@ public class HostRequests extends javax.swing.JPanel {
         lblBookingRequests = new javax.swing.JLabel();
         request1 = new javax.swing.JPanel();
         propName1 = new javax.swing.JLabel();
-        propLocation1 = new javax.swing.JLabel();
         acceptBooking1 = new javax.swing.JButton();
         rejectBooking1 = new javax.swing.JButton();
-        lblDateRequested1 = new javax.swing.JLabel();
-        datesRequested1 = new javax.swing.JLabel();
+        lblGuestName1 = new javax.swing.JLabel();
+        guestName1 = new javax.swing.JLabel();
+        lblDateRequested5 = new javax.swing.JLabel();
+        datesRequested5 = new javax.swing.JLabel();
         request2 = new javax.swing.JPanel();
         propName2 = new javax.swing.JLabel();
-        propLocation2 = new javax.swing.JLabel();
         acceptBooking2 = new javax.swing.JButton();
         rejectBooking2 = new javax.swing.JButton();
         lblDateRequested2 = new javax.swing.JLabel();
         datesRequested2 = new javax.swing.JLabel();
+        lblGuestName2 = new javax.swing.JLabel();
+        guestName2 = new javax.swing.JLabel();
         request3 = new javax.swing.JPanel();
         propName3 = new javax.swing.JLabel();
-        propLocation3 = new javax.swing.JLabel();
         acceptBooking3 = new javax.swing.JButton();
         rejectBooking3 = new javax.swing.JButton();
         lblDateRequested3 = new javax.swing.JLabel();
         datesRequested3 = new javax.swing.JLabel();
+        lblGuestName3 = new javax.swing.JLabel();
+        guestName3 = new javax.swing.JLabel();
         request4 = new javax.swing.JPanel();
         propName4 = new javax.swing.JLabel();
-        propLocation4 = new javax.swing.JLabel();
         acceptBooking4 = new javax.swing.JButton();
         rejectBooking4 = new javax.swing.JButton();
         lblDateRequested4 = new javax.swing.JLabel();
         datesRequested4 = new javax.swing.JLabel();
+        lblGuestName4 = new javax.swing.JLabel();
+        guestName4 = new javax.swing.JLabel();
         previousPage = new javax.swing.JButton();
         nextPage = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
@@ -178,9 +182,6 @@ public class HostRequests extends javax.swing.JPanel {
         propName1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         propName1.setText("[property name]");
 
-        propLocation1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        propLocation1.setText("[location]");
-
         acceptBooking1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         acceptBooking1.setText("ACCEPT");
         acceptBooking1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
@@ -201,49 +202,61 @@ public class HostRequests extends javax.swing.JPanel {
             }
         });
 
-        lblDateRequested1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lblDateRequested1.setText("Dates Requested:");
+        lblGuestName1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblGuestName1.setText("Guest Name:");
 
-        datesRequested1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        datesRequested1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        datesRequested1.setText("[date range]");
+        guestName1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        guestName1.setText("[guest name]");
+
+        lblDateRequested5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblDateRequested5.setText("Dates Requested:");
+
+        datesRequested5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        datesRequested5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        datesRequested5.setText("[date range]");
 
         javax.swing.GroupLayout request1Layout = new javax.swing.GroupLayout(request1);
         request1.setLayout(request1Layout);
         request1Layout.setHorizontalGroup(
             request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(request1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(propName1)
                     .addGroup(request1Layout.createSequentialGroup()
-                        .addComponent(propName1)
-                        .addGap(33, 33, 33)
-                        .addComponent(propLocation1))
-                    .addComponent(lblDateRequested1)
-                    .addComponent(datesRequested1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addComponent(lblGuestName1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(guestName1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(request1Layout.createSequentialGroup()
+                        .addComponent(lblDateRequested5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datesRequested5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(4, 4, 4)
                 .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rejectBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(acceptBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap())
         );
         request1Layout.setVerticalGroup(
             request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(request1Layout.createSequentialGroup()
                 .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(request1Layout.createSequentialGroup()
-                        .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName1)
-                            .addComponent(propLocation1))
+                        .addComponent(propName1)
                         .addGap(18, 18, 18)
-                        .addComponent(lblDateRequested1))
+                        .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDateRequested5)
+                            .addComponent(datesRequested5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGuestName1)
+                            .addComponent(guestName1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(request1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(acceptBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datesRequested1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(acceptBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rejectBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -252,9 +265,6 @@ public class HostRequests extends javax.swing.JPanel {
 
         propName2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         propName2.setText("[property name]");
-
-        propLocation2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        propLocation2.setText("[location]");
 
         acceptBooking2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         acceptBooking2.setText("ACCEPT");
@@ -283,6 +293,13 @@ public class HostRequests extends javax.swing.JPanel {
         datesRequested2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         datesRequested2.setText("[date range]");
 
+        lblGuestName2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblGuestName2.setText("Guest Name:");
+
+        guestName2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        guestName2.setText("[guest name]");
+
         javax.swing.GroupLayout request2Layout = new javax.swing.GroupLayout(request2);
         request2.setLayout(request2Layout);
         request2Layout.setHorizontalGroup(
@@ -290,35 +307,40 @@ public class HostRequests extends javax.swing.JPanel {
             .addGroup(request2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(propName2)
                     .addGroup(request2Layout.createSequentialGroup()
-                        .addComponent(propName2)
-                        .addGap(33, 33, 33)
-                        .addComponent(propLocation2))
-                    .addComponent(lblDateRequested2)
-                    .addComponent(datesRequested2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addComponent(lblDateRequested2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datesRequested2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(request2Layout.createSequentialGroup()
+                        .addComponent(lblGuestName2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(guestName2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(acceptBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(acceptBooking2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rejectBooking2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         request2Layout.setVerticalGroup(
             request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(request2Layout.createSequentialGroup()
                 .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(request2Layout.createSequentialGroup()
-                        .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName2)
-                            .addComponent(propLocation2))
+                        .addComponent(propName2)
                         .addGap(18, 18, 18)
-                        .addComponent(lblDateRequested2))
+                        .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDateRequested2)
+                            .addComponent(datesRequested2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGuestName2)
+                            .addComponent(guestName2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(request2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(acceptBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(request2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datesRequested2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(acceptBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rejectBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -327,9 +349,6 @@ public class HostRequests extends javax.swing.JPanel {
 
         propName3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         propName3.setText("[property name]");
-
-        propLocation3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        propLocation3.setText("[location]");
 
         acceptBooking3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         acceptBooking3.setText("ACCEPT");
@@ -358,6 +377,13 @@ public class HostRequests extends javax.swing.JPanel {
         datesRequested3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         datesRequested3.setText("[date range]");
 
+        lblGuestName3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblGuestName3.setText("Guest Name:");
+
+        guestName3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        guestName3.setText("[guest name]");
+
         javax.swing.GroupLayout request3Layout = new javax.swing.GroupLayout(request3);
         request3.setLayout(request3Layout);
         request3Layout.setHorizontalGroup(
@@ -365,35 +391,40 @@ public class HostRequests extends javax.swing.JPanel {
             .addGroup(request3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(propName3)
                     .addGroup(request3Layout.createSequentialGroup()
-                        .addComponent(propName3)
-                        .addGap(33, 33, 33)
-                        .addComponent(propLocation3))
-                    .addComponent(lblDateRequested3)
-                    .addComponent(datesRequested3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addComponent(lblDateRequested3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datesRequested3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(request3Layout.createSequentialGroup()
+                        .addComponent(lblGuestName3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(guestName3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(acceptBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(acceptBooking3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rejectBooking3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         request3Layout.setVerticalGroup(
             request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(request3Layout.createSequentialGroup()
                 .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(request3Layout.createSequentialGroup()
-                        .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName3)
-                            .addComponent(propLocation3))
+                        .addComponent(propName3)
                         .addGap(18, 18, 18)
-                        .addComponent(lblDateRequested3))
+                        .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDateRequested3)
+                            .addComponent(datesRequested3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGuestName3)
+                            .addComponent(guestName3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(request3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(acceptBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(request3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datesRequested3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(acceptBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rejectBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -402,9 +433,6 @@ public class HostRequests extends javax.swing.JPanel {
 
         propName4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         propName4.setText("[property name]");
-
-        propLocation4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        propLocation4.setText("[location]");
 
         acceptBooking4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         acceptBooking4.setText("ACCEPT");
@@ -433,6 +461,13 @@ public class HostRequests extends javax.swing.JPanel {
         datesRequested4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         datesRequested4.setText("[date range]");
 
+        lblGuestName4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lblGuestName4.setText("Guest Name:");
+
+        guestName4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        guestName4.setText("[guest name]");
+
         javax.swing.GroupLayout request4Layout = new javax.swing.GroupLayout(request4);
         request4.setLayout(request4Layout);
         request4Layout.setHorizontalGroup(
@@ -440,36 +475,41 @@ public class HostRequests extends javax.swing.JPanel {
             .addGroup(request4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(propName4)
                     .addGroup(request4Layout.createSequentialGroup()
-                        .addComponent(propName4)
-                        .addGap(33, 33, 33)
-                        .addComponent(propLocation4))
-                    .addComponent(lblDateRequested4)
-                    .addComponent(datesRequested4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addComponent(lblDateRequested4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(datesRequested4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(request4Layout.createSequentialGroup()
+                        .addComponent(lblGuestName4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(guestName4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(acceptBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(acceptBooking4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rejectBooking4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         request4Layout.setVerticalGroup(
             request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(request4Layout.createSequentialGroup()
                 .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(request4Layout.createSequentialGroup()
-                        .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName4)
-                            .addComponent(propLocation4))
+                        .addComponent(propName4)
                         .addGap(18, 18, 18)
-                        .addComponent(lblDateRequested4))
+                        .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDateRequested4)
+                            .addComponent(datesRequested4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGuestName4)
+                            .addComponent(guestName4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(request4Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(acceptBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(request4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rejectBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datesRequested4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(acceptBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rejectBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         previousPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -516,29 +556,28 @@ public class HostRequests extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(bookingRequestsLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(request1, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                            .addComponent(request3, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(request2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(request4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(bookingRequestsLayout.createSequentialGroup()
                         .addComponent(lblBookingRequests)
                         .addGap(148, 148, 148)
                         .addComponent(searchInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(bookingRequestsLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(request1, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
-                            .addComponent(request3, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(request2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(request4, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(49, 49, 49))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(bookingRequestsLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(298, 298, 298)
                         .addComponent(pageNumber)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         bookingRequestsLayout.setVerticalGroup(
             bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -623,7 +662,7 @@ public class HostRequests extends javax.swing.JPanel {
         if (maxAmountBoxes >= 1){
             propName1.setText(requestList[indexFirstReqOnPage].getPropertyName());
             propLocation1.setText(requestList[indexFirstReqOnPage].getLocation());
-            datesRequested1.setText(requestList[indexFirstReqOnPage].getDateRange());
+            guestName1.setText(requestList[indexFirstReqOnPage].getDateRange());
         }
         if (maxAmountBoxes >= 2){
             propName2.setText(requestList[indexFirstReqOnPage +1].getPropertyName());
@@ -663,7 +702,7 @@ public class HostRequests extends javax.swing.JPanel {
         if (numBoxesToBeRemoved == 4){
             propName1.setVisible(false);
             propLocation1.setVisible(false);
-            datesRequested1.setVisible(false);
+            guestName1.setVisible(false);
         }
         
     }
@@ -672,7 +711,7 @@ public class HostRequests extends javax.swing.JPanel {
         
         propName1.setVisible(true);
         propLocation1.setVisible(true);
-        datesRequested1.setVisible(true);
+        guestName1.setVisible(true);
         
         propName2.setVisible(true);
         propLocation2.setVisible(true);
@@ -712,14 +751,6 @@ public class HostRequests extends javax.swing.JPanel {
         //jFrameInstance.changePanelToSpecific(propertiesPage);
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
-    private void acceptBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking1ActionPerformed
-        //RequestList.checkForOverlaps(, startDate, endDate);
-    }//GEN-LAST:event_acceptBooking1ActionPerformed
-
-    private void rejectBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rejectBooking1ActionPerformed
-
     private void acceptBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_acceptBooking3ActionPerformed
@@ -727,14 +758,6 @@ public class HostRequests extends javax.swing.JPanel {
     private void rejectBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rejectBooking3ActionPerformed
-
-    private void acceptBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_acceptBooking2ActionPerformed
-
-    private void rejectBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rejectBooking2ActionPerformed
 
     private void acceptBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking4ActionPerformed
         // TODO add your handling code here:
@@ -783,6 +806,22 @@ public class HostRequests extends javax.swing.JPanel {
 
     }//GEN-LAST:event_searchInputActionPerformed
 
+    private void rejectBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rejectBooking1ActionPerformed
+
+    private void acceptBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking1ActionPerformed
+        //RequestList.checkForOverlaps(, startDate, endDate);
+    }//GEN-LAST:event_acceptBooking1ActionPerformed
+
+    private void rejectBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rejectBooking2ActionPerformed
+
+    private void acceptBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_acceptBooking2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptBooking1;
@@ -790,25 +829,29 @@ public class HostRequests extends javax.swing.JPanel {
     private javax.swing.JButton acceptBooking3;
     private javax.swing.JButton acceptBooking4;
     private javax.swing.JPanel bookingRequests;
-    private javax.swing.JLabel datesRequested1;
     private javax.swing.JLabel datesRequested2;
     private javax.swing.JLabel datesRequested3;
     private javax.swing.JLabel datesRequested4;
+    private javax.swing.JLabel datesRequested5;
+    private javax.swing.JLabel guestName1;
+    private javax.swing.JLabel guestName2;
+    private javax.swing.JLabel guestName3;
+    private javax.swing.JLabel guestName4;
     private javax.swing.JLabel lblBookingRequests;
-    private javax.swing.JLabel lblDateRequested1;
     private javax.swing.JLabel lblDateRequested2;
     private javax.swing.JLabel lblDateRequested3;
     private javax.swing.JLabel lblDateRequested4;
+    private javax.swing.JLabel lblDateRequested5;
+    private javax.swing.JLabel lblGuestName1;
+    private javax.swing.JLabel lblGuestName2;
+    private javax.swing.JLabel lblGuestName3;
+    private javax.swing.JLabel lblGuestName4;
     private javax.swing.JLabel lblPropertyBookingSystem;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
     private javax.swing.JLabel pageNumber;
     private javax.swing.JButton previousBookings;
     private javax.swing.JButton previousPage;
-    private javax.swing.JLabel propLocation1;
-    private javax.swing.JLabel propLocation2;
-    private javax.swing.JLabel propLocation3;
-    private javax.swing.JLabel propLocation4;
     private javax.swing.JLabel propName1;
     private javax.swing.JLabel propName2;
     private javax.swing.JLabel propName3;

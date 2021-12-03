@@ -580,6 +580,9 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     
     private void fetchPropertyData(String email) {
         
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
         propertyList = PropertyList.getPropertyList(email);
         
         int n = propertyList.length;
@@ -590,9 +593,23 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             nextPage.setEnabled(true);
         }
         
-        fillPropertyBoxes(0);
-        numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n%4;
+            nextPage.setEnabled(true);
+            
+        } else {
+            numberOfPages = (n%4) + 1;
+            nextPage.setEnabled(true);
+        }
+        
         pageNumber.setText("1/" + numberOfPages);
+        
+        fillPropertyBoxes(0);      
 
     }
     
@@ -636,24 +653,28 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             propLocation4.setVisible(false);
             propRating4.setVisible(false);
             propDescription4.setVisible(false);
+            propEdit4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
             propName3.setVisible(false);
             propLocation3.setVisible(false);
             propRating3.setVisible(false);
             propDescription3.setVisible(false);
+            propEdit3.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 3){
             propName2.setVisible(false);
             propLocation2.setVisible(false);
             propRating2.setVisible(false);
             propDescription2.setVisible(false);
+            propEdit2.setVisible(false);
         }
         if (numBoxesToBeRemoved == 4){
             propName1.setVisible(false);
             propLocation1.setVisible(false);
             propRating1.setVisible(false);
             propDescription1.setVisible(false);
+            propEdit1.setVisible(false);
         }
         
     }
@@ -730,11 +751,13 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         if (currentPage == 1){
             previousPage.setEnabled(true);
         }
+        
         ++currentPage;
+        
         if (currentPage == numberOfPages){
             nextPage.setEnabled(false);
         }
-        
+               
         int indexFirstPropOnPage = (currentPage-1)*3;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);

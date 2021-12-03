@@ -636,6 +636,9 @@ public class HostRequests extends javax.swing.JPanel {
     
     private void fetchRequestData(String email) {
         
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
         requestList = RequestList.getRequestList(email);
         
         int n = requestList.length;
@@ -646,9 +649,23 @@ public class HostRequests extends javax.swing.JPanel {
             nextPage.setEnabled(true);
         }
         
-        fillRequestBoxes(0);
-        numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n%4;
+            nextPage.setEnabled(true);
+            
+        } else {
+            numberOfPages = (n%4) + 1;
+            nextPage.setEnabled(true);
+        }
+        
         pageNumber.setText("1/" + numberOfPages);
+        
+        fillRequestBoxes(0);
         
     }
     

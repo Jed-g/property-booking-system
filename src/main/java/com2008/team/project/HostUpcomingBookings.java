@@ -769,6 +769,9 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     
     private void fetchUpcomingData(String email) {
         
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
         Date dateToday = new Date(new java.util.Date().getTime());
         
         upcomingList = HostBookingList.getUpcomingList(email, dateToday);
@@ -781,9 +784,23 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             nextPage.setEnabled(true);
         }
         
-        fillUpcomingBoxes(0);
-        numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n%4;
+            nextPage.setEnabled(true);
+            
+        } else {
+            numberOfPages = (n%4) + 1;
+            nextPage.setEnabled(true);
+        }
+        
         pageNumber.setText("1/" + numberOfPages);
+        
+        fillUpcomingBoxes(0);
         
     }
     

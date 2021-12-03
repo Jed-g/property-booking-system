@@ -149,7 +149,7 @@ com2008/team/project/Property.java
  com2008.team.project.Property$9
  com2008.team.project.Property$Bathroom
  com2008.team.project.Property$BedroomUI
- com2008.team.project.Property$Booking
+ com2008.team.project.Property$BookingInternal
  com2008.team.project.Property$PageView
 com2008/team/project/Property2.java
  com2008.team.project.Property2

@@ -4,7 +4,7 @@ package com2008.team.project;
 import java.sql.*;
 
 public class RequestList {
-    
+    private int propertyId;
     private String propertyName;
     private int bookingId;
     private Date startDate;
@@ -12,8 +12,8 @@ public class RequestList {
     private String guestForename;
     private String guestSurname;
     
-    private RequestList(String propertyName, int bookingId, Date startDate, Date endDate, String guestForename, String guestSurname) {
-        
+    private RequestList(int propertyId, String propertyName, int bookingId, Date startDate, Date endDate, String guestForename, String guestSurname) {
+        this.propertyId = propertyId;
         this.propertyName = propertyName;
         this.bookingId = bookingId;
         this.startDate = startDate;
@@ -21,6 +21,10 @@ public class RequestList {
         this.guestForename = guestForename;
         this.guestSurname = guestSurname;
         
+    }
+    
+    int getPropertyId(){
+        return propertyId;
     }
     
     String getPropertyName() {
@@ -54,8 +58,8 @@ public class RequestList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, bookingId, startDate, endDate, forename, surname "
-                    + "FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND"
+            PreparedStatement pstmt = con.prepareStatement("SELECT Bookings.propertyId, propertyName, bookingId, startDate, endDate, forename, surname "
+                    + "FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE Properties.email = ? AND provisional = true",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setString(1, email);
@@ -72,7 +76,7 @@ public class RequestList {
             for (int i = 0; i < numberOfRequests; i++){
                 if (res.next()){  
                     
-                    requestList[i] = new RequestList(res.getString("propertyName"), res.getInt("bookingId"),
+                    requestList[i] = new RequestList(res.getInt("Bookings.propertyId"), res.getString("propertyName"), res.getInt("bookingId"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"));
                 }
             }
@@ -92,7 +96,7 @@ public class RequestList {
         return requestList;
     }
     
-    static void checkForOverlaps(String propertyId, Date startDate, Date endDate) {
+    static void checkForOverlapsAndAccept(int bookingId, int propertyId, Date startDate, Date endDate) {
         DriverManager.setLoginTimeout(3);
         
         Date newEndDate;
@@ -104,17 +108,20 @@ public class RequestList {
                 
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Bookings WHERE provisional=1 AND propertyId=? AND "
-                    + "((?>=startDate AND ?<=endDate) OR (?>=startDate AND ?<=endDate) OR (?<startDate AND ?>endDate))",
-                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, propertyId);
+            PreparedStatement pstmt = con.prepareStatement("UPDATE Bookings SET provisional=0 WHERE bookingId=?");
+            pstmt.setInt(1, bookingId);
+            pstmt.executeUpdate();
+            
+            pstmt = con.prepareStatement("DELETE FROM Bookings WHERE provisional=1 AND propertyId=? AND "
+                    + "((?>=startDate AND ?<=endDate) OR (?>=startDate AND ?<=endDate) OR (?<startDate AND ?>endDate))");
+            pstmt.setInt(1, propertyId);
             pstmt.setDate(2, startDate);
             pstmt.setDate(3,startDate);
             pstmt.setDate(4, newEndDate);
             pstmt.setDate(5, newEndDate);
             pstmt.setDate(6, startDate);
             pstmt.setDate(7, newEndDate);
-            int count = pstmt.executeUpdate();
+            pstmt.executeUpdate();
         }
         catch (Exception ex) {
             ex.printStackTrace();            

@@ -6,15 +6,21 @@ import java.sql.*;
 public class HostViewAllProperties extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private PropertyList[] propertyList;
+    private int numberOfPages;
+    private int currentPage = 1;
+    
     
     /**
      * Creates new form HostViewAllProperties
      */
-    public HostViewAllProperties(Main jFrameInstance) {
+    public HostViewAllProperties(Main jFrameInstance, String email) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         
         DriverManager.setLoginTimeout(3);
+        
+        fetchPropertyData(email);
     }
 
     /**
@@ -72,6 +78,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         previousPage = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        pageNumber = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -523,6 +530,10 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         searchButton.setText("SEARCH");
         searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
+        pageNumber.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        pageNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pageNumber.setText("[page number]");
+
         javax.swing.GroupLayout viewPropertiesLayout = new javax.swing.GroupLayout(viewProperties);
         viewProperties.setLayout(viewPropertiesLayout);
         viewPropertiesLayout.setHorizontalGroup(
@@ -553,6 +564,8 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPropertiesLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pageNumber)
+                        .addGap(293, 293, 293)
                         .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
@@ -585,7 +598,8 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(viewPropertiesLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -620,6 +634,111 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void fetchPropertyData(String email) {
+        
+        propertyList = PropertyList.getPropertyList(email);
+        
+        int n = propertyList.length;
+        
+        if (n <= 4){
+            removePropertyBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        fillPropertyBoxes(0);
+        numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+        pageNumber.setText("1/" + numberOfPages);
+
+    }
+    
+    private void fillPropertyBoxes(int indexFirstPropOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            maxAmountBoxes = propertyList.length - indexFirstPropOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            propName1.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            propLocation1.setText(propertyList[indexFirstPropOnPage].getLocation());
+            propRating1.setText(propertyList[indexFirstPropOnPage].getRating());
+            propDescText1.setText(propertyList[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes >= 2){
+            propName2.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            propLocation2.setText(propertyList[indexFirstPropOnPage].getLocation());
+            propRating2.setText(propertyList[indexFirstPropOnPage].getRating());
+            propDescText2.setText(propertyList[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes >= 3){
+            propName3.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            propLocation3.setText(propertyList[indexFirstPropOnPage].getLocation());
+            propRating3.setText(propertyList[indexFirstPropOnPage].getRating());
+            propDescText3.setText(propertyList[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes == 4){
+            propName4.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            propLocation4.setText(propertyList[indexFirstPropOnPage].getLocation());
+            propRating4.setText(propertyList[indexFirstPropOnPage].getRating());
+            propDescText4.setText(propertyList[indexFirstPropOnPage].getDescription());
+        }     
+    }
+    
+    private void removePropertyBoxes(int numBoxesToBeRemoved) {
+
+        if (numBoxesToBeRemoved >= 1){
+            propName4.setVisible(false);
+            propLocation4.setVisible(false);
+            propRating4.setVisible(false);
+            propDescription4.setVisible(false);
+        }
+        if (numBoxesToBeRemoved >= 2){
+            propName3.setVisible(false);
+            propLocation3.setVisible(false);
+            propRating3.setVisible(false);
+            propDescription3.setVisible(false);
+        }
+        if (numBoxesToBeRemoved >= 3){
+            propName2.setVisible(false);
+            propLocation2.setVisible(false);
+            propRating2.setVisible(false);
+            propDescription2.setVisible(false);
+        }
+        if (numBoxesToBeRemoved == 4){
+            propName1.setVisible(false);
+            propLocation1.setVisible(false);
+            propRating1.setVisible(false);
+            propDescription1.setVisible(false);
+        }
+        
+    }
+    
+    private void resetPropertyBoxes() {
+        
+        propName1.setVisible(true);
+        propLocation1.setVisible(true);
+        propRating1.setVisible(true);
+        propDescription1.setVisible(true);
+        
+        propName2.setVisible(true);
+        propLocation2.setVisible(true);
+        propRating2.setVisible(true);
+        propDescription2.setVisible(true);
+        
+        propName3.setVisible(true);
+        propLocation3.setVisible(true);
+        propRating3.setVisible(true);
+        propDescription3.setVisible(true);
+        
+        propName4.setVisible(true);
+        propLocation4.setVisible(true);
+        propRating4.setVisible(true);
+        propDescription4.setVisible(true);
+        
+    }
+    
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
         User accountPage = new User(jFrameInstance, "", true);
         jFrameInstance.changePanelToSpecific(accountPage);
@@ -681,11 +800,38 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_addAPropertyActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
-        // TODO add your handling code here:
+        if (currentPage == 1){
+            previousPage.setEnabled(true);
+        }
+        ++currentPage;
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(false);
+        }
+        
+        int indexFirstPropOnPage = (currentPage-1)*3;
+        
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
+        if (indexFirstPropOnPage + 3 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
+        }
     }//GEN-LAST:event_nextPageActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
-        // TODO add your handling code here:
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(true);
+        }
+        --currentPage;
+        if (currentPage == 1){
+            previousPage.setEnabled(false);
+        }
+
+        int indexFirstPropOnPage = (currentPage-1)*3;
+        
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
@@ -699,6 +845,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     private javax.swing.JLabel lblPropertyBookingSystem;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
+    private javax.swing.JLabel pageNumber;
     private javax.swing.JButton previousBookings;
     private javax.swing.JButton previousPage;
     private javax.swing.JTextArea propDescText1;

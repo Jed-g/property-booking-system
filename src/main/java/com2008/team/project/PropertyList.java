@@ -7,12 +7,16 @@ public class PropertyList {
     
     private String propertyName;
     private String location;
+    private String rating;
     private String description;
     
-    private PropertyList(String propertyName, String location, String description) {
+    private static ReviewList[] reviewList;
+    
+    private PropertyList(String propertyName, String location, String rating, String description) {
         
         this.propertyName = propertyName;
         this.location = location;
+        this.rating = rating;
         this.description = description;
         
     }
@@ -25,8 +29,37 @@ public class PropertyList {
         return location;
     }
     
+    String getRating() {
+        return rating;
+    }
+    
     String getDescription() {
         return description;
+    }
+    
+    private static String getRating(String propertyId) {
+        
+        float avgRating;
+        String strRating;
+        
+        reviewList = ReviewList.getList(propertyId);
+        
+        int n = reviewList.length;
+            
+            if (n == 0){
+                avgRating = 0;
+            } else {
+                int sum = 0;
+                for (ReviewList i : reviewList){
+                    sum += i.getRating();
+                }
+                
+                avgRating = sum/n;
+            }
+            
+            strRating = String.format(("%.1f"), avgRating);
+            
+            return strRating;
     }
     
     static PropertyList[] getPropertyList(String email) {
@@ -36,7 +69,7 @@ public class PropertyList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT propertyName, location, description FROM Properties "
+            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, location, description FROM Properties "
                     + "WHERE email = ?;",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setString(1, email);
@@ -49,11 +82,15 @@ public class PropertyList {
             }
             
             propertyList = new PropertyList[numberOfProperties];
+            String rating;            
             
             for (int i = 0; i < numberOfProperties; i++){
-                if (res.next()){
+                if (res.next()){  
+                    
+                    rating = getRating(res.getString("propertyId"));
+                    
                     propertyList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            res.getString("description"));
+                            rating, res.getString("description"));
                 }
             }
 

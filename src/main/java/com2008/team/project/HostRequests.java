@@ -6,6 +6,8 @@ import java.sql.*;
 public class HostRequests extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private int numberOfPages;
+    private int currentPage = 1;
     
     /**
      * Creates new form HostRequests
@@ -67,6 +69,7 @@ public class HostRequests extends javax.swing.JPanel {
         nextPage = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
+        pageNumber = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -498,6 +501,10 @@ public class HostRequests extends javax.swing.JPanel {
         searchButton.setText("SEARCH");
         searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
 
+        pageNumber.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        pageNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pageNumber.setText("[page number]");
+
         javax.swing.GroupLayout bookingRequestsLayout = new javax.swing.GroupLayout(bookingRequests);
         bookingRequests.setLayout(bookingRequestsLayout);
         bookingRequestsLayout.setHorizontalGroup(
@@ -524,6 +531,8 @@ public class HostRequests extends javax.swing.JPanel {
                         .addGap(49, 49, 49))
                     .addGroup(bookingRequestsLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(298, 298, 298)
+                        .addComponent(pageNumber)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -548,7 +557,8 @@ public class HostRequests extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(bookingRequestsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -565,7 +575,7 @@ public class HostRequests extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(navigation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(navigation, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -581,7 +591,23 @@ public class HostRequests extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void fetchRequestData(String email) {
+        
+    }
+    
+    private void fillRequestBoxes(int indexFirstPropOnPage) {
+        
+    }
+    
+    private void removeRequestBoxes(int numBoxesToBeRemoved) {
+        
+    }
+    
+    private void resetRequestBoxes() {
+        
+    }
+    
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
         User accountPage = new User(jFrameInstance, "", true);
         jFrameInstance.changePanelToSpecific(accountPage);
@@ -639,15 +665,42 @@ public class HostRequests extends javax.swing.JPanel {
     }//GEN-LAST:event_rejectBooking4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
-        // TODO add your handling code here:
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(true);
+        }
+        --currentPage;
+        if (currentPage == 1){
+            previousPage.setEnabled(false);
+        }
+
+        int indexFirstPropOnPage = (currentPage-1)*3;
+        
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
-        // TODO add your handling code here:
+        if (currentPage == 1){
+            previousPage.setEnabled(true);
+        }
+        ++currentPage;
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(false);
+        }
+        
+        int indexFirstPropOnPage = (currentPage-1)*3;
+        
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
+        if (indexFirstPropOnPage + 3 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
+        }:
     }//GEN-LAST:event_nextPageActionPerformed
 
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_searchInputActionPerformed
 
 
@@ -669,6 +722,7 @@ public class HostRequests extends javax.swing.JPanel {
     private javax.swing.JLabel lblPropertyBookingSystem;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
+    private javax.swing.JLabel pageNumber;
     private javax.swing.JButton previousBookings;
     private javax.swing.JButton previousPage;
     private javax.swing.JLabel propLocation1;

@@ -6,6 +6,8 @@ import java.sql.*;
 public class HostPreviousBookings extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private int numberOfPages;
+    private int currentPage = 1;
 
     /**
      * Creates new form HostPreviousBookings
@@ -75,6 +77,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         nextPage = new javax.swing.JButton();
         searchButton = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
+        pageNumber = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -570,6 +573,10 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             }
         });
 
+        pageNumber.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        pageNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pageNumber.setText("[page number]");
+
         javax.swing.GroupLayout previousBkgsLayout = new javax.swing.GroupLayout(previousBkgs);
         previousBkgs.setLayout(previousBkgsLayout);
         previousBkgsLayout.setHorizontalGroup(
@@ -598,6 +605,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(previousBkgsLayout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(298, 298, 298)
+                        .addComponent(pageNumber)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -622,7 +631,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(previousBkgsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -712,11 +722,38 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_reviews4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
-        // TODO add your handling code here:
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(true);
+        }
+        --currentPage;
+        if (currentPage == 1){
+            previousPage.setEnabled(false);
+        }
+
+        int indexFirstPropOnPage = (currentPage-1)*3;
+        
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
-        // TODO add your handling code here:
+        if (currentPage == 1){
+            previousPage.setEnabled(true);
+        }
+        ++currentPage;
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(false);
+        }
+        
+        int indexFirstPropOnPage = (currentPage-1)*3;
+        
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
+        if (indexFirstPropOnPage + 3 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
+        }
     }//GEN-LAST:event_nextPageActionPerformed
 
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
@@ -749,6 +786,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     private javax.swing.JLabel lblPropertyBookingSystem;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
+    private javax.swing.JLabel pageNumber;
     private javax.swing.JPanel previous1;
     private javax.swing.JPanel previous2;
     private javax.swing.JPanel previous3;

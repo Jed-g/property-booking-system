@@ -82,7 +82,7 @@ public class EditProperty2 extends javax.swing.JPanel {
         returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back_arrow_resized.png"))); // NOI18N
         returnButton.setText("Return");
-        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         returnButton.setIconTextGap(8);
         returnButton.setMaximumSize(new java.awt.Dimension(168, 54));
         returnButton.setMinimumSize(new java.awt.Dimension(168, 54));

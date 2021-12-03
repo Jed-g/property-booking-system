@@ -139,12 +139,14 @@ public class Login extends javax.swing.JPanel {
                 if (res.next()) {
                     String passwordInDB = res.getString("password");
                     if (Main.hashString(password).equals(passwordInDB)) {
+                        pstmt.close();
                         return true;
                     }
                     else {
                         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
                         String errorMessage = "Incorrect details";
                         javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                        pstmt.close();
                         return false;
                     }
                 }
@@ -153,6 +155,7 @@ public class Login extends javax.swing.JPanel {
                     String errorMessage = "Email not found";
                     javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
                     
+                    pstmt.close();
                     return false;
                 }
             }

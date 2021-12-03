@@ -49,7 +49,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propDescription1 = new javax.swing.JScrollPane();
         propDescText1 = new javax.swing.JTextArea();
         propEdit1 = new javax.swing.JButton();
-        propRemove1 = new javax.swing.JButton();
         property2 = new javax.swing.JPanel();
         propName2 = new javax.swing.JLabel();
         propLocation2 = new javax.swing.JLabel();
@@ -57,7 +56,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propDescription2 = new javax.swing.JScrollPane();
         propDescText2 = new javax.swing.JTextArea();
         propEdit2 = new javax.swing.JButton();
-        propRemove2 = new javax.swing.JButton();
         property3 = new javax.swing.JPanel();
         propName3 = new javax.swing.JLabel();
         propLocation3 = new javax.swing.JLabel();
@@ -65,7 +63,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propDescription3 = new javax.swing.JScrollPane();
         propDescText3 = new javax.swing.JTextArea();
         propEdit3 = new javax.swing.JButton();
-        propRemove3 = new javax.swing.JButton();
         property4 = new javax.swing.JPanel();
         propName4 = new javax.swing.JLabel();
         propLocation4 = new javax.swing.JLabel();
@@ -73,7 +70,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propDescription4 = new javax.swing.JScrollPane();
         propDescText4 = new javax.swing.JTextArea();
         propEdit4 = new javax.swing.JButton();
-        propRemove4 = new javax.swing.JButton();
         nextPage = new javax.swing.JButton();
         previousPage = new javax.swing.JButton();
         searchInput = new javax.swing.JTextField();
@@ -218,16 +214,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             }
         });
 
-        propRemove1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        propRemove1.setText("REMOVE");
-        propRemove1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
-        propRemove1.setPreferredSize(new java.awt.Dimension(150, 40));
-        propRemove1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                propRemove1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout property1Layout = new javax.swing.GroupLayout(property1);
         property1.setLayout(property1Layout);
         property1Layout.setHorizontalGroup(
@@ -243,28 +229,25 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addGap(53, 53, 53)
                         .addComponent(propRating1)))
                 .addGap(18, 18, 18)
-                .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(propEdit1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(propRemove1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         property1Layout.setVerticalGroup(
             property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(property1Layout.createSequentialGroup()
-                .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(propName1)
+                    .addComponent(propLocation1)
+                    .addComponent(propRating1))
+                .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property1Layout.createSequentialGroup()
-                        .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(propRemove1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
-                    .addGroup(property1Layout.createSequentialGroup()
-                        .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName1)
-                            .addComponent(propLocation1)
-                            .addComponent(propRating1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                        .addComponent(propDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, property1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
 
         property2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -295,16 +278,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             }
         });
 
-        propRemove2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        propRemove2.setText("REMOVE");
-        propRemove2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
-        propRemove2.setPreferredSize(new java.awt.Dimension(150, 40));
-        propRemove2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                propRemove2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout property2Layout = new javax.swing.GroupLayout(property2);
         property2.setLayout(property2Layout);
         property2Layout.setHorizontalGroup(
@@ -320,27 +293,23 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addGap(53, 53, 53)
                         .addComponent(propRating2)))
                 .addGap(18, 18, 18)
-                .addGroup(property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(propEdit2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(propRemove2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         property2Layout.setVerticalGroup(
             property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(property2Layout.createSequentialGroup()
-                .addGroup(property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(propName2)
+                    .addComponent(propLocation2)
+                    .addComponent(propRating2))
+                .addGroup(property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property2Layout.createSequentialGroup()
-                        .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(propRemove2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
-                    .addGroup(property2Layout.createSequentialGroup()
-                        .addGroup(property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName2)
-                            .addComponent(propLocation2)
-                            .addComponent(propRating2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(propDescription2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(property2Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
@@ -372,16 +341,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             }
         });
 
-        propRemove3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        propRemove3.setText("REMOVE");
-        propRemove3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
-        propRemove3.setPreferredSize(new java.awt.Dimension(150, 40));
-        propRemove3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                propRemove3ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout property3Layout = new javax.swing.GroupLayout(property3);
         property3.setLayout(property3Layout);
         property3Layout.setHorizontalGroup(
@@ -396,29 +355,26 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(propLocation3)
                         .addGap(53, 53, 53)
                         .addComponent(propRating3)))
-                .addGap(18, 18, 18)
-                .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(propEdit3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(propRemove3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         property3Layout.setVerticalGroup(
             property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(property3Layout.createSequentialGroup()
-                .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(propName3)
+                    .addComponent(propLocation3)
+                    .addComponent(propRating3))
+                .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property3Layout.createSequentialGroup()
-                        .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(propRemove3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
-                    .addGroup(property3Layout.createSequentialGroup()
-                        .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName3)
-                            .addComponent(propLocation3)
-                            .addComponent(propRating3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                        .addComponent(propDescription3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, property3Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))))
         );
 
         property4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -449,16 +405,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             }
         });
 
-        propRemove4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        propRemove4.setText("REMOVE");
-        propRemove4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
-        propRemove4.setPreferredSize(new java.awt.Dimension(150, 40));
-        propRemove4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                propRemove4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout property4Layout = new javax.swing.GroupLayout(property4);
         property4.setLayout(property4Layout);
         property4Layout.setHorizontalGroup(
@@ -474,28 +420,25 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addGap(53, 53, 53)
                         .addComponent(propRating4)))
                 .addGap(18, 18, 18)
-                .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(propEdit4, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(propRemove4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         property4Layout.setVerticalGroup(
             property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(property4Layout.createSequentialGroup()
-                .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(propName4)
+                    .addComponent(propLocation4)
+                    .addComponent(propRating4))
+                .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property4Layout.createSequentialGroup()
-                        .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(propRemove4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7))
-                    .addGroup(property4Layout.createSequentialGroup()
-                        .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(propName4)
-                            .addComponent(propLocation4)
-                            .addComponent(propRating4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                        .addComponent(propDescription4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, property4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))))
         );
 
         nextPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -749,47 +692,31 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed
-        HostRequests requestsPage = new HostRequests(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(requestsPage);
+        //HostRequests requestsPage = new HostRequests(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(requestsPage);
     }//GEN-LAST:event_requestsActionPerformed
 
     private void upcomingBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcomingBookingsActionPerformed
-        HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(upcomingPage);
+        //HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(upcomingPage);
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
     private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
-       HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
-       jFrameInstance.changePanelToSpecific(previousPage); 
+       //HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
+       //jFrameInstance.changePanelToSpecific(previousPage); 
     }//GEN-LAST:event_previousBookingsActionPerformed
-
-    private void propRemove4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propRemove4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_propRemove4ActionPerformed
 
     private void propEdit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_propEdit4ActionPerformed
 
-    private void propRemove3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propRemove3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_propRemove3ActionPerformed
-
     private void propEdit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_propEdit3ActionPerformed
 
-    private void propRemove2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propRemove2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_propRemove2ActionPerformed
-
     private void propEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_propEdit2ActionPerformed
-
-    private void propRemove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propRemove1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_propRemove1ActionPerformed
 
     private void propEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit1ActionPerformed
         // TODO add your handling code here:
@@ -872,10 +799,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     private javax.swing.JLabel propRating2;
     private javax.swing.JLabel propRating3;
     private javax.swing.JLabel propRating4;
-    private javax.swing.JButton propRemove1;
-    private javax.swing.JButton propRemove2;
-    private javax.swing.JButton propRemove3;
-    private javax.swing.JButton propRemove4;
     private javax.swing.JPanel property1;
     private javax.swing.JPanel property2;
     private javax.swing.JPanel property3;

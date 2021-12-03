@@ -57,7 +57,11 @@ public class PropertyList {
                 avgRating = sum/n;
             }
             
-            strRating = String.format(("%.1f"), avgRating);
+            if (avgRating == 0) {
+                strRating = "No reviews";
+            } else {
+                strRating = String.format(("%.1f"), avgRating);
+            }
             
             return strRating;
     }
@@ -107,6 +111,51 @@ public class PropertyList {
         }
         
         return propertyList;
+    }
+    
+    static PropertyList[] getAllPropertyList() {
+        DriverManager.setLoginTimeout(3);
+        
+        PropertyList[] allPropertyList = null;
+        
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+           
+            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, location, description FROM Properties ",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ResultSet res = pstmt.executeQuery();
+            
+            int numberOfProperties = 0;
+            if (res.last()){
+              numberOfProperties = res.getRow();
+              res.beforeFirst();
+            }
+            
+            allPropertyList = new PropertyList[numberOfProperties];
+            String rating;            
+            
+            for (int i = 0; i < numberOfProperties; i++){
+                if (res.next()){  
+                    
+                    rating = getRating(res.getString("propertyId"));
+                    
+                    allPropertyList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
+                            rating, res.getString("description"));
+                }
+            }
+
+            res.close();
+            pstmt.close();
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(javax.swing.ImageIcon.class.getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        return allPropertyList;
     }
     
 }

@@ -6,17 +6,20 @@ import java.sql.*;
 public class HostRequests extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private RequestList[] requestList;
     private int numberOfPages;
     private int currentPage = 1;
     
     /**
      * Creates new form HostRequests
-     */
-    public HostRequests(Main jFrameInstance) {
+    */
+    public HostRequests(Main jFrameInstance, String email) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         
         DriverManager.setLoginTimeout(3);
+        
+        fetchRequestData(email);
     }
 
     /**
@@ -594,17 +597,94 @@ public class HostRequests extends javax.swing.JPanel {
     
     private void fetchRequestData(String email) {
         
+        requestList = RequestList.getRequestList(email);
+        
+        int n = requestList.length;
+        
+        if (n <= 4){
+            removeRequestBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        fillRequestBoxes(0);
+        numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+        pageNumber.setText("1/" + numberOfPages);
+        
     }
     
-    private void fillRequestBoxes(int indexFirstPropOnPage) {
+    private void fillRequestBoxes(int indexFirstReqOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstReqOnPage + 4 > requestList.length){
+            maxAmountBoxes = requestList.length - indexFirstReqOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            propName1.setText(requestList[indexFirstReqOnPage].getPropertyName());
+            propLocation1.setText(requestList[indexFirstReqOnPage].getLocation());
+            datesRequested1.setText(requestList[indexFirstReqOnPage].getDateRange());
+        }
+        if (maxAmountBoxes >= 2){
+            propName2.setText(requestList[indexFirstReqOnPage].getPropertyName());
+            propLocation2.setText(requestList[indexFirstReqOnPage].getLocation());
+            datesRequested2.setText(requestList[indexFirstReqOnPage].getDateRange());
+        }
+        if (maxAmountBoxes >= 3){
+            propName3.setText(requestList[indexFirstReqOnPage].getPropertyName());
+            propLocation3.setText(requestList[indexFirstReqOnPage].getLocation());
+            datesRequested3.setText(requestList[indexFirstReqOnPage].getDateRange());
+        }
+        if (maxAmountBoxes == 4){
+            propName4.setText(requestList[indexFirstReqOnPage].getPropertyName());
+            propLocation4.setText(requestList[indexFirstReqOnPage].getLocation());
+            datesRequested4.setText(requestList[indexFirstReqOnPage].getDateRange());
+        }
         
     }
     
     private void removeRequestBoxes(int numBoxesToBeRemoved) {
         
+        if (numBoxesToBeRemoved >= 1){
+            propName4.setVisible(false);
+            propLocation4.setVisible(false);
+            datesRequested4.setVisible(false);
+        }
+        if (numBoxesToBeRemoved >= 2){
+            propName3.setVisible(false);
+            propLocation3.setVisible(false);
+            datesRequested3.setVisible(false);
+        }
+        if (numBoxesToBeRemoved >= 3){
+            propName2.setVisible(false);
+            propLocation2.setVisible(false);
+            datesRequested2.setVisible(false);
+        }
+        if (numBoxesToBeRemoved == 4){
+            propName1.setVisible(false);
+            propLocation1.setVisible(false);
+            datesRequested1.setVisible(false);
+        }
+        
     }
     
     private void resetRequestBoxes() {
+        
+        propName1.setVisible(true);
+        propLocation1.setVisible(true);
+        datesRequested1.setVisible(true);
+        
+        propName2.setVisible(true);
+        propLocation2.setVisible(true);
+        datesRequested2.setVisible(true);
+        
+        propName3.setVisible(true);
+        propLocation3.setVisible(true);
+        datesRequested3.setVisible(true);
+        
+        propName4.setVisible(true);
+        propLocation4.setVisible(true);
+        datesRequested4.setVisible(true);
         
     }
     
@@ -614,26 +694,26 @@ public class HostRequests extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_requestsActionPerformed
 
     private void upcomingBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcomingBookingsActionPerformed
-        HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(upcomingPage);
+        //HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(upcomingPage);
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
     private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
-        HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(previousPage);
+        //HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(previousPage);
     }//GEN-LAST:event_previousBookingsActionPerformed
 
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed
-        HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance);
-        jFrameInstance.changePanelToSpecific(propertiesPage);
+        //HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(propertiesPage);
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void acceptBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking1ActionPerformed
-        // TODO add your handling code here:
+        //RequestList.checkForOverlaps(, startDate, endDate);
     }//GEN-LAST:event_acceptBooking1ActionPerformed
 
     private void rejectBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking1ActionPerformed
@@ -673,11 +753,11 @@ public class HostRequests extends javax.swing.JPanel {
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstReqOnPage = (currentPage-1)*3;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
-        fillPropertyBoxes(indexFirstPropOnPage);
-        resetPropertyBoxes();
+        fillRequestBoxes(indexFirstReqOnPage);
+        resetRequestBoxes();
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
@@ -689,14 +769,14 @@ public class HostRequests extends javax.swing.JPanel {
             nextPage.setEnabled(false);
         }
         
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstReqOnPage = (currentPage-1)*3;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
-        fillPropertyBoxes(indexFirstPropOnPage);
-        resetPropertyBoxes();
-        if (indexFirstPropOnPage + 3 > propertyList.length){
-            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
-        }:
+        fillRequestBoxes(indexFirstReqOnPage);
+        resetRequestBoxes();
+        if (indexFirstReqOnPage + 3 > requestList.length){
+            removeRequestBoxes(indexFirstReqOnPage - requestList.length + 3);
+        }
     }//GEN-LAST:event_nextPageActionPerformed
 
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed

@@ -39,7 +39,7 @@ public class ChargeBand {
     //isBetweenDates compares a given date to a start and end date and determines 
     //whether the date falls in this range, and will return a Boolean value as the output
     
-    private static Boolean isBetweenDates(Date startDate, Date endDate, Date givenDate) {
+    static Boolean isBetweenDates(Date startDate, Date endDate, Date givenDate) {
         
         //Variables
         boolean isBetween = false; //If the following conditions from if loop aren't true, isBetween will return false

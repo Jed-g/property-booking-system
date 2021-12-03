@@ -6,10 +6,10 @@ public class ReviewList {
     
     private String forename;
     private String lastname;
-    private int rating;
+    private float rating;
     private String reviewDesc;
     
-    private ReviewList(String forename, String lastname, int rating, String reviewDesc){
+    private ReviewList(String forename, String lastname, float rating, String reviewDesc){
         this.forename = forename;
         this.lastname = lastname;
         this.rating = rating;
@@ -24,7 +24,7 @@ public class ReviewList {
         return lastname;
     }
     
-    int getRating(){
+    float getRating(){
         return rating;
     }
     
@@ -39,7 +39,7 @@ public class ReviewList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT forename, surname, rating, reviewDescription FROM Reviews JOIN Bookings"
+            PreparedStatement pstmt = con.prepareStatement("SELECT forename, surname, avgRating, reviewDescription FROM Reviews JOIN Bookings"
                     + " JOIN Users ON Reviews.bookingId = Bookings.bookingId AND Bookings.email = Users.email WHERE propertyId = ?;",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setString(1, propertyId);
@@ -56,7 +56,7 @@ public class ReviewList {
             for (int i = 0; i < numberOfReviews; i++){
                 if (res.next()){
                     reviewList[i] = new ReviewList(res.getString("forename"), res.getString("surname"),
-                            res.getInt("rating"), res.getString("reviewDescription"));
+                            res.getFloat("avgRating"), res.getString("reviewDescription"));
                 }
             }
 

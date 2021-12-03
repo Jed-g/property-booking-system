@@ -22,6 +22,10 @@ private String enddate;
 private String email;
 private Boolean hostView = false;
 int propertyId;
+int a;
+int b;
+int c;
+int d;
 
 
 
@@ -61,28 +65,18 @@ int propertyId;
         jLabel3 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        locationTextField = new javax.swing.JTextField();
+        ratingTextField = new javax.swing.JTextField();
+        accomodationTextField = new javax.swing.JTextField();
+        descriptionTextField = new javax.swing.JTextField();
         jButton9 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField13 = new javax.swing.JTextField();
+        locationTextField1 = new javax.swing.JTextField();
+        ratingTextField1 = new javax.swing.JTextField();
+        accomodationTextField1 = new javax.swing.JTextField();
+        descriptionTextField1 = new javax.swing.JTextField();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -90,6 +84,17 @@ int propertyId;
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         accountButton = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jTabbedPane5 = new javax.swing.JTabbedPane();
+        locationTextField2 = new javax.swing.JTextField();
+        ratingTextField2 = new javax.swing.JTextField();
+        accomodationTextField2 = new javax.swing.JTextField();
+        descriptionTextField2 = new javax.swing.JTextField();
+        jTabbedPane6 = new javax.swing.JTabbedPane();
+        locationTextField3 = new javax.swing.JTextField();
+        ratingjTextField3 = new javax.swing.JTextField();
+        accomodationTextField3 = new javax.swing.JTextField();
+        descriptionTextField3 = new javax.swing.JTextField();
 
         jButton4.setBackground(new java.awt.Color(255, 204, 153));
         jButton4.setText("Search");
@@ -162,66 +167,72 @@ int propertyId;
             }
         });
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        locationTextField.setText("jTextField1");
+        locationTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                locationTextFieldActionPerformed(evt);
             }
         });
-        jTabbedPane1.addTab("Location ", jTextField1);
+        jTabbedPane1.addTab("Location ", locationTextField);
 
-        jTextField2.setText("jTextField2");
-        jTabbedPane1.addTab("Rating", jTextField2);
+        ratingTextField.setText("jTextField2");
+        ratingTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ratingTextFieldActionPerformed(evt);
+            }
+        });
+        jTabbedPane1.addTab("Rating", ratingTextField);
 
-        jTextField3.setText("jTextField3");
-        jTabbedPane1.addTab("Accomodation name", jTextField3);
+        accomodationTextField.setText("jTextField3");
+        accomodationTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accomodationTextFieldActionPerformed(evt);
+            }
+        });
+        jTabbedPane1.addTab("Accomodation name", accomodationTextField);
 
-        jTextField4.setText("jTextField4");
-        jTabbedPane1.addTab("Description", jTextField4);
+        descriptionTextField.setText("jTextField4");
+        descriptionTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descriptionTextFieldActionPerformed(evt);
+            }
+        });
+        jTabbedPane1.addTab("Description", descriptionTextField);
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
         jButton9.setText("View more information");
 
         jLabel4.setText("Recommended accomodations under search:");
 
-        jTextField6.setText("jTextField6");
-        jTabbedPane2.addTab("Rating", jTextField6);
-
-        jTextField7.setText("jTextField7");
-        jTabbedPane2.addTab("Accomodation name", jTextField7);
-
-        jTextField8.setText("jTextField8");
-        jTabbedPane2.addTab("Description", jTextField8);
-
-        jTextField5.setText("jTextField5");
-        jTabbedPane2.addTab("Location ", jTextField5);
-
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
         jButton10.setText("View more information");
 
-        jTextField9.setText("jTextField9");
-        jTabbedPane3.addTab("Location", jTextField9);
+        locationTextField1.setText("jTextField9");
+        jTabbedPane3.addTab("Location", locationTextField1);
 
-        jTextField10.setText("jTextField10");
-        jTabbedPane3.addTab("Rating", jTextField10);
+        ratingTextField1.setText("jTextField10");
+        ratingTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ratingTextField1ActionPerformed(evt);
+            }
+        });
+        jTabbedPane3.addTab("Rating", ratingTextField1);
 
-        jTextField11.setText("jTextField11");
-        jTabbedPane3.addTab("Accomodation name", jTextField11);
+        accomodationTextField1.setText("jTextField11");
+        accomodationTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accomodationTextField1ActionPerformed(evt);
+            }
+        });
+        jTabbedPane3.addTab("Accomodation name", accomodationTextField1);
 
-        jTextField12.setText("jTextField12");
-        jTabbedPane3.addTab("Description", jTextField12);
-
-        jTextField14.setText("jTextField14");
-        jTabbedPane4.addTab("Rating", jTextField14);
-
-        jTextField15.setText("jTextField15");
-        jTabbedPane4.addTab("Accomodation name", jTextField15);
-
-        jTextField16.setText("jTextField16");
-        jTabbedPane4.addTab("Description", jTextField16);
-
-        jTextField13.setText("jTextField13");
-        jTabbedPane4.addTab("Location", jTextField13);
+        descriptionTextField1.setText("jTextField12");
+        descriptionTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descriptionTextField1ActionPerformed(evt);
+            }
+        });
+        jTabbedPane3.addTab("Description", descriptionTextField1);
 
         jButton11.setBackground(new java.awt.Color(255, 153, 153));
         jButton11.setText("View more information");
@@ -272,6 +283,77 @@ int propertyId;
             }
         });
 
+        jButton16.setText("jButton16");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        locationTextField2.setText("jTextField1");
+        locationTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationTextField2ActionPerformed(evt);
+            }
+        });
+        jTabbedPane5.addTab("Location ", locationTextField2);
+
+        ratingTextField2.setText("jTextField2");
+        ratingTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ratingTextField2ActionPerformed(evt);
+            }
+        });
+        jTabbedPane5.addTab("Rating", ratingTextField2);
+
+        accomodationTextField2.setText("jTextField3");
+        accomodationTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accomodationTextField2ActionPerformed(evt);
+            }
+        });
+        jTabbedPane5.addTab("Accomodation name", accomodationTextField2);
+
+        descriptionTextField2.setText("jTextField4");
+        descriptionTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descriptionTextField2ActionPerformed(evt);
+            }
+        });
+        jTabbedPane5.addTab("Description", descriptionTextField2);
+
+        locationTextField3.setText("jTextField1");
+        locationTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationTextField3ActionPerformed(evt);
+            }
+        });
+        jTabbedPane6.addTab("Location ", locationTextField3);
+
+        ratingjTextField3.setText("jTextField2");
+        ratingjTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ratingjTextField3ActionPerformed(evt);
+            }
+        });
+        jTabbedPane6.addTab("Rating", ratingjTextField3);
+
+        accomodationTextField3.setText("jTextField3");
+        accomodationTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                accomodationTextField3ActionPerformed(evt);
+            }
+        });
+        jTabbedPane6.addTab("Accomodation name", accomodationTextField3);
+
+        descriptionTextField3.setText("jTextField4");
+        descriptionTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                descriptionTextField3ActionPerformed(evt);
+            }
+        });
+        jTabbedPane6.addTab("Description", descriptionTextField3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,19 +361,21 @@ int propertyId;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(444, 444, 444)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(accountButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(91, 91, 91)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButton16)
+                                    .addGap(266, 266, 266)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(28, 28, 28)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(accountButton))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(39, 39, 39)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -317,41 +401,38 @@ int propertyId;
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(33, 33, 33)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(79, 79, 79)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton10)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton7))
-                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(74, 74, 74)
-                                    .addComponent(jButton9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton15))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(59, 59, 59)
-                                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(25, 25, 25)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton13)
-                                    .addGap(74, 74, 74))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(59, 59, 59)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton11)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton14))
-                                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(25, 25, 25)
+                                        .addComponent(jButton12)
+                                        .addGap(132, 132, 132)
+                                        .addComponent(jButton13))
+                                    .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(76, 76, 76)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton14))
+                                    .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton7))
+                                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(86, 86, 86)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButton9)
+                                        .addGap(111, 111, 111)
+                                        .addComponent(jButton15))
+                                    .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(62, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -363,11 +444,17 @@ int propertyId;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -390,30 +477,33 @@ int propertyId;
                 .addGap(1, 1, 1)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton9)
-                    .addComponent(jButton7)
-                    .addComponent(jButton15))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton10)
+                                    .addComponent(jButton7)
+                                    .addComponent(jButton15)
+                                    .addComponent(jButton9))
+                                .addGap(29, 29, 29)
+                                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton12)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton11)
-                        .addComponent(jButton13)
-                        .addComponent(jButton14)))
-                .addGap(18, 18, 18))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton12)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton13)
+                                .addComponent(jButton11)))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(198, 198, 198)
+                        .addComponent(jButton14)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -537,15 +627,141 @@ int propertyId;
         jFrameInstance.changePanelToSpecific(userPanel);
     }//GEN-LAST:event_accountButtonActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void locationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextFieldActionPerformed
         // TODO add your handling code here:
-       Property location = new Property(jFrameInstance, propertyId, email, hostView); 
-       
-    }//GEN-LAST:event_jTextField1ActionPerformed
+       Property information = new Property(jFrameInstance,propertyId, email);
+       a = 1;
+       while (a == propertyId ){
+       String text1 = information.getPropertyLocation();
+       String text2 = locationTextField.getText();
+       text1=text2;
+       a++;
+       }
+    }//GEN-LAST:event_locationTextFieldActionPerformed
 
+    private void locationTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                                  
+        // TODO add your handling code here:
+       Property information = new Property(jFrameInstance,propertyId, email);
+       b = a+1;
+       while (b == propertyId )
+       {
+       String text1 = information.getPropertyLocation();
+       String text2 = locationTextField1.getText();
+       text1=text2;
+       b++;
+       }
+    }
+    
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+        Property add = new Property(jFrameInstance, propertyId,email);
+        jFrameInstance.changePanelToSpecific(add);
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void locationTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextField2ActionPerformed
+        // TODO add your handling code here:
+     Property information = new Property(jFrameInstance,propertyId, email);
+       for (int c =0;c< propertyId;c++ )
+       {
+       String text1 = information.getPropertyLocation();
+       String text2 = locationTextField2.getText();
+       text1=text2;
+       }   
+    }//GEN-LAST:event_locationTextField2ActionPerformed
+
+    private void locationTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextField3ActionPerformed
+        // TODO add your handling code here:
+       Property information = new Property(jFrameInstance,propertyId, email);
+       d = c+1;
+       while (a == propertyId )
+       {
+       String text1 = information.getPropertyLocation();
+       String text2 = locationTextField3.getText();
+       text1=text2;
+       d++;
+       }
+    }//GEN-LAST:event_locationTextField3ActionPerformed
+
+    private void ratingTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingTextFieldActionPerformed
+        // TODO add your handling code here:
+       Property information = new Property(jFrameInstance,propertyId, email);
+       a = 1;
+       while (a == propertyId ){
+       Float text1 = information.getRating();
+       String text2 = ratingTextField.getText();
+       float f = Float.parseFloat(text2);
+       text1=f;
+       a++;
+       }
+    }//GEN-LAST:event_ratingTextFieldActionPerformed
+
+    private void ratingTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingTextField1ActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_ratingTextField1ActionPerformed
+
+    private void ratingjTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingjTextField3ActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_ratingjTextField3ActionPerformed
+
+    private void ratingTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ratingTextField2ActionPerformed
+        // TODO add your handling code here:
+      
+    }//GEN-LAST:event_ratingTextField2ActionPerformed
+
+    private void accomodationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accomodationTextFieldActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_accomodationTextFieldActionPerformed
+
+    private void accomodationTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accomodationTextField1ActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_accomodationTextField1ActionPerformed
+
+    private void accomodationTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accomodationTextField3ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_accomodationTextField3ActionPerformed
+
+    private void accomodationTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accomodationTextField2ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_accomodationTextField2ActionPerformed
+
+    private void descriptionTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextFieldActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_descriptionTextFieldActionPerformed
+
+    private void descriptionTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextField1ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_descriptionTextField1ActionPerformed
+
+    private void descriptionTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextField3ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_descriptionTextField3ActionPerformed
+
+    private void descriptionTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descriptionTextField2ActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_descriptionTextField2ActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField accomodationTextField;
+    private javax.swing.JTextField accomodationTextField1;
+    private javax.swing.JTextField accomodationTextField2;
+    private javax.swing.JTextField accomodationTextField3;
     private javax.swing.JButton accountButton;
+    private javax.swing.JTextField descriptionTextField;
+    private javax.swing.JTextField descriptionTextField1;
+    private javax.swing.JTextField descriptionTextField2;
+    private javax.swing.JTextField descriptionTextField3;
     private javax.swing.JFormattedTextField enddatefield;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -554,6 +770,7 @@ int propertyId;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -567,26 +784,18 @@ int propertyId;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTabbedPane jTabbedPane5;
+    private javax.swing.JTabbedPane jTabbedPane6;
+    private javax.swing.JTextField locationTextField;
+    private javax.swing.JTextField locationTextField1;
+    private javax.swing.JTextField locationTextField2;
+    private javax.swing.JTextField locationTextField3;
     private javax.swing.JTextField locationname;
+    private javax.swing.JTextField ratingTextField;
+    private javax.swing.JTextField ratingTextField1;
+    private javax.swing.JTextField ratingTextField2;
+    private javax.swing.JTextField ratingjTextField3;
     private javax.swing.JFormattedTextField startdatefield;
     // End of variables declaration//GEN-END:variables
 }

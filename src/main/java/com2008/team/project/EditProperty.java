@@ -1,30 +1,117 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com2008.team.project;
 
-import java.util.HashMap;
-/**
- *
- * @author Matyas Szert
- */
-public class EditProperty extends javax.swing.JPanel {
+import java.util.ArrayList;
+import java.sql.*;
 
-    int propertyId;
-    HashMap<String, String> strDetails = new HashMap();
-    HashMap<String, Boolean> amenitiesDetails = new HashMap();
-    HashMap<String, String> confidentialDetails = new HashMap();
+public class EditProperty extends javax.swing.JPanel {
+    
+    private class Bedroom{
+        private Bed bed1;
+        private Bed bed2;
+        private Bedroom(){
+        }
+        private void setBed1(String bed1){
+            switch(bed1){
+                case "Single bed":
+                    this.bed1 = Bed.SINGLE;
+                    break;
+                case "Double bed":
+                    this.bed1 = Bed.DOUBLE;
+                    break;
+                case "Kingsize bed":
+                    this.bed1 = Bed.KINGSIZE;
+                    break;
+                case "Bunk bed":
+                    this.bed1 = Bed.BUNK;
+                    break;
+                default:
+                    this.bed1 = Bed.SINGLE;
+                    break;
+            }
+        }
+        private void setBed2(String bed2){
+            switch(bed2){
+                case "Single bed":
+                    this.bed2 = Bed.SINGLE;
+                    break;
+                case "Double bed":
+                    this.bed2 = Bed.DOUBLE;
+                    break;
+                case "Kingsize bed":
+                    this.bed2 = Bed.KINGSIZE;
+                    break;
+                case "Bunk bed":
+                    this.bed2 = Bed.BUNK;
+                    break;
+                default:
+                    this.bed2 = null;
+                    break;
+            }
+        }
+        private String getBed1String(){
+            switch(bed1){
+                case SINGLE:
+                    return "Single bed";
+                case DOUBLE:
+                    return "Double bed";
+                case KINGSIZE:
+                    return "Kingsize bed";
+                case BUNK:
+                    return "Bunk bed";
+                default:
+                    return "Single bed";
+            }
+        }
+        private String getBed2String(){
+            if (bed2 == null){
+                return "None";
+            }
+            switch(bed2){
+                case SINGLE:
+                    return "Single bed";
+                case DOUBLE:
+                    return "Double bed";
+                case KINGSIZE:
+                    return "Kingsize bed";
+                case BUNK:
+                    return "Bunk bed";
+                default:
+                    return "None";
+            }
+        }
+    }
+    
+    private class Bathroom{
+        private boolean toilet;
+        private boolean bath;
+        private boolean shower;
+        private boolean shared;
+        private Bathroom(){
+        }
+    }
+
+    private ArrayList<Bedroom> bedrooms = new ArrayList<>();
+    private ArrayList<Bathroom> bathrooms = new ArrayList<>();
+    
+    private EditProperty2 editProperty2Instance;
+    private Main jFrameInstance;
+    private int propertyId;
+    
+    private int currentBedroomPage = 1;
+    private int currentBathroomPage = 1;
+    
     /**
-     * Creates new form editPoperty
+     * Creates new form AddProperty
      */
-    public EditProperty(int propertyId, HashMap strDetails, HashMap amenitiesDetails, HashMap confidentialDetails) {
+    public EditProperty(Main jFrameInstance, int propertyId) {
         initComponents();
+        this.jFrameInstance = jFrameInstance;
+        editProperty2Instance = new EditProperty2(jFrameInstance, this, propertyId);
         this.propertyId = propertyId;
-        this.strDetails = strDetails;
-        this.amenitiesDetails = amenitiesDetails;
-        this.confidentialDetails = confidentialDetails;
-        prepopulate();
+        
+        DriverManager.setLoginTimeout(3);
+        
+        fetchData();
     }
 
     /**
@@ -36,1274 +123,1643 @@ public class EditProperty extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator1 = new javax.swing.JSeparator();
+        returnButton = new javax.swing.JButton();
+        addPropertyText = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        propertyNameTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        locationTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        houseNumberTextField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        streetNameTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        postcodeTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        placeNameTextField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        nextButton = new javax.swing.JButton();
+        jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        stoveIcon1 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionTextField = new javax.swing.JTextArea();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        bedroomText = new javax.swing.JLabel();
+        sleepingNextButton = new javax.swing.JButton();
+        sleepingPrevButton = new javax.swing.JButton();
+        sleepingNewButton = new javax.swing.JButton();
+        sleepingDeleteButton = new javax.swing.JButton();
+        bed1Combobox = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
-        numBathroomsLabel = new javax.swing.JLabel();
+        bed2Combobox = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        bedLinenCheckbox = new javax.swing.JCheckBox();
+        towelsCheckbox = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        bathroomText = new javax.swing.JLabel();
+        bathingNextButton = new javax.swing.JButton();
+        bathingPrevButton = new javax.swing.JButton();
+        bathingNewButton = new javax.swing.JButton();
+        bathingDeleteButton = new javax.swing.JButton();
+        toiletCheckbox = new javax.swing.JCheckBox();
+        showerCheckbox = new javax.swing.JCheckBox();
+        bathCheckbox = new javax.swing.JCheckBox();
+        sharedCheckbox = new javax.swing.JCheckBox();
+        jPanel13 = new javax.swing.JPanel();
+        hairDryerCheckbox = new javax.swing.JCheckBox();
+        shampooCheckbox = new javax.swing.JCheckBox();
+        toiletPaperCheckbox = new javax.swing.JCheckBox();
+        jPanel14 = new javax.swing.JPanel();
+        tvCheckbox = new javax.swing.JCheckBox();
+        wifiCheckbox = new javax.swing.JCheckBox();
+        satelliteCheckbox = new javax.swing.JCheckBox();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
+        basicProvisionsCheckbox = new javax.swing.JCheckBox();
+        cookwareCheckbox = new javax.swing.JCheckBox();
+        tablewareCheckbox = new javax.swing.JCheckBox();
+        dishwasherCheckbox = new javax.swing.JCheckBox();
+        ovenCheckbox = new javax.swing.JCheckBox();
+        stoveCheckbox = new javax.swing.JCheckBox();
+        microwaveCheckbox = new javax.swing.JCheckBox();
+        refrigeratorCheckbox = new javax.swing.JCheckBox();
+        onRoadParkingCheckbox = new javax.swing.JCheckBox();
+        patioCheckbox = new javax.swing.JCheckBox();
+        freeOnSiteParkingCheckbox = new javax.swing.JCheckBox();
+        paidCarParkCheckbox = new javax.swing.JCheckBox();
+        streamingCheckbox = new javax.swing.JCheckBox();
+        dvdPlayerCheckbox = new javax.swing.JCheckBox();
+        boardGamesCheckbox = new javax.swing.JCheckBox();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        numBedroomsLabel = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        numBedsLabel = new javax.swing.JLabel();
-        numSleepersLabel = new javax.swing.JLabel();
-        noOfBeds1 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        centralHeatingCheckbox = new javax.swing.JCheckBox();
+        washingMachineCheckbox = new javax.swing.JCheckBox();
+        dryingMachineCheckbox = new javax.swing.JCheckBox();
+        fireExtinguisherCheckbox = new javax.swing.JCheckBox();
+        firstAidCheckbox = new javax.swing.JCheckBox();
+        smokeAlarmCheckbox = new javax.swing.JCheckBox();
         jLabel17 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        accountButton1 = new javax.swing.JButton();
-        multiUseButton1 = new javax.swing.JButton();
-        jLabel40 = new javax.swing.JLabel();
-        java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
-        startDateField = new javax.swing.JFormattedTextField(dateFormat);
-        jLabel41 = new javax.swing.JLabel();
-        endDateField = new javax.swing.JFormattedTextField(dateFormat);
-        jLabel42 = new javax.swing.JLabel();
-        price = new javax.swing.JLabel();
-        applyDatesButton = new javax.swing.JButton();
-        propertyName = new javax.swing.JTextField();
-        location = new javax.swing.JTextField();
-        houseNumber = new javax.swing.JTextField();
-        streetName = new javax.swing.JTextField();
-        placeName = new javax.swing.JTextField();
-        postCode = new javax.swing.JTextField();
-        bedLinenBox = new javax.swing.JCheckBox();
-        towelsBox = new javax.swing.JCheckBox();
-        hairDryerBox = new javax.swing.JCheckBox();
-        shampooBox = new javax.swing.JCheckBox();
-        toiletPaperBox = new javax.swing.JCheckBox();
-        refrigeratorBox = new javax.swing.JCheckBox();
-        microwaveBox = new javax.swing.JCheckBox();
-        stoveBox = new javax.swing.JCheckBox();
-        dishwasherBox = new javax.swing.JCheckBox();
-        tablewareBox = new javax.swing.JCheckBox();
-        ovenBox = new javax.swing.JCheckBox();
-        cookwareBox = new javax.swing.JCheckBox();
-        basicProvisionsBox = new javax.swing.JCheckBox();
-        wifiBox = new javax.swing.JCheckBox();
-        dvdPlayerBox = new javax.swing.JCheckBox();
-        televisionBox = new javax.swing.JCheckBox();
-        boardGamesBox = new javax.swing.JCheckBox();
-        satelliteBox = new javax.swing.JCheckBox();
-        streamingBox = new javax.swing.JCheckBox();
-        smokeAlarmBox = new javax.swing.JCheckBox();
-        heatingBox = new javax.swing.JCheckBox();
-        washingMachineBox = new javax.swing.JCheckBox();
-        firstAidKitBox = new javax.swing.JCheckBox();
-        dryingMachineBox = new javax.swing.JCheckBox();
-        fireExtinguisherBox = new javax.swing.JCheckBox();
-        freeParkingBox = new javax.swing.JCheckBox();
-        patioBox = new javax.swing.JCheckBox();
-        onRoadParkingBox = new javax.swing.JCheckBox();
-        barbequeBox = new javax.swing.JCheckBox();
-        paidCarParkingBox = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        description = new javax.swing.JTextArea();
+        bbqCheckbox = new javax.swing.JCheckBox();
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(1024, 576));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1024, 576));
+        returnButton.setBackground(new java.awt.Color(194, 123, 160));
+        returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back_arrow_resized.png"))); // NOI18N
+        returnButton.setText("Return");
+        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        returnButton.setIconTextGap(8);
+        returnButton.setMaximumSize(new java.awt.Dimension(168, 54));
+        returnButton.setMinimumSize(new java.awt.Dimension(168, 54));
+        returnButton.setPreferredSize(new java.awt.Dimension(168, 54));
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+
+        addPropertyText.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        addPropertyText.setText("Edit Property");
+
+        propertyNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        propertyNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                propertyNameTextFieldActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Kitchen");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Refrigerator");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel3.setText("Microwave");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel4.setText("Oven");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel5.setText("Stove");
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel6.setText("Dishwasher");
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel7.setText("Tableware");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel8.setText("Cookware");
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel9.setText("Basic provisions");
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel12.setText("Toilet paper");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel13.setText("Shampoo");
-
-        numBathroomsLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        numBathroomsLabel.setText("0");
-
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel15.setText("Bathrooms");
-
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel16.setText("Number of Bathrooms:");
-
-        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel18.setText("Hair dryer");
-
-        jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setText("Bedrooms");
-
-        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel20.setText("Number of Bedrooms: ");
-
-        numBedroomsLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        numBedroomsLabel.setText("0");
-
-        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel21.setText("Number of Beds: ");
-
-        numBedsLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        numBedsLabel.setText("0");
-
-        numSleepersLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        numSleepersLabel.setText("0");
-
-        noOfBeds1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        noOfBeds1.setText("Number of Sleepers: ");
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel22.setText("Bed linen");
-
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel23.setText("Towels");
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Living Room");
-
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel11.setText("Wi-fi");
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel14.setText("Television");
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel17.setText("Satellite");
-
-        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel24.setText("DVD Player");
-
-        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel25.setText("Board games");
-
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel27.setText("Streaming");
-
-        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel26.setText("Utilities");
-
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel28.setText("Heating");
-
-        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel29.setText("Smoke alarm");
-
-        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel30.setText("Washing machine");
-
-        jLabel31.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel31.setText("First aid kit");
-
-        jLabel32.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel32.setText("Drying machine");
-
-        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel33.setText("Fire extinguisher");
-
-        jLabel34.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel34.setText("Outdoors");
-
-        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel35.setText("Free on-site parking");
-
-        jLabel36.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel36.setText("Patio");
-
-        jLabel37.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel37.setText("On-road parking");
-
-        jLabel38.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel38.setText("Paid car park");
-
-        jLabel39.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel39.setText("Barbecue");
-
-        accountButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        accountButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User_Icon_Wikipedia_Resized.png"))); // NOI18N
-        accountButton1.setText("Account");
-        accountButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        accountButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-        accountButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                accountButton1ActionPerformed(evt);
-            }
-        });
-
-        multiUseButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        multiUseButton1.setText("Save changes");
-        multiUseButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                multiUseButton1ActionPerformed(evt);
-            }
-        });
-
-        startDateField.setText("dd/mm/yyyy");
-        try{
-            javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
-            dateMask.install(startDateField);
-        } catch (Exception ex) {/*Ignore*/}
-        startDateField.setText(dateFormat.format(new java.util.Date()));
-
-        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel41.setText("Start Date (dd/mm/yyyy)");
-
-        endDateField.setText("dd/mm/yyyy");
-        try{
-            javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
-            dateMask.install(startDateField);
-        } catch (Exception ex) {/*Ignore*/}
-        startDateField.setText(dateFormat.format(new java.util.Date()));
-        endDateField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                endDateFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel42.setText("End Date (dd/mm/yyyy)");
-
-        price.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        price.setText("?0");
-
-        applyDatesButton.setText("Apply dates");
-        applyDatesButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                applyDatesButtonActionPerformed(evt);
-            }
-        });
-
-        propertyName.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        propertyName.setText("Property Name");
-        propertyName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                propertyNameActionPerformed(evt);
-            }
-        });
-
-        location.setText("Location");
-
-        houseNumber.setText("House Number");
-        houseNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                houseNumberActionPerformed(evt);
-            }
-        });
-
-        streetName.setText("Street Name");
-        streetName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                streetNameActionPerformed(evt);
-            }
-        });
-
-        placeName.setText("Place Name");
-        placeName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                placeNameActionPerformed(evt);
-            }
-        });
-
-        postCode.setText("Post Code");
-        postCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                postCodeActionPerformed(evt);
-            }
-        });
-
-        bedLinenBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bedLinenBoxActionPerformed(evt);
-            }
-        });
-
-        towelsBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                towelsBoxActionPerformed(evt);
-            }
-        });
-
-        hairDryerBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hairDryerBoxActionPerformed(evt);
-            }
-        });
-
-        shampooBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shampooBoxActionPerformed(evt);
-            }
-        });
-
-        toiletPaperBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toiletPaperBoxActionPerformed(evt);
-            }
-        });
-
-        refrigeratorBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refrigeratorBoxActionPerformed(evt);
-            }
-        });
-
-        microwaveBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                microwaveBoxActionPerformed(evt);
-            }
-        });
-
-        stoveBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stoveBoxActionPerformed(evt);
-            }
-        });
-
-        dishwasherBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dishwasherBoxActionPerformed(evt);
-            }
-        });
-
-        tablewareBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tablewareBoxActionPerformed(evt);
-            }
-        });
-
-        ovenBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ovenBoxActionPerformed(evt);
-            }
-        });
-
-        cookwareBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cookwareBoxActionPerformed(evt);
-            }
-        });
-
-        basicProvisionsBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                basicProvisionsBoxActionPerformed(evt);
-            }
-        });
-
-        wifiBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                wifiBoxActionPerformed(evt);
-            }
-        });
-
-        dvdPlayerBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dvdPlayerBoxActionPerformed(evt);
-            }
-        });
-
-        televisionBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                televisionBoxActionPerformed(evt);
-            }
-        });
-
-        boardGamesBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boardGamesBoxActionPerformed(evt);
-            }
-        });
-
-        satelliteBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                satelliteBoxActionPerformed(evt);
-            }
-        });
-
-        streamingBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                streamingBoxActionPerformed(evt);
-            }
-        });
-
-        smokeAlarmBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                smokeAlarmBoxActionPerformed(evt);
-            }
-        });
-
-        heatingBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                heatingBoxActionPerformed(evt);
-            }
-        });
-
-        washingMachineBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                washingMachineBoxActionPerformed(evt);
-            }
-        });
-
-        firstAidKitBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                firstAidKitBoxActionPerformed(evt);
-            }
-        });
-
-        dryingMachineBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dryingMachineBoxActionPerformed(evt);
-            }
-        });
-
-        fireExtinguisherBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fireExtinguisherBoxActionPerformed(evt);
-            }
-        });
-
-        freeParkingBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                freeParkingBoxActionPerformed(evt);
-            }
-        });
-
-        patioBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                patioBoxActionPerformed(evt);
-            }
-        });
-
-        onRoadParkingBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onRoadParkingBoxActionPerformed(evt);
-            }
-        });
-
-        barbequeBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                barbequeBoxActionPerformed(evt);
-            }
-        });
-
-        paidCarParkingBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                paidCarParkingBoxActionPerformed(evt);
-            }
-        });
-
-        description.setColumns(20);
-        description.setRows(5);
-        description.setText("Description...(max 500 characters)");
-        jScrollPane1.setViewportView(description);
+        jLabel1.setText("Property Name");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(0, 0, 0)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(wifiBox)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addComponent(jLabel12)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel26)
-                                                        .addComponent(jLabel28)
-                                                        .addComponent(jLabel29))
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addComponent(toiletPaperBox))
-                                        .addComponent(jLabel16))
-                                    .addComponent(dvdPlayerBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(numBathroomsLabel)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(hairDryerBox)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(shampooBox)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addComponent(stoveIcon1)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(streetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel40)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel33)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel32)
-                                        .addGap(4, 4, 4)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(satelliteBox)
-                                            .addComponent(streamingBox)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(fireExtinguisherBox)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(dryingMachineBox)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel19)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jLabel21)
-                                            .addGap(37, 37, 37)
-                                            .addComponent(numBedsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(noOfBeds1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(numSleepersLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(26, 26, 26)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel20)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(numBedroomsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(propertyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(placeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(postCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel23))
-                                        .addGap(45, 45, 45)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(bedLinenBox)
-                                            .addComponent(towelsBox)))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(houseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(firstAidKitBox)
-                                                .addComponent(washingMachineBox))
-                                            .addGap(21, 21, 21)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(98, 98, 98)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel25))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(televisionBox)
-                                            .addComponent(boardGamesBox))
-                                        .addGap(43, 43, 43))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(smokeAlarmBox)
-                                            .addComponent(heatingBox))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel31)
-                                            .addComponent(jLabel30))
-                                        .addGap(82, 82, 82)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel27)
-                                    .addComponent(jLabel17))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(65, 65, 65)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(price)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel41)
-                                        .addComponent(applyDatesButton)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel42)
-                                .addComponent(multiUseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(23, 23, 23))
-                    .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel36)
-                                    .addComponent(jLabel35)
-                                    .addComponent(jLabel34)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(refrigeratorBox))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(stoveBox)))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(freeParkingBox)
-                                            .addComponent(patioBox))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel37)
-                                            .addComponent(jLabel39))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(barbequeBox)
-                                            .addComponent(onRoadParkingBox))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel38)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(paidCarParkingBox)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel6))
-                                        .addGap(19, 19, 19)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(microwaveBox)
-                                            .addComponent(dishwasherBox))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(ovenBox))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(tablewareBox)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel9)))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1))
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cookwareBox)
-                            .addComponent(basicProvisionsBox))
-                        .addGap(22, 22, 22)))
-                .addGap(1032, 1032, 1032))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(propertyNameTextField)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(74, 74, 74)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(houseNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(streetName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(propertyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(location, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel19))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(placeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(postCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jLabel40)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel20)
-                                    .addComponent(numBedroomsLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel21)
-                                    .addComponent(numBedsLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(numSleepersLabel)
-                                    .addComponent(noOfBeds1)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bedLinenBox)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel22)))
-                                .addGap(1, 1, 1)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel23)
-                                    .addComponent(towelsBox))))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(47, 47, 47)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel16)
-                                        .addComponent(jLabel18)
-                                        .addComponent(numBathroomsLabel))
-                                    .addComponent(hairDryerBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(shampooBox)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel13)
-                                        .addComponent(jLabel12))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addComponent(stoveIcon1))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(toiletPaperBox)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(wifiBox)
-                            .addComponent(televisionBox))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel26))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(dvdPlayerBox))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(boardGamesBox))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(satelliteBox, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel11)
-                                .addComponent(jLabel14)
-                                .addComponent(jLabel17)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(streamingBox)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel25)
-                                .addComponent(jLabel27)
-                                .addComponent(jLabel24)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(firstAidKitBox)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(heatingBox)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(smokeAlarmBox))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(washingMachineBox)
-                                            .addComponent(dryingMachineBox)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel32)
-                                                .addGap(2, 2, 2)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                    .addComponent(jLabel33)
-                                                    .addComponent(fireExtinguisherBox)))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel28)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel29))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel30)
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel31)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(accountButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(propertyNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        locationTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        locationTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("General Location");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(locationTextField))
+                .addGap(0, 0, 0))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(locationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        houseNumberTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        houseNumberTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                houseNumberTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("House No.");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(houseNumberTextField)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(houseNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        streetNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        streetNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                streetNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Street Name");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(streetNameTextField))
+                .addGap(0, 0, 0))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(streetNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        postcodeTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        postcodeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                postcodeTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Post Code");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(postcodeTextField))
+                .addGap(0, 0, 0))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(postcodeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        placeNameTextField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        placeNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placeNameTextFieldActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Place Name e.g. London");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                    .addComponent(placeNameTextField)))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(placeNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
+        );
+
+        nextButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nextButton.setText("Next");
+        nextButton.setMaximumSize(new java.awt.Dimension(168, 54));
+        nextButton.setMinimumSize(new java.awt.Dimension(168, 54));
+        nextButton.setPreferredSize(new java.awt.Dimension(168, 54));
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Description (not required)");
+
+        descriptionTextField.setColumns(20);
+        descriptionTextField.setLineWrap(true);
+        descriptionTextField.setRows(5);
+        jScrollPane1.setViewportView(descriptionTextField);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel8))
-                            .addComponent(refrigeratorBox)
-                            .addComponent(microwaveBox)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(ovenBox)
-                            .addComponent(cookwareBox))
-                        .addGap(6, 6, 6)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(basicProvisionsBox)
+                .addGap(0, 25, Short.MAX_VALUE))
+        );
+
+        jPanel8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 3, true));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        bedroomText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bedroomText.setText("Bedroom 1/1");
+
+        sleepingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        sleepingNextButton.setText(">");
+        sleepingNextButton.setEnabled(false);
+        sleepingNextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingNextButtonActionPerformed(evt);
+            }
+        });
+
+        sleepingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        sleepingPrevButton.setText("<");
+        sleepingPrevButton.setEnabled(false);
+        sleepingPrevButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingPrevButtonActionPerformed(evt);
+            }
+        });
+
+        sleepingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sleepingNewButton.setText("New Bedroom");
+        sleepingNewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingNewButtonActionPerformed(evt);
+            }
+        });
+
+        sleepingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sleepingDeleteButton.setText("Delete");
+        sleepingDeleteButton.setEnabled(false);
+        sleepingDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sleepingDeleteButtonActionPerformed(evt);
+            }
+        });
+
+        bed1Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setText("Bed 1:");
+
+        bed2Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "None", "Single bed", "Double bed", "Kingsize bed", "Bunk bed" }));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel14.setText("Bed 2:");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addComponent(bedroomText)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(multiUseButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(price)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(stoveBox)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jLabel6)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jLabel9)))
-                                        .addGap(16, 16, 16)
-                                        .addComponent(jLabel34))
-                                    .addComponent(tablewareBox))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabel35)
-                                                .addComponent(jLabel37)
-                                                .addComponent(jLabel38))
-                                            .addComponent(freeParkingBox)
-                                            .addComponent(onRoadParkingBox))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabel36)
-                                                .addComponent(jLabel39))
-                                            .addComponent(patioBox)
-                                            .addComponent(barbequeBox)))
-                                    .addComponent(paidCarParkingBox))
-                                .addGap(33, 33, 33)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel42)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel41)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sleepingNewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel9Layout.createSequentialGroup()
+                                .addComponent(sleepingPrevButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(applyDatesButton))
-                            .addComponent(dishwasherBox))
-                        .addGap(41, 41, 41)))
-                .addGap(31, 31, 31))
+                                .addComponent(sleepingDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(bed2Combobox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel9Layout.createSequentialGroup()
+                                        .addComponent(jLabel13)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(bed1Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sleepingNextButton)))
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bedroomText)
+                    .addComponent(sleepingNewButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bed1Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bed2Combobox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sleepingNextButton)
+                    .addComponent(sleepingPrevButton)
+                    .addComponent(sleepingDeleteButton))
+                .addContainerGap())
+        );
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        bedLinenCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bedLinenCheckbox.setText("Bed Linen");
+        bedLinenCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bedLinenCheckboxActionPerformed(evt);
+            }
+        });
+
+        towelsCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        towelsCheckbox.setText("Towels");
+        towelsCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                towelsCheckboxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bedLinenCheckbox)
+                    .addComponent(towelsCheckbox))
+                .addGap(0, 22, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(bedLinenCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(towelsCheckbox)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Sleeping");
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel11.setText("Bathing");
+
+        jPanel11.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 3, true));
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        bathroomText.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathroomText.setText("Bathroom 1/1");
+
+        bathingNextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bathingNextButton.setText(">");
+        bathingNextButton.setEnabled(false);
+        bathingNextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingNextButtonActionPerformed(evt);
+            }
+        });
+
+        bathingPrevButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        bathingPrevButton.setText("<");
+        bathingPrevButton.setEnabled(false);
+        bathingPrevButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingPrevButtonActionPerformed(evt);
+            }
+        });
+
+        bathingNewButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathingNewButton.setText("New Bathroom");
+        bathingNewButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingNewButtonActionPerformed(evt);
+            }
+        });
+
+        bathingDeleteButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathingDeleteButton.setText("Delete");
+        bathingDeleteButton.setEnabled(false);
+        bathingDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathingDeleteButtonActionPerformed(evt);
+            }
+        });
+
+        toiletCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toiletCheckbox.setText("Toilet");
+        toiletCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toiletCheckboxActionPerformed(evt);
+            }
+        });
+
+        showerCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        showerCheckbox.setText("Shower");
+        showerCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showerCheckboxActionPerformed(evt);
+            }
+        });
+
+        bathCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        bathCheckbox.setText("Bath");
+        bathCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bathCheckboxActionPerformed(evt);
+            }
+        });
+
+        sharedCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        sharedCheckbox.setText("Shared with host");
+        sharedCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sharedCheckboxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(bathroomText)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bathingNewButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                        .addComponent(bathingPrevButton)
+                        .addGap(10, 10, 10)
+                        .addComponent(bathingDeleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bathingNextButton))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(toiletCheckbox)
+                            .addComponent(bathCheckbox))
+                        .addGap(33, 33, 33)
+                        .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sharedCheckbox)
+                            .addComponent(showerCheckbox))
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bathroomText)
+                    .addComponent(bathingNewButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(toiletCheckbox)
+                    .addComponent(showerCheckbox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bathCheckbox)
+                    .addComponent(sharedCheckbox))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bathingNextButton)
+                    .addComponent(bathingPrevButton)
+                    .addComponent(bathingDeleteButton))
+                .addContainerGap())
+        );
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+
+        hairDryerCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        hairDryerCheckbox.setText("Hair Dryer");
+        hairDryerCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hairDryerCheckboxActionPerformed(evt);
+            }
+        });
+
+        shampooCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        shampooCheckbox.setText("Shampoo");
+        shampooCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                shampooCheckboxActionPerformed(evt);
+            }
+        });
+
+        toiletPaperCheckbox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        toiletPaperCheckbox.setText("Toilet Paper");
+        toiletPaperCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toiletPaperCheckboxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(hairDryerCheckbox)
+                    .addComponent(shampooCheckbox)
+                    .addComponent(toiletPaperCheckbox))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(hairDryerCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(shampooCheckbox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(toiletPaperCheckbox)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        tvCheckbox.setText("Television");
+
+        wifiCheckbox.setText("Wifi");
+        wifiCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                wifiCheckboxActionPerformed(evt);
+            }
+        });
+
+        satelliteCheckbox.setText("Satellite");
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel15.setText("Living");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel16.setText("Kitchen");
+
+        basicProvisionsCheckbox.setText("Basic Provisions");
+
+        cookwareCheckbox.setText("Cookware");
+
+        tablewareCheckbox.setText("Tableware");
+
+        dishwasherCheckbox.setText("Dishwasher");
+        dishwasherCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dishwasherCheckboxActionPerformed(evt);
+            }
+        });
+
+        ovenCheckbox.setText("Oven");
+
+        stoveCheckbox.setText("Stove");
+
+        microwaveCheckbox.setText("Microwave");
+
+        refrigeratorCheckbox.setText("Refrigerator");
+
+        onRoadParkingCheckbox.setText("On-road Parking");
+        onRoadParkingCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                onRoadParkingCheckboxActionPerformed(evt);
+            }
+        });
+
+        patioCheckbox.setText("Patio");
+        patioCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                patioCheckboxActionPerformed(evt);
+            }
+        });
+
+        freeOnSiteParkingCheckbox.setText("Free On-site Parking");
+
+        paidCarParkCheckbox.setText("Paid Car-park");
+
+        streamingCheckbox.setText("Streaming");
+
+        dvdPlayerCheckbox.setText("DVD Player");
+
+        boardGamesCheckbox.setText("Board Games");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel18.setText("Utility");
+
+        centralHeatingCheckbox.setText("Central Heating");
+        centralHeatingCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                centralHeatingCheckboxActionPerformed(evt);
+            }
+        });
+
+        washingMachineCheckbox.setText("Washing Machine");
+
+        dryingMachineCheckbox.setText("Drying Machine");
+
+        fireExtinguisherCheckbox.setText("Fire Extinguisher");
+
+        firstAidCheckbox.setText("First Aid Kit");
+
+        smokeAlarmCheckbox.setText("Smoke alarm");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel17.setText("Outdoors");
+
+        bbqCheckbox.setText("Barbeque");
+        bbqCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bbqCheckboxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(freeOnSiteParkingCheckbox)
+                            .addComponent(onRoadParkingCheckbox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(paidCarParkCheckbox)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(patioCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(bbqCheckbox)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(wifiCheckbox)
+                                    .addComponent(tvCheckbox)
+                                    .addComponent(satelliteCheckbox))
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dvdPlayerCheckbox)
+                                    .addComponent(boardGamesCheckbox)
+                                    .addComponent(streamingCheckbox)))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(refrigeratorCheckbox)
+                                    .addComponent(microwaveCheckbox)
+                                    .addComponent(ovenCheckbox)
+                                    .addComponent(stoveCheckbox))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dishwasherCheckbox)
+                                    .addComponent(tablewareCheckbox)
+                                    .addComponent(cookwareCheckbox)
+                                    .addComponent(basicProvisionsCheckbox)))
+                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(washingMachineCheckbox)
+                            .addComponent(dryingMachineCheckbox)
+                            .addComponent(fireExtinguisherCheckbox)
+                            .addComponent(smokeAlarmCheckbox)
+                            .addComponent(firstAidCheckbox)
+                            .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(centralHeatingCheckbox, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(refrigeratorCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(microwaveCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ovenCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(stoveCheckbox))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(dishwasherCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tablewareCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cookwareCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(basicProvisionsCheckbox)))
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(wifiCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tvCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(satelliteCheckbox))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addComponent(streamingCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dvdPlayerCheckbox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(boardGamesCheckbox))))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(centralHeatingCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(washingMachineCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(dryingMachineCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fireExtinguisherCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(smokeAlarmCheckbox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(firstAidCheckbox)))
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(freeOnSiteParkingCheckbox)
+                            .addComponent(paidCarParkCheckbox))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(onRoadParkingCheckbox)
+                            .addComponent(patioCheckbox)
+                            .addComponent(bbqCheckbox))))
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(addPropertyText, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 576, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addPropertyText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void prepopulate() {
-        propertyName.setText(strDetails.get("Name"));
-        location.setText(strDetails.get("Location"));
-        description.setText(strDetails.get("Description"));
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        jFrameInstance.changePanelToDefault();
+    }//GEN-LAST:event_returnButtonActionPerformed
+
+    private void propertyNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertyNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_propertyNameTextFieldActionPerformed
+
+    private void locationTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationTextFieldActionPerformed
+
+    private void streetNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_streetNameTextFieldActionPerformed
+
+    private void houseNumberTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseNumberTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_houseNumberTextFieldActionPerformed
+
+    private void placeNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_placeNameTextFieldActionPerformed
+
+    private void postcodeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postcodeTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_postcodeTextFieldActionPerformed
+
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
+        updateCurrentBedroomInArray();
+        updateCurrentBathroomInArray();
         
-        bedLinenBox.setSelected(amenitiesDetails.get("bedLinen"));
-        towelsBox.setSelected(amenitiesDetails.get("towels"));
-        toiletPaperBox.setSelected(amenitiesDetails.get("toiletPaper"));
-        hairDryerBox.setSelected(amenitiesDetails.get("hairDryer"));
-        shampooBox.setSelected(amenitiesDetails.get("shampoo"));
-        wifiBox.setSelected(amenitiesDetails.get("wifi"));
-        televisionBox.setSelected(amenitiesDetails.get("television"));
-        satelliteBox.setSelected(amenitiesDetails.get("satellite"));
-        dvdPlayerBox.setSelected(amenitiesDetails.get("DVDPlayer"));
-        boardGamesBox.setSelected(amenitiesDetails.get("boardGames"));
-        streamingBox.setSelected(amenitiesDetails.get("streaming"));
-        heatingBox.setSelected(amenitiesDetails.get("heating"));
-        washingMachineBox.setSelected(amenitiesDetails.get("washingMachine"));
-        dryingMachineBox.setSelected(amenitiesDetails.get("dryingMachine"));
-        smokeAlarmBox.setSelected(amenitiesDetails.get("smokeAlarm"));
-        firstAidKitBox.setSelected(amenitiesDetails.get("firstAidKit"));
-        fireExtinguisherBox.setSelected(amenitiesDetails.get("fireExtinguisher"));
-        refrigeratorBox.setSelected(amenitiesDetails.get("refrigerator"));
-        microwaveBox.setSelected(amenitiesDetails.get("microwave"));
-        ovenBox.setSelected(amenitiesDetails.get("oven"));
-        cookwareBox.setSelected(amenitiesDetails.get("cookware"));
-        stoveBox.setSelected(amenitiesDetails.get("stove"));
-        dishwasherBox.setSelected(amenitiesDetails.get("dishwasher"));
-        tablewareBox.setSelected(amenitiesDetails.get("tableware"));
-        freeParkingBox.setSelected(amenitiesDetails.get("freeOnSiteParking"));
-        onRoadParkingBox.setSelected(amenitiesDetails.get("onRoadParking"));
-        paidCarParkingBox.setSelected(amenitiesDetails.get("paidCarParking"));
-        patioBox.setSelected(amenitiesDetails.get("patio"));
-        barbequeBox.setSelected(amenitiesDetails.get("barbeque"));
+        jFrameInstance.changePanelToSpecific(editProperty2Instance);
+    }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void bedLinenCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bedLinenCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bedLinenCheckboxActionPerformed
+
+    private void towelsCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_towelsCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_towelsCheckboxActionPerformed
+
+    private void hairDryerCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hairDryerCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hairDryerCheckboxActionPerformed
+
+    private void shampooCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shampooCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_shampooCheckboxActionPerformed
+
+    private void toiletPaperCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toiletPaperCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toiletPaperCheckboxActionPerformed
+
+    private void toiletCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toiletCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_toiletCheckboxActionPerformed
+
+    private void showerCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showerCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showerCheckboxActionPerformed
+
+    private void bathCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bathCheckboxActionPerformed
+
+    private void sharedCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sharedCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sharedCheckboxActionPerformed
+
+    private void bathingNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingNewButtonActionPerformed
+        if (currentBathroomPage == 1){
+            bathingPrevButton.setEnabled(true);
+            bathingDeleteButton.setEnabled(true);
+        }
         
-        houseNumber.setText(confidentialDetails.get("houseNumber"));
-        streetName.setText(confidentialDetails.get("sreetName"));
-        placeName.setText(confidentialDetails.get("placeName"));
-        postCode.setText(confidentialDetails.get("postCode"));
+        updateCurrentBathroomInArray();
+        
+        if (currentBathroomPage == bathrooms.size()){
+            bathrooms.add(new Bathroom());
+        } else {
+            bathrooms.add(currentBathroomPage, new Bathroom());
+        }
+        
+        currentBathroomPage++;
+        resetBathroomGUIComponents();
+        updateBathroomPageInfo();
+    }//GEN-LAST:event_bathingNewButtonActionPerformed
+
+    private void dishwasherCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishwasherCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dishwasherCheckboxActionPerformed
+
+    private void onRoadParkingCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onRoadParkingCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_onRoadParkingCheckboxActionPerformed
+
+    private void centralHeatingCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_centralHeatingCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_centralHeatingCheckboxActionPerformed
+
+    private void patioCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patioCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_patioCheckboxActionPerformed
+
+    private void wifiCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wifiCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_wifiCheckboxActionPerformed
+
+    private void bbqCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbqCheckboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bbqCheckboxActionPerformed
+
+    private void sleepingNextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingNextButtonActionPerformed
+        if (currentBedroomPage == 1){
+            sleepingPrevButton.setEnabled(true);
+        }
+        
+        updateCurrentBedroomInArray();
+        currentBedroomPage++;
+        updateBedroomGUIComponents();
+        updateBedroomPageInfo();
+        
+        if (currentBedroomPage == bedrooms.size()){
+            sleepingNextButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_sleepingNextButtonActionPerformed
+
+    private void sleepingNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingNewButtonActionPerformed
+        if (currentBedroomPage == 1){
+            sleepingPrevButton.setEnabled(true);
+            sleepingDeleteButton.setEnabled(true);
+        }
+        
+        updateCurrentBedroomInArray();
+        
+        if (currentBedroomPage == bedrooms.size()){
+            bedrooms.add(new Bedroom());
+        } else {
+            bedrooms.add(currentBedroomPage, new Bedroom());
+        }
+        
+        currentBedroomPage++;
+        resetBedroomGUIComponents();
+        updateBedroomPageInfo();
+    }//GEN-LAST:event_sleepingNewButtonActionPerformed
+
+    private void sleepingPrevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingPrevButtonActionPerformed
+        if (currentBedroomPage == bedrooms.size()){
+            sleepingNextButton.setEnabled(true);
+        }
+
+        updateCurrentBedroomInArray();
+        currentBedroomPage--;
+        updateBedroomGUIComponents();
+        updateBedroomPageInfo();
+        
+        if (currentBedroomPage == 1){
+            sleepingPrevButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_sleepingPrevButtonActionPerformed
+
+    private void sleepingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sleepingDeleteButtonActionPerformed
+        if (bedrooms.size() == 2){
+            sleepingPrevButton.setEnabled(false);
+            sleepingNextButton.setEnabled(false);
+            sleepingDeleteButton.setEnabled(false);
+        }
+        
+        bedrooms.remove(currentBedroomPage-1);
+        
+        if (currentBedroomPage > 1){
+            currentBedroomPage--;
+        }
+        updateBedroomGUIComponents();
+        updateBedroomPageInfo();
+    }//GEN-LAST:event_sleepingDeleteButtonActionPerformed
+
+    private void bathingPrevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingPrevButtonActionPerformed
+        if (currentBathroomPage == bathrooms.size()){
+            bathingNextButton.setEnabled(true);
+        }
+
+        updateCurrentBathroomInArray();
+        currentBathroomPage--;
+        updateBathroomGUIComponents();
+        updateBathroomPageInfo();
+        
+        if (currentBathroomPage == 1){
+            bathingPrevButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_bathingPrevButtonActionPerformed
+
+    private void bathingNextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingNextButtonActionPerformed
+        if (currentBathroomPage == 1){
+            bathingPrevButton.setEnabled(true);
+        }
+        
+        updateCurrentBathroomInArray();
+        currentBathroomPage++;
+        updateBathroomGUIComponents();
+        updateBathroomPageInfo();
+        
+        if (currentBathroomPage == bathrooms.size()){
+            bathingNextButton.setEnabled(false);
+        }
+    }//GEN-LAST:event_bathingNextButtonActionPerformed
+
+    private void bathingDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bathingDeleteButtonActionPerformed
+        if (bathrooms.size() == 2){
+            bathingPrevButton.setEnabled(false);
+            bathingNextButton.setEnabled(false);
+            bathingDeleteButton.setEnabled(false);
+        }
+        
+        bathrooms.remove(currentBathroomPage-1);
+        
+        if (currentBathroomPage > 1){
+            currentBathroomPage--;
+        }
+        updateBathroomGUIComponents();
+        updateBathroomPageInfo();
+    }//GEN-LAST:event_bathingDeleteButtonActionPerformed
+
+    private void updateCurrentBedroomInArray(){
+        bedrooms.get(currentBedroomPage-1).setBed1(bed1Combobox.getSelectedItem().toString());
+        bedrooms.get(currentBedroomPage-1).setBed2(bed2Combobox.getSelectedItem().toString());
     }
-    private void accountButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_accountButton1ActionPerformed
+    
+    private void updateCurrentBathroomInArray(){
+        bathrooms.get(currentBathroomPage-1).toilet = toiletCheckbox.isSelected();
+        bathrooms.get(currentBathroomPage-1).bath = bathCheckbox.isSelected();
+        bathrooms.get(currentBathroomPage-1).shower = showerCheckbox.isSelected();
+        bathrooms.get(currentBathroomPage-1).shared = sharedCheckbox.isSelected();
+    }
+    
+    private void updateBedroomGUIComponents(){
+        bed1Combobox.setSelectedItem(bedrooms.get(currentBedroomPage-1).getBed1String());
+        bed2Combobox.setSelectedItem(bedrooms.get(currentBedroomPage-1).getBed2String());
+    }
+    
+    private void updateBathroomGUIComponents(){
+        toiletCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).toilet);
+        bathCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).bath);
+        showerCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).shower);
+        sharedCheckbox.setSelected(bathrooms.get(currentBathroomPage-1).shared);
+    }
+    
+    private void resetBedroomGUIComponents(){
+        bed1Combobox.setSelectedItem("Single bed");
+        bed2Combobox.setSelectedItem("None");
+    }
+    
+    private void resetBathroomGUIComponents(){
+        toiletCheckbox.setSelected(false);
+        bathCheckbox.setSelected(false);
+        showerCheckbox.setSelected(false);
+        sharedCheckbox.setSelected(false);
+    }
+    
+    private void updateBedroomPageInfo(){
+        bedroomText.setText("Bedroom " + currentBedroomPage + "/" + bedrooms.size());
+    }
+    
+    private void updateBathroomPageInfo(){
+        bathroomText.setText("Bedroom " + currentBathroomPage + "/" + bathrooms.size());
+    }
+    
+    // Returns errorMessage or null if everything is ok
+    String validateData(){
+        String errorMessage = "";
+        
+        // Remove whitespace
+        String postCodeTruncated = postcodeTextField.getText().replaceAll("\\s","");
+        
+        if (propertyNameTextField.getText().length() == 0 || propertyNameTextField.getText().length() > 30){
+            errorMessage += "\nProperty name must be between 1 and 30 characters.";
+        }
+        if (descriptionTextField.getText().length() > 500){
+            errorMessage += "\nDescription can have a maximum of 500 characters.";
+        }
+        if (locationTextField.getText().length() == 0 || locationTextField.getText().length() > 20){
+            errorMessage += "\nGeneral location must be between 1 and 20 characters.";
+        }
+        if (houseNumberTextField.getText().length() == 0 || houseNumberTextField.getText().length() > 5){
+            errorMessage += "\nProperty house no. must be between 1 and 5 characters.";
+        }
+        if (streetNameTextField.getText().length() == 0 || streetNameTextField.getText().length() > 45){
+            errorMessage += "\nProperty street name must be between 1 and 45 characters.";
+        }
+        if (placeNameTextField.getText().length() == 0 || placeNameTextField.getText().length() > 45){
+            errorMessage += "\nProperty place name must be between 1 and 45 characters.";
+        }
+        if (postCodeTruncated.length() == 0 || postCodeTruncated.length() > 8){
+            errorMessage += "\nProperty postcode must be between 1 and 8 characters.";
+        }
+        
+        return errorMessage.length() > 0 ? errorMessage.substring(1) : null;
+    }
+    
+    // Return 1 if error or 0 otherwise
+    int updateProperty(){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
 
-    private void multiUseButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButton1ActionPerformed
+            // Remove whitespace
+            String postCodeTruncated = postcodeTextField.getText().replaceAll("\\s","");
+            
+            String statementString = "UPDATE Properties SET "
+                    + "propertyName=?, "
+                    + "description=?, "
+                    + "location=?, "
+                    + "propertyHouseNumber=?, "
+                    + "propertyStreetName=?, "
+                    + "propertyPostCode=?, "
+                    + "heating=?, "
+                    + "washingMachine=?, "
+                    + "dryingMachine=?, "
+                    + "fireExtinguisher=?, "
+                    + "smokeAlarm=?, "
+                    + "firstAid=?, "
+                    + "wifi=?, "
+                    + "television=?, "
+                    + "satellite=?, "
+                    + "streaming=?, "
+                    + "dvdPlayer=?, "
+                    + "boardGames=?, "
+                    + "freeOnSiteParking=?, "
+                    + "onRoadParking=?, "
+                    + "paidCarParking=?, "
+                    + "patio=?, "
+                    + "barbeque=?, "
+                    + "tableware=?, "
+                    + "cookware=?, "
+                    + "basicProvisions=?, "
+                    + "hairDryer=?, "
+                    + "shampoo=?, "
+                    + "toiletPaper=?, "
+                    + "towels=?, "
+                    + "bedLinen=?, "
+                    + "refrigirator=?, "
+                    + "microwave=?, "
+                    + "propertyPlaceName=?, "
+                    + "oven=?, "
+                    + "stove=?, "
+                    + "dishwasher=? "
+                    + "WHERE propertyId=?";
+            
+            PreparedStatement pstmt = con.prepareStatement(statementString);
+            pstmt.setString(1, propertyNameTextField.getText());
+            pstmt.setString(2, descriptionTextField.getText());
+            pstmt.setString(3, locationTextField.getText());
+            pstmt.setString(4, houseNumberTextField.getText());
+            pstmt.setString(5, streetNameTextField.getText());
+            pstmt.setString(6, postCodeTruncated);
+            pstmt.setBoolean(7, centralHeatingCheckbox.isSelected());
+            pstmt.setBoolean(8, washingMachineCheckbox.isSelected());
+            pstmt.setBoolean(9, dryingMachineCheckbox.isSelected());
+            pstmt.setBoolean(10, fireExtinguisherCheckbox.isSelected());
+            pstmt.setBoolean(11, smokeAlarmCheckbox.isSelected());
+            pstmt.setBoolean(12, firstAidCheckbox.isSelected());
+            pstmt.setBoolean(13, wifiCheckbox.isSelected());
+            pstmt.setBoolean(14, tvCheckbox.isSelected());
+            pstmt.setBoolean(15, satelliteCheckbox.isSelected());
+            pstmt.setBoolean(16, streamingCheckbox.isSelected());
+            pstmt.setBoolean(17, dvdPlayerCheckbox.isSelected());
+            pstmt.setBoolean(18, boardGamesCheckbox.isSelected());
+            pstmt.setBoolean(19, freeOnSiteParkingCheckbox.isSelected());
+            pstmt.setBoolean(20, onRoadParkingCheckbox.isSelected());
+            pstmt.setBoolean(21, paidCarParkCheckbox.isSelected());
+            pstmt.setBoolean(22, patioCheckbox.isSelected());
+            pstmt.setBoolean(23, bbqCheckbox.isSelected());
+            pstmt.setBoolean(24, tablewareCheckbox.isSelected());
+            pstmt.setBoolean(25, cookwareCheckbox.isSelected());
+            pstmt.setBoolean(26, basicProvisionsCheckbox.isSelected());
+            pstmt.setBoolean(27, hairDryerCheckbox.isSelected());
+            pstmt.setBoolean(28, shampooCheckbox.isSelected());
+            pstmt.setBoolean(29, toiletPaperCheckbox.isSelected());
+            pstmt.setBoolean(30, towelsCheckbox.isSelected());
+            pstmt.setBoolean(31, bedLinenCheckbox.isSelected());
+            pstmt.setBoolean(32, refrigeratorCheckbox.isSelected());
+            pstmt.setBoolean(33, microwaveCheckbox.isSelected());
+            pstmt.setString(34, propertyNameTextField.getText());
+            pstmt.setBoolean(35, ovenCheckbox.isSelected());
+            pstmt.setBoolean(36, stoveCheckbox.isSelected());        
+            pstmt.setBoolean(37, dishwasherCheckbox.isSelected()); 
+            
+            pstmt.setInt(38, propertyId);
 
-    }//GEN-LAST:event_multiUseButton1ActionPerformed
-
-    private void endDateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endDateFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_endDateFieldActionPerformed
-
-    private void applyDatesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyDatesButtonActionPerformed
-        //calculate price with chargeband class
-    }//GEN-LAST:event_applyDatesButtonActionPerformed
-
-    private void propertyNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertyNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_propertyNameActionPerformed
-
-    private void houseNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_houseNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_houseNumberActionPerformed
-
-    private void streetNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streetNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_streetNameActionPerformed
-
-    private void placeNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_placeNameActionPerformed
-
-    private void postCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_postCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_postCodeActionPerformed
-
-    private void bedLinenBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bedLinenBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bedLinenBoxActionPerformed
-
-    private void towelsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_towelsBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_towelsBoxActionPerformed
-
-    private void hairDryerBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hairDryerBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hairDryerBoxActionPerformed
-
-    private void shampooBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shampooBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_shampooBoxActionPerformed
-
-    private void toiletPaperBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_toiletPaperBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_toiletPaperBoxActionPerformed
-
-    private void refrigeratorBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refrigeratorBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_refrigeratorBoxActionPerformed
-
-    private void microwaveBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_microwaveBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_microwaveBoxActionPerformed
-
-    private void stoveBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stoveBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_stoveBoxActionPerformed
-
-    private void dishwasherBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dishwasherBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dishwasherBoxActionPerformed
-
-    private void tablewareBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tablewareBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tablewareBoxActionPerformed
-
-    private void ovenBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ovenBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ovenBoxActionPerformed
-
-    private void cookwareBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cookwareBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cookwareBoxActionPerformed
-
-    private void basicProvisionsBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_basicProvisionsBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_basicProvisionsBoxActionPerformed
-
-    private void wifiBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wifiBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_wifiBoxActionPerformed
-
-    private void dvdPlayerBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dvdPlayerBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dvdPlayerBoxActionPerformed
-
-    private void televisionBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_televisionBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_televisionBoxActionPerformed
-
-    private void boardGamesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boardGamesBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_boardGamesBoxActionPerformed
-
-    private void satelliteBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_satelliteBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_satelliteBoxActionPerformed
-
-    private void streamingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_streamingBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_streamingBoxActionPerformed
-
-    private void smokeAlarmBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smokeAlarmBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_smokeAlarmBoxActionPerformed
-
-    private void heatingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_heatingBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_heatingBoxActionPerformed
-
-    private void washingMachineBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_washingMachineBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_washingMachineBoxActionPerformed
-
-    private void firstAidKitBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstAidKitBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_firstAidKitBoxActionPerformed
-
-    private void dryingMachineBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dryingMachineBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dryingMachineBoxActionPerformed
-
-    private void fireExtinguisherBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fireExtinguisherBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fireExtinguisherBoxActionPerformed
-
-    private void freeParkingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freeParkingBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_freeParkingBoxActionPerformed
-
-    private void patioBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patioBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_patioBoxActionPerformed
-
-    private void onRoadParkingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onRoadParkingBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_onRoadParkingBoxActionPerformed
-
-    private void barbequeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_barbequeBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_barbequeBoxActionPerformed
-
-    private void paidCarParkingBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paidCarParkingBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_paidCarParkingBoxActionPerformed
-
-
+            pstmt.executeUpdate();
+            
+            return 0;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return 1;
+    }
+    
+    // Return 1 if error, 0 otherwise
+    int updateBedrooms(){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Bedrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            pstmt.executeUpdate();
+            
+            for (Bedroom i : bedrooms){
+                pstmt = con.prepareStatement("INSERT INTO Bedrooms VALUES(NULL, ?, ?, ?)");
+                pstmt.setInt(1, propertyId);
+                pstmt.setString(2, i.bed1.toString());
+                
+                if (i.bed2 == null){
+                    pstmt.setNull(3, Types.VARCHAR);
+                } else {
+                    pstmt.setString(3, i.bed2.toString());
+                }
+                
+                pstmt.executeUpdate();
+            }
+            return 0;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return 1;
+    }
+    
+    // Return 1 if error, 0 otherwise
+    int updateBathrooms(){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Bathrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            pstmt.executeUpdate();
+            
+            for (Bathroom i : bathrooms){
+                pstmt = con.prepareStatement("INSERT INTO Bathrooms VALUES(NULL, ?, ?, ?, ?, ?)");
+                pstmt.setInt(1, propertyId);
+                pstmt.setBoolean(2, i.toilet);
+                pstmt.setBoolean(3, i.bath);
+                pstmt.setBoolean(4, i.shower);
+                pstmt.setBoolean(5, i.shared);
+                
+                pstmt.executeUpdate();
+            }
+            return 0;
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        return 1;
+    }
+    
+    private void fetchData(){
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+            PreparedStatement pstmt = con.prepareStatement("SELECT bed1, bed2 FROM Bedrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            ResultSet res = pstmt.executeQuery();
+            
+            while (res.next()){
+                Bedroom bedroom = new Bedroom();
+                bedroom.bed1 = Bed.valueOf(res.getString("bed1"));
+                if (res.getString("bed2") == null){
+                    bedroom.bed2 = null;
+                } else {
+                    bedroom.bed2 = Bed.valueOf(res.getString("bed2"));
+                }
+                bedrooms.add(bedroom);
+            }
+            
+            pstmt = con.prepareStatement("SELECT toilet, bath, shower, isShared FROM Bathrooms WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            res = pstmt.executeQuery();
+            
+            while (res.next()){
+                Bathroom bathroom = new Bathroom();
+                bathroom.toilet = res.getBoolean("toilet");
+                bathroom.bath = res.getBoolean("bath");
+                bathroom.shower = res.getBoolean("shower");
+                bathroom.shared = res.getBoolean("isShared");
+                bathrooms.add(bathroom);
+            }
+            
+            updateBathroomPageInfo();
+            updateBedroomPageInfo();
+            updateBathroomGUIComponents();
+            updateBedroomGUIComponents();
+            
+            if (bedrooms.size() > 1){
+                sleepingNextButton.setEnabled(true);
+                sleepingDeleteButton.setEnabled(true);
+            }
+            if (bathrooms.size() > 1){
+                bathingNextButton.setEnabled(true);
+                bathingDeleteButton.setEnabled(true);
+            }
+            
+            pstmt = con.prepareStatement("SELECT * FROM Properties WHERE propertyId=?");
+            pstmt.setInt(1, propertyId);
+            res = pstmt.executeQuery();
+            
+            if (res.next()){
+                propertyNameTextField.setText(res.getString("propertyName"));
+                descriptionTextField.setText(res.getString("description"));
+                locationTextField.setText(res.getString("location"));
+                houseNumberTextField.setText(res.getString("propertyHouseNumber"));
+                streetNameTextField.setText(res.getString("propertyStreetName"));
+                postcodeTextField.setText(res.getString("propertyPostCode"));
+                placeNameTextField.setText(res.getString("propertyPlaceName"));
+                centralHeatingCheckbox.setSelected(res.getBoolean("heating"));
+                washingMachineCheckbox.setSelected(res.getBoolean("washingMachine"));
+                dryingMachineCheckbox.setSelected(res.getBoolean("dryingMachine"));
+                fireExtinguisherCheckbox.setSelected(res.getBoolean("fireExtinguisher"));
+                smokeAlarmCheckbox.setSelected(res.getBoolean("smokeAlarm"));
+                firstAidCheckbox.setSelected(res.getBoolean("firstAid"));
+                wifiCheckbox.setSelected(res.getBoolean("wifi"));
+                tvCheckbox.setSelected(res.getBoolean("television"));
+                satelliteCheckbox.setSelected(res.getBoolean("satellite"));
+                streamingCheckbox.setSelected(res.getBoolean("streaming"));
+                dvdPlayerCheckbox.setSelected(res.getBoolean("dvdPlayer"));
+                boardGamesCheckbox.setSelected(res.getBoolean("boardGames"));
+                freeOnSiteParkingCheckbox.setSelected(res.getBoolean("freeOnSiteParking"));
+                onRoadParkingCheckbox.setSelected(res.getBoolean("onRoadParking"));
+                paidCarParkCheckbox.setSelected(res.getBoolean("paidCarParking"));
+                patioCheckbox.setSelected(res.getBoolean("patio"));
+                bbqCheckbox.setSelected(res.getBoolean("barbeque"));
+                tablewareCheckbox.setSelected(res.getBoolean("tableware"));
+                cookwareCheckbox.setSelected(res.getBoolean("cookware"));
+                basicProvisionsCheckbox.setSelected(res.getBoolean("basicProvisions"));
+                hairDryerCheckbox.setSelected(res.getBoolean("hairDryer"));
+                shampooCheckbox.setSelected(res.getBoolean("shampoo"));
+                toiletPaperCheckbox.setSelected(res.getBoolean("toiletPaper"));
+                towelsCheckbox.setSelected(res.getBoolean("towels"));
+                bedLinenCheckbox.setSelected(res.getBoolean("bedLinen"));
+                refrigeratorCheckbox.setSelected(res.getBoolean("refrigirator"));
+                microwaveCheckbox.setSelected(res.getBoolean("microwave"));
+                ovenCheckbox.setSelected(res.getBoolean("oven"));
+                stoveCheckbox.setSelected(res.getBoolean("stove"));
+                dishwasherCheckbox.setSelected(res.getBoolean("dishwasher"));
+            }
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton accountButton1;
-    private javax.swing.JButton applyDatesButton;
-    private javax.swing.JCheckBox barbequeBox;
-    private javax.swing.JCheckBox basicProvisionsBox;
-    private javax.swing.JCheckBox bedLinenBox;
-    private javax.swing.JCheckBox boardGamesBox;
-    private javax.swing.JCheckBox cookwareBox;
-    private javax.swing.JTextArea description;
-    private javax.swing.JCheckBox dishwasherBox;
-    private javax.swing.JCheckBox dryingMachineBox;
-    private javax.swing.JCheckBox dvdPlayerBox;
-    private javax.swing.JFormattedTextField endDateField;
-    private javax.swing.JCheckBox fireExtinguisherBox;
-    private javax.swing.JCheckBox firstAidKitBox;
-    private javax.swing.JCheckBox freeParkingBox;
-    private javax.swing.JCheckBox hairDryerBox;
-    private javax.swing.JCheckBox heatingBox;
-    private javax.swing.JTextField houseNumber;
+    private javax.swing.JLabel addPropertyText;
+    private javax.swing.JCheckBox basicProvisionsCheckbox;
+    private javax.swing.JCheckBox bathCheckbox;
+    private javax.swing.JButton bathingDeleteButton;
+    private javax.swing.JButton bathingNewButton;
+    private javax.swing.JButton bathingNextButton;
+    private javax.swing.JButton bathingPrevButton;
+    private javax.swing.JLabel bathroomText;
+    private javax.swing.JCheckBox bbqCheckbox;
+    private javax.swing.JComboBox<String> bed1Combobox;
+    private javax.swing.JComboBox<String> bed2Combobox;
+    private javax.swing.JCheckBox bedLinenCheckbox;
+    private javax.swing.JLabel bedroomText;
+    private javax.swing.JCheckBox boardGamesCheckbox;
+    private javax.swing.JCheckBox centralHeatingCheckbox;
+    private javax.swing.JCheckBox cookwareCheckbox;
+    private javax.swing.JTextArea descriptionTextField;
+    private javax.swing.JCheckBox dishwasherCheckbox;
+    private javax.swing.JCheckBox dryingMachineCheckbox;
+    private javax.swing.JCheckBox dvdPlayerCheckbox;
+    private javax.swing.JCheckBox fireExtinguisherCheckbox;
+    private javax.swing.JCheckBox firstAidCheckbox;
+    private javax.swing.JCheckBox freeOnSiteParkingCheckbox;
+    private javax.swing.JCheckBox hairDryerCheckbox;
+    private javax.swing.JTextField houseNumberTextField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField location;
-    private javax.swing.JCheckBox microwaveBox;
-    private javax.swing.JButton multiUseButton1;
-    private javax.swing.JLabel noOfBeds1;
-    private javax.swing.JLabel numBathroomsLabel;
-    private javax.swing.JLabel numBedroomsLabel;
-    private javax.swing.JLabel numBedsLabel;
-    private javax.swing.JLabel numSleepersLabel;
-    private javax.swing.JCheckBox onRoadParkingBox;
-    private javax.swing.JCheckBox ovenBox;
-    private javax.swing.JCheckBox paidCarParkingBox;
-    private javax.swing.JCheckBox patioBox;
-    private javax.swing.JTextField placeName;
-    private javax.swing.JTextField postCode;
-    private javax.swing.JLabel price;
-    private javax.swing.JTextField propertyName;
-    private javax.swing.JCheckBox refrigeratorBox;
-    private javax.swing.JCheckBox satelliteBox;
-    private javax.swing.JCheckBox shampooBox;
-    private javax.swing.JCheckBox smokeAlarmBox;
-    private javax.swing.JFormattedTextField startDateField;
-    private javax.swing.JCheckBox stoveBox;
-    private javax.swing.JLabel stoveIcon1;
-    private javax.swing.JCheckBox streamingBox;
-    private javax.swing.JTextField streetName;
-    private javax.swing.JCheckBox tablewareBox;
-    private javax.swing.JCheckBox televisionBox;
-    private javax.swing.JCheckBox toiletPaperBox;
-    private javax.swing.JCheckBox towelsBox;
-    private javax.swing.JCheckBox washingMachineBox;
-    private javax.swing.JCheckBox wifiBox;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField locationTextField;
+    private javax.swing.JCheckBox microwaveCheckbox;
+    private javax.swing.JButton nextButton;
+    private javax.swing.JCheckBox onRoadParkingCheckbox;
+    private javax.swing.JCheckBox ovenCheckbox;
+    private javax.swing.JCheckBox paidCarParkCheckbox;
+    private javax.swing.JCheckBox patioCheckbox;
+    private javax.swing.JTextField placeNameTextField;
+    private javax.swing.JTextField postcodeTextField;
+    private javax.swing.JTextField propertyNameTextField;
+    private javax.swing.JCheckBox refrigeratorCheckbox;
+    private javax.swing.JButton returnButton;
+    private javax.swing.JCheckBox satelliteCheckbox;
+    private javax.swing.JCheckBox shampooCheckbox;
+    private javax.swing.JCheckBox sharedCheckbox;
+    private javax.swing.JCheckBox showerCheckbox;
+    private javax.swing.JButton sleepingDeleteButton;
+    private javax.swing.JButton sleepingNewButton;
+    private javax.swing.JButton sleepingNextButton;
+    private javax.swing.JButton sleepingPrevButton;
+    private javax.swing.JCheckBox smokeAlarmCheckbox;
+    private javax.swing.JCheckBox stoveCheckbox;
+    private javax.swing.JCheckBox streamingCheckbox;
+    private javax.swing.JTextField streetNameTextField;
+    private javax.swing.JCheckBox tablewareCheckbox;
+    private javax.swing.JCheckBox toiletCheckbox;
+    private javax.swing.JCheckBox toiletPaperCheckbox;
+    private javax.swing.JCheckBox towelsCheckbox;
+    private javax.swing.JCheckBox tvCheckbox;
+    private javax.swing.JCheckBox washingMachineCheckbox;
+    private javax.swing.JCheckBox wifiCheckbox;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,13 +9,12 @@ public class Main extends javax.swing.JFrame {
     private Boolean hostView = false;
     private String location;
     private String people;
-    
+    private int propertyId;
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-       changePanelToSpecific(new ReviewComment1(this, 1));
     }
     static String hashString(String stringToHash){
         try {
@@ -285,8 +284,9 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        Guestmain search = new Guestmain(this);
-        //MainsearchA search = new MainsearchA(this,location);
+        //Guestmain search = new Guestmain(this);
+        Booking search = new Booking(this,email,propertyId);
+       // MainsearchA search = new MainsearchA(this,location);
         //Guestupcomingbooking search = new Guestupcomingbooking(this,location);
         jScrollPane1.setViewportView(search);
 

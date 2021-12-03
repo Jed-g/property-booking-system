@@ -463,7 +463,7 @@ private Boolean hostView = false;
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        Guestsearch guestsearch = new Guestsearch(jFrameInstance,location1);
+        Guestsearch guestsearch = new Guestsearch(jFrameInstance,email,location1);
         jFrameInstance.changePanelToSpecific(guestsearch);
     }//GEN-LAST:event_jButton7ActionPerformed
 

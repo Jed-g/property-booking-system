@@ -1,32 +1,5 @@
 com2008/team/project/Booking.java
  com2008.team.project.Booking
-com2008/team/project/Bedroom.java
- com2008.team.project.Bed
- com2008.team.project.Bedroom
- com2008.team.project.Bedroom$1
-com2008/team/project/Bathroom.java
- com2008.team.project.Bathroom
-com2008/team/project/ReviewList.java
- com2008.team.project.ReviewList
-com2008/team/project/Property.java
- com2008.team.project.Property
-com2008/team/project/Register.java
- com2008.team.project.Register
- com2008.team.project.Register$1
- com2008.team.project.Register$10
- com2008.team.project.Register$11
- com2008.team.project.Register$12
- com2008.team.project.Register$13
- com2008.team.project.Register$14
- com2008.team.project.Register$15
- com2008.team.project.Register$2
- com2008.team.project.Register$3
- com2008.team.project.Register$4
- com2008.team.project.Register$5
- com2008.team.project.Register$6
- com2008.team.project.Register$7
- com2008.team.project.Register$8
- com2008.team.project.Register$9
 com2008/team/project/AddProperty.java
  com2008.team.project.AddProperty
  com2008.team.project.AddProperty$1
@@ -63,17 +36,75 @@ com2008/team/project/AddProperty.java
  com2008.team.project.AddProperty$9
  com2008.team.project.AddProperty$Bathroom
  com2008.team.project.AddProperty$Bedroom
-com2008/team/project/Login.java
- com2008.team.project.Login
- com2008.team.project.Login$1
- com2008.team.project.Login$2
- com2008.team.project.Login$3
- com2008.team.project.Login$4
-com2008/team/project/Review.java
- com2008.team.project.Review
- com2008.team.project.Review$1
- com2008.team.project.Review$2
- com2008.team.project.Review$3
+com2008/team/project/EditProperty2.java
+ com2008.team.project.EditProperty2
+ com2008.team.project.EditProperty2$1
+ com2008.team.project.EditProperty2$2
+ com2008.team.project.EditProperty2$3
+ com2008.team.project.EditProperty2$4
+ com2008.team.project.EditProperty2$5
+ com2008.team.project.EditProperty2$6
+ com2008.team.project.EditProperty2$7
+ com2008.team.project.EditProperty2$8
+ com2008.team.project.EditProperty2$Chargeband
+com2008/team/project/EditProperty.java
+ com2008.team.project.EditProperty
+ com2008.team.project.EditProperty$1
+ com2008.team.project.EditProperty$10
+ com2008.team.project.EditProperty$11
+ com2008.team.project.EditProperty$12
+ com2008.team.project.EditProperty$13
+ com2008.team.project.EditProperty$14
+ com2008.team.project.EditProperty$15
+ com2008.team.project.EditProperty$16
+ com2008.team.project.EditProperty$17
+ com2008.team.project.EditProperty$18
+ com2008.team.project.EditProperty$19
+ com2008.team.project.EditProperty$2
+ com2008.team.project.EditProperty$20
+ com2008.team.project.EditProperty$21
+ com2008.team.project.EditProperty$22
+ com2008.team.project.EditProperty$23
+ com2008.team.project.EditProperty$24
+ com2008.team.project.EditProperty$25
+ com2008.team.project.EditProperty$26
+ com2008.team.project.EditProperty$27
+ com2008.team.project.EditProperty$28
+ com2008.team.project.EditProperty$29
+ com2008.team.project.EditProperty$3
+ com2008.team.project.EditProperty$30
+ com2008.team.project.EditProperty$31
+ com2008.team.project.EditProperty$32
+ com2008.team.project.EditProperty$4
+ com2008.team.project.EditProperty$5
+ com2008.team.project.EditProperty$6
+ com2008.team.project.EditProperty$7
+ com2008.team.project.EditProperty$8
+ com2008.team.project.EditProperty$9
+ com2008.team.project.EditProperty$Bathroom
+ com2008.team.project.EditProperty$Bedroom
+com2008/team/project/RequestList.java
+ com2008.team.project.RequestList
+com2008/team/project/HostRequests.java
+ com2008.team.project.HostRequests
+ com2008.team.project.HostRequests$1
+ com2008.team.project.HostRequests$10
+ com2008.team.project.HostRequests$11
+ com2008.team.project.HostRequests$12
+ com2008.team.project.HostRequests$13
+ com2008.team.project.HostRequests$14
+ com2008.team.project.HostRequests$15
+ com2008.team.project.HostRequests$16
+ com2008.team.project.HostRequests$2
+ com2008.team.project.HostRequests$3
+ com2008.team.project.HostRequests$4
+ com2008.team.project.HostRequests$5
+ com2008.team.project.HostRequests$6
+ com2008.team.project.HostRequests$7
+ com2008.team.project.HostRequests$8
+ com2008.team.project.HostRequests$9
+com2008/team/project/Bathroom.java
+ com2008.team.project.Bathroom
 com2008/team/project/AddProperty2.java
  com2008.team.project.AddProperty2
  com2008.team.project.AddProperty2$1
@@ -85,9 +116,8 @@ com2008/team/project/AddProperty2.java
  com2008.team.project.AddProperty2$7
  com2008.team.project.AddProperty2$8
  com2008.team.project.AddProperty2$Chargeband
-com2008/team/project/ChargeBand.java
- com2008.team.project.ChargeBand
- com2008.team.project.ChargeBand$PriceInfo
+com2008/team/project/Property.java
+ com2008.team.project.Property
 com2008/team/project/User.java
  com2008.team.project.User
  com2008.team.project.User$1
@@ -114,3 +144,97 @@ com2008/team/project/ChangePassword.java
  com2008.team.project.ChangePassword$2
  com2008.team.project.ChangePassword$3
  com2008.team.project.ChangePassword$4
+com2008/team/project/HostUpcomingBookings.java
+ com2008.team.project.HostUpcomingBookings
+ com2008.team.project.HostUpcomingBookings$1
+ com2008.team.project.HostUpcomingBookings$10
+ com2008.team.project.HostUpcomingBookings$11
+ com2008.team.project.HostUpcomingBookings$12
+ com2008.team.project.HostUpcomingBookings$13
+ com2008.team.project.HostUpcomingBookings$14
+ com2008.team.project.HostUpcomingBookings$15
+ com2008.team.project.HostUpcomingBookings$16
+ com2008.team.project.HostUpcomingBookings$17
+ com2008.team.project.HostUpcomingBookings$18
+ com2008.team.project.HostUpcomingBookings$2
+ com2008.team.project.HostUpcomingBookings$3
+ com2008.team.project.HostUpcomingBookings$4
+ com2008.team.project.HostUpcomingBookings$5
+ com2008.team.project.HostUpcomingBookings$6
+ com2008.team.project.HostUpcomingBookings$7
+ com2008.team.project.HostUpcomingBookings$8
+ com2008.team.project.HostUpcomingBookings$9
+com2008/team/project/Register.java
+ com2008.team.project.Register
+ com2008.team.project.Register$1
+ com2008.team.project.Register$10
+ com2008.team.project.Register$11
+ com2008.team.project.Register$12
+ com2008.team.project.Register$13
+ com2008.team.project.Register$14
+ com2008.team.project.Register$15
+ com2008.team.project.Register$2
+ com2008.team.project.Register$3
+ com2008.team.project.Register$4
+ com2008.team.project.Register$5
+ com2008.team.project.Register$6
+ com2008.team.project.Register$7
+ com2008.team.project.Register$8
+ com2008.team.project.Register$9
+com2008/team/project/HostViewAllProperties.java
+ com2008.team.project.HostViewAllProperties
+ com2008.team.project.HostViewAllProperties$1
+ com2008.team.project.HostViewAllProperties$10
+ com2008.team.project.HostViewAllProperties$11
+ com2008.team.project.HostViewAllProperties$12
+ com2008.team.project.HostViewAllProperties$13
+ com2008.team.project.HostViewAllProperties$2
+ com2008.team.project.HostViewAllProperties$3
+ com2008.team.project.HostViewAllProperties$4
+ com2008.team.project.HostViewAllProperties$5
+ com2008.team.project.HostViewAllProperties$6
+ com2008.team.project.HostViewAllProperties$7
+ com2008.team.project.HostViewAllProperties$8
+ com2008.team.project.HostViewAllProperties$9
+com2008/team/project/Login.java
+ com2008.team.project.Login
+ com2008.team.project.Login$1
+ com2008.team.project.Login$2
+ com2008.team.project.Login$3
+ com2008.team.project.Login$4
+com2008/team/project/Review.java
+ com2008.team.project.Review
+ com2008.team.project.Review$1
+ com2008.team.project.Review$2
+ com2008.team.project.Review$3
+com2008/team/project/PropertyList.java
+ com2008.team.project.PropertyList
+com2008/team/project/HostPreviousBookings.java
+ com2008.team.project.HostPreviousBookings
+ com2008.team.project.HostPreviousBookings$1
+ com2008.team.project.HostPreviousBookings$10
+ com2008.team.project.HostPreviousBookings$11
+ com2008.team.project.HostPreviousBookings$12
+ com2008.team.project.HostPreviousBookings$13
+ com2008.team.project.HostPreviousBookings$14
+ com2008.team.project.HostPreviousBookings$15
+ com2008.team.project.HostPreviousBookings$16
+ com2008.team.project.HostPreviousBookings$2
+ com2008.team.project.HostPreviousBookings$3
+ com2008.team.project.HostPreviousBookings$4
+ com2008.team.project.HostPreviousBookings$5
+ com2008.team.project.HostPreviousBookings$6
+ com2008.team.project.HostPreviousBookings$7
+ com2008.team.project.HostPreviousBookings$8
+ com2008.team.project.HostPreviousBookings$9
+com2008/team/project/ChargeBand.java
+ com2008.team.project.ChargeBand
+ com2008.team.project.ChargeBand$PriceInfo
+com2008/team/project/HostBookingList.java
+ com2008.team.project.HostBookingList
+com2008/team/project/Bedroom.java
+ com2008.team.project.Bed
+ com2008.team.project.Bedroom
+ com2008.team.project.Bedroom$1
+com2008/team/project/ReviewList.java
+ com2008.team.project.ReviewList

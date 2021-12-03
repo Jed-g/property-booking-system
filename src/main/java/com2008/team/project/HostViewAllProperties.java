@@ -610,22 +610,22 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             propDescText1.setText(propertyList[indexFirstPropOnPage].getDescription());
         }
         if (maxAmountBoxes >= 2){
-            propName2.setText(propertyList[indexFirstPropOnPage].getPropertyName());
-            propLocation2.setText(propertyList[indexFirstPropOnPage].getLocation());
-            propRating2.setText(propertyList[indexFirstPropOnPage].getRating());
-            propDescText2.setText(propertyList[indexFirstPropOnPage].getDescription());
+            propName2.setText(propertyList[indexFirstPropOnPage +1].getPropertyName());
+            propLocation2.setText(propertyList[indexFirstPropOnPage +1].getLocation());
+            propRating2.setText(propertyList[indexFirstPropOnPage +1].getRating());
+            propDescText2.setText(propertyList[indexFirstPropOnPage +1].getDescription());
         }
         if (maxAmountBoxes >= 3){
-            propName3.setText(propertyList[indexFirstPropOnPage].getPropertyName());
-            propLocation3.setText(propertyList[indexFirstPropOnPage].getLocation());
-            propRating3.setText(propertyList[indexFirstPropOnPage].getRating());
-            propDescText3.setText(propertyList[indexFirstPropOnPage].getDescription());
+            propName3.setText(propertyList[indexFirstPropOnPage +2].getPropertyName());
+            propLocation3.setText(propertyList[indexFirstPropOnPage +2].getLocation());
+            propRating3.setText(propertyList[indexFirstPropOnPage +2].getRating());
+            propDescText3.setText(propertyList[indexFirstPropOnPage +2].getDescription());
         }
         if (maxAmountBoxes == 4){
-            propName4.setText(propertyList[indexFirstPropOnPage].getPropertyName());
-            propLocation4.setText(propertyList[indexFirstPropOnPage].getLocation());
-            propRating4.setText(propertyList[indexFirstPropOnPage].getRating());
-            propDescText4.setText(propertyList[indexFirstPropOnPage].getDescription());
+            propName4.setText(propertyList[indexFirstPropOnPage +3].getPropertyName());
+            propLocation4.setText(propertyList[indexFirstPropOnPage +3].getLocation());
+            propRating4.setText(propertyList[indexFirstPropOnPage +3].getRating());
+            propDescText4.setText(propertyList[indexFirstPropOnPage +3].getDescription());
         }     
     }
     

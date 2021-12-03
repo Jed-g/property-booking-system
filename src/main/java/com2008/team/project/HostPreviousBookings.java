@@ -703,22 +703,22 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             guestName1.setText(previousList[indexFirstPreviousOnPage].getGuestName());
         }
         if (maxAmountBoxes >= 2){
-            propName2.setText(previousList[indexFirstPreviousOnPage].getPropertyName());
-            propLocation2.setText(previousList[indexFirstPreviousOnPage].getLocation());
-            dateRange2.setText(previousList[indexFirstPreviousOnPage].getDateRange());
-            guestName2.setText(previousList[indexFirstPreviousOnPage].getGuestName());
+            propName2.setText(previousList[indexFirstPreviousOnPage +1].getPropertyName());
+            propLocation2.setText(previousList[indexFirstPreviousOnPage +1].getLocation());
+            dateRange2.setText(previousList[indexFirstPreviousOnPage +1].getDateRange());
+            guestName2.setText(previousList[indexFirstPreviousOnPage +1].getGuestName());
         }
         if (maxAmountBoxes >= 3){
-            propName3.setText(previousList[indexFirstPreviousOnPage].getPropertyName());
-            propLocation3.setText(previousList[indexFirstPreviousOnPage].getLocation());
-            dateRange3.setText(previousList[indexFirstPreviousOnPage].getDateRange());
-            guestName3.setText(previousList[indexFirstPreviousOnPage].getGuestName());
+            propName3.setText(previousList[indexFirstPreviousOnPage +2].getPropertyName());
+            propLocation3.setText(previousList[indexFirstPreviousOnPage +2].getLocation());
+            dateRange3.setText(previousList[indexFirstPreviousOnPage +2].getDateRange());
+            guestName3.setText(previousList[indexFirstPreviousOnPage +2].getGuestName());
         }
         if (maxAmountBoxes == 4){
-            propName4.setText(previousList[indexFirstPreviousOnPage].getPropertyName());
-            propLocation4.setText(previousList[indexFirstPreviousOnPage].getLocation());
-            dateRange4.setText(previousList[indexFirstPreviousOnPage].getDateRange());
-            guestName4.setText(previousList[indexFirstPreviousOnPage].getGuestName());
+            propName4.setText(previousList[indexFirstPreviousOnPage +3].getPropertyName());
+            propLocation4.setText(previousList[indexFirstPreviousOnPage +3].getLocation());
+            dateRange4.setText(previousList[indexFirstPreviousOnPage +3].getDateRange());
+            guestName4.setText(previousList[indexFirstPreviousOnPage +3].getGuestName());
         }
         
     }

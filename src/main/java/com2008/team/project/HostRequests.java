@@ -626,19 +626,19 @@ public class HostRequests extends javax.swing.JPanel {
             datesRequested1.setText(requestList[indexFirstReqOnPage].getDateRange());
         }
         if (maxAmountBoxes >= 2){
-            propName2.setText(requestList[indexFirstReqOnPage].getPropertyName());
-            propLocation2.setText(requestList[indexFirstReqOnPage].getLocation());
-            datesRequested2.setText(requestList[indexFirstReqOnPage].getDateRange());
+            propName2.setText(requestList[indexFirstReqOnPage +1].getPropertyName());
+            propLocation2.setText(requestList[indexFirstReqOnPage +1].getLocation());
+            datesRequested2.setText(requestList[indexFirstReqOnPage +1].getDateRange());
         }
         if (maxAmountBoxes >= 3){
-            propName3.setText(requestList[indexFirstReqOnPage].getPropertyName());
-            propLocation3.setText(requestList[indexFirstReqOnPage].getLocation());
-            datesRequested3.setText(requestList[indexFirstReqOnPage].getDateRange());
+            propName3.setText(requestList[indexFirstReqOnPage +2].getPropertyName());
+            propLocation3.setText(requestList[indexFirstReqOnPage +2].getLocation());
+            datesRequested3.setText(requestList[indexFirstReqOnPage +2].getDateRange());
         }
         if (maxAmountBoxes == 4){
-            propName4.setText(requestList[indexFirstReqOnPage].getPropertyName());
-            propLocation4.setText(requestList[indexFirstReqOnPage].getLocation());
-            datesRequested4.setText(requestList[indexFirstReqOnPage].getDateRange());
+            propName4.setText(requestList[indexFirstReqOnPage +3].getPropertyName());
+            propLocation4.setText(requestList[indexFirstReqOnPage +3].getLocation());
+            datesRequested4.setText(requestList[indexFirstReqOnPage +3].getDateRange());
         }
         
     }

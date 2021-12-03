@@ -346,7 +346,7 @@
                               <Component id="guestName1" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblDateRequested5" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDateRequested1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="datesRequested1" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
@@ -368,7 +368,7 @@
                               <Component id="propName1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblDateRequested5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDateRequested1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="datesRequested1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -457,7 +457,7 @@
                 <Property name="text" type="java.lang.String" value="[guest name]"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblDateRequested5">
+            <Component class="javax.swing.JLabel" name="lblDateRequested1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="18" style="1"/>

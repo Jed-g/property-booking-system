@@ -841,7 +841,9 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         if (numBoxesToBeRemoved >= 1){
             propName4.setVisible(false);
             propLocation4.setVisible(false);
+            lblDates4.setVisible(false);
             dateRange4.setVisible(false);
+            
             guestName4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){

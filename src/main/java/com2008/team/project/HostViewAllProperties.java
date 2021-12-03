@@ -683,21 +683,25 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propLocation1.setVisible(true);
         propRating1.setVisible(true);
         propDescription1.setVisible(true);
+        propEdit1.setVisible(true);
         
         propName2.setVisible(true);
         propLocation2.setVisible(true);
         propRating2.setVisible(true);
         propDescription2.setVisible(true);
+        propEdit2.setVisible(true);
         
         propName3.setVisible(true);
         propLocation3.setVisible(true);
         propRating3.setVisible(true);
         propDescription3.setVisible(true);
+        propEdit3.setVisible(true);
         
         propName4.setVisible(true);
         propLocation4.setVisible(true);
         propRating4.setVisible(true);
         propDescription4.setVisible(true);
+        propEdit4.setVisible(true);
         
     }
     

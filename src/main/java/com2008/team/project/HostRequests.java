@@ -657,12 +657,10 @@ public class HostRequests extends javax.swing.JPanel {
             
         } else if (n%4 == 0) {
             
-            numberOfPages = n%4;
-            nextPage.setEnabled(true);
+            numberOfPages = n/4;
             
         } else {
-            numberOfPages = (n%4) + 1;
-            nextPage.setEnabled(true);
+            numberOfPages = (n/4) + 1;
         }
         
         pageNumber.setText("1/" + numberOfPages);
@@ -808,7 +806,7 @@ public class HostRequests extends javax.swing.JPanel {
             previousPage.setEnabled(false);
         }
 
-        int indexFirstReqOnPage = (currentPage-1)*3;
+        int indexFirstReqOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillRequestBoxes(indexFirstReqOnPage);
@@ -824,13 +822,13 @@ public class HostRequests extends javax.swing.JPanel {
             nextPage.setEnabled(false);
         }
         
-        int indexFirstReqOnPage = (currentPage-1)*3;
+        int indexFirstReqOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillRequestBoxes(indexFirstReqOnPage);
         resetRequestBoxes();
-        if (indexFirstReqOnPage + 3 > requestList.length){
-            removeRequestBoxes(indexFirstReqOnPage - requestList.length + 3);
+        if (indexFirstReqOnPage + 4 > requestList.length){
+            removeRequestBoxes(indexFirstReqOnPage - requestList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
 

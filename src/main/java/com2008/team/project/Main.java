@@ -3,7 +3,7 @@ package com2008.team.project;
 public class Main extends javax.swing.JFrame {
 
     // For testing DB. Normally email should not be initialized.
-    private String email = "";
+    private String email = "admin";
     private Boolean hostView = false;
     
     /**
@@ -92,11 +92,8 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gotoLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotoLoginButtonActionPerformed
-
-        Property property = new Property(this, 28, email);
-        jScrollPane1.setViewportView(property);
-        //Login loginPanel = new Login(this);
-        //jScrollPane1.setViewportView(loginPanel);
+        Login loginPanel = new Login(this);
+        jScrollPane1.setViewportView(loginPanel);
     }//GEN-LAST:event_gotoLoginButtonActionPerformed
     
     void changePanelToDefault() {

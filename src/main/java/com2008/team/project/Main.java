@@ -17,6 +17,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         
     }
+
     static String hashString(String stringToHash){
         try {
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("SHA3-512");
@@ -285,14 +286,20 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //Guestmain search = new Guestmain(this);
-        Booking search = new Booking(this,email,propertyId);
-       // MainsearchA search = new MainsearchA(this,location);
+        test();
+        //Guestmain search = new Guestmain(this, email);
+        //Booking search = new Booking(this,email,propertyId);
+       //MainsearchA search = new MainsearchA(this,location);
         //Guestupcomingbooking search = new Guestupcomingbooking(this,location);
-        jScrollPane1.setViewportView(search);
+        //jScrollPane1.setViewportView(search);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void test(){
+        Guestmain search = new Guestmain(this, email);
+        jScrollPane1.setViewportView(search);
+    }
+    
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
         User userPanel = new User(this, email, hostView);
         jScrollPane1.setViewportView(userPanel);

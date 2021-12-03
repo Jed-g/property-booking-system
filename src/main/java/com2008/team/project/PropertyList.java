@@ -63,16 +63,16 @@ public class PropertyList {
     }
     
     static PropertyList[] getPropertyList(String email) {
+        System.out.print("getPlist run");
         DriverManager.setLoginTimeout(3);
         
         PropertyList[] propertyList = null;
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, location, description FROM Properties "
-                    + "WHERE email = ?;",
+            PreparedStatement pstmt = con.prepareStatement("SELECT propertyId, propertyName, location, description FROM Properties ",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, email);
+            
             ResultSet res = pstmt.executeQuery();
             
             int numberOfProperties = 0;

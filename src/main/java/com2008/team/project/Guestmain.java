@@ -31,9 +31,13 @@ private int propertyId;
     /**
      * Creates new form NewJPanel
      */
-    public Guestmain(Main jFrameInstance) {
+    public Guestmain(Main jFrameInstance, String email) {
+        System.out.print((1));
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.email = email;
+        fetchPropertyData(email);
+        
            
     }
 
@@ -339,10 +343,10 @@ private int propertyId;
 
     
     private void fetchPropertyData(String email) {
-        
         propertyList = PropertyList.getPropertyList(email);
         
         int n = propertyList.length;
+        
         
         if (n <= 4){
             removePropertyBoxes(4-n);

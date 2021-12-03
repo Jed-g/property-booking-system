@@ -479,7 +479,7 @@ private Boolean hostView = false;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-     Guestmain main = new Guestmain(jFrameInstance);
+     Guestmain main = new Guestmain(jFrameInstance, email);
      jFrameInstance.changePanelToSpecific(main);
     }//GEN-LAST:event_jButton3ActionPerformed
 

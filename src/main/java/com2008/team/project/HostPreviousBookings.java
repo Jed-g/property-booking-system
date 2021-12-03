@@ -692,12 +692,10 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             
         } else if (n%4 == 0) {
             
-            numberOfPages = n%4;
-            nextPage.setEnabled(true);
+            numberOfPages = n/4;
             
         } else {
-            numberOfPages = (n%4) + 1;
-            nextPage.setEnabled(true);
+            numberOfPages = (n/4) + 1;
         }
         
         pageNumber.setText("1/" + numberOfPages);

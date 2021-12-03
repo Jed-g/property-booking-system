@@ -95,8 +95,8 @@ public class Main extends javax.swing.JFrame {
         Property property = new Property(this, 30, email);
         jScrollPane1.setViewportView(property);
         
-        //Login loginPanel = new Login(this);
-        //jScrollPane1.setViewportView(loginPanel);
+        Login loginPanel = new Login(this);
+        jScrollPane1.setViewportView(loginPanel);
     }//GEN-LAST:event_gotoLoginButtonActionPerformed
     
     void changePanelToDefault() {

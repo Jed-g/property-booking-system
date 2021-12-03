@@ -1674,8 +1674,9 @@ public class Property extends javax.swing.JPanel {
         Date bookedEndDate;
         boolean available = false;
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-                PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate FROM Bookings WHERE propertyId = ?");
+                PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate FROM Bookings WHERE propertyId = ? AND provisional = ?");
                 pstmt.setInt(1, propertyId);
+                pstmt.setInt(2, 0);
                 ResultSet res = pstmt.executeQuery();
                 
                 while (res.next()) {
@@ -1694,8 +1695,8 @@ public class Property extends javax.swing.JPanel {
                     else {
                         available = true;
                     }
-                    
                 }
+                res.close();
                 
             }
             catch (Exception ex) {

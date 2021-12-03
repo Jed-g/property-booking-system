@@ -64,6 +64,15 @@ public class Property extends javax.swing.JPanel {
         private Bathroom(){
         }
     }
+    
+    private class Booking {
+        private String guestEmail;
+        private Date startDate;
+        private Date endDate;
+        private boolean provisional;
+        private Booking() {
+        }
+    }
 
     private Main jFrameInstance;
     int propertyId;
@@ -104,13 +113,26 @@ public class Property extends javax.swing.JPanel {
         setPageView();
         calculateRating();
         update();
-        System.out.println(view);
+        
+        System.out.print(view);
         
         DriverManager.setLoginTimeout(3);
     }
     
     public Property(Main jFrameInstance, int propertyId, String email, Date startDate, Date endDate) {
+        initComponents();
+        this.jFrameInstance = jFrameInstance;
+        this.propertyId = propertyId;
+        this.userEmail = email;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        getPropertyInfo();
+        getRoomsData();
+        setPageView();
+        calculateRating();
+        update();
         
+        DriverManager.setLoginTimeout(3);
     }
 
     /**
@@ -187,9 +209,9 @@ public class Property extends javax.swing.JPanel {
         fireExtinguisherIcon = new javax.swing.JLabel();
         java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
         startDateField = new javax.swing.JFormattedTextField(dateFormat);
-        jLabel41 = new javax.swing.JLabel();
+        startDateLabel = new javax.swing.JLabel();
         endDateField = new javax.swing.JFormattedTextField(dateFormat);
-        jLabel42 = new javax.swing.JLabel();
+        endDateLabel = new javax.swing.JLabel();
         totalPrice = new javax.swing.JLabel();
         applyDatesButton = new javax.swing.JButton();
         houseNumber = new javax.swing.JLabel();
@@ -237,17 +259,14 @@ public class Property extends javax.swing.JPanel {
         editPropertyButton = new javax.swing.JButton();
         returnButton = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel49 = new javax.swing.JLabel();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
+        totalLabel = new javax.swing.JLabel();
+        serviceChargeLabel = new javax.swing.JLabel();
+        cleaningChargeLabel = new javax.swing.JLabel();
+        ppnLabel = new javax.swing.JLabel();
         pricePerNight = new javax.swing.JLabel();
         serviceCharge = new javax.swing.JLabel();
         cleaningCharge = new javax.swing.JLabel();
-        jLabel52 = new javax.swing.JLabel();
-        startDateAvailable = new javax.swing.JLabel();
-        endDateAvailable = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
+        please2022Label = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -444,8 +463,8 @@ public class Property extends javax.swing.JPanel {
         } catch (Exception ex) {/*Ignore*/}
         startDateField.setText(dateFormat.format(new java.util.Date()));
 
-        jLabel41.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel41.setText("Start Date (dd/mm/yyyy)");
+        startDateLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        startDateLabel.setText("Start Date (dd/mm/yyyy)");
 
         endDateField.setText("dd/mm/yyyy");
         try{
@@ -459,8 +478,8 @@ public class Property extends javax.swing.JPanel {
             }
         });
 
-        jLabel42.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel42.setText("End Date (dd/mm/yyyy)");
+        endDateLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        endDateLabel.setText("End Date (dd/mm/yyyy)");
 
         totalPrice.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         totalPrice.setText("£-.--");
@@ -843,13 +862,13 @@ public class Property extends javax.swing.JPanel {
             }
         });
 
-        jLabel16.setText("Total:");
+        totalLabel.setText("Total:");
 
-        jLabel49.setText("Service Charge:");
+        serviceChargeLabel.setText("Service Charge:");
 
-        jLabel50.setText("Cleaning Charge:");
+        cleaningChargeLabel.setText("Cleaning Charge:");
 
-        jLabel51.setText("Price per night:");
+        ppnLabel.setText("Price per night:");
 
         pricePerNight.setText("£-.--");
 
@@ -857,17 +876,8 @@ public class Property extends javax.swing.JPanel {
 
         cleaningCharge.setText("£-.--");
 
-        jLabel52.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel52.setText("Available between");
-
-        startDateAvailable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        startDateAvailable.setText("dd/mm/yyyy");
-
-        endDateAvailable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        endDateAvailable.setText("dd/mm/yyyy");
-
-        jLabel55.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel55.setText("and");
+        please2022Label.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        please2022Label.setText("Please select dates in 2022");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -892,7 +902,7 @@ public class Property extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(smokeAlarmIcon)
                                         .addGap(0, 0, Short.MAX_VALUE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel31)
                                     .addComponent(jLabel30))
@@ -1034,15 +1044,15 @@ public class Property extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel51)
-                                    .addComponent(jLabel49)
-                                    .addComponent(jLabel50))
+                                    .addComponent(ppnLabel)
+                                    .addComponent(serviceChargeLabel)
+                                    .addComponent(cleaningChargeLabel))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(cleaningCharge)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel16)
+                                        .addComponent(totalLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(totalPrice))
                                     .addGroup(layout.createSequentialGroup()
@@ -1068,17 +1078,10 @@ public class Property extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel47, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel52)
-                                .addGap(18, 18, 18)
-                                .addComponent(startDateAvailable)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel55)
-                                .addGap(18, 18, 18)
-                                .addComponent(endDateAvailable))
+                            .addComponent(please2022Label)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel41)
+                                    .addComponent(startDateLabel)
                                     .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1087,13 +1090,13 @@ public class Property extends javax.swing.JPanel {
                                         .addComponent(endDateField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(applyDatesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel42))))
-                        .addGap(0, 22, Short.MAX_VALUE))
+                                    .addComponent(endDateLabel))))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(editPropertyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1507, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1125,16 +1128,13 @@ public class Property extends javax.swing.JPanel {
                                     .addComponent(editPropertyButton))
                                 .addGap(18, 18, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(houseNumber)
-                                            .addComponent(streetName))
-                                        .addGap(4, 4, 4))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(houseNumber)
+                                    .addComponent(streetName))
+                                .addGap(4, 4, 4))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1149,15 +1149,11 @@ public class Property extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel52)
-                                    .addComponent(startDateAvailable)
-                                    .addComponent(endDateAvailable)
-                                    .addComponent(jLabel55))
+                                .addComponent(please2022Label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel41)
-                                    .addComponent(jLabel42))
+                                    .addComponent(startDateLabel)
+                                    .addComponent(endDateLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(startDateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1165,21 +1161,21 @@ public class Property extends javax.swing.JPanel {
                                     .addComponent(applyDatesButton))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel51)
+                                    .addComponent(ppnLabel)
                                     .addComponent(pricePerNight))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(totalPrice)
-                                        .addComponent(jLabel16)
+                                        .addComponent(totalLabel)
                                         .addComponent(multiUseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel49)
+                                            .addComponent(serviceChargeLabel)
                                             .addComponent(serviceCharge))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel50)
+                                            .addComponent(cleaningChargeLabel)
                                             .addComponent(cleaningCharge))))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
@@ -1439,21 +1435,20 @@ public class Property extends javax.swing.JPanel {
     }
     
     private void calculateRating() {
-        float avgRating = 0;
         float ratingsTotal = 0;
         ArrayList<Integer> bookingIds = new ArrayList<Integer>();
-        int numRatings = 0;
+        float numRatings = 0;
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-            PreparedStatement bookingspstmt = con.prepareStatement("SELECT propertyId FROM Bookings where propertyId = ?");
+            PreparedStatement bookingspstmt = con.prepareStatement("SELECT bookingId FROM Bookings where propertyId = ?");
             bookingspstmt.setInt(1,propertyId);
             ResultSet bookings = bookingspstmt.executeQuery();
             while (bookings.next()) {
-                bookingIds.add(bookings.getInt("propertyId"));
+                bookingIds.add(bookings.getInt("bookingId"));
             }
             bookings.close();
             
             for (Integer bookingId : bookingIds) {
-                PreparedStatement reviewspstmt = con.prepareStatement("SELECT avgRating FROM Reviews WHERE bookingId = ?");
+                PreparedStatement reviewspstmt = con.prepareStatement("SELECT * FROM Reviews WHERE bookingId = ?");
                 reviewspstmt.setInt(1,bookingId);
                 ResultSet res = reviewspstmt.executeQuery();
                 while (res.next()) {
@@ -1466,7 +1461,6 @@ public class Property extends javax.swing.JPanel {
                 res.close();
             }
             
-            
             avgRating = ratingsTotal/numRatings;
         }
         catch (Exception ex) {
@@ -1475,8 +1469,6 @@ public class Property extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        
-        this.avgRating = avgRating;
     }
     
     private void checkBookings () {
@@ -1557,7 +1549,12 @@ public class Property extends javax.swing.JPanel {
         }
         numSleepersLabel.setText("" + numSleepers);
         
-        ratingLabel.setText("" + avgRating);
+        if (Float.isNaN(avgRating)) {
+            ratingLabel.setText("No reviews");
+        }
+        else {
+            ratingLabel.setText("" + avgRating + "/5");
+        }
         
         if (!(view == PageView.HOST || view == PageView.GUESTCONFIRMED)) {
             houseNumber.setVisible(false);
@@ -1568,15 +1565,28 @@ public class Property extends javax.swing.JPanel {
         
         if (view == PageView.HOST) {
             editPropertyButton.setVisible(true);
+            
+            startDateLabel.setVisible(false);
+            endDateLabel.setVisible(false);
+            startDateField.setVisible(false);
+            endDateField.setVisible(false);
+            ppnLabel.setVisible(false);
+            serviceChargeLabel.setVisible(false);
+            cleaningChargeLabel.setVisible(false);
+            pricePerNight.setVisible(false);
+            serviceCharge.setVisible(false);
+            cleaningCharge.setVisible(false);
+            totalLabel.setVisible(false);
+            totalPrice.setVisible(false);
+            applyDatesButton.setVisible(false);
+            please2022Label.setVisible(false);
+            
             multiUseButton.setText("Next");
         }
         else {
             editPropertyButton.setVisible(false);
             multiUseButton.setText("Book now");
         }
-        
-        startDateAvailable.setText("01/01/2022");
-        endDateAvailable.setText("31/12/2022");
     }
     
     //Functions to return data
@@ -1598,21 +1608,23 @@ public class Property extends javax.swing.JPanel {
     }
     
     private void setPageView() {
-        String guestEmail = "";
+        //sets PageView enum view based on what type of user is viewing the page
+        ArrayList<Booking> bookings = new ArrayList<Booking>();  
         Date today = new java.sql.Date(System.currentTimeMillis());
-        Date startDate = new java.sql.Date(System.currentTimeMillis());
-        Date endDate = new java.sql.Date(System.currentTimeMillis());
-        boolean provisional = true;
+        boolean userHasFutureBooking = false;
+        Booking usersBooking = new Booking();
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Bookings WHERE propertyId = ?");
             pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
             
             while (res.next()) {
-                guestEmail = res.getString("email");
-                startDate = res.getDate("startDate");
-                endDate = res.getDate("endDate");
-                provisional = res.getBoolean("provisional");
+                Booking booking = new Booking();
+                booking.guestEmail = res.getString("email");
+                booking.startDate = res.getDate("startDate");
+                booking.endDate = res.getDate("endDate");
+                booking.provisional = res.getBoolean("provisional");
+                bookings.add(booking);
             }
             res.close();
 
@@ -1622,16 +1634,23 @@ public class Property extends javax.swing.JPanel {
             else if (hostEmail.equals(userEmail)) {
                 view = PageView.HOST;
             }
-            else if (userEmail.equals(guestEmail) && (endDate.after(today))) {
-                if ((provisional))
-                view = PageView.GUESTPROVISIONAL;
-                else
-                view = PageView.GUESTCONFIRMED;
+            
+            for (Booking booking : bookings) {
+                if (userEmail.equals(booking.guestEmail) && booking.endDate.after(today)) {
+                    usersBooking = booking;
+                    userHasFutureBooking = true;
+                }
             }
-            else {
+            
+            if (userHasFutureBooking){
+                if (usersBooking.provisional)
+                    view = PageView.GUESTPROVISIONAL;
+                else
+                    view = PageView.GUESTCONFIRMED;
+            }
+            else{
                 view = PageView.GUEST;
             }
-
         }
         catch (Exception ex) {
             ex.printStackTrace();
@@ -1640,9 +1659,45 @@ public class Property extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-        
-        
-        //check if a booking matching the guest email and this property ID exists
+    }
+    
+    private boolean checkDateAvailable() {
+        Date bookedStartDate;
+        Date bookedEndDate;
+        boolean available = false;
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+                PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate FROM Bookings WHERE propertyId = ?");
+                pstmt.setInt(1, propertyId);
+                ResultSet res = pstmt.executeQuery();
+                
+                while (res.next()) {
+                    bookedStartDate = res.getDate("startDate");
+                    bookedEndDate = res.getDate("endDate");
+                    
+                    if (ChargeBand.isBetweenDates(bookedStartDate, bookedEndDate, startDate)) {
+                        available = false;
+                    }
+                    else if (ChargeBand.isBetweenDates(bookedStartDate, bookedEndDate, endDate)) {
+                        available = false;
+                    }
+                    else if (startDate.before(bookedStartDate) && endDate.after(bookedEndDate)) {
+                        available = false;
+                    }
+                    else {
+                        available = true;
+                    }
+                    
+                }
+                
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+            
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "Connection to database failed. University VPN is required.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+        return available;
     }
     private void multiUseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButtonActionPerformed
         if (view == PageView.HOST) { //redirect to second page
@@ -1651,12 +1706,27 @@ public class Property extends javax.swing.JPanel {
         }
         
         if (view == PageView.GUEST) {
-            //create new booking
+            if (checkDateAvailable()) {
+                //create new booking
+                System.out.print("Booking...");
+            }
+            else {
+                javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                String errorMessage = "Sorry, those dates have already been booked";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+            
         }
         
         if (view == PageView.GUESTPROVISIONAL) {
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "You have already made a booking for this property. Go to Upcoming Bookings to manage bookings.";
+            String errorMessage = "You have already requested to book this property. Go to Upcoming Bookings to manage bookings.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        if (view == PageView.GUESTCONFIRMED) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "You have already booked this property. Go to Upcoming Bookings to manage bookings.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
         
@@ -1788,14 +1858,15 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel boardGamesIcon;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel cleaningCharge;
+    private javax.swing.JLabel cleaningChargeLabel;
     private javax.swing.JLabel cookwareIcon;
     private javax.swing.JLabel description;
     private javax.swing.JLabel dishwasherIcon;
     private javax.swing.JLabel dryingMachineIcon;
     private javax.swing.JLabel dvdPlayerIcon;
     private javax.swing.JButton editPropertyButton;
-    private javax.swing.JLabel endDateAvailable;
     private javax.swing.JFormattedTextField endDateField;
+    private javax.swing.JLabel endDateLabel;
     private javax.swing.JLabel fireExtinguisherIcon;
     private javax.swing.JLabel firstAidIcon;
     private javax.swing.JLabel freeOnSiteParkingIcon;
@@ -1809,7 +1880,6 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -1837,20 +1907,13 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1871,7 +1934,9 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel paidCarParkingIcon;
     private javax.swing.JLabel patioIcon;
     private javax.swing.JLabel placeName;
+    private javax.swing.JLabel please2022Label;
     private javax.swing.JLabel postcode;
+    private javax.swing.JLabel ppnLabel;
     private javax.swing.JLabel pricePerNight;
     private javax.swing.JLabel propertyName;
     private javax.swing.JLabel ratingLabel;
@@ -1879,14 +1944,15 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JButton returnButton;
     private javax.swing.JLabel satelliteIcon;
     private javax.swing.JLabel serviceCharge;
+    private javax.swing.JLabel serviceChargeLabel;
     private javax.swing.JLabel shampooIcon;
     private javax.swing.JLabel sharedIcon;
     private javax.swing.JLabel showerIcon;
     private javax.swing.JButton sleepingNextButton;
     private javax.swing.JButton sleepingPrevButton;
     private javax.swing.JLabel smokeAlarmIcon;
-    private javax.swing.JLabel startDateAvailable;
     private javax.swing.JFormattedTextField startDateField;
+    private javax.swing.JLabel startDateLabel;
     private javax.swing.JLabel stoveIcon;
     private javax.swing.JLabel stoveIcon1;
     private javax.swing.JLabel streamingIcon;
@@ -1895,6 +1961,7 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel televisionIcon;
     private javax.swing.JLabel toiletIcon;
     private javax.swing.JLabel toiletPaperIcon;
+    private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalPrice;
     private javax.swing.JLabel towelsIcon;
     private javax.swing.JLabel washingMachineIcon;

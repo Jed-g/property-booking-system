@@ -47,7 +47,7 @@ public class HostRequests extends javax.swing.JPanel {
         lblGuestName1 = new javax.swing.JLabel();
         guestName1 = new javax.swing.JLabel();
         lblDateRequested5 = new javax.swing.JLabel();
-        datesRequested5 = new javax.swing.JLabel();
+        datesRequested1 = new javax.swing.JLabel();
         request2 = new javax.swing.JPanel();
         propName2 = new javax.swing.JLabel();
         acceptBooking2 = new javax.swing.JButton();
@@ -212,9 +212,9 @@ public class HostRequests extends javax.swing.JPanel {
         lblDateRequested5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDateRequested5.setText("Dates Requested:");
 
-        datesRequested5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        datesRequested5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        datesRequested5.setText("[date range]");
+        datesRequested1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        datesRequested1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        datesRequested1.setText("[date range]");
 
         javax.swing.GroupLayout request1Layout = new javax.swing.GroupLayout(request1);
         request1.setLayout(request1Layout);
@@ -231,7 +231,7 @@ public class HostRequests extends javax.swing.JPanel {
                     .addGroup(request1Layout.createSequentialGroup()
                         .addComponent(lblDateRequested5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(datesRequested5, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(datesRequested1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4)
                 .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rejectBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,7 +247,7 @@ public class HostRequests extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDateRequested5)
-                            .addComponent(datesRequested5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(datesRequested1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(request1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblGuestName1)
@@ -661,23 +661,23 @@ public class HostRequests extends javax.swing.JPanel {
         }
         if (maxAmountBoxes >= 1){
             propName1.setText(requestList[indexFirstReqOnPage].getPropertyName());
-            propLocation1.setText(requestList[indexFirstReqOnPage].getLocation());
-            guestName1.setText(requestList[indexFirstReqOnPage].getDateRange());
+            datesRequested1.setText(requestList[indexFirstReqOnPage].getDateRange());
+            guestName1.setText(requestList[indexFirstReqOnPage].getGuestName());
         }
         if (maxAmountBoxes >= 2){
             propName2.setText(requestList[indexFirstReqOnPage +1].getPropertyName());
-            propLocation2.setText(requestList[indexFirstReqOnPage +1].getLocation());
             datesRequested2.setText(requestList[indexFirstReqOnPage +1].getDateRange());
+            guestName2.setText(requestList[indexFirstReqOnPage +1].getGuestName());
         }
         if (maxAmountBoxes >= 3){
             propName3.setText(requestList[indexFirstReqOnPage +2].getPropertyName());
-            propLocation3.setText(requestList[indexFirstReqOnPage +2].getLocation());
             datesRequested3.setText(requestList[indexFirstReqOnPage +2].getDateRange());
+            guestName3.setText(requestList[indexFirstReqOnPage +2].getGuestName());
         }
         if (maxAmountBoxes == 4){
             propName4.setText(requestList[indexFirstReqOnPage +3].getPropertyName());
-            propLocation4.setText(requestList[indexFirstReqOnPage +3].getLocation());
             datesRequested4.setText(requestList[indexFirstReqOnPage +3].getDateRange());
+            guestName4.setText(requestList[indexFirstReqOnPage +3].getGuestName());
         }
         
     }
@@ -685,23 +685,23 @@ public class HostRequests extends javax.swing.JPanel {
     private void removeRequestBoxes(int numBoxesToBeRemoved) {
         
         if (numBoxesToBeRemoved >= 1){
-            propName4.setVisible(false);
-            propLocation4.setVisible(false);
+            propName4.setVisible(false);           
             datesRequested4.setVisible(false);
+            guestName4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
             propName3.setVisible(false);
-            propLocation3.setVisible(false);
             datesRequested3.setVisible(false);
+            guestName3.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 3){
             propName2.setVisible(false);
-            propLocation2.setVisible(false);
             datesRequested2.setVisible(false);
+            guestName2.setVisible(false);
         }
         if (numBoxesToBeRemoved == 4){
             propName1.setVisible(false);
-            propLocation1.setVisible(false);
+            datesRequested1.setVisible(false);
             guestName1.setVisible(false);
         }
         
@@ -710,20 +710,20 @@ public class HostRequests extends javax.swing.JPanel {
     private void resetRequestBoxes() {
         
         propName1.setVisible(true);
-        propLocation1.setVisible(true);
+        datesRequested1.setVisible(true);
         guestName1.setVisible(true);
         
         propName2.setVisible(true);
-        propLocation2.setVisible(true);
         datesRequested2.setVisible(true);
+        guestName2.setVisible(true);
         
         propName3.setVisible(true);
-        propLocation3.setVisible(true);
         datesRequested3.setVisible(true);
+        guestName3.setVisible(true);
         
         propName4.setVisible(true);
-        propLocation4.setVisible(true);
         datesRequested4.setVisible(true);
+        guestName4.setVisible(true);
         
     }
     
@@ -829,10 +829,10 @@ public class HostRequests extends javax.swing.JPanel {
     private javax.swing.JButton acceptBooking3;
     private javax.swing.JButton acceptBooking4;
     private javax.swing.JPanel bookingRequests;
+    private javax.swing.JLabel datesRequested1;
     private javax.swing.JLabel datesRequested2;
     private javax.swing.JLabel datesRequested3;
     private javax.swing.JLabel datesRequested4;
-    private javax.swing.JLabel datesRequested5;
     private javax.swing.JLabel guestName1;
     private javax.swing.JLabel guestName2;
     private javax.swing.JLabel guestName3;

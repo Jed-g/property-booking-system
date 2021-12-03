@@ -9,17 +9,17 @@ public class RequestList {
     private int bookingId;
     private Date startDate;
     private Date endDate;
-    private String firstName;
-    private String lastName;
+    private String guestForename;
+    private String guestSurname;
     
-    private RequestList(String propertyName, int bookingId, Date startDate, Date endDate, String firstName, String lastName) {
+    private RequestList(String propertyName, int bookingId, Date startDate, Date endDate, String guestForename, String guestSurname) {
         
         this.propertyName = propertyName;
         this.bookingId = bookingId;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.guestForename = guestForename;
+        this.guestSurname = guestSurname;
         
     }
     
@@ -43,12 +43,8 @@ public class RequestList {
         return (startDate + " until " + endDate);
     }
     
-    String getFirstName() {
-        return firstName;
-    }
-    
-    String getLastName() {
-        return lastName;
+    String getGuestName() {
+        return (guestForename + " " + guestSurname.substring(0,1));
     }
     
     static RequestList[] getRequestList(String email) {       

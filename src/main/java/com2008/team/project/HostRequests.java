@@ -9,6 +9,7 @@ public class HostRequests extends javax.swing.JPanel {
     private RequestList[] requestList;
     private int numberOfPages;
     private int currentPage = 1;
+    private String email;
     
     /**
      * Creates new form HostRequests
@@ -16,6 +17,7 @@ public class HostRequests extends javax.swing.JPanel {
     public HostRequests(Main jFrameInstance, String email) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.email = email;
         
         DriverManager.setLoginTimeout(3);
         
@@ -744,6 +746,10 @@ public class HostRequests extends javax.swing.JPanel {
         
     }
     
+    private void createNewRequestInstance() {
+        jFrameInstance.changePanelToSpecific(new HostRequests(jFrameInstance, email));    
+    }
+    
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
         User accountPage = new User(jFrameInstance, "", true);
         jFrameInstance.changePanelToSpecific(accountPage);
@@ -771,21 +777,26 @@ public class HostRequests extends javax.swing.JPanel {
     private void acceptBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking3ActionPerformed
         RequestList req = requestList[(currentPage-1)*4 + 2];
         RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
+        createNewRequestInstance();
     }//GEN-LAST:event_acceptBooking3ActionPerformed
 
     private void rejectBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking3ActionPerformed
         RequestList req = requestList[(currentPage-1)*4 + 2];
         RequestList.reject(req.getBookingId());
+        createNewRequestInstance();
     }//GEN-LAST:event_rejectBooking3ActionPerformed
 
     private void acceptBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking4ActionPerformed
         RequestList req = requestList[(currentPage-1)*4 + 3];
         RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
+        createNewRequestInstance();
+        
     }//GEN-LAST:event_acceptBooking4ActionPerformed
 
     private void rejectBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking4ActionPerformed
         RequestList req = requestList[(currentPage-1)*4 + 3];
         RequestList.reject(req.getBookingId());
+        createNewRequestInstance();
     }//GEN-LAST:event_rejectBooking4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
@@ -830,21 +841,25 @@ public class HostRequests extends javax.swing.JPanel {
     private void rejectBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking1ActionPerformed
         RequestList req = requestList[(currentPage-1)*4];
         RequestList.reject(req.getBookingId());
+        createNewRequestInstance();
     }//GEN-LAST:event_rejectBooking1ActionPerformed
 
     private void acceptBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking1ActionPerformed
         RequestList req = requestList[(currentPage-1)*4];
         RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
+        createNewRequestInstance();
     }//GEN-LAST:event_acceptBooking1ActionPerformed
 
     private void rejectBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking2ActionPerformed
         RequestList req = requestList[(currentPage-1)*4 + 1];
         RequestList.reject(req.getBookingId());
+        createNewRequestInstance();
     }//GEN-LAST:event_rejectBooking2ActionPerformed
 
     private void acceptBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking2ActionPerformed
         RequestList req = requestList[(currentPage-1)*4 + 1];
         RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
+        createNewRequestInstance();
     }//GEN-LAST:event_acceptBooking2ActionPerformed
 
 

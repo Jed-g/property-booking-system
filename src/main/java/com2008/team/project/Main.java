@@ -13,8 +13,6 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        changePanelToSpecific(new HostRequests(this, "admin"));
-        
         
     }
 
@@ -98,6 +96,7 @@ public class Main extends javax.swing.JFrame {
     private void gotoLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotoLoginButtonActionPerformed
         Login loginPanel = new Login(this);
         jScrollPane1.setViewportView(loginPanel);
+
     }//GEN-LAST:event_gotoLoginButtonActionPerformed
     
     void changePanelToDefault() {

@@ -769,19 +769,23 @@ public class HostRequests extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void acceptBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking3ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4 + 2];
+        RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
     }//GEN-LAST:event_acceptBooking3ActionPerformed
 
     private void rejectBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking3ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4 + 2];
+        RequestList.reject(req.getBookingId());
     }//GEN-LAST:event_rejectBooking3ActionPerformed
 
     private void acceptBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking4ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4 + 3];
+        RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
     }//GEN-LAST:event_acceptBooking4ActionPerformed
 
     private void rejectBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking4ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4 + 3];
+        RequestList.reject(req.getBookingId());
     }//GEN-LAST:event_rejectBooking4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
@@ -824,19 +828,23 @@ public class HostRequests extends javax.swing.JPanel {
     }//GEN-LAST:event_searchInputActionPerformed
 
     private void rejectBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking1ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4];
+        RequestList.reject(req.getBookingId());
     }//GEN-LAST:event_rejectBooking1ActionPerformed
 
     private void acceptBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking1ActionPerformed
-        //RequestList.checkForOverlaps(, startDate, endDate);
+        RequestList req = requestList[(currentPage-1)*4];
+        RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
     }//GEN-LAST:event_acceptBooking1ActionPerformed
 
     private void rejectBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBooking2ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4 + 1];
+        RequestList.reject(req.getBookingId());
     }//GEN-LAST:event_rejectBooking2ActionPerformed
 
     private void acceptBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking2ActionPerformed
-        // TODO add your handling code here:
+        RequestList req = requestList[(currentPage-1)*4 + 1];
+        RequestList.checkForOverlapsAndAccept(req.getBookingId(), req.getPropertyId(), req.getStartDate(), req.getEndDate());
     }//GEN-LAST:event_acceptBooking2ActionPerformed
 
 

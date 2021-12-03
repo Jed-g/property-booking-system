@@ -267,6 +267,7 @@ public class Property extends javax.swing.JPanel {
         serviceCharge = new javax.swing.JLabel();
         cleaningCharge = new javax.swing.JLabel();
         please2022Label = new javax.swing.JLabel();
+        viewReviewsButton = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -879,6 +880,13 @@ public class Property extends javax.swing.JPanel {
         please2022Label.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         please2022Label.setText("Please select dates in 2022");
 
+        viewReviewsButton.setText("viewReviews");
+        viewReviewsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReviewsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -951,25 +959,6 @@ public class Property extends javax.swing.JPanel {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(streamingIcon))))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(location)
-                                                .addGap(63, 63, 63)
-                                                .addComponent(jLabel40))
-                                            .addComponent(propertyName))
-                                        .addGap(72, 72, 72)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(placeName)
-                                            .addComponent(postcode)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(houseNumber)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(streetName))))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel43)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(ratingLabel))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(390, 390, 390)
                                         .addComponent(stoveIcon1))
                                     .addComponent(jLabel10)
@@ -998,7 +987,29 @@ public class Property extends javax.swing.JPanel {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(onRoadParkingIcon))))
                                     .addComponent(jLabel34))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(location)
+                                        .addGap(63, 63, 63)
+                                        .addComponent(jLabel40))
+                                    .addComponent(propertyName)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel43)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(ratingLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(viewReviewsButton)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(placeName)
+                                    .addComponent(postcode)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(houseNumber)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(streetName)))
+                                .addGap(21, 21, 21)))
                         .addGap(21, 21, 21))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1111,36 +1122,34 @@ public class Property extends javax.swing.JPanel {
                                 .addGap(147, 147, 147)
                                 .addComponent(stoveIcon1))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(location)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel43)
-                                    .addComponent(ratingLabel))
-                                .addGap(18, 18, 18)
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(location)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel43)
+                                            .addComponent(ratingLabel)
+                                            .addComponent(viewReviewsButton)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(houseNumber)
+                                            .addComponent(streetName))
+                                        .addGap(4, 4, 4)
+                                        .addComponent(placeName)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(postcode)))
+                                .addGap(14, 14, 14)
                                 .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(propertyName)
-                                    .addComponent(editPropertyButton))
-                                .addGap(18, 18, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(houseNumber)
-                                    .addComponent(streetName))
-                                .addGap(4, 4, 4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(returnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                            .addComponent(propertyName)
+                            .addComponent(editPropertyButton)
+                            .addComponent(returnButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(placeName)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(postcode)
-                                .addGap(112, 112, 112)
+                                .addGap(148, 148, 148)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1171,7 +1180,6 @@ public class Property extends javax.swing.JPanel {
                                     .addComponent(wifiIcon)
                                     .addComponent(jLabel8)
                                     .addComponent(dvdPlayerIcon))
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(jLabel10)
@@ -1548,9 +1556,10 @@ public class Property extends javax.swing.JPanel {
         
         if (Float.isNaN(avgRating)) {
             ratingLabel.setText("No reviews");
+            viewReviewsButton.setVisible(false);
         }
         else {
-            ratingLabel.setText("" + avgRating + "/5");
+            ratingLabel.setText(String.format("%.1f", avgRating));
         }
         
         if (!(view == PageView.HOST || view == PageView.GUESTCONFIRMED)) {
@@ -1841,6 +1850,11 @@ public class Property extends javax.swing.JPanel {
         jFrameInstance.changePanelToSpecific(editProperty);
     }//GEN-LAST:event_editPropertyButtonActionPerformed
 
+    private void viewReviewsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReviewsButtonActionPerformed
+        Review reviews = new Review(jFrameInstance, "" + propertyId);
+        jFrameInstance.changePanelToSpecific(reviews);
+    }//GEN-LAST:event_viewReviewsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton applyDatesButton;
@@ -1963,6 +1977,7 @@ public class Property extends javax.swing.JPanel {
     private javax.swing.JLabel totalLabel;
     private javax.swing.JLabel totalPrice;
     private javax.swing.JLabel towelsIcon;
+    private javax.swing.JButton viewReviewsButton;
     private javax.swing.JLabel washingMachineIcon;
     private javax.swing.JLabel wifiIcon;
     // End of variables declaration//GEN-END:variables

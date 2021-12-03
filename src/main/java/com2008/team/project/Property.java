@@ -65,12 +65,12 @@ public class Property extends javax.swing.JPanel {
         }
     }
     
-    private class Booking {
+    private class BookingInternal {
         private String guestEmail;
         private Date startDate;
         private Date endDate;
         private boolean provisional;
-        private Booking() {
+        private BookingInternal() {
         }
     }
 
@@ -1615,17 +1615,17 @@ public class Property extends javax.swing.JPanel {
     
     private void setPageView() {
         //sets PageView enum view based on what type of user is viewing the page
-        ArrayList<Booking> bookings = new ArrayList<Booking>();  
+        ArrayList<BookingInternal> bookings = new ArrayList<BookingInternal>();  
         Date today = new java.sql.Date(System.currentTimeMillis());
         boolean userHasFutureBooking = false;
-        Booking usersBooking = new Booking();
+        BookingInternal usersBooking = new BookingInternal();
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
             PreparedStatement pstmt = con.prepareStatement("SELECT * FROM Bookings WHERE propertyId = ?");
             pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
             
             while (res.next()) {
-                Booking booking = new Booking();
+                BookingInternal booking = new BookingInternal();
                 booking.guestEmail = res.getString("email");
                 booking.startDate = res.getDate("startDate");
                 booking.endDate = res.getDate("endDate");
@@ -1642,7 +1642,7 @@ public class Property extends javax.swing.JPanel {
             }
             else {
             
-                for (Booking booking : bookings) {
+                for (BookingInternal booking : bookings) {
                     if (userEmail.equals(booking.guestEmail) && booking.endDate.after(today)) {
                         usersBooking = booking;
                         userHasFutureBooking = true;
@@ -1716,9 +1716,8 @@ public class Property extends javax.swing.JPanel {
         if (view == PageView.GUEST) {
             applyDatesButtonActionPerformed(null);
             if (checkDateAvailable()) {
-                
-                //create new booking
-                System.out.print("Booking...");
+                //Booking booking = new Booking(propertyId, userEmail, startDate, endDate);
+                //jFrameInstance.changePanelToSpecific(booking);
             }
             else {
                 javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
@@ -1851,7 +1850,7 @@ public class Property extends javax.swing.JPanel {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
-        EditProperty editProperty = new EditProperty(jFrameInstance, propertyId);
+        EditProperty editProperty = new EditProperty(jFrameInstance, this, propertyId);
         jFrameInstance.changePanelToSpecific(editProperty);
     }//GEN-LAST:event_editPropertyButtonActionPerformed
 

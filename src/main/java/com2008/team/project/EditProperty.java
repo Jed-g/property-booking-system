@@ -96,6 +96,7 @@ public class EditProperty extends javax.swing.JPanel {
     private EditProperty2 editProperty2Instance;
     private Main jFrameInstance;
     private int propertyId;
+    private Property propertyInstance;
     
     private int currentBedroomPage = 1;
     private int currentBathroomPage = 1;
@@ -103,10 +104,11 @@ public class EditProperty extends javax.swing.JPanel {
     /**
      * Creates new form AddProperty
      */
-    public EditProperty(Main jFrameInstance, int propertyId) {
+    public EditProperty(Main jFrameInstance, Property propertyInstance, int propertyId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
-        editProperty2Instance = new EditProperty2(jFrameInstance, this, propertyId);
+        this.propertyInstance = propertyInstance;
+        editProperty2Instance = new EditProperty2(jFrameInstance, this, propertyInstance, propertyId);
         this.propertyId = propertyId;
         
         DriverManager.setLoginTimeout(3);
@@ -1136,7 +1138,7 @@ public class EditProperty extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToDefault();
+        jFrameInstance.changePanelToSpecific(propertyInstance);
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void propertyNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertyNameTextFieldActionPerformed
@@ -1380,7 +1382,7 @@ public class EditProperty extends javax.swing.JPanel {
     }//GEN-LAST:event_bathingDeleteButtonActionPerformed
 
     private void nextButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButton1ActionPerformed
-        // TODO add your handling code here:
+        jFrameInstance.changePanelToSpecific(editProperty2Instance);
     }//GEN-LAST:event_nextButton1ActionPerformed
 
     private void updateCurrentBedroomInArray(){

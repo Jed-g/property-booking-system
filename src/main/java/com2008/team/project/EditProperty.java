@@ -144,7 +144,7 @@ public class EditProperty extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         placeNameTextField = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        nextButton = new javax.swing.JButton();
+        deleteProperty = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -210,6 +210,7 @@ public class EditProperty extends javax.swing.JPanel {
         smokeAlarmCheckbox = new javax.swing.JCheckBox();
         jLabel17 = new javax.swing.JLabel();
         bbqCheckbox = new javax.swing.JCheckBox();
+        nextButton1 = new javax.swing.JButton();
 
         returnButton.setBackground(new java.awt.Color(194, 123, 160));
         returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -412,14 +413,14 @@ public class EditProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
 
-        nextButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        nextButton.setText("Next");
-        nextButton.setMaximumSize(new java.awt.Dimension(168, 54));
-        nextButton.setMinimumSize(new java.awt.Dimension(168, 54));
-        nextButton.setPreferredSize(new java.awt.Dimension(168, 54));
-        nextButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteProperty.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        deleteProperty.setText("Delete Property");
+        deleteProperty.setMaximumSize(new java.awt.Dimension(168, 54));
+        deleteProperty.setMinimumSize(new java.awt.Dimension(168, 54));
+        deleteProperty.setPreferredSize(new java.awt.Dimension(168, 54));
+        deleteProperty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nextButtonActionPerformed(evt);
+                deletePropertyActionPerformed(evt);
             }
         });
 
@@ -1032,6 +1033,17 @@ public class EditProperty extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
 
+        nextButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nextButton1.setText("Next");
+        nextButton1.setMaximumSize(new java.awt.Dimension(168, 54));
+        nextButton1.setMinimumSize(new java.awt.Dimension(168, 54));
+        nextButton1.setPreferredSize(new java.awt.Dimension(168, 54));
+        nextButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -1066,9 +1078,15 @@ public class EditProperty extends javax.swing.JPanel {
                                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(29, 29, 29)
+                                .addComponent(deleteProperty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(842, Short.MAX_VALUE)
+                    .addComponent(nextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(20, 20, 20)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1106,9 +1124,14 @@ public class EditProperty extends javax.swing.JPanel {
                                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nextButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(18, 18, 18)
+                        .addComponent(deleteProperty, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(474, Short.MAX_VALUE)
+                    .addComponent(nextButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(20, 20, 20)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1140,12 +1163,31 @@ public class EditProperty extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_postcodeTextFieldActionPerformed
 
-    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        updateCurrentBedroomInArray();
-        updateCurrentBathroomInArray();
+    private void deletePropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletePropertyActionPerformed
+        javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+        String confirmationMessage = "Are you sure you want to delete this property?";
+        String[] options = {"Yes", "No"};
+        int answer = javax.swing.JOptionPane.showOptionDialog(null, confirmationMessage, "Confirm", javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.QUESTION_MESSAGE, icon, options, null);
         
-        jFrameInstance.changePanelToSpecific(editProperty2Instance);
-    }//GEN-LAST:event_nextButtonActionPerformed
+        if (answer != javax.swing.JOptionPane.CLOSED_OPTION && answer != 1) {
+            try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+                PreparedStatement pstmt = con.prepareStatement("DELETE FROM Properties WHERE propertyId = ?");
+
+                pstmt.setInt(1, propertyId);
+
+                pstmt.executeUpdate();
+                
+                jFrameInstance.changePanelToDefault();
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
+                
+                String errorMessage = "Connection to database failed. University VPN is required.";
+                javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+            }
+        }
+    }//GEN-LAST:event_deletePropertyActionPerformed
 
     private void bedLinenCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bedLinenCheckboxActionPerformed
         // TODO add your handling code here:
@@ -1336,6 +1378,10 @@ public class EditProperty extends javax.swing.JPanel {
         updateBathroomGUIComponents();
         updateBathroomPageInfo();
     }//GEN-LAST:event_bathingDeleteButtonActionPerformed
+
+    private void nextButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nextButton1ActionPerformed
 
     private void updateCurrentBedroomInArray(){
         bedrooms.get(currentBedroomPage-1).setBed1(bed1Combobox.getSelectedItem().toString());
@@ -1690,6 +1736,7 @@ public class EditProperty extends javax.swing.JPanel {
     private javax.swing.JCheckBox boardGamesCheckbox;
     private javax.swing.JCheckBox centralHeatingCheckbox;
     private javax.swing.JCheckBox cookwareCheckbox;
+    private javax.swing.JButton deleteProperty;
     private javax.swing.JTextArea descriptionTextField;
     private javax.swing.JCheckBox dishwasherCheckbox;
     private javax.swing.JCheckBox dryingMachineCheckbox;
@@ -1732,7 +1779,7 @@ public class EditProperty extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField locationTextField;
     private javax.swing.JCheckBox microwaveCheckbox;
-    private javax.swing.JButton nextButton;
+    private javax.swing.JButton nextButton1;
     private javax.swing.JCheckBox onRoadParkingCheckbox;
     private javax.swing.JCheckBox ovenCheckbox;
     private javax.swing.JCheckBox paidCarParkCheckbox;

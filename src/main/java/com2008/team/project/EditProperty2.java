@@ -180,7 +180,6 @@ public class EditProperty2 extends javax.swing.JPanel {
         cleaningChargeFormatted.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
         cleaningChargeFormatted.setText("0.00");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel7.setText("Date format: dd/mm/yyyy");
 
         jLabel9.setText("Ensure continuous coverage:");

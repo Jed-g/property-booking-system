@@ -80,16 +80,16 @@ public class Bedroom {
         return bedroomCapacity;
     }
     
-    static Bedroom[] getList(String propertyId){
+    static Bedroom[] getList(int propertyId){
         DriverManager.setLoginTimeout(3);
         
         Bedroom[] bedrooms = null;
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT bed1, bed2 FROM Bedrooms JOIN Properties WHERE Bedrooms.propertyId=?",
+            PreparedStatement pstmt = con.prepareStatement("SELECT bed1, bed2 FROM Bedrooms WHERE propertyId=?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, propertyId);
+            pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
                         
             int numberOfBedrooms = 0;

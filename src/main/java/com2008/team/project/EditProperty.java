@@ -1177,6 +1177,8 @@ public class EditProperty extends javax.swing.JPanel {
                 pstmt.setInt(1, propertyId);
 
                 pstmt.executeUpdate();
+                
+                jFrameInstance.changePanelToDefault();
             }
             catch (Exception ex) {
                 ex.printStackTrace();

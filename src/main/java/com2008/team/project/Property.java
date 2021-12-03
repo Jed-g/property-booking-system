@@ -1714,7 +1714,9 @@ public class Property extends javax.swing.JPanel {
         }
         
         if (view == PageView.GUEST) {
+            applyDatesButtonActionPerformed(null);
             if (checkDateAvailable()) {
+                
                 //create new booking
                 System.out.print("Booking...");
             }
@@ -1727,18 +1729,21 @@ public class Property extends javax.swing.JPanel {
         }
         
         if (view == PageView.GUESTPROVISIONAL) {
+            applyDatesButtonActionPerformed(null);
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
             String errorMessage = "You have already requested to book this property. Go to Upcoming Bookings to manage bookings.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
         
         if (view == PageView.GUESTCONFIRMED) {
+            applyDatesButtonActionPerformed(null);
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
             String errorMessage = "You have already booked this property. Go to Upcoming Bookings to manage bookings.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
         
         if (view == PageView.ENQUIRER) {
+            applyDatesButtonActionPerformed(null);
             javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
             String errorMessage = "Please log in to book this property.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);

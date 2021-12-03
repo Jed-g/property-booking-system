@@ -14,7 +14,7 @@ import java.sql.*;
  *
  * @author 86182
  */
-public class Guestsearch extends javax.swing.JPanel {
+public class Guestsearch1 extends javax.swing.JPanel {
 private Main jFrameInstance;
 private String location;
 private String location1;
@@ -29,17 +29,18 @@ private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
 int indexFirstPropOnPage;
-private boolean isbooking;
+
 
 
     /**
      * Creates new form NewJPanel
      */
-    public Guestsearch(Main jFrameInstance, String email,String location) {
+    public Guestsearch1(Main jFrameInstance, String email,String location) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.locationname.setText(location);
         this.email = email;
+        fetchPropertyData();
         
         
     }
@@ -461,7 +462,6 @@ private boolean isbooking;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -481,46 +481,6 @@ private boolean isbooking;
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void search(String location,String startdate,String enddate) {
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-                PreparedStatement pstmt = con.prepareStatement("SELECT Information FROM Porperty location=?,startdate=?,enddate=?");
-                pstmt.setString(1,location);
-                pstmt.setString(2,startdate);
-                pstmt.setString(2,enddate);
-                ResultSet res1 = pstmt.executeQuery();
-
-                if (res1.next()) {
-                    String locationInDB = res1.getString("location");  
-                    String startdateInDB = res1.getString("startdate");
-                    String enddateInDB = res1.getString("enddate");                   
-                    if ((Main.hashString(location).equals(locationInDB))|| (Main.hashString(startdate).equals(startdateInDB))&&(Main.hashString(enddate).equals(enddateInDB)) ){                  
-                        propertyList = PropertyList.getAllPropertyList();
-                    }
-                    else {                       
-                        String errorMessage = "Incorrect details";
-                        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                        propertyList = null;
-                    }
-                }
-                else {
-                    
-                    String errorMessage = "The accomodation of this location is not found";
-                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    
-                    propertyList = null;
-                }    
-            }
-
-        catch (Exception ex) {
-            ex.printStackTrace();
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        propertyList = null;
-        
-    }
 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -665,56 +625,32 @@ private boolean isbooking;
         startdatefield.setText("");
         enddate = enddatefield.getText();
         enddatefield.setText("");
-        search(location,startdate,enddate);        
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
-        Booking booking1 =new Booking(jFrameInstance,email,propertyId);
-        jFrameInstance.changePanelToSpecific(booking1);
-        }
-        else{
-        Viewbooking booked1= new Viewbooking(jFrameInstance); 
-        jFrameInstance.changePanelToSpecific(booked1);
-        }
-        
+        //Booking booking1 =new Booking(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(booking1);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
-        Booking booking2 =new Booking(jFrameInstance,email,propertyId);
-        jFrameInstance.changePanelToSpecific(booking2);
-        }
-        else{
-        Viewbooking booked2= new Viewbooking(jFrameInstance); 
-        jFrameInstance.changePanelToSpecific(booked2);
-        }
+        //Booking booking2 =new Booking(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(booking2);
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
-        Booking booking3 =new Booking(jFrameInstance,email,propertyId);
-        jFrameInstance.changePanelToSpecific(booking3);
-        }
-        else{
-        Viewbooking booked3= new Viewbooking(jFrameInstance); 
-        jFrameInstance.changePanelToSpecific(booked3);
-        }
+        //Booking booking3 =new Booking(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(booking3);
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
-        Booking booking4 =new Booking(jFrameInstance,email,propertyId);
-        jFrameInstance.changePanelToSpecific(booking4);
-        }
-        else{
-        Viewbooking booked4= new Viewbooking(jFrameInstance); 
-        jFrameInstance.changePanelToSpecific(booked4);
-        }
+        //Booking booking4 =new Booking(jFrameInstance);
+        //jFrameInstance.changePanelToSpecific(booking4);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed

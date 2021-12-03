@@ -16,13 +16,20 @@ public class Viewbooking extends javax.swing.JPanel {
     private ViewBookinglist[] viewList;
     private int numberOfPages;
     private int currentPage = 1;
+    private Boolean isbooking;
+    private PropertyList[] propertyList;
+
+    private int propertyId;
+    int indexFirstPropOnPage;
     /**
      * Creates new form Viewbooking
      */
     public Viewbooking(Main jFrameInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
-        
+        if (isbooking = true){
+            fetchPropertyData();
+        }
     }
 
     /**
@@ -60,14 +67,14 @@ public class Viewbooking extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        prorating1 = new javax.swing.JTextField();
+        proname1 = new javax.swing.JTextField();
+        prodescription1 = new javax.swing.JTextField();
+        prolocation1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jTextField7 = new javax.swing.JTextField();
+        proname2 = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 48)); // NOI18N
         jLabel1.setText("View Booking");
@@ -251,17 +258,17 @@ public class Viewbooking extends javax.swing.JPanel {
 
         jTextField6.setText("jTextField6");
 
-        jTextField2.setText("jTextField2");
-        jTabbedPane1.addTab("Rating", jTextField2);
+        prorating1.setText("jTextField2");
+        jTabbedPane1.addTab("Rating", prorating1);
 
-        jTextField3.setText("jTextField3");
-        jTabbedPane1.addTab("Accomodation name", jTextField3);
+        proname1.setText("jTextField3");
+        jTabbedPane1.addTab("Accomodation name", proname1);
 
-        jTextField4.setText("jTextField4");
-        jTabbedPane1.addTab("Description", jTextField4);
+        prodescription1.setText("jTextField4");
+        jTabbedPane1.addTab("Description", prodescription1);
 
-        jTextField1.setText("jTextField1");
-        jTabbedPane1.addTab("Location ", jTextField1);
+        prolocation1.setText("jTextField1");
+        jTabbedPane1.addTab("Location ", prolocation1);
 
         jButton3.setBackground(new java.awt.Color(204, 204, 255));
         jButton3.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
@@ -279,9 +286,14 @@ public class Viewbooking extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(204, 204, 255));
         jButton2.setFont(new java.awt.Font("Yu Gothic UI Semilight", 1, 24)); // NOI18N
         jButton2.setText("Cancel Booking");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jTextField7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jTextField7.setText("Accomodation name");
+        proname2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        proname2.setText("Accomodation name");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -290,7 +302,7 @@ public class Viewbooking extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(proname2, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -316,7 +328,7 @@ public class Viewbooking extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(proname2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -375,6 +387,43 @@ public class Viewbooking extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void fetchPropertyData() {
+        
+        
+        propertyList = PropertyList.getAllPropertyList();
+        
+        
+   
+        fillPropertyBoxes(0);
+    }
+    
+    private void removePropertyBoxes() {
+
+        
+            prolocation1.setVisible(false);
+            prorating1.setVisible(false);
+            proname1.setVisible(false);
+            proname2.setVisible(false);
+            prodescription1.setVisible(false);
+       
+        
+    }
+    
+    
+    
+    private void fillPropertyBoxes(int numBoxesToBeRemoved) {
+
+        
+            proname1.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            proname2.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            prolocation1.setText(propertyList[indexFirstPropOnPage].getLocation());
+            prorating1.setText(propertyList[indexFirstPropOnPage].getRating());
+            prodescription1.setText(propertyList[indexFirstPropOnPage].getDescription());
+       
+    }
+    
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Guestupcomingbooking guestupcomingbooking =new Guestupcomingbooking(jFrameInstance,location3);
@@ -417,6 +466,12 @@ public class Viewbooking extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        isbooking = false;
+        removePropertyBoxes(); 
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void fillInReviewBoxes(int indexOfFirstReviewOnPage){
         int amountOfBoxesToFillIn = 3;
@@ -472,16 +527,16 @@ public class Viewbooking extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton nextButton;
     private javax.swing.JLabel pages;
     private javax.swing.JButton previousButton;
+    private javax.swing.JTextField prodescription1;
+    private javax.swing.JTextField prolocation1;
+    private javax.swing.JTextField proname1;
+    private javax.swing.JTextField proname2;
+    private javax.swing.JTextField prorating1;
     private javax.swing.JTextArea review1Desc;
     private javax.swing.JLabel review1Label;
     private javax.swing.JTextArea review2Desc;

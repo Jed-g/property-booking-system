@@ -27,6 +27,7 @@ private PropertyList[] propertyList;
 private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
+int indexFirstPropOnPage;
 
 
     /**
@@ -36,6 +37,7 @@ private int propertyId;
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.locationname.setText(location);
+        fetchPropertyData();
         
     }
 
@@ -98,6 +100,9 @@ private int propertyId;
         prorating3 = new javax.swing.JTextField();
         proname3 = new javax.swing.JTextField();
         prodescription3 = new javax.swing.JTextField();
+        previousPage1 = new javax.swing.JButton();
+        pageNumber1 = new javax.swing.JLabel();
+        nextPage1 = new javax.swing.JButton();
 
         jButton4.setBackground(new java.awt.Color(255, 204, 153));
         jButton4.setText("Search");
@@ -314,6 +319,30 @@ private int propertyId;
         prodescription3.setText("jTextField4");
         jTabbedPane3.addTab("Description", prodescription3);
 
+        previousPage1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        previousPage1.setText("PREVIOUS");
+        previousPage1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
+        previousPage1.setPreferredSize(new java.awt.Dimension(150, 40));
+        previousPage1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousPage1ActionPerformed(evt);
+            }
+        });
+
+        pageNumber1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        pageNumber1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pageNumber1.setText("[page number]");
+
+        nextPage1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        nextPage1.setText("NEXT");
+        nextPage1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
+        nextPage1.setPreferredSize(new java.awt.Dimension(150, 40));
+        nextPage1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextPage1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,10 +388,16 @@ private int propertyId;
                                 .addGap(77, 77, 77)
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                                 .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(previousPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(172, 172, 172)
+                                .addComponent(pageNumber1)
+                                .addGap(136, 136, 136)
+                                .addComponent(nextPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(158, 158, 158)
@@ -417,7 +452,7 @@ private int propertyId;
                             .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -458,14 +493,23 @@ private int propertyId;
                         .addComponent(jTabbedPane2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
+                        .addComponent(jTabbedPane3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12)
                     .addComponent(jButton17)
                     .addComponent(jButton18)
                     .addComponent(jButton20))
-                .addGap(104, 104, 104)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(previousPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pageNumber1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(58, 58, 58))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nextPage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,7 +518,7 @@ private int propertyId;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(37, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -521,7 +565,7 @@ private int propertyId;
     }
 
     
-    private void fetchPropertyData(String email) {
+    private void fetchPropertyData() {
         
         propertyList = PropertyList.getPropertyList(email);
         
@@ -572,30 +616,37 @@ private int propertyId;
     
     private void fillPropertyBoxes(int numBoxesToBeRemoved) {
 
-        if (numBoxesToBeRemoved >= 1){
-            prolocation1.setVisible(false);
-            prorating1.setVisible(false);
-            proname1.setVisible(false);
-            prodescription1.setVisible(false);
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            maxAmountBoxes = propertyList.length - indexFirstPropOnPage;
         }
-        if (numBoxesToBeRemoved >= 2){
-            prolocation2.setVisible(false);
-            prorating2.setVisible(false);
-            proname2.setVisible(false);
-            prodescription2.setVisible(false);
+        if (maxAmountBoxes >= 1){
+            proname1.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            prolocation1.setText(propertyList[indexFirstPropOnPage].getLocation());
+            prorating1.setText(propertyList[indexFirstPropOnPage].getRating());
+            prodescription1.setText(propertyList[indexFirstPropOnPage].getDescription());
         }
-        if (numBoxesToBeRemoved >= 3){
-           prolocation3.setVisible(false);
-            prorating3.setVisible(false);
-            proname3.setVisible(false);
-            prodescription3.setVisible(false);
+        if (maxAmountBoxes >= 2){
+           proname2.setText(propertyList[indexFirstPropOnPage+1].getPropertyName());
+            prolocation2.setText(propertyList[indexFirstPropOnPage+1].getLocation());
+            prorating2.setText(propertyList[indexFirstPropOnPage+1].getRating());
+            prodescription2.setText(propertyList[indexFirstPropOnPage+1].getDescription());
         }
-        if (numBoxesToBeRemoved == 4){
-            prolocation4.setVisible(false);
-            prorating4.setVisible(false);
-            proname4.setVisible(false);
-            prodescription4.setVisible(false);
+        if (maxAmountBoxes >= 3){
+            proname3.setText(propertyList[indexFirstPropOnPage+2].getPropertyName());
+            prolocation3.setText(propertyList[indexFirstPropOnPage+2].getLocation());
+            prorating3.setText(propertyList[indexFirstPropOnPage+2].getRating());
+            prodescription3.setText(propertyList[indexFirstPropOnPage+2].getDescription());
         }
+        if (maxAmountBoxes == 4){
+            proname4.setText(propertyList[indexFirstPropOnPage+3].getPropertyName());
+            prolocation4.setText(propertyList[indexFirstPropOnPage+3].getLocation());
+            prorating4.setText(propertyList[indexFirstPropOnPage+3].getRating());
+            prodescription4.setText(propertyList[indexFirstPropOnPage+3].getDescription());
+        }
+        
+    
         
     }
     
@@ -684,7 +735,7 @@ private int propertyId;
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstPropOnPage = (currentPage-1)*4;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
@@ -700,13 +751,13 @@ private int propertyId;
             nextPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstPropOnPage = (currentPage-1)*4;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
 
-        if (indexFirstPropOnPage + 3 > propertyList.length){
-            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
 
@@ -715,6 +766,40 @@ private int propertyId;
          Guestsearch guestsearch = new Guestsearch(jFrameInstance,location1,email);
         jFrameInstance.changePanelToSpecific(guestsearch);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void previousPage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPage1ActionPerformed
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(true);
+        }
+        --currentPage;
+        if (currentPage == 1){
+            previousPage.setEnabled(false);
+        }
+
+        int indexFirstPropOnPage = (currentPage-1)*4;
+
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+    }//GEN-LAST:event_previousPage1ActionPerformed
+
+    private void nextPage1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPage1ActionPerformed
+        if (currentPage == 1){
+            previousPage.setEnabled(true);
+        }
+        ++currentPage;
+        if (currentPage == numberOfPages){
+            nextPage.setEnabled(false);
+        }
+
+        int indexFirstPropOnPage = (currentPage-1)*4;
+
+        pageNumber.setText(currentPage + "/" + numberOfPages);
+        fillPropertyBoxes(indexFirstPropOnPage);
+
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
+        }
+    }//GEN-LAST:event_nextPage1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -747,8 +832,11 @@ private int propertyId;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField locationname;
     private javax.swing.JButton nextPage;
+    private javax.swing.JButton nextPage1;
     private javax.swing.JLabel pageNumber;
+    private javax.swing.JLabel pageNumber1;
     private javax.swing.JButton previousPage;
+    private javax.swing.JButton previousPage1;
     private javax.swing.JTextField prodescription1;
     private javax.swing.JTextField prodescription2;
     private javax.swing.JTextField prodescription3;

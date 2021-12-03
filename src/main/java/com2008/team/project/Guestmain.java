@@ -5,6 +5,11 @@
  */
 package com2008.team.project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 
 
 
@@ -23,6 +28,7 @@ private PropertyList[] propertyList;
 private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
+int indexFirstPropOnPage;
 
 
 
@@ -36,7 +42,7 @@ private int propertyId;
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
-        fetchPropertyData(email);
+        fetchPropertyData1();
         
            
     }
@@ -115,6 +121,11 @@ private int propertyId;
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
         jButton9.setText("View more information");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
         jButton10.setText("View more information");
@@ -342,11 +353,13 @@ private int propertyId;
 
 
     
-    private void fetchPropertyData(String email) {
-        propertyList = PropertyList.getPropertyList(email);
+    private void fetchPropertyData1() {
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        propertyList = PropertyList.getAllPropertyList();
         
         int n = propertyList.length;
-        
         
         if (n <= 4){
             removePropertyBoxes(4-n);
@@ -354,11 +367,28 @@ private int propertyId;
             nextPage.setEnabled(true);
         }
         
-        fillPropertyBoxes(0);
-        numberOfPages = n == 0 ? 1 : (int)Math.ceil((float)n/3);
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
         pageNumber.setText("1/" + numberOfPages);
+        
+        fillPropertyBoxes(0);
 
     }
+    
+    
+    
+    
+    
     
     private void removePropertyBoxes(int numBoxesToBeRemoved) {
 
@@ -392,30 +422,34 @@ private int propertyId;
     
     
     private void fillPropertyBoxes(int numBoxesToBeRemoved) {
-
-        if (numBoxesToBeRemoved >= 1){
-            location.setVisible(false);
-            rating.setVisible(false);
-            name.setVisible(false);
-            description.setVisible(false);
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            maxAmountBoxes = propertyList.length - indexFirstPropOnPage;
         }
-        if (numBoxesToBeRemoved >= 2){
-            prolocation.setVisible(false);
-            prorating.setVisible(false);
-            proname.setVisible(false);
-            prodescription.setVisible(false);
+        if (maxAmountBoxes >= 1){
+            proname1.setText(propertyList[indexFirstPropOnPage].getPropertyName());
+            prolocation1.setText(propertyList[indexFirstPropOnPage].getLocation());
+            prorating1.setText(propertyList[indexFirstPropOnPage].getRating());
+            prodescription1.setText(propertyList[indexFirstPropOnPage].getDescription());
         }
-        if (numBoxesToBeRemoved >= 3){
-           prolocation2.setVisible(false);
-            prorating2.setVisible(false);
-            proname2.setVisible(false);
-            prodescription2.setVisible(false);
+        if (maxAmountBoxes >= 2){
+           proname2.setText(propertyList[indexFirstPropOnPage+1].getPropertyName());
+            prolocation2.setText(propertyList[indexFirstPropOnPage+1].getLocation());
+            prorating2.setText(propertyList[indexFirstPropOnPage+1].getRating());
+            prodescription2.setText(propertyList[indexFirstPropOnPage+1].getDescription());
         }
-        if (numBoxesToBeRemoved == 4){
-            prolocation1.setVisible(false);
-            prorating1.setVisible(false);
-            proname1.setVisible(false);
-            prodescription1.setVisible(false);
+        if (maxAmountBoxes >= 3){
+            proname.setText(propertyList[indexFirstPropOnPage+2].getPropertyName());
+            prolocation.setText(propertyList[indexFirstPropOnPage+2].getLocation());
+            prorating.setText(propertyList[indexFirstPropOnPage+2].getRating());
+            prodescription.setText(propertyList[indexFirstPropOnPage+2].getDescription());
+        }
+        if (maxAmountBoxes == 4){
+            name.setText(propertyList[indexFirstPropOnPage+3].getPropertyName());
+            location.setText(propertyList[indexFirstPropOnPage+3].getLocation());
+            rating.setText(propertyList[indexFirstPropOnPage+3].getRating());
+            description.setText(propertyList[indexFirstPropOnPage+3].getDescription());
         }
         
     }
@@ -457,13 +491,13 @@ private int propertyId;
             nextPage.setEnabled(false);
         }
         
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        indexFirstPropOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
        
-        if (indexFirstPropOnPage + 3 > propertyList.length){
-            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
 
@@ -476,7 +510,7 @@ private int propertyId;
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstPropOnPage = (currentPage-1)*4;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
@@ -485,9 +519,17 @@ private int propertyId;
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        
         Property add = new Property(jFrameInstance, propertyId,email);
         jFrameInstance.changePanelToSpecific(add);
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        AddProperty add1 = new AddProperty (jFrameInstance,email);
+        jFrameInstance.changePanelToSpecific(add1);
+        
+    }//GEN-LAST:event_jButton9ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

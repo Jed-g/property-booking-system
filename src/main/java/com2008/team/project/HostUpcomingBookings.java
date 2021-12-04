@@ -95,6 +95,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         searchInput = new javax.swing.JTextField();
         searchButton = new javax.swing.JButton();
         pageNumber = new javax.swing.JLabel();
+        logoutButton3 = new javax.swing.JButton();
 
         Property6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Property6.setPreferredSize(new java.awt.Dimension(515, 130));
@@ -350,7 +351,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGroup(upcoming1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBooking1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         upcoming1Layout.setVerticalGroup(
             upcoming1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -441,7 +442,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGroup(upcoming2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBooking2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         upcoming2Layout.setVerticalGroup(
             upcoming2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,7 +533,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGroup(upcoming3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBooking3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         upcoming3Layout.setVerticalGroup(
             upcoming3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -623,7 +624,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGroup(upcoming4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBooking4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         upcoming4Layout.setVerticalGroup(
             upcoming4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -746,6 +747,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        logoutButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        logoutButton3.setText("Log Out");
+        logoutButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -757,6 +766,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(navigation, javax.swing.GroupLayout.DEFAULT_SIZE, 1028, Short.MAX_VALUE)
@@ -767,7 +778,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1015,7 +1027,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }
     
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
-
+        jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), true, this));
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed
@@ -1135,6 +1147,11 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
+    private void logoutButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton3ActionPerformed
+        jFrameInstance.setEmail("");
+        jFrameInstance.changePanelToDefault();
+    }//GEN-LAST:event_logoutButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton PropEdit5;
@@ -1172,6 +1189,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     private javax.swing.JLabel lblGuest4;
     private javax.swing.JLabel lblPropertyBookingSystem;
     private javax.swing.JLabel lblUpcomingBookings;
+    private javax.swing.JButton logoutButton3;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
     private javax.swing.JLabel pageNumber;

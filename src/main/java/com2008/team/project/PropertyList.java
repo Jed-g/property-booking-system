@@ -12,17 +12,15 @@ public class PropertyList {
     private String description; 
     private String startdate;
     private String enddate;
-
     
     private static ReviewList[] reviewList;
     
-    private PropertyList(String propertyName, String location, String rating, String description) {
-        
+    private PropertyList(String propertyName, String location, String rating, String description, int propertyId) {
         this.propertyName = propertyName;
         this.location = location;
         this.rating = rating;
         this.description = description;
-        
+        this.propertyId = propertyId;
     }
     
     int getPropertyId(){
@@ -103,7 +101,7 @@ public class PropertyList {
                     rating = getRating(res.getString("propertyId"));
                     
                     propertyList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            rating, res.getString("description"));
+                            rating, res.getString("description"), res.getInt("propertyId"));
                 }
             }
 
@@ -148,7 +146,7 @@ public class PropertyList {
                     rating = getRating(res.getString("propertyId"));
                     
                     allPropertyList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            rating, res.getString("description"));
+                            rating, res.getString("description"), res.getInt("propertyId"));
                 }
             }
 
@@ -196,7 +194,7 @@ public class PropertyList {
                     rating = getRating(res.getString("propertyId"));
                     
                     searchPropList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            rating, res.getString("description"));
+                            rating, res.getString("description"), res.getInt("propertyId"));
                 }
             }
 

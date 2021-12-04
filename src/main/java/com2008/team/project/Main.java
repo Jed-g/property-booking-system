@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 public class Main extends javax.swing.JFrame {
 
     private String email = "admin";
-    private String passwordHashed;
-    private Boolean hostView = false;
   
     private String location;
     private String people;
@@ -27,6 +25,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         fetchPropertyData();
+        changePanelToSpecific(new HostViewAllProperties(this, email));
     }
 
     static String hashString(String stringToHash){
@@ -115,11 +114,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("??", 0, 18)); // NOI18N
         jButton1.setText("Homepage");
 
         jButton2.setBackground(new java.awt.Color(204, 204, 255));
-        jButton2.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("??", 0, 18)); // NOI18N
         jButton2.setText("Search");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -278,16 +277,16 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(defaultPanelLayout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 2, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 4, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                         .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(defaultPanelLayout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(69, 69, 69)
-                                .addComponent(accountButton))
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         defaultPanelLayout.setVerticalGroup(
@@ -296,10 +295,10 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(accountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                    .addComponent(accountButton, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                 .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(defaultPanelLayout.createSequentialGroup()
-                        .addGap(18, 24, Short.MAX_VALUE)
+                        .addGap(18, 29, Short.MAX_VALUE)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(54, 54, 54))
                     .addGroup(defaultPanelLayout.createSequentialGroup()
@@ -369,11 +368,6 @@ public class Main extends javax.swing.JFrame {
 
    
     
-    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        User userPanel = new User(this, email, hostView);
-        jScrollPane1.setViewportView(userPanel);
-    }//GEN-LAST:event_accountButtonActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         Register registrationPage = new Register(this);
@@ -540,14 +534,17 @@ public class Main extends javax.swing.JFrame {
             }
         
         //viewProperty(num);
-        viewProperty1 view = new viewProperty1(this, propertyId);
-        jScrollPane1.setViewportView(view);
+        //jScrollPane1.setViewportView(new Property(this, "", ));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
      
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
+
+    }//GEN-LAST:event_accountButtonActionPerformed
     
     void changePanelToDefault() {
         jScrollPane1.setViewportView(defaultPanel);
@@ -556,22 +553,13 @@ public class Main extends javax.swing.JFrame {
     void changePanelToSpecific(javax.swing.JPanel jPanel) {
         jScrollPane1.setViewportView(jPanel);
     }
-    
-    void createNewUserPanelInstance() {
-        User userPanel = new User(this, email, hostView);
-        jScrollPane1.setViewportView(userPanel);
-    }
-    
-    void setHostView(Boolean newValue) {
-        hostView = newValue;
-    }
-    
+
     void setEmail(String email) {
         this.email = email;
     }
-    
-    void setPasswordHashed(String passwordHashed){
-        this.passwordHashed = passwordHashed;
+
+    String getEmail(){
+        return email;
     }
     /**
      * @param args the command line arguments

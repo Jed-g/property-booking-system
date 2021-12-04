@@ -103,6 +103,7 @@ int indexFirstPropOnPage;
         previousPage1 = new javax.swing.JButton();
         pageNumber1 = new javax.swing.JLabel();
         nextPage1 = new javax.swing.JButton();
+        logoutButton = new javax.swing.JButton();
 
         jButton4.setBackground(new java.awt.Color(255, 204, 153));
         jButton4.setText("Search");
@@ -343,6 +344,14 @@ int indexFirstPropOnPage;
             }
         });
 
+        logoutButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        logoutButton.setText("Log Out");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -356,7 +365,9 @@ int indexFirstPropOnPage;
                         .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(accountButton, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
@@ -440,7 +451,9 @@ int indexFirstPropOnPage;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -518,7 +531,7 @@ int indexFirstPropOnPage;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(15, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -714,8 +727,7 @@ int indexFirstPropOnPage;
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        User userPanel = new User(jFrameInstance, email, hostView);
-        jFrameInstance.changePanelToSpecific(userPanel);
+        jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), false, this));
     }//GEN-LAST:event_accountButtonActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
@@ -801,6 +813,11 @@ int indexFirstPropOnPage;
         }
     }//GEN-LAST:event_nextPage1ActionPerformed
 
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        jFrameInstance.setEmail("");
+        jFrameInstance.changePanelToDefault();
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton;
@@ -831,6 +848,7 @@ int indexFirstPropOnPage;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField locationname;
+    private javax.swing.JButton logoutButton;
     private javax.swing.JButton nextPage;
     private javax.swing.JButton nextPage1;
     private javax.swing.JLabel pageNumber;

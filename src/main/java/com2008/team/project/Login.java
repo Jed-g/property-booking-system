@@ -188,10 +188,8 @@ public class Login extends javax.swing.JPanel {
         if (checkDetails(email, password)) {
             jFrameInstance.setEmail(email);
             //redirect to guest homepage
-            jFrameInstance.changePanelToDefault();
+            jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
         }
-     Guestmain main = new Guestmain(jFrameInstance, email);
-     jFrameInstance.changePanelToSpecific(main);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed

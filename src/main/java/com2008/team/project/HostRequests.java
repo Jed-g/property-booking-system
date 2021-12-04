@@ -860,18 +860,18 @@ public class HostRequests extends javax.swing.JPanel {
     }//GEN-LAST:event_requestsActionPerformed
 
     private void upcomingBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcomingBookingsActionPerformed
-        //HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(upcomingPage);
+        HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(upcomingPage);
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
     private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
-        //HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(previousPage);
+        HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(previousPage);
     }//GEN-LAST:event_previousBookingsActionPerformed
 
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed
-        //HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(propertiesPage);
+        HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(propertiesPage);
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void acceptBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptBooking3ActionPerformed

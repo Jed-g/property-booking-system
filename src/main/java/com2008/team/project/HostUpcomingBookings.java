@@ -24,6 +24,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         DriverManager.setLoginTimeout(3);
         
         fetchUpcomingData(email);
+        
     }
 
     /**
@@ -880,7 +881,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
     }
     
-        private void fillSearchBoxes(int indexFirstUpcomingOnPage) {
+    private void fillSearchBoxes(int indexFirstUpcomingOnPage) {
         
         int maxAmountBoxes = 4;
         
@@ -1009,13 +1010,17 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
     }
     
+    private void createNewUpcomingInstance() {
+        jFrameInstance.changePanelToSpecific(new HostUpcomingBookings(jFrameInstance, email));    
+    }
+    
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
 
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed
-        //HostRequests requestsPage = new HostRequests(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(requestsPage);
+        HostRequests requestsPage = new HostRequests(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(requestsPage);
     }//GEN-LAST:event_requestsActionPerformed
 
     private void upcomingBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcomingBookingsActionPerformed
@@ -1024,13 +1029,13 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
     private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
-        //HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(previousPage);
+        HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(previousPage);
     }//GEN-LAST:event_previousBookingsActionPerformed
 
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed
-        //HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(propertiesPage);
+        HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(propertiesPage);
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void contactGuest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest1ActionPerformed
@@ -1038,7 +1043,9 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest1ActionPerformed
 
     private void cancelBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking1ActionPerformed
-        // TODO add your handling code here:
+        HostBookingList upcoming = upcomingList[(currentPage-1)*4];
+        HostBookingList.cancelBooking(upcoming.getBookingId());
+        createNewUpcomingInstance();
     }//GEN-LAST:event_cancelBooking1ActionPerformed
 
     private void contactGuest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest2ActionPerformed
@@ -1046,7 +1053,9 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest2ActionPerformed
 
     private void cancelBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking2ActionPerformed
-        // TODO add your handling code here:
+        HostBookingList upcoming = upcomingList[(currentPage-1)*4 + 1];
+        HostBookingList.cancelBooking(upcoming.getBookingId());
+        createNewUpcomingInstance();
     }//GEN-LAST:event_cancelBooking2ActionPerformed
 
     private void PropEdit5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PropEdit5ActionPerformed
@@ -1062,7 +1071,9 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest3ActionPerformed
 
     private void cancelBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking3ActionPerformed
-        // TODO add your handling code here:
+        HostBookingList upcoming = upcomingList[(currentPage-1)*4 + 2];
+        HostBookingList.cancelBooking(upcoming.getBookingId());
+        createNewUpcomingInstance();
     }//GEN-LAST:event_cancelBooking3ActionPerformed
 
     private void contactGuest4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest4ActionPerformed
@@ -1070,7 +1081,9 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest4ActionPerformed
 
     private void cancelBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking4ActionPerformed
-        // TODO add your handling code here:
+        HostBookingList upcoming = upcomingList[(currentPage-1)*4 + 3];
+        HostBookingList.cancelBooking(upcoming.getBookingId());
+        createNewUpcomingInstance();
     }//GEN-LAST:event_cancelBooking4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed

@@ -5,6 +5,7 @@ import java.sql.*;
 
 public class HostBookingList {
     
+    private int bookingId;
     private String propertyName;
     private String location;
     private Date startDate;
@@ -14,9 +15,10 @@ public class HostBookingList {
     private String guestEmail;
     private String guestPhoneNum;
     
-    private HostBookingList(String propertyName, String location, Date startDate, Date endDate,
+    private HostBookingList(int bookingId, String propertyName, String location, Date startDate, Date endDate,
                 String guestForename, String guestSurname, String guestEmail, String guestPhoneNum) {
         
+        this.bookingId = bookingId;
         this.propertyName = propertyName;
         this.location = location;
         this.startDate = startDate;
@@ -26,6 +28,10 @@ public class HostBookingList {
         this.guestEmail = guestEmail;
         this.guestPhoneNum = guestPhoneNum;
         
+    }
+    
+    int getBookingId() {
+        return bookingId;
     }
     
     String getPropertyName() {
@@ -67,7 +73,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, propertyName, location, forename, surname,"
+            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate > ? AND Properties.email = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -86,7 +92,7 @@ public class HostBookingList {
             for (int i = 0; i < numberOfUpcoming; i++){
                 if (res.next()){  
                     
-                    upcomingList[i] = new HostBookingList(res.getString("propertyName"), res.getString("location"),
+                    upcomingList[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
                             res.getString("Users.email"), res.getString("Users.phoneNo"));
                 }
@@ -114,7 +120,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, propertyName, location, forename, surname, "
+            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname, "
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate > ? AND Properties.email = ? AND propertyName = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -134,7 +140,7 @@ public class HostBookingList {
             for (int i = 0; i < numberOfUpcoming; i++){
                 if (res.next()){  
                     
-                    upSearchResults[i] = new HostBookingList(res.getString("propertyName"), res.getString("location"),
+                    upSearchResults[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
                             res.getString("Users.email"), res.getString("Users.phoneNo"));
                 }
@@ -155,6 +161,24 @@ public class HostBookingList {
         return upSearchResults;
     }
     
+    static void cancelBooking(int bookingId){
+        DriverManager.setLoginTimeout(3);
+
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+           
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Bookings WHERE bookingId=?");
+            pstmt.setInt(1, bookingId);
+            pstmt.executeUpdate();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(javax.swing.ImageIcon.class.getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
+    
     static HostBookingList[] getPreviousList(String email, Date dateToday) {
         DriverManager.setLoginTimeout(3);
         
@@ -162,7 +186,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, propertyName, location, forename, surname,"
+            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate <= ? AND Properties.email = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -181,7 +205,7 @@ public class HostBookingList {
             for (int i = 0; i < numberOfPrevious; i++){
                 if (res.next()){  
                     
-                    previousList[i] = new HostBookingList(res.getString("propertyName"), res.getString("location"),
+                    previousList[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
                             res.getString("Users.email"), res.getString("Users.phoneNo"));
                 }
@@ -209,7 +233,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate, propertyName, location, forename, surname,"
+            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate <= ? AND Properties.email = ? AND propertyName = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -229,7 +253,7 @@ public class HostBookingList {
             for (int i = 0; i < numberOfPrevious; i++){
                 if (res.next()){  
                     
-                    preSearchResults[i] = new HostBookingList(res.getString("propertyName"), res.getString("location"),
+                    preSearchResults[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
                             res.getString("Users.email"), res.getString("Users.phoneNo"));
                 }

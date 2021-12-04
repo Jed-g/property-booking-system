@@ -13,6 +13,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        //changePanelToSpecific(new Property(this, 30, "admin"));
     }
 
     /**
@@ -120,6 +121,10 @@ public class Main extends javax.swing.JFrame {
     
     void setEmail(String email) {
         this.email = email;
+    }
+    
+    String getEmail() {
+        return email;
     }
     
     static String hashString(String stringToHash){

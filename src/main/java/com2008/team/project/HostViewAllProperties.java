@@ -805,7 +805,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_propEdit1ActionPerformed
 
     private void addAPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAPropertyActionPerformed
-        // TODO add your handling code here:
+        jFrameInstance.changePanelToSpecific(new AddProperty(jFrameInstance, email));
     }//GEN-LAST:event_addAPropertyActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed

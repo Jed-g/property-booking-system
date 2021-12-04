@@ -12,6 +12,7 @@ public class Main extends javax.swing.JFrame {
     private String email = "admin";
     private String passwordHashed;
     private Boolean hostView = false;
+  
     private String location;
     private String people;
     private int propertyId;

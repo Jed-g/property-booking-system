@@ -395,7 +395,7 @@ public class Property2 extends javax.swing.JPanel {
     }//GEN-LAST:event_prevButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
-        EditProperty editProperty = new EditProperty(jFrameInstance, propertyId);
+        EditProperty editProperty = new EditProperty(jFrameInstance, propertyInstance, propertyId);
         jFrameInstance.changePanelToSpecific(editProperty);
     }//GEN-LAST:event_editPropertyButtonActionPerformed
 

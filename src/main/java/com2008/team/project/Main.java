@@ -19,8 +19,6 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-        //changePanelToSpecific(new Booking(this, "guest", 30));
-        
     }
 
     static String hashString(String stringToHash){

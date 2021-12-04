@@ -8,16 +8,18 @@ public class User extends javax.swing.JPanel {
     private String email;
     private Boolean editMode = false;
     private Boolean hostView;
+    private javax.swing.JPanel parentInstance;
     
     /**
      * Creates new form User
      */
-    public User(Main jFrameInstance, String email, Boolean hostView) {
+    public User(Main jFrameInstance, String email, Boolean hostView, javax.swing.JPanel parentInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
         this.hostView = hostView;
-               
+        this.parentInstance = parentInstance;       
+        
         DriverManager.setLoginTimeout(3);
         
         fetchUserData();
@@ -536,7 +538,28 @@ public class User extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToDefault();
+        if (hostView){
+            if (parentInstance instanceof HostRequests){
+                jFrameInstance.changePanelToSpecific(new HostRequests(jFrameInstance, jFrameInstance.getEmail()));
+            } else if (parentInstance instanceof HostPreviousBookings){
+                jFrameInstance.changePanelToSpecific(new HostPreviousBookings(jFrameInstance, jFrameInstance.getEmail()));
+            } else if (parentInstance instanceof HostUpcomingBookings){
+                jFrameInstance.changePanelToSpecific(new HostUpcomingBookings(jFrameInstance, jFrameInstance.getEmail()));
+            } else {
+                jFrameInstance.changePanelToSpecific(new HostViewAllProperties(jFrameInstance, jFrameInstance.getEmail()));
+            }
+        } else {
+            if (parentInstance instanceof Guestpastbooking){
+                jFrameInstance.changePanelToSpecific(new Guestpastbooking(jFrameInstance, jFrameInstance.getEmail()));
+            } else if (parentInstance instanceof Guestsearch1){
+                jFrameInstance.changePanelToSpecific(new Guestsearch1(jFrameInstance, jFrameInstance.getEmail(), ""));
+            } else if (parentInstance instanceof Guestupcomingbooking){
+                jFrameInstance.changePanelToSpecific(new Guestupcomingbooking(jFrameInstance, ""));
+            } else {
+                jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
+            }
+        }
+        
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
@@ -616,7 +639,7 @@ public class User extends javax.swing.JPanel {
             ChangePassword changePasswordPanel = new ChangePassword(jFrameInstance, this, email, name.getText());
             jFrameInstance.changePanelToSpecific(changePasswordPanel);
         } else {
-            jFrameInstance.createNewUserPanelInstance();
+            jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), hostView, parentInstance));
         }
     }//GEN-LAST:event_button2ActionPerformed
 
@@ -777,6 +800,11 @@ public class User extends javax.swing.JPanel {
             int count = pstmt.executeUpdate();
 
             pstmt.close();
+            
+            jFrameInstance.setEmail(emailTextField.getText());
+        
+            jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), hostView, parentInstance));
+            
             } catch (Exception ex) {
                 if (ex.toString().contains("Duplicate")){
                     javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
@@ -796,10 +824,6 @@ public class User extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
-
-        jFrameInstance.setEmail(emailTextField.getText());
-        
-        jFrameInstance.createNewUserPanelInstance();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

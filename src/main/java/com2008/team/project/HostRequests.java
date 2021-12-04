@@ -850,8 +850,7 @@ public class HostRequests extends javax.swing.JPanel {
     }
     
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
-        User accountPage = new User(jFrameInstance, "", true);
-        jFrameInstance.changePanelToSpecific(accountPage);
+        jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), true, this));
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed

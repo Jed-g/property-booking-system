@@ -528,7 +528,7 @@
                           <Component id="contactGuest1" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="cancelBooking1" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -697,7 +697,7 @@
                           <Component id="contactGuest2" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="cancelBooking2" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -866,7 +866,7 @@
                           <Component id="contactGuest3" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="cancelBooking3" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1035,7 +1035,7 @@
                           <Component id="contactGuest4" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="cancelBooking4" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

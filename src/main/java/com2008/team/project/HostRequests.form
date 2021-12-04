@@ -506,7 +506,7 @@
                               <Component id="guestName2" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="acceptBooking2" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="rejectBooking2" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
@@ -661,7 +661,7 @@
                               <Component id="guestName3" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="acceptBooking3" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="rejectBooking3" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
@@ -816,7 +816,7 @@
                               <Component id="guestName4" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <EmptySpace pref="9" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="acceptBooking4" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="rejectBooking4" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>

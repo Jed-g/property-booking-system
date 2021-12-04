@@ -769,7 +769,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }
     
     private void viewAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAccountActionPerformed
-
+        jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), true, this));
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed

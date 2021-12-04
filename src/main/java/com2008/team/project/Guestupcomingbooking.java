@@ -651,8 +651,7 @@ int indexFirstPropOnPage;
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        User userPanel = new User(jFrameInstance, email, hostView);
-        jFrameInstance.changePanelToSpecific(userPanel);
+        jFrameInstance.changePanelToSpecific(new User(jFrameInstance, jFrameInstance.getEmail(), false, this));
     }//GEN-LAST:event_accountButtonActionPerformed
 
 

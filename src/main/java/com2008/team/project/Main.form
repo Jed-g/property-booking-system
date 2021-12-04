@@ -101,17 +101,17 @@
                           <Group type="102" attributes="0">
                               <Component id="jButton1" min="-2" pref="495" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator1" pref="2" max="32767" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jSeparator1" pref="4" max="32767" attributes="0"/>
+                              <EmptySpace pref="8" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton3" min="-2" pref="149" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                      <Component id="jButton3" min="-2" pref="179" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="jButton4" min="-2" pref="106" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                                      <Component id="accountButton" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="accountButton" min="-2" pref="0" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jButton2" max="32767" attributes="0"/>
+                                  <Component id="jButton2" min="-2" pref="511" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -125,11 +125,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton3" min="-2" pref="55" max="-2" attributes="0"/>
                           <Component id="jButton4" min="-2" pref="55" max="-2" attributes="0"/>
-                          <Component id="accountButton" alignment="0" pref="60" max="32767" attributes="0"/>
+                          <Component id="accountButton" alignment="0" pref="65" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace type="separate" pref="24" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" pref="29" max="32767" attributes="0"/>
                               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           </Group>

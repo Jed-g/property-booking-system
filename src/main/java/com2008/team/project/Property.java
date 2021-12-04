@@ -1851,8 +1851,9 @@ public class Property extends javax.swing.JPanel {
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed
-        EditProperty editProperty = new EditProperty(jFrameInstance, this, propertyId);
-        jFrameInstance.changePanelToSpecific(editProperty);
+        //Host will never be able to access this panel
+        //EditProperty editProperty = new EditProperty(jFrameInstance, this, propertyId);
+        //jFrameInstance.changePanelToSpecific(editProperty);
     }//GEN-LAST:event_editPropertyButtonActionPerformed
 
     private void viewReviewsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReviewsButtonActionPerformed

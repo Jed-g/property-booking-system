@@ -793,15 +793,18 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_previousBookingsActionPerformed
 
     private void propEdit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit3ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? propertyList[(currentPage-1)*4+2].getPropertyId() : searchResults[(currentPage-1)*4+2].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new EditProperty(jFrameInstance, propertyId));
     }//GEN-LAST:event_propEdit3ActionPerformed
 
     private void propEdit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit2ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? propertyList[(currentPage-1)*4+1].getPropertyId() : searchResults[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new EditProperty(jFrameInstance, propertyId));
     }//GEN-LAST:event_propEdit2ActionPerformed
 
     private void propEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit1ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? propertyList[(currentPage-1)*4].getPropertyId() : searchResults[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new EditProperty(jFrameInstance, propertyId));
     }//GEN-LAST:event_propEdit1ActionPerformed
 
     private void addAPropertyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAPropertyActionPerformed
@@ -850,7 +853,8 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_searchInputActionPerformed
 
     private void propEdit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit4ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? propertyList[(currentPage-1)*4+3].getPropertyId() : searchResults[(currentPage-1)*4+3].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new EditProperty(jFrameInstance, propertyId));
     }//GEN-LAST:event_propEdit4ActionPerformed
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed

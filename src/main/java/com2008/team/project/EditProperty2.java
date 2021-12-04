@@ -26,12 +26,11 @@ public class EditProperty2 extends javax.swing.JPanel {
     /**
      * Creates new form AddProperty
      */
-    public EditProperty2(Main jFrameInstance, EditProperty editPropertyInstance, Property propertyInstance, int propertyId) {
+    public EditProperty2(Main jFrameInstance, EditProperty editPropertyInstance, int propertyId) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.editPropertyInstance = editPropertyInstance;
         this.propertyId = propertyId;
-        this.propertyInstance = propertyInstance;
         
         DriverManager.setLoginTimeout(3);
         
@@ -385,7 +384,7 @@ public class EditProperty2 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToSpecific(propertyInstance);
+        jFrameInstance.changePanelToSpecific(new HostViewAllProperties(jFrameInstance, jFrameInstance.getEmail()));
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void prevButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevButtonActionPerformed

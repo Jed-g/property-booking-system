@@ -551,12 +551,14 @@ public class User extends javax.swing.JPanel {
         } else {
             if (parentInstance instanceof Guestpastbooking){
                 jFrameInstance.changePanelToSpecific(new Guestpastbooking(jFrameInstance, jFrameInstance.getEmail()));
+            } else if (parentInstance instanceof Guestsearch) {
+                jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
             } else if (parentInstance instanceof Guestsearch1){
                 jFrameInstance.changePanelToSpecific(new Guestsearch1(jFrameInstance, jFrameInstance.getEmail(), ""));
             } else if (parentInstance instanceof Guestupcomingbooking){
                 jFrameInstance.changePanelToSpecific(new Guestupcomingbooking(jFrameInstance, ""));
             } else {
-                jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
+                jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
             }
         }
         
@@ -660,7 +662,6 @@ public class User extends javax.swing.JPanel {
                 becomeHostButton.setVisible(false);
                 hostViewChangeButton.setEnabled(true);
                 hostView = !hostView;
-                jFrameInstance.setHostView(hostView);
 
                 hostViewChangeButton.setText(hostView ? "Disable" : "Enable");
                 hostViewChangeButton.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));
@@ -678,7 +679,6 @@ public class User extends javax.swing.JPanel {
 
     private void hostViewChangeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostViewChangeButtonActionPerformed
         hostView = !hostView;
-        jFrameInstance.setHostView(hostView);
         
         hostViewChangeButton.setText(hostView ? "Disable" : "Enable");
         hostViewChangeButton.setBackground(hostView ? new java.awt.Color(182, 215, 168) : new java.awt.Color(240, 240, 240));

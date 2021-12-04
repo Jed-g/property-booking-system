@@ -10,8 +10,6 @@ import java.sql.ResultSet;
 public class Main extends javax.swing.JFrame {
 
     private String email = "admin";
-    private String passwordHashed;
-    private Boolean hostView = false;
   
     private String location;
     private String people;
@@ -27,7 +25,6 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         fetchPropertyData();
-        
         changePanelToSpecific(new HostViewAllProperties(this, email));
     }
 
@@ -546,8 +543,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-        User userPanel = new User(this, email, hostView, defaultPanel);
-        jScrollPane1.setViewportView(userPanel);
+
     }//GEN-LAST:event_accountButtonActionPerformed
     
     void changePanelToDefault() {
@@ -557,19 +553,11 @@ public class Main extends javax.swing.JFrame {
     void changePanelToSpecific(javax.swing.JPanel jPanel) {
         jScrollPane1.setViewportView(jPanel);
     }
-    
-    void setHostView(Boolean newValue) {
-        hostView = newValue;
-    }
-    
+
     void setEmail(String email) {
         this.email = email;
     }
-    
-    void setPasswordHashed(String passwordHashed){
-        this.passwordHashed = passwordHashed;
-    }
-    
+
     String getEmail(){
         return email;
     }

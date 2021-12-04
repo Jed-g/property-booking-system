@@ -6,9 +6,12 @@ import java.sql.*;
 public class HostUpcomingBookings extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private String email;
     private HostBookingList[] upcomingList;
+    private HostBookingList[] searchResults;
     private int numberOfPages;
     private int currentPage = 1;
+    private int bookingIndex;
 
     /**
      * Creates new form HostUpcomingBookings
@@ -16,6 +19,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     public HostUpcomingBookings(Main jFrameInstance, String email) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.email = email;
         
         DriverManager.setLoginTimeout(3);
         
@@ -311,14 +315,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         lblDates1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDates1.setText("Dates:");
 
-        dateRange1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        dateRange1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         dateRange1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateRange1.setText("[date range]");
 
         lblGuest1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblGuest1.setText("Guest:");
 
-        guestName1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         guestName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guestName1.setText("[guest name]");
 
@@ -402,14 +406,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         lblDates2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDates2.setText("Dates:");
 
-        dateRange2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        dateRange2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         dateRange2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateRange2.setText("[date range]");
 
         lblGuest2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblGuest2.setText("Guest:");
 
-        guestName2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         guestName2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guestName2.setText("[guest name]");
 
@@ -493,14 +497,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         lblDates3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDates3.setText("Dates:");
 
-        dateRange3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        dateRange3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         dateRange3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateRange3.setText("[date range]");
 
         lblGuest3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblGuest3.setText("Guest:");
 
-        guestName3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         guestName3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guestName3.setText("[guest name]");
 
@@ -584,14 +588,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         lblDates4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblDates4.setText("Dates:");
 
-        dateRange4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        dateRange4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         dateRange4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         dateRange4.setText("[date range]");
 
         lblGuest4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblGuest4.setText("Guest:");
 
-        guestName4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        guestName4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         guestName4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         guestName4.setText("[guest name]");
 
@@ -664,7 +668,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         });
 
         searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        searchInput.setText("Search...");
+        searchInput.setText("Search by property...");
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInputActionPerformed(evt);
@@ -674,6 +678,11 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         searchButton.setText("SEARCH");
         searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         pageNumber.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         pageNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -802,6 +811,41 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
     }
     
+        private void fetchSearchData(String email, String propertyName) {
+        
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        Date dateToday = new Date(new java.util.Date().getTime());
+        
+        searchResults = HostBookingList.getUpSearchResults(email, dateToday, propertyName);
+        
+        int n = searchResults.length;
+        
+        if (n <= 4){
+            removeUpcomingBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
+        pageNumber.setText("1/" + numberOfPages);
+        
+        fillSearchBoxes(0);
+        
+    }
+    
     private void fillUpcomingBoxes(int indexFirstUpcomingOnPage) {
         
         int maxAmountBoxes = 4;
@@ -836,6 +880,40 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
     }
     
+        private void fillSearchBoxes(int indexFirstUpcomingOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstUpcomingOnPage + 4 > searchResults.length){
+            maxAmountBoxes = searchResults.length - indexFirstUpcomingOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            propName1.setText(searchResults[indexFirstUpcomingOnPage].getPropertyName());
+            propLocation1.setText(searchResults[indexFirstUpcomingOnPage].getLocation());
+            dateRange1.setText(searchResults[indexFirstUpcomingOnPage].getDateRange());
+            guestName1.setText(searchResults[indexFirstUpcomingOnPage].getGuestName());
+        }
+        if (maxAmountBoxes >= 2){
+            propName2.setText(searchResults[indexFirstUpcomingOnPage +1].getPropertyName());
+            propLocation2.setText(searchResults[indexFirstUpcomingOnPage +1].getLocation());
+            dateRange2.setText(searchResults[indexFirstUpcomingOnPage +1].getDateRange());
+            guestName2.setText(searchResults[indexFirstUpcomingOnPage +1].getGuestName());
+        }
+        if (maxAmountBoxes >= 3){
+            propName3.setText(searchResults[indexFirstUpcomingOnPage +2].getPropertyName());
+            propLocation3.setText(searchResults[indexFirstUpcomingOnPage +2].getLocation());
+            dateRange3.setText(searchResults[indexFirstUpcomingOnPage +2].getDateRange());
+            guestName3.setText(searchResults[indexFirstUpcomingOnPage +2].getGuestName());
+        }
+        if (maxAmountBoxes == 4){
+            propName4.setText(searchResults[indexFirstUpcomingOnPage +3].getPropertyName());
+            propLocation4.setText(searchResults[indexFirstUpcomingOnPage +3].getLocation());
+            dateRange4.setText(searchResults[indexFirstUpcomingOnPage +3].getDateRange());
+            guestName4.setText(searchResults[indexFirstUpcomingOnPage +3].getGuestName());
+        }
+        
+    }
+    
     private void removeUpcomingBoxes(int numBoxesToBeRemoved) {
         
         if (numBoxesToBeRemoved >= 1){
@@ -843,26 +921,40 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             propLocation4.setVisible(false);
             lblDates4.setVisible(false);
             dateRange4.setVisible(false);
-            
+            lblGuest4.setVisible(false);
             guestName4.setVisible(false);
+            contactGuest4.setVisible(false);
+            cancelBooking4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
             propName3.setVisible(false);
             propLocation3.setVisible(false);
+            lblDates3.setVisible(false);
             dateRange3.setVisible(false);
+            lblGuest3.setVisible(false);
             guestName3.setVisible(false);
+            contactGuest3.setVisible(false);
+            cancelBooking3.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 3){
             propName2.setVisible(false);
             propLocation2.setVisible(false);
+            lblDates2.setVisible(false);
             dateRange2.setVisible(false);
+            lblGuest2.setVisible(false);
             guestName2.setVisible(false);
+            contactGuest2.setVisible(false);
+            cancelBooking2.setVisible(false);
         }
         if (numBoxesToBeRemoved == 4){
             propName1.setVisible(false);
             propLocation1.setVisible(false);
+            lblDates1.setVisible(false);
             dateRange1.setVisible(false);
+            lblGuest1.setVisible(false);
             guestName1.setVisible(false);
+            contactGuest1.setVisible(false);
+            cancelBooking1.setVisible(false);
         }
         
     }
@@ -871,23 +963,49 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
         propName1.setVisible(true);
         propLocation1.setVisible(true);
+        lblDates1.setVisible(true);
         dateRange1.setVisible(true);
+        lblGuest1.setVisible(true);
         guestName1.setVisible(true);
-        
+        contactGuest1.setVisible(true);
+        cancelBooking1.setVisible(true);
+
         propName2.setVisible(true);
         propLocation2.setVisible(true);
+        lblDates2.setVisible(true);
         dateRange2.setVisible(true);
+        lblGuest2.setVisible(true);
         guestName2.setVisible(true);
-        
+        contactGuest2.setVisible(true);
+        cancelBooking2.setVisible(true);
+
         propName3.setVisible(true);
         propLocation3.setVisible(true);
+        lblDates3.setVisible(true);
         dateRange3.setVisible(true);
+        lblGuest3.setVisible(true);
         guestName3.setVisible(true);
-        
+        contactGuest3.setVisible(true);
+        cancelBooking3.setVisible(true);
+
         propName4.setVisible(true);
         propLocation4.setVisible(true);
+        lblDates4.setVisible(true);
         dateRange4.setVisible(true);
+        lblGuest4.setVisible(true);
         guestName4.setVisible(true);
+        contactGuest4.setVisible(true);
+        cancelBooking4.setVisible(true);
+        
+    }
+    
+    private void viewContactInfo(int bookingIndex) {
+        
+        String guestInfo;
+        guestInfo = ("Guest Email: " + upcomingList[bookingIndex].getGuestEmail() + "\nGuest Phone Number: " 
+                + upcomingList[bookingIndex].getGuestPhoneNum());
+        
+        javax.swing.JOptionPane.showMessageDialog(null, guestInfo, "Contact Information", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         
     }
     
@@ -901,7 +1019,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_requestsActionPerformed
 
     private void upcomingBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upcomingBookingsActionPerformed
-        
+        HostUpcomingBookings upcomingPage = new HostUpcomingBookings(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(upcomingPage);      
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
     private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
@@ -915,7 +1034,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void contactGuest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest1ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex);
     }//GEN-LAST:event_contactGuest1ActionPerformed
 
     private void cancelBooking1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking1ActionPerformed
@@ -923,7 +1042,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelBooking1ActionPerformed
 
     private void contactGuest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest2ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex + 1);
     }//GEN-LAST:event_contactGuest2ActionPerformed
 
     private void cancelBooking2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking2ActionPerformed
@@ -939,7 +1058,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_PropRemove5ActionPerformed
 
     private void contactGuest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest3ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex + 2);
     }//GEN-LAST:event_contactGuest3ActionPerformed
 
     private void cancelBooking3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking3ActionPerformed
@@ -947,7 +1066,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelBooking3ActionPerformed
 
     private void contactGuest4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest4ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex + 3);
     }//GEN-LAST:event_contactGuest4ActionPerformed
 
     private void cancelBooking4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBooking4ActionPerformed
@@ -968,6 +1087,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillUpcomingBoxes(indexFirstUpcomingOnPage);
         resetUpcomingBoxes();
+        bookingIndex = indexFirstUpcomingOnPage;
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
@@ -984,6 +1104,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillUpcomingBoxes(indexFirstUpcomingOnPage);
         resetUpcomingBoxes();
+        bookingIndex = indexFirstUpcomingOnPage;
         if (indexFirstUpcomingOnPage + 4 > upcomingList.length){
             removeUpcomingBoxes(indexFirstUpcomingOnPage - upcomingList.length + 4);
         }
@@ -992,6 +1113,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
         
     }//GEN-LAST:event_searchInputActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        
+        String propertyName = searchInput.getText();
+
+        fetchSearchData(email, propertyName);
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

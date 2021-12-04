@@ -149,4 +149,51 @@ public class RequestList {
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
+    
+    static RequestList[] getSearchResults(String email, String propertyName) {
+        DriverManager.setLoginTimeout(3);
+        
+        RequestList[] searchResults = null;
+        
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+           
+            PreparedStatement pstmt = con.prepareStatement("SELECT Bookings.propertyId, propertyName, bookingId, startDate, endDate, forename, surname "
+                    + "FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
+                    + "Bookings.email = Users.email WHERE Properties.email = ? AND propertyName = ? AND provisional = true",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            pstmt.setString(1, email);
+            pstmt.setString(2, propertyName);
+            ResultSet res = pstmt.executeQuery();
+            
+            int numberOfRequests = 0;
+            if (res.last()){
+              numberOfRequests = res.getRow();
+              res.beforeFirst();
+            }
+            
+            searchResults = new RequestList[numberOfRequests];            
+            
+            for (int i = 0; i < numberOfRequests; i++){
+                if (res.next()){  
+                    
+                    searchResults[i] = new RequestList(res.getInt("Bookings.propertyId"), res.getString("propertyName"), res.getInt("bookingId"),
+                            res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"));
+                }
+            }
+
+            res.close();
+            pstmt.close();
+            
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(javax.swing.ImageIcon.class.getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
+        return searchResults;
+        
+    }
 }

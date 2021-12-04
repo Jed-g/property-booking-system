@@ -6,9 +6,12 @@ import java.sql.*;
 public class HostPreviousBookings extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private String email;
     private HostBookingList[] previousList;
+    private HostBookingList[] searchResults;
     private int numberOfPages;
     private int currentPage = 1;
+    private int bookingIndex;
 
     /**
      * Creates new form HostPreviousBookings
@@ -16,6 +19,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     public HostPreviousBookings(Main jFrameInstance, String email) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.email = email;
         
         DriverManager.setLoginTimeout(3);
         
@@ -567,9 +571,14 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         searchButton.setText("SEARCH");
         searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        searchInput.setText("Search...");
+        searchInput.setText("Search by property...");
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInputActionPerformed(evt);
@@ -704,6 +713,41 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         
     }
     
+    private void fetchSearchData(String email, String propertyName) {
+        
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        Date dateToday = new Date(new java.util.Date().getTime());
+        
+        searchResults = HostBookingList.getPreSearchResults(email, dateToday, propertyName);
+        
+        int n = searchResults.length;
+        
+        if (n <= 4){
+            removePreviousBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
+        pageNumber.setText("1/" + numberOfPages);
+        
+        fillSearchBoxes(0);
+        
+    }
+    
     private void fillPreviousBoxes(int indexFirstPreviousOnPage) {
         
         int maxAmountBoxes = 4;
@@ -738,31 +782,81 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         
     }
     
+    private void fillSearchBoxes(int indexFirstPreviousOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPreviousOnPage + 4 > searchResults.length){
+            maxAmountBoxes = searchResults.length - indexFirstPreviousOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            propName1.setText(searchResults[indexFirstPreviousOnPage].getPropertyName());
+            propLocation1.setText(searchResults[indexFirstPreviousOnPage].getLocation());
+            dateRange1.setText(searchResults[indexFirstPreviousOnPage].getDateRange());
+            guestName1.setText(searchResults[indexFirstPreviousOnPage].getGuestName());
+        }
+        if (maxAmountBoxes >= 2){
+            propName2.setText(searchResults[indexFirstPreviousOnPage +1].getPropertyName());
+            propLocation2.setText(searchResults[indexFirstPreviousOnPage +1].getLocation());
+            dateRange2.setText(searchResults[indexFirstPreviousOnPage +1].getDateRange());
+            guestName2.setText(searchResults[indexFirstPreviousOnPage +1].getGuestName());
+        }
+        if (maxAmountBoxes >= 3){
+            propName3.setText(searchResults[indexFirstPreviousOnPage +2].getPropertyName());
+            propLocation3.setText(searchResults[indexFirstPreviousOnPage +2].getLocation());
+            dateRange3.setText(searchResults[indexFirstPreviousOnPage +2].getDateRange());
+            guestName3.setText(searchResults[indexFirstPreviousOnPage +2].getGuestName());
+        }
+        if (maxAmountBoxes == 4){
+            propName4.setText(searchResults[indexFirstPreviousOnPage +3].getPropertyName());
+            propLocation4.setText(searchResults[indexFirstPreviousOnPage +3].getLocation());
+            dateRange4.setText(searchResults[indexFirstPreviousOnPage +3].getDateRange());
+            guestName4.setText(searchResults[indexFirstPreviousOnPage +3].getGuestName());
+        }
+        
+    }
+    
     private void removePreviousBoxes(int numBoxesToBeRemoved) {
         
         if (numBoxesToBeRemoved >= 1){
             propName4.setVisible(false);
             propLocation4.setVisible(false);
+            lblDates4.setVisible(false);
             dateRange4.setVisible(false);
+            lblGuest4.setVisible(false);
             guestName4.setVisible(false);
+            contactGuest4.setVisible(false);
+            reviews4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
             propName3.setVisible(false);
             propLocation3.setVisible(false);
+            lblDates3.setVisible(false);
             dateRange3.setVisible(false);
+            lblGuest3.setVisible(false);
             guestName3.setVisible(false);
+            contactGuest3.setVisible(false);
+            reviews3.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 3){
             propName2.setVisible(false);
             propLocation2.setVisible(false);
+            lblDates2.setVisible(false);
             dateRange2.setVisible(false);
+            lblGuest2.setVisible(false);
             guestName2.setVisible(false);
+            contactGuest2.setVisible(false);
+            reviews2.setVisible(false);
         }
         if (numBoxesToBeRemoved == 4){
             propName1.setVisible(false);
             propLocation1.setVisible(false);
+            lblDates1.setVisible(false);
             dateRange1.setVisible(false);
+            lblGuest1.setVisible(false);
             guestName1.setVisible(false);
+            contactGuest1.setVisible(false);
+            reviews1.setVisible(false);
         }
         
     }
@@ -771,24 +865,49 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         
         propName1.setVisible(true);
         propLocation1.setVisible(true);
+        lblDates1.setVisible(true);
         dateRange1.setVisible(true);
+        lblGuest1.setVisible(true);
         guestName1.setVisible(true);
-        
+        contactGuest1.setVisible(true);
+        reviews1.setVisible(true);
+
         propName2.setVisible(true);
         propLocation2.setVisible(true);
+        lblDates2.setVisible(true);
         dateRange2.setVisible(true);
+        lblGuest2.setVisible(true);
         guestName2.setVisible(true);
-        
+        contactGuest2.setVisible(true);
+        reviews2.setVisible(true);
+
         propName3.setVisible(true);
         propLocation3.setVisible(true);
+        lblDates3.setVisible(true);
         dateRange3.setVisible(true);
+        lblGuest3.setVisible(true);
         guestName3.setVisible(true);
-        
+        contactGuest3.setVisible(true);
+        reviews3.setVisible(true);
+
         propName4.setVisible(true);
         propLocation4.setVisible(true);
+        lblDates4.setVisible(true);
         dateRange4.setVisible(true);
+        lblGuest4.setVisible(true);
         guestName4.setVisible(true);
+        contactGuest4.setVisible(true);
+        reviews4.setVisible(true);    
         
+    }
+    
+    private void viewContactInfo(int bookingIndex) {
+        
+        String guestInfo;
+        guestInfo = ("Guest Email: " + previousList[bookingIndex].getGuestEmail() + "\nGuest Phone Number: " 
+                + previousList[bookingIndex].getGuestPhoneNum());
+        
+        javax.swing.JOptionPane.showMessageDialog(null, guestInfo, "Contact Information", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         
     }
     
@@ -807,7 +926,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_upcomingBookingsActionPerformed
 
     private void previousBookingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousBookingsActionPerformed
-        
+        HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(previousPage);
     }//GEN-LAST:event_previousBookingsActionPerformed
 
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed
@@ -816,7 +936,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void contactGuest1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest1ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex);
     }//GEN-LAST:event_contactGuest1ActionPerformed
 
     private void reviews1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews1ActionPerformed
@@ -824,7 +944,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_reviews1ActionPerformed
 
     private void contactGuest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest2ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex);
     }//GEN-LAST:event_contactGuest2ActionPerformed
 
     private void reviews2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews2ActionPerformed
@@ -832,7 +952,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_reviews2ActionPerformed
 
     private void contactGuest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest3ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex);
     }//GEN-LAST:event_contactGuest3ActionPerformed
 
     private void reviews3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews3ActionPerformed
@@ -840,7 +960,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_reviews3ActionPerformed
 
     private void contactGuest4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest4ActionPerformed
-        // TODO add your handling code here:
+        viewContactInfo(bookingIndex);
     }//GEN-LAST:event_contactGuest4ActionPerformed
 
     private void reviews4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews4ActionPerformed
@@ -861,6 +981,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPreviousBoxes(indexFirstPreviousOnPage);
         resetPreviousBoxes();
+        bookingIndex = indexFirstPreviousOnPage;
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
@@ -877,6 +998,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPreviousBoxes(indexFirstPreviousOnPage);
         resetPreviousBoxes();
+        bookingIndex = indexFirstPreviousOnPage;
         if (indexFirstPreviousOnPage + 4 > previousList.length){
             removePreviousBoxes(indexFirstPreviousOnPage - previousList.length + 4);
         }
@@ -885,6 +1007,14 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchInputActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+                
+        String propertyName = searchInput.getText();
+
+        fetchSearchData(email, propertyName);
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

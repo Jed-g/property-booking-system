@@ -6,7 +6,9 @@ import java.sql.*;
 public class HostViewAllProperties extends javax.swing.JPanel {
 
     private Main jFrameInstance;
+    private String email;
     private PropertyList[] propertyList;
+    private PropertyList[] searchResults;
     private int numberOfPages;
     private int currentPage = 1;
     
@@ -17,6 +19,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     public HostViewAllProperties(Main jFrameInstance, String email) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.email = email;
         
         DriverManager.setLoginTimeout(3);
         
@@ -242,12 +245,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                 .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, property1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                        .addComponent(propDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(property1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         property2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -308,7 +310,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(propDescription2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(property2Layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
+                        .addGap(18, 18, 18)
                         .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
@@ -355,9 +357,9 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(propLocation3)
                         .addGap(53, 53, 53)
                         .addComponent(propRating3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         property3Layout.setVerticalGroup(
             property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,12 +371,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                 .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, property3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addComponent(propDescription3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(property3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         property4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -433,12 +434,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                 .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(property4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, property4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addComponent(propDescription4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(property4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         nextPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -462,7 +462,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         });
 
         searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        searchInput.setText("Search...");
+        searchInput.setText("Search by location...");
         searchInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchInputActionPerformed(evt);
@@ -472,6 +472,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         searchButton.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         searchButton.setText("SEARCH");
         searchButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102)));
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         pageNumber.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         pageNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -611,6 +616,39 @@ public class HostViewAllProperties extends javax.swing.JPanel {
 
     }
     
+    private void fetchSearchData(String email, String location) {
+        
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        searchResults = PropertyList.searchByLocation(email, location);
+        
+        int n = searchResults.length;
+        
+        if (n <= 4){
+            removePropertyBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
+        pageNumber.setText("1/" + numberOfPages);
+        
+        fillSearchResults(0);
+        
+    }
+    
     private void fillPropertyBoxes(int indexFirstPropOnPage) {
         
         int maxAmountBoxes = 4;
@@ -641,6 +679,39 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             propLocation4.setText(propertyList[indexFirstPropOnPage +3].getLocation());
             propRating4.setText(propertyList[indexFirstPropOnPage +3].getRating());
             propDescText4.setText(propertyList[indexFirstPropOnPage +3].getDescription());
+        }     
+    }
+    
+        private void fillSearchResults(int indexFirstPropOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > searchResults.length){
+            maxAmountBoxes = searchResults.length - indexFirstPropOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            propName1.setText(searchResults[indexFirstPropOnPage].getPropertyName());
+            propLocation1.setText(searchResults[indexFirstPropOnPage].getLocation());
+            propRating1.setText(searchResults[indexFirstPropOnPage].getRating());
+            propDescText1.setText(searchResults[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes >= 2){
+            propName2.setText(searchResults[indexFirstPropOnPage +1].getPropertyName());
+            propLocation2.setText(searchResults[indexFirstPropOnPage +1].getLocation());
+            propRating2.setText(searchResults[indexFirstPropOnPage +1].getRating());
+            propDescText2.setText(searchResults[indexFirstPropOnPage +1].getDescription());
+        }
+        if (maxAmountBoxes >= 3){
+            propName3.setText(searchResults[indexFirstPropOnPage +2].getPropertyName());
+            propLocation3.setText(searchResults[indexFirstPropOnPage +2].getLocation());
+            propRating3.setText(searchResults[indexFirstPropOnPage +2].getRating());
+            propDescText3.setText(searchResults[indexFirstPropOnPage +2].getDescription());
+        }
+        if (maxAmountBoxes == 4){
+            propName4.setText(searchResults[indexFirstPropOnPage +3].getPropertyName());
+            propLocation4.setText(searchResults[indexFirstPropOnPage +3].getLocation());
+            propRating4.setText(searchResults[indexFirstPropOnPage +3].getRating());
+            propDescText4.setText(searchResults[indexFirstPropOnPage +3].getDescription());
         }     
     }
     
@@ -711,7 +782,8 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_viewAccountActionPerformed
 
     private void viewAllPropertiesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllPropertiesActionPerformed
-        // TODO add your handling code here:
+        HostViewAllProperties propertiesPage = new HostViewAllProperties(jFrameInstance, email);
+        jFrameInstance.changePanelToSpecific(propertiesPage);
     }//GEN-LAST:event_viewAllPropertiesActionPerformed
 
     private void requestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestsActionPerformed
@@ -728,10 +800,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
        //HostPreviousBookings previousPage = new HostPreviousBookings(jFrameInstance);
        //jFrameInstance.changePanelToSpecific(previousPage); 
     }//GEN-LAST:event_previousBookingsActionPerformed
-
-    private void propEdit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_propEdit4ActionPerformed
 
     private void propEdit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit3ActionPerformed
         // TODO add your handling code here:
@@ -760,13 +828,13 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             nextPage.setEnabled(false);
         }
                
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstPropOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
         resetPropertyBoxes();
-        if (indexFirstPropOnPage + 3 > propertyList.length){
-            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 3);
+        if (indexFirstPropOnPage + 4 > propertyList.length){
+            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
 
@@ -779,7 +847,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*3;
+        int indexFirstPropOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
@@ -787,8 +855,20 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_searchInputActionPerformed
+
+    private void propEdit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propEdit4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_propEdit4ActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        
+        String location = searchInput.getText();
+
+        fetchSearchData(email, location);
+        
+    }//GEN-LAST:event_searchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

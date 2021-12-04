@@ -4,11 +4,15 @@ package com2008.team.project;
 import java.sql.*;
 
 public class PropertyList {
-    
+
+    private int propertyId;
     private String propertyName;
     private String location;
     private String rating;
-    private String description;
+    private String description; 
+    private String startdate;
+    private String enddate;
+
     
     private static ReviewList[] reviewList;
     
@@ -21,6 +25,10 @@ public class PropertyList {
         
     }
     
+    int getPropertyId(){
+        return propertyId;
+    }
+
     String getPropertyName() {
         return propertyName;
     }
@@ -77,6 +85,7 @@ public class PropertyList {
                     + "WHERE email = ?;",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setString(1, email);
+
             ResultSet res = pstmt.executeQuery();
             
             int numberOfProperties = 0;
@@ -88,7 +97,7 @@ public class PropertyList {
             propertyList = new PropertyList[numberOfProperties];
             String rating;            
             
-            for (int i = 0; i < numberOfProperties; i++){
+            for (int i = 0; i <= numberOfProperties; i++){
                 if (res.next()){  
                     
                     rating = getRating(res.getString("propertyId"));
@@ -206,5 +215,4 @@ public class PropertyList {
         return searchPropList;
                
     }
-    
 }

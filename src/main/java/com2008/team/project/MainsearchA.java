@@ -105,9 +105,19 @@ int indexFirstPropOnPage;
 
         jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setText("CREATE AN ACCOUNT");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(255, 204, 204));
         jButton2.setText("Login ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
         jButton5.setText("Search");
@@ -549,7 +559,7 @@ int indexFirstPropOnPage;
     }
      
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        jFrameInstance.changePanelToDefault();
      
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -831,6 +841,16 @@ int indexFirstPropOnPage;
             removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Login login = new Login(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(login);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Register registrationPage = new Register(jFrameInstance);
+        jFrameInstance.changePanelToSpecific(registrationPage);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 

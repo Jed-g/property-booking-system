@@ -25,7 +25,6 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         fetchPropertyData();
-        changePanelToSpecific(new HostViewAllProperties(this, email));
     }
 
     static String hashString(String stringToHash){

@@ -26,8 +26,6 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         fetchPropertyData();
-       
-        
     }
 
     static String hashString(String stringToHash){
@@ -116,11 +114,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Ã‹ÃŽÃŒÃ¥", 0, 18)); // NOI18N
         jButton1.setText("Homepage");
 
         jButton2.setBackground(new java.awt.Color(204, 204, 255));
-        jButton2.setFont(new java.awt.Font("ËÎÌå", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Ã‹ÃŽÃŒÃ¥", 0, 18)); // NOI18N
         jButton2.setText("Search");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

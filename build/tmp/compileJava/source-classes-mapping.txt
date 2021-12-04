@@ -152,34 +152,22 @@ com2008/team/project/HostPreviousBookings.java
  com2008.team.project.HostPreviousBookings$7
  com2008.team.project.HostPreviousBookings$8
  com2008.team.project.HostPreviousBookings$9
-com2008/team/project/MainsearchA.java
- com2008.team.project.MainsearchA
- com2008.team.project.MainsearchA$1
- com2008.team.project.MainsearchA$10
- com2008.team.project.MainsearchA$11
- com2008.team.project.MainsearchA$12
- com2008.team.project.MainsearchA$13
- com2008.team.project.MainsearchA$14
- com2008.team.project.MainsearchA$15
- com2008.team.project.MainsearchA$16
- com2008.team.project.MainsearchA$17
- com2008.team.project.MainsearchA$18
- com2008.team.project.MainsearchA$19
- com2008.team.project.MainsearchA$2
- com2008.team.project.MainsearchA$20
- com2008.team.project.MainsearchA$21
- com2008.team.project.MainsearchA$22
- com2008.team.project.MainsearchA$23
- com2008.team.project.MainsearchA$24
- com2008.team.project.MainsearchA$25
- com2008.team.project.MainsearchA$26
- com2008.team.project.MainsearchA$3
- com2008.team.project.MainsearchA$4
- com2008.team.project.MainsearchA$5
- com2008.team.project.MainsearchA$6
- com2008.team.project.MainsearchA$7
- com2008.team.project.MainsearchA$8
- com2008.team.project.MainsearchA$9
+com2008/team/project/Guestsearch1.java
+ com2008.team.project.Guestsearch1
+ com2008.team.project.Guestsearch1$1
+ com2008.team.project.Guestsearch1$10
+ com2008.team.project.Guestsearch1$11
+ com2008.team.project.Guestsearch1$12
+ com2008.team.project.Guestsearch1$13
+ com2008.team.project.Guestsearch1$14
+ com2008.team.project.Guestsearch1$2
+ com2008.team.project.Guestsearch1$3
+ com2008.team.project.Guestsearch1$4
+ com2008.team.project.Guestsearch1$5
+ com2008.team.project.Guestsearch1$6
+ com2008.team.project.Guestsearch1$7
+ com2008.team.project.Guestsearch1$8
+ com2008.team.project.Guestsearch1$9
 com2008/team/project/Booking.java
  com2008.team.project.Booking
  com2008.team.project.Booking$1
@@ -314,19 +302,23 @@ com2008/team/project/User.java
  com2008.team.project.User$7
  com2008.team.project.User$8
  com2008.team.project.User$9
-com2008/team/project/Main.java
- com2008.team.project.Main
- com2008.team.project.Main$1
- com2008.team.project.Main$10
- com2008.team.project.Main$11
- com2008.team.project.Main$2
- com2008.team.project.Main$3
- com2008.team.project.Main$4
- com2008.team.project.Main$5
- com2008.team.project.Main$6
- com2008.team.project.Main$7
- com2008.team.project.Main$8
- com2008.team.project.Main$9
+com2008/team/project/HostViewAllProperties.java
+ com2008.team.project.HostViewAllProperties
+ com2008.team.project.HostViewAllProperties$1
+ com2008.team.project.HostViewAllProperties$10
+ com2008.team.project.HostViewAllProperties$11
+ com2008.team.project.HostViewAllProperties$12
+ com2008.team.project.HostViewAllProperties$13
+ com2008.team.project.HostViewAllProperties$14
+ com2008.team.project.HostViewAllProperties$15
+ com2008.team.project.HostViewAllProperties$2
+ com2008.team.project.HostViewAllProperties$3
+ com2008.team.project.HostViewAllProperties$4
+ com2008.team.project.HostViewAllProperties$5
+ com2008.team.project.HostViewAllProperties$6
+ com2008.team.project.HostViewAllProperties$7
+ com2008.team.project.HostViewAllProperties$8
+ com2008.team.project.HostViewAllProperties$9
 com2008/team/project/ChangePassword.java
  com2008.team.project.ChangePassword
  com2008.team.project.ChangePassword$1
@@ -372,36 +364,46 @@ com2008/team/project/Register.java
  com2008.team.project.Register$7
  com2008.team.project.Register$8
  com2008.team.project.Register$9
-com2008/team/project/HostViewAllProperties.java
- com2008.team.project.HostViewAllProperties
- com2008.team.project.HostViewAllProperties$1
- com2008.team.project.HostViewAllProperties$10
- com2008.team.project.HostViewAllProperties$11
- com2008.team.project.HostViewAllProperties$12
- com2008.team.project.HostViewAllProperties$13
- com2008.team.project.HostViewAllProperties$14
- com2008.team.project.HostViewAllProperties$15
- com2008.team.project.HostViewAllProperties$2
- com2008.team.project.HostViewAllProperties$3
- com2008.team.project.HostViewAllProperties$4
- com2008.team.project.HostViewAllProperties$5
- com2008.team.project.HostViewAllProperties$6
- com2008.team.project.HostViewAllProperties$7
- com2008.team.project.HostViewAllProperties$8
- com2008.team.project.HostViewAllProperties$9
-com2008/team/project/Guestsearch1.java
- com2008.team.project.Guestsearch1
- com2008.team.project.Guestsearch1$1
- com2008.team.project.Guestsearch1$10
- com2008.team.project.Guestsearch1$11
- com2008.team.project.Guestsearch1$12
- com2008.team.project.Guestsearch1$13
- com2008.team.project.Guestsearch1$14
- com2008.team.project.Guestsearch1$2
- com2008.team.project.Guestsearch1$3
- com2008.team.project.Guestsearch1$4
- com2008.team.project.Guestsearch1$5
- com2008.team.project.Guestsearch1$6
- com2008.team.project.Guestsearch1$7
- com2008.team.project.Guestsearch1$8
- com2008.team.project.Guestsearch1$9
+com2008/team/project/MainsearchA.java
+ com2008.team.project.MainsearchA
+ com2008.team.project.MainsearchA$1
+ com2008.team.project.MainsearchA$10
+ com2008.team.project.MainsearchA$11
+ com2008.team.project.MainsearchA$12
+ com2008.team.project.MainsearchA$13
+ com2008.team.project.MainsearchA$14
+ com2008.team.project.MainsearchA$15
+ com2008.team.project.MainsearchA$16
+ com2008.team.project.MainsearchA$17
+ com2008.team.project.MainsearchA$18
+ com2008.team.project.MainsearchA$19
+ com2008.team.project.MainsearchA$2
+ com2008.team.project.MainsearchA$20
+ com2008.team.project.MainsearchA$21
+ com2008.team.project.MainsearchA$22
+ com2008.team.project.MainsearchA$23
+ com2008.team.project.MainsearchA$24
+ com2008.team.project.MainsearchA$25
+ com2008.team.project.MainsearchA$26
+ com2008.team.project.MainsearchA$27
+ com2008.team.project.MainsearchA$28
+ com2008.team.project.MainsearchA$3
+ com2008.team.project.MainsearchA$4
+ com2008.team.project.MainsearchA$5
+ com2008.team.project.MainsearchA$6
+ com2008.team.project.MainsearchA$7
+ com2008.team.project.MainsearchA$8
+ com2008.team.project.MainsearchA$9
+com2008/team/project/Main.java
+ com2008.team.project.Main
+ com2008.team.project.Main$1
+ com2008.team.project.Main$10
+ com2008.team.project.Main$11
+ com2008.team.project.Main$2
+ com2008.team.project.Main$3
+ com2008.team.project.Main$4
+ com2008.team.project.Main$5
+ com2008.team.project.Main$6
+ com2008.team.project.Main$7
+ com2008.team.project.Main$8
+ com2008.team.project.Main$9

@@ -364,7 +364,7 @@
                           <Component id="contactGuest1" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="reviews1" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -533,7 +533,7 @@
                           <Component id="contactGuest2" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="reviews2" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -702,7 +702,7 @@
                           <Component id="contactGuest3" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="reviews3" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -871,7 +871,7 @@
                           <Component id="contactGuest4" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                           <Component id="reviews4" alignment="0" min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="12" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1068,9 +1068,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Search by property..."/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchInputActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="pageNumber">
           <Properties>

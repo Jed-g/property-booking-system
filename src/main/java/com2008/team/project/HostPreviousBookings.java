@@ -250,7 +250,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGroup(previous1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reviews1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         previous1Layout.setVerticalGroup(
             previous1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,7 +341,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGroup(previous2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reviews2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         previous2Layout.setVerticalGroup(
             previous2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,7 +432,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGroup(previous3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reviews3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         previous3Layout.setVerticalGroup(
             previous3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -523,7 +523,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGroup(previous4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(contactGuest4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(reviews4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         previous4Layout.setVerticalGroup(
             previous4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -579,11 +579,6 @@ public class HostPreviousBookings extends javax.swing.JPanel {
 
         searchInput.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         searchInput.setText("Search by property...");
-        searchInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchInputActionPerformed(evt);
-            }
-        });
 
         pageNumber.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         pageNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -940,7 +935,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest1ActionPerformed
 
     private void reviews1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews1ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? previousList[(currentPage-1)*4].getPropertyId() : searchResults[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
     }//GEN-LAST:event_reviews1ActionPerformed
 
     private void contactGuest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest2ActionPerformed
@@ -948,7 +944,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest2ActionPerformed
 
     private void reviews2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews2ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? previousList[(currentPage-1)*4+1].getPropertyId() : searchResults[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
     }//GEN-LAST:event_reviews2ActionPerformed
 
     private void contactGuest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest3ActionPerformed
@@ -956,7 +953,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest3ActionPerformed
 
     private void reviews3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews3ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? previousList[(currentPage-1)*4+2].getPropertyId() : searchResults[(currentPage-1)*4+2].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
     }//GEN-LAST:event_reviews3ActionPerformed
 
     private void contactGuest4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest4ActionPerformed
@@ -964,7 +962,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     }//GEN-LAST:event_contactGuest4ActionPerformed
 
     private void reviews4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews4ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = searchResults == null ? previousList[(currentPage-1)*4+3].getPropertyId() : searchResults[(currentPage-1)*4+3].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
     }//GEN-LAST:event_reviews4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
@@ -1004,10 +1003,6 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_nextPageActionPerformed
 
-    private void searchInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchInputActionPerformed
-
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
                 
         String propertyName = searchInput.getText();
@@ -1016,7 +1011,10 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
-
+    void childReturnButtonAction(){
+        jFrameInstance.changePanelToSpecific(this);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton contactGuest1;
     private javax.swing.JButton contactGuest2;

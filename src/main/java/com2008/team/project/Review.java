@@ -8,13 +8,15 @@ public class Review extends javax.swing.JPanel {
     private ReviewList[] reviewList;
     private int numberOfPages;
     private int currentPage = 1;
+    private javax.swing.JPanel parentInstance;
     
     /**
      * Creates new form Review
      */
-    public Review(Main jFrameInstance, String propertyId) {
+    public Review(Main jFrameInstance, String propertyId, javax.swing.JPanel parentInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
+        this.parentInstance = parentInstance;       
         
         DriverManager.setLoginTimeout(3);
         
@@ -309,7 +311,12 @@ public class Review extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToDefault();
+        if (parentInstance instanceof HostPreviousBookings){
+            ((HostPreviousBookings)parentInstance).childReturnButtonAction();
+        }
+        if (parentInstance instanceof Property){
+            ((Property)parentInstance).childReturnButtonAction();
+        }
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed

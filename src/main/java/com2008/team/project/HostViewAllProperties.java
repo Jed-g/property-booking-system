@@ -201,6 +201,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propRating1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         propRating1.setText("[rating]");
 
+        propDescText1.setEditable(false);
         propDescText1.setColumns(20);
         propDescText1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         propDescText1.setRows(5);
@@ -233,7 +234,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(propRating1)))
                 .addGap(18, 18, 18)
                 .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         property1Layout.setVerticalGroup(
             property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,14 +243,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                     .addComponent(propName1)
                     .addComponent(propLocation1)
                     .addComponent(propRating1))
+                .addGap(18, 18, 18)
                 .addGroup(property1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(property1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(property1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(propDescription1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(propEdit1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         property2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -264,6 +262,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propRating2.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         propRating2.setText("[rating]");
 
+        propDescText2.setEditable(false);
         propDescText2.setColumns(20);
         propDescText2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         propDescText2.setRows(5);
@@ -296,7 +295,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(propRating2)))
                 .addGap(18, 18, 18)
                 .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         property2Layout.setVerticalGroup(
             property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,14 +304,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                     .addComponent(propName2)
                     .addComponent(propLocation2)
                     .addComponent(propRating2))
+                .addGap(18, 18, 18)
                 .addGroup(property2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(property2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(property2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(propDescription2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(propEdit2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         property3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -327,6 +323,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propRating3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         propRating3.setText("[rating]");
 
+        propDescText3.setEditable(false);
         propDescText3.setColumns(20);
         propDescText3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         propDescText3.setRows(5);
@@ -359,7 +356,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(propRating3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         property3Layout.setVerticalGroup(
             property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,14 +365,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                     .addComponent(propName3)
                     .addComponent(propLocation3)
                     .addComponent(propRating3))
+                .addGap(18, 18, 18)
                 .addGroup(property3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(property3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(property3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(propDescription3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(propEdit3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         property4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -390,6 +384,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         propRating4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         propRating4.setText("[rating]");
 
+        propDescText4.setEditable(false);
         propDescText4.setColumns(20);
         propDescText4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         propDescText4.setRows(5);
@@ -422,7 +417,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addComponent(propRating4)))
                 .addGap(18, 18, 18)
                 .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         property4Layout.setVerticalGroup(
             property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,14 +426,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                     .addComponent(propName4)
                     .addComponent(propLocation4)
                     .addComponent(propRating4))
+                .addGap(18, 18, 18)
                 .addGroup(property4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(property4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(propDescription4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(property4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                    .addComponent(propDescription4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(propEdit4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         nextPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N

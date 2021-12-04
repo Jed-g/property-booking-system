@@ -1856,11 +1856,14 @@ public class Property extends javax.swing.JPanel {
     }//GEN-LAST:event_editPropertyButtonActionPerformed
 
     private void viewReviewsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReviewsButtonActionPerformed
-        Review reviews = new Review(jFrameInstance, "" + propertyId);
+        Review reviews = new Review(jFrameInstance, "" + propertyId, this);
         jFrameInstance.changePanelToSpecific(reviews);
     }//GEN-LAST:event_viewReviewsButtonActionPerformed
 
-
+    void childReturnButtonAction(){
+        jFrameInstance.changePanelToSpecific(this);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton applyDatesButton;
     private javax.swing.JLabel barbequeIcon;

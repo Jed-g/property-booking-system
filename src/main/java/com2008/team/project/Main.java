@@ -5,12 +5,14 @@ public class Main extends javax.swing.JFrame {
     // For testing DB. Normally email should not be initialized.
     private String email = "admin";
     private Boolean hostView = false;
+            
+    private Main jFrameInstance;
     
     /**
      * Creates new form Main
      */
     public Main() {
-        initComponents();
+        initComponents();        
         
     }
 
@@ -97,6 +99,7 @@ public class Main extends javax.swing.JFrame {
         
         Login loginPanel = new Login(this);
         jScrollPane1.setViewportView(loginPanel);
+
     }//GEN-LAST:event_gotoLoginButtonActionPerformed
     
     void changePanelToDefault() {

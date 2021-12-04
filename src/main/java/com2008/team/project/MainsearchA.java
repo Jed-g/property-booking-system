@@ -524,7 +524,7 @@ int indexFirstPropOnPage;
                 PreparedStatement pstmt = con.prepareStatement("SELECT Information FROM Porperty location=?,startdate=?,enddate=?");
                 pstmt.setString(1,location);
                 pstmt.setString(2,startdate);
-                pstmt.setString(2,enddate);
+                pstmt.setString(3,enddate);
                 ResultSet res1 = pstmt.executeQuery();
 
                 if (res1.next()) {
@@ -598,8 +598,8 @@ int indexFirstPropOnPage;
         enddate = enddatefield.getText();
         enddatefield.setText("");
         
-        if (search(location,startdate,enddate)) {
-                       
+        if (search(location,startdate,enddate)==true) {
+           System.out.println("there have this");            
         }
         
     }//GEN-LAST:event_jButton6ActionPerformed

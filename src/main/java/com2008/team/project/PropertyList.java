@@ -4,7 +4,7 @@ package com2008.team.project;
 import java.sql.*;
 
 public class PropertyList {
-    
+    private int propertyId;
     private String propertyName;
     private String location;
     private String rating;
@@ -21,6 +21,10 @@ private String enddate;
         this.rating = rating;
         this.description = description;
         
+    }
+    
+    int getPropertyId(){
+        return propertyId;
     }
     
     String getPropertyName() {

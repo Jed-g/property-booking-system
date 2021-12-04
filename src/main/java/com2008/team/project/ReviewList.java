@@ -3,17 +3,21 @@ package com2008.team.project;
 import java.sql.*;
 
 public class ReviewList {
-    
+    private int propertyId;
     private String forename;
     private String lastname;
     private float rating;
     private String reviewDesc;
     
     private ReviewList(String forename, String lastname, float rating, String reviewDesc){
+    
         this.forename = forename;
         this.lastname = lastname;
         this.rating = rating;
         this.reviewDesc = reviewDesc;
+    }
+    int getPropertyId(){
+        return propertyId;
     }
     
     String getForename(){

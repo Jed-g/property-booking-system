@@ -4,24 +4,31 @@ package com2008.team.project;
 import java.sql.*;
 
 public class PropertyList {
-    
+
+    private int propertyId;
     private String propertyName;
     private String location;
     private String rating;
-    private String description;
-    private int propertyId;
+    private String description; 
+    private String startdate;
+    private String enddate;
+
     
     private static ReviewList[] reviewList;
     
-    private PropertyList(String propertyName, String location, String rating, String description, int propertyId) {
+    private PropertyList(String propertyName, String location, String rating, String description) {
         
         this.propertyName = propertyName;
         this.location = location;
         this.rating = rating;
         this.description = description;
-        this.propertyId = propertyId;
+        
     }
     
+    int getPropertyId(){
+        return propertyId;
+    }
+
     String getPropertyName() {
         return propertyName;
     }
@@ -36,10 +43,6 @@ public class PropertyList {
     
     String getDescription() {
         return description;
-    }
-    
-    int getPropertyId() {
-        return propertyId;
     }
     
     private static String getRating(String propertyId) {
@@ -82,6 +85,7 @@ public class PropertyList {
                     + "WHERE email = ?;",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             pstmt.setString(1, email);
+
             ResultSet res = pstmt.executeQuery();
             
             int numberOfProperties = 0;
@@ -93,13 +97,13 @@ public class PropertyList {
             propertyList = new PropertyList[numberOfProperties];
             String rating;            
             
-            for (int i = 0; i < numberOfProperties; i++){
+            for (int i = 0; i <= numberOfProperties; i++){
                 if (res.next()){  
                     
                     rating = getRating(res.getString("propertyId"));
                     
                     propertyList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            rating, res.getString("description"), res.getInt("propertyId"));
+                            rating, res.getString("description"));
                 }
             }
 
@@ -144,7 +148,7 @@ public class PropertyList {
                     rating = getRating(res.getString("propertyId"));
                     
                     allPropertyList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            rating, res.getString("description"), res.getInt("propertyId"));
+                            rating, res.getString("description"));
                 }
             }
 
@@ -192,7 +196,7 @@ public class PropertyList {
                     rating = getRating(res.getString("propertyId"));
                     
                     searchPropList[i] = new PropertyList(res.getString("propertyName"), res.getString("location"),
-                            rating, res.getString("description"), res.getInt("propertyId"));
+                            rating, res.getString("description"));
                 }
             }
 
@@ -211,5 +215,4 @@ public class PropertyList {
         return searchPropList;
                
     }
-    
 }

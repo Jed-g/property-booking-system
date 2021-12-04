@@ -190,6 +190,8 @@ public class Login extends javax.swing.JPanel {
             //redirect to guest homepage
             jFrameInstance.changePanelToDefault();
         }
+     Guestmain main = new Guestmain(jFrameInstance, email);
+     jFrameInstance.changePanelToSpecific(main);
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed

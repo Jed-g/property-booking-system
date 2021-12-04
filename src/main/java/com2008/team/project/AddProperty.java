@@ -1113,7 +1113,7 @@ public class AddProperty extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToDefault();
+        jFrameInstance.changePanelToSpecific(new HostViewAllProperties(jFrameInstance, email));
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void propertyNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_propertyNameTextFieldActionPerformed

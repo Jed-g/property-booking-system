@@ -14,9 +14,10 @@ public class HostBookingList {
     private String guestSurname;
     private String guestEmail;
     private String guestPhoneNum;
+    private int propertyId;
     
     private HostBookingList(int bookingId, String propertyName, String location, Date startDate, Date endDate,
-                String guestForename, String guestSurname, String guestEmail, String guestPhoneNum) {
+                String guestForename, String guestSurname, String guestEmail, String guestPhoneNum, int propertyId) {
         
         this.bookingId = bookingId;
         this.propertyName = propertyName;
@@ -27,7 +28,7 @@ public class HostBookingList {
         this.guestSurname = guestSurname;
         this.guestEmail = guestEmail;
         this.guestPhoneNum = guestPhoneNum;
-        
+        this.propertyId = propertyId;
     }
     
     int getBookingId() {
@@ -66,6 +67,10 @@ public class HostBookingList {
         return guestPhoneNum;
     }
     
+    int getPropertyId() {
+        return propertyId;
+    }
+    
     static HostBookingList[] getUpcomingList(String email, Date dateToday) {
         DriverManager.setLoginTimeout(3);
         
@@ -73,7 +78,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname,"
+            PreparedStatement pstmt = con.prepareStatement("SELECT Properties.propertyId, bookingId, startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate > ? AND Properties.email = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -94,7 +99,7 @@ public class HostBookingList {
                     
                     upcomingList[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
-                            res.getString("Users.email"), res.getString("Users.phoneNo"));
+                            res.getString("Users.email"), res.getString("Users.phoneNo"), res.getInt("Properties.propertyId"));
                 }
             }
 
@@ -120,7 +125,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname, "
+            PreparedStatement pstmt = con.prepareStatement("SELECT Properties.propertyId, bookingId, startDate, endDate, propertyName, location, forename, surname, "
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate > ? AND Properties.email = ? AND propertyName = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -142,7 +147,7 @@ public class HostBookingList {
                     
                     upSearchResults[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
-                            res.getString("Users.email"), res.getString("Users.phoneNo"));
+                            res.getString("Users.email"), res.getString("Users.phoneNo"), res.getInt("Properties.propertyId"));
                 }
             }
 
@@ -186,7 +191,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname,"
+            PreparedStatement pstmt = con.prepareStatement("SELECT Properties.propertyId, bookingId, startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate <= ? AND Properties.email = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -207,7 +212,7 @@ public class HostBookingList {
                     
                     previousList[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
-                            res.getString("Users.email"), res.getString("Users.phoneNo"));
+                            res.getString("Users.email"), res.getString("Users.phoneNo"), res.getInt("Properties.propertyId"));
                 }
             }
 
@@ -233,7 +238,7 @@ public class HostBookingList {
         
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
-            PreparedStatement pstmt = con.prepareStatement("SELECT bookingId, startDate, endDate, propertyName, location, forename, surname,"
+            PreparedStatement pstmt = con.prepareStatement("SELECT Properties.propertyId, bookingId, startDate, endDate, propertyName, location, forename, surname,"
                     + "Users.email, Users.phoneNo FROM Properties JOIN Bookings JOIN Users ON Properties.propertyId = Bookings.propertyId AND "
                     + "Bookings.email = Users.email WHERE provisional = 0 AND startDate <= ? AND Properties.email = ? AND propertyName = ?",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
@@ -255,7 +260,7 @@ public class HostBookingList {
                     
                     preSearchResults[i] = new HostBookingList(res.getInt("bookingId"), res.getString("propertyName"), res.getString("location"),
                             res.getDate("startDate"), res.getDate("endDate"), res.getString("forename"), res.getString("surname"),
-                            res.getString("Users.email"), res.getString("Users.phoneNo"));
+                            res.getString("Users.email"), res.getString("Users.phoneNo"), res.getInt("Properties.propertyId"));
                 }
             }
 

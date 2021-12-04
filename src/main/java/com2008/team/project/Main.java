@@ -94,6 +94,9 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gotoLoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotoLoginButtonActionPerformed
+        Property property = new Property(this, 30, email);
+        jScrollPane1.setViewportView(property);
+        
         Login loginPanel = new Login(this);
         jScrollPane1.setViewportView(loginPanel);
 

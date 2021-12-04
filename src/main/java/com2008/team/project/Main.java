@@ -1,5 +1,10 @@
 package com2008.team.project;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 
 
 public class Main extends javax.swing.JFrame {
@@ -14,12 +19,14 @@ public class Main extends javax.swing.JFrame {
     private int currentPage = 1;
     private int numberOfPages;
     int indexFirstPropOnPage;
+    private int num;
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        //changePanelToSpecific(new Booking(this, "guest", 30));
+        fetchPropertyData();
+       
         
     }
 
@@ -176,12 +183,22 @@ public class Main extends javax.swing.JFrame {
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
         jButton12.setText("View more information");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton13.setBackground(new java.awt.Color(255, 153, 153));
         jButton13.setText("View more information");
 
         jButton14.setBackground(new java.awt.Color(255, 153, 153));
         jButton14.setText("View more information");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         prolocation3.setText("jTextField1");
         jTabbedPane6.addTab("Location ", prolocation3);
@@ -209,7 +226,6 @@ public class Main extends javax.swing.JFrame {
 
         previousPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         previousPage.setText("PREVIOUS");
-        previousPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
         previousPage.setPreferredSize(new java.awt.Dimension(150, 40));
         previousPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,7 +239,6 @@ public class Main extends javax.swing.JFrame {
 
         nextPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         nextPage.setText("NEXT");
-        nextPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 102), 3));
         nextPage.setPreferredSize(new java.awt.Dimension(150, 40));
         nextPage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,7 +312,6 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(defaultPanelLayout.createSequentialGroup()
                         .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(defaultPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -308,14 +322,11 @@ public class Main extends javax.swing.JFrame {
                                 .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(defaultPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jTabbedPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton12)
                     .addComponent(jButton13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(defaultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,9 +393,13 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_prolocation1ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+      
     }//GEN-LAST:event_jButton11ActionPerformed
 
+   
+    
+    
     private void fetchPropertyData() {
         previousPage.setEnabled(false);
         nextPage.setEnabled(false);
@@ -516,6 +531,24 @@ public class Main extends javax.swing.JFrame {
             removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
         }
     }//GEN-LAST:event_nextPageActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        propertyList = PropertyList.getAllPropertyList();
+        if(num == propertyList[indexFirstPropOnPage].getPropertyId()||num == propertyList[indexFirstPropOnPage+1].getPropertyId()||
+                num == propertyList[indexFirstPropOnPage+2].getPropertyId()||num == propertyList[indexFirstPropOnPage+3].getPropertyId()){
+                propertyId =num;
+            }
+        
+        //viewProperty(num);
+        viewProperty1 view = new viewProperty1(this, propertyId);
+        jScrollPane1.setViewportView(view);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_jButton14ActionPerformed
     
     void changePanelToDefault() {
         jScrollPane1.setViewportView(defaultPanel);

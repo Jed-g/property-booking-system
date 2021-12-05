@@ -201,6 +201,11 @@ public class Main extends javax.swing.JFrame {
 
         jButton13.setBackground(new java.awt.Color(255, 153, 153));
         jButton13.setText("View more information");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(255, 153, 153));
         jButton14.setText("View more information");
@@ -398,8 +403,8 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_prolocation1ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here
-      
+        int propertyId = propertyList[(currentPage-1)*4].getPropertyId();
+        changePanelToSpecific(new Property(this, propertyId, "", defaultPanel));
     }//GEN-LAST:event_jButton11ActionPerformed
 
    
@@ -440,28 +445,29 @@ public class Main extends javax.swing.JFrame {
     private void removePropertyBoxes(int numBoxesToBeRemoved) {
 
         if (numBoxesToBeRemoved >= 1){
-            prolocation1.setVisible(false);
-            prorating1.setVisible(false);
-            proname1.setVisible(false);
-            prodescription1.setVisible(false);
+            prolocation4.setVisible(false);
+            prorating4.setVisible(false);
+            proname4.setVisible(false);
+            prodescription4.setVisible(false);
+            jButton13.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
-            prolocation2.setVisible(false);
-            prorating2.setVisible(false);
-            proname2.setVisible(false);
-            prodescription2.setVisible(false);
-        }
-        if (numBoxesToBeRemoved >= 3){
-           prolocation3.setVisible(false);
+            prolocation3.setVisible(false);
             prorating3.setVisible(false);
             proname3.setVisible(false);
             prodescription3.setVisible(false);
         }
+        if (numBoxesToBeRemoved >= 3){
+           prolocation2.setVisible(false);
+            prorating2.setVisible(false);
+            proname2.setVisible(false);
+            prodescription2.setVisible(false);
+        }
         if (numBoxesToBeRemoved == 4){
-           prolocation4.setVisible(false);
-            prorating4.setVisible(false);
-            proname4.setVisible(false);
-            prodescription4.setVisible(false);
+           prolocation1.setVisible(false);
+            prorating1.setVisible(false);
+            proname1.setVisible(false);
+            prodescription1.setVisible(false);
         }
         
     }
@@ -538,25 +544,24 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_nextPageActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        propertyList = PropertyList.getAllPropertyList();
-        if(num == propertyList[indexFirstPropOnPage].getPropertyId()||num == propertyList[indexFirstPropOnPage+1].getPropertyId()||
-                num == propertyList[indexFirstPropOnPage+2].getPropertyId()||num == propertyList[indexFirstPropOnPage+3].getPropertyId()){
-                propertyId =num;
-            }
-        
-        //viewProperty(num);
-        //jScrollPane1.setViewportView(new Property(this, "", ));
+        int propertyId = propertyList[(currentPage-1)*4+2].getPropertyId();
+        changePanelToSpecific(new Property(this, propertyId, "", defaultPanel));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        int propertyId = propertyList[(currentPage-1)*4+1].getPropertyId();
+        changePanelToSpecific(new Property(this, propertyId, "", defaultPanel));
      
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
 
     }//GEN-LAST:event_accountButtonActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        int propertyId = propertyList[(currentPage-1)*4+3].getPropertyId();
+        changePanelToSpecific(new Property(this, propertyId, "", defaultPanel));
+    }//GEN-LAST:event_jButton13ActionPerformed
     
     void changePanelToDefault() {
         jScrollPane1.setViewportView(defaultPanel);

@@ -308,6 +308,9 @@
               </Events>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="startDateFormatted">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startDateFormattedActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(dateFormat)"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="java.text.DateFormat dateFormat = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;);"/>

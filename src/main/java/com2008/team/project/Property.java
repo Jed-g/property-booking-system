@@ -94,17 +94,20 @@ public class Property extends javax.swing.JPanel {
     Date startDate;
     Date endDate;
     
+    private javax.swing.JPanel parentInstance;
     
     /**
      * Creates new form Property
      */
-    public Property(Main jFrameInstance, int propertyId, String email) {
+    public Property(Main jFrameInstance, int propertyId, String email, javax.swing.JPanel parentInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.propertyId = propertyId;
         this.userEmail = email;
         this.startDate = new Date(System.currentTimeMillis());
         this.endDate = new Date(System.currentTimeMillis());
+        this.parentInstance = parentInstance;
+        
         getPropertyInfo();
         getRoomsData();
         setPageView();
@@ -454,22 +457,20 @@ public class Property extends javax.swing.JPanel {
         fireExtinguisherIcon.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         fireExtinguisherIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/red-cross-small.jpg"))); // NOI18N
 
-        startDateField.setText("dd/mm/yyyy");
         try{
             javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
             dateMask.install(startDateField);
         } catch (Exception ex) {/*Ignore*/}
-        startDateField.setText(dateFormat.format(new java.util.Date()));
+        startDateField.setText("01/01/2022");
 
         startDateLabel.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         startDateLabel.setText("Start Date (dd/mm/yyyy)");
 
-        endDateField.setText("dd/mm/yyyy");
         try{
             javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter("##/##/####");
-            dateMask.install(startDateField);
+            dateMask.install(endDateField);
         } catch (Exception ex) {/*Ignore*/}
-        startDateField.setText(dateFormat.format(new java.util.Date()));
+        endDateField.setText("02/01/2022");
         endDateField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 endDateFieldActionPerformed(evt);
@@ -1112,33 +1113,30 @@ public class Property extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel40)
+                        .addGap(147, 147, 147)
+                        .addComponent(stoveIcon1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(jLabel40)
-                                .addGap(147, 147, 147)
-                                .addComponent(stoveIcon1))
+                                .addComponent(location)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel43)
+                                    .addComponent(ratingLabel)
+                                    .addComponent(viewReviewsButton)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(location)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel43)
-                                            .addComponent(ratingLabel)
-                                            .addComponent(viewReviewsButton)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(houseNumber)
-                                            .addComponent(streetName))
-                                        .addGap(4, 4, 4)
-                                        .addComponent(placeName)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(postcode)))
-                                .addGap(14, 14, 14)
-                                .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(houseNumber)
+                                    .addComponent(streetName))
+                                .addGap(4, 4, 4)
+                                .addComponent(placeName)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(postcode)))
+                        .addGap(14, 14, 14)
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(propertyName)
@@ -1302,7 +1300,8 @@ public class Property extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(cleaningChargeLabel)
-                                            .addComponent(cleaningCharge)))))))))
+                                            .addComponent(cleaningCharge))))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1669,7 +1668,7 @@ public class Property extends javax.swing.JPanel {
     private boolean checkDateAvailable() {
         Date bookedStartDate;
         Date bookedEndDate;
-        boolean available = false;
+        
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
                 PreparedStatement pstmt = con.prepareStatement("SELECT startDate, endDate FROM Bookings WHERE propertyId = ? AND provisional = ?");
                 pstmt.setInt(1, propertyId);
@@ -1681,16 +1680,13 @@ public class Property extends javax.swing.JPanel {
                     bookedEndDate = res.getDate("endDate");
                     
                     if (ChargeBand.isBetweenDates(bookedStartDate, bookedEndDate, startDate)) {
-                        available = false;
+                        return false;
                     }
                     else if (ChargeBand.isBetweenDates(bookedStartDate, bookedEndDate, endDate)) {
-                        available = false;
+                        return false;
                     }
                     else if (startDate.before(bookedStartDate) && endDate.after(bookedEndDate)) {
-                        available = false;
-                    }
-                    else {
-                        available = true;
+                        return false;
                     }
                 }
                 res.close();
@@ -1703,7 +1699,7 @@ public class Property extends javax.swing.JPanel {
                 String errorMessage = "Connection to database failed. University VPN is required.";
                 javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
             }
-        return available;
+        return true;
     }
     private void multiUseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiUseButtonActionPerformed
         if (view == PageView.HOST) { //redirect to second page
@@ -1714,8 +1710,8 @@ public class Property extends javax.swing.JPanel {
         if (view == PageView.GUEST) {
             applyDatesButtonActionPerformed(null);
             if (checkDateAvailable()) {
-                //Booking booking = new Booking(propertyId, userEmail, startDate, endDate);
-                //jFrameInstance.changePanelToSpecific(booking);
+                Booking booking = new Booking(jFrameInstance, jFrameInstance.getEmail(), propertyId, startDate, endDate, this);
+                jFrameInstance.changePanelToSpecific(booking);
             }
             else {
                 javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
@@ -1844,7 +1840,19 @@ public class Property extends javax.swing.JPanel {
     }//GEN-LAST:event_bathingPrevButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-        jFrameInstance.changePanelToDefault();
+        if (parentInstance instanceof MainsearchA){
+            jFrameInstance.changePanelToSpecific(new MainsearchA(jFrameInstance, ""));
+        } else if (parentInstance instanceof Guestmain){
+            jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
+        } else if (parentInstance instanceof Guestsearch){
+            jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
+        } else if (parentInstance instanceof Guestsearch1){
+            jFrameInstance.changePanelToSpecific(new Guestsearch1(jFrameInstance, jFrameInstance.getEmail(), ""));
+        } else if (parentInstance instanceof Guestupcomingbooking){
+            jFrameInstance.changePanelToSpecific(new Guestupcomingbooking(jFrameInstance, ""));
+        } else {
+            jFrameInstance.changePanelToDefault();
+        }
     }//GEN-LAST:event_returnButtonActionPerformed
 
     private void editPropertyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPropertyButtonActionPerformed

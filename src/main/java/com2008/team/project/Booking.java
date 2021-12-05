@@ -7,14 +7,29 @@ public class Booking extends javax.swing.JPanel {
     private Main jFrameInstance;
     private String email;
     private int propertyId;
+    private javax.swing.JPanel propertyInstance;
+    
     /**
      * Creates new form Booking
      */
-    public Booking(Main jFrameInstance,String email,int propertyId) {
+    public Booking(Main jFrameInstance,String email,int propertyId, Date startDate, Date endDate, javax.swing.JPanel propertyInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
-        this.propertyId = propertyId ;
+        this.propertyId = propertyId;
+        this.propertyInstance = propertyInstance;
+        
+        java.time.LocalDate startDateLocalDate = startDate.toLocalDate();
+        java.time.LocalDate endDateLocalDate = endDate.toLocalDate();
+        
+        String startDayAndMonthString = (startDateLocalDate.getDayOfMonth() < 10 ? "0" + startDateLocalDate.getDayOfMonth() : startDateLocalDate.getDayOfMonth())
+                + "/" + (startDateLocalDate.getMonthValue() < 10 ? "0" + startDateLocalDate.getMonthValue() : startDateLocalDate.getMonthValue());
+        
+        String endDayAndMonthString = (endDateLocalDate.getDayOfMonth() < 10 ? "0" + endDateLocalDate.getDayOfMonth() : endDateLocalDate.getDayOfMonth())
+                + "/" + (endDateLocalDate.getMonthValue() < 10 ? "0" + endDateLocalDate.getMonthValue() : endDateLocalDate.getMonthValue());
+        
+        jFormattedTextField1.setText(startDayAndMonthString + "/" + startDateLocalDate.getYear());
+        jFormattedTextField2.setText(endDayAndMonthString + "/" + endDateLocalDate.getYear());
         
         DriverManager.setLoginTimeout(3);
         
@@ -37,6 +52,8 @@ public class Booking extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
+        
+        jButton2ActionPerformed(null);
     }
 
     /**
@@ -334,7 +351,7 @@ public class Booking extends javax.swing.JPanel {
 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jFrameInstance.changePanelToDefault();
+        jFrameInstance.changePanelToSpecific(propertyInstance);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -409,7 +426,7 @@ public class Booking extends javax.swing.JPanel {
                     javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Success!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     // Redirect
-                    jButton1ActionPerformed(null);
+                    jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
                     } else {
                         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
                         String errorMessage = "Someone else already has a booking for this property approved by the host during the dates selected.";

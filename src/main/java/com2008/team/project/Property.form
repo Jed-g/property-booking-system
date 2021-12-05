@@ -1115,13 +1115,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="startDateField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
-      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(dateFormat)"/>
         <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="java.text.DateFormat dateFormat = new java.text.SimpleDateFormat(&quot;dd/MM/yyyy&quot;);"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try{&#xa;    javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);&#xa;    dateMask.install(startDateField);&#xa;} catch (Exception ex) {/*Ignore*/}&#xa;startDateField.setText(dateFormat.format(new java.util.Date()));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try{&#xa;    javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);&#xa;    dateMask.install(startDateField);&#xa;} catch (Exception ex) {/*Ignore*/}&#xa;startDateField.setText(&quot;01/01/2022&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="startDateLabel">
@@ -1133,15 +1130,12 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="endDateField">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="dd/mm/yyyy"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="endDateFieldActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JFormattedTextField(dateFormat)"/>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try{&#xa;    javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);&#xa;    dateMask.install(startDateField);&#xa;} catch (Exception ex) {/*Ignore*/}&#xa;startDateField.setText(dateFormat.format(new java.util.Date()));"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try{&#xa;    javax.swing.text.MaskFormatter dateMask = new javax.swing.text.MaskFormatter(&quot;##/##/####&quot;);&#xa;    dateMask.install(endDateField);&#xa;} catch (Exception ex) {/*Ignore*/}&#xa;endDateField.setText(&quot;02/01/2022&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="endDateLabel">

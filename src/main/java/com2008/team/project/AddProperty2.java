@@ -138,6 +138,11 @@ public class AddProperty2 extends javax.swing.JPanel {
             dateMask.install(startDateFormatted);
         } catch (Exception ex) {}
         startDateFormatted.setText("01/01/2022");
+        startDateFormatted.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startDateFormattedActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Start date:");
@@ -272,13 +277,12 @@ public class AddProperty2 extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel4)
-                        .addGap(14, 14, 14))
+                        .addComponent(jLabel4))
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jLabel10)))
+                .addGap(9, 9, 9)
                 .addComponent(jLabel11)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel12)
@@ -498,6 +502,10 @@ public class AddProperty2 extends javax.swing.JPanel {
     private void pricePerNightFormattedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricePerNightFormattedActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pricePerNightFormattedActionPerformed
+
+    private void startDateFormattedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDateFormattedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startDateFormattedActionPerformed
 
     private void updateCurrentChargebandInArray(){
         try {

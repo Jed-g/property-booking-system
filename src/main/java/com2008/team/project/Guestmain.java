@@ -115,7 +115,7 @@ int indexFirstPropOnPage;
         });
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
-        jButton9.setText("View more information");
+        jButton9.setText("View more information / Book");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
@@ -123,42 +123,52 @@ int indexFirstPropOnPage;
         });
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
-        jButton10.setText("View more information");
+        jButton10.setText("View more information / Book");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
 
-        prolocation.setText("jTextField9");
+        prolocation.setEditable(false);
+        prolocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prolocationActionPerformed(evt);
+            }
+        });
         jTabbedPane3.addTab("Location", prolocation);
 
-        prorating.setText("jTextField10");
+        prorating.setEditable(false);
         jTabbedPane3.addTab("Rating", prorating);
 
-        proname.setText("jTextField11");
+        proname.setEditable(false);
         jTabbedPane3.addTab("Accomodation name", proname);
 
-        prodescription.setText("jTextField12");
+        prodescription.setEditable(false);
         jTabbedPane3.addTab("Description", prodescription);
 
-        location.setText("jTextField13");
+        location.setEditable(false);
+        location.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                locationActionPerformed(evt);
+            }
+        });
         jTabbedPane4.addTab("Location", location);
 
-        rating.setText("jTextField14");
+        rating.setEditable(false);
         jTabbedPane4.addTab("Rating", rating);
 
-        name.setText("jTextField15");
+        name.setEditable(false);
         jTabbedPane4.addTab("Accomodation name", name);
 
-        description.setText("jTextField16");
+        description.setEditable(false);
         jTabbedPane4.addTab("Description", description);
 
         jButton11.setBackground(new java.awt.Color(255, 153, 153));
-        jButton11.setText("View more information");
+        jButton11.setText("View more information / Book");
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
-        jButton12.setText("View more information");
+        jButton12.setText("View more information / Book");
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -195,28 +205,28 @@ int indexFirstPropOnPage;
             }
         });
 
-        prolocation1.setText("jTextField9");
+        prolocation1.setEditable(false);
         jTabbedPane5.addTab("Location", prolocation1);
 
-        prorating1.setText("jTextField10");
+        prorating1.setEditable(false);
         jTabbedPane5.addTab("Rating", prorating1);
 
-        proname1.setText("jTextField11");
+        proname1.setEditable(false);
         jTabbedPane5.addTab("Accomodation name", proname1);
 
-        prodescription1.setText("jTextField12");
+        prodescription1.setEditable(false);
         jTabbedPane5.addTab("Description", prodescription1);
 
-        prolocation2.setText("jTextField9");
+        prolocation2.setEditable(false);
         jTabbedPane6.addTab("Location", prolocation2);
 
-        prorating2.setText("jTextField10");
+        prorating2.setEditable(false);
         jTabbedPane6.addTab("Rating", prorating2);
 
-        proname2.setText("jTextField11");
+        proname2.setEditable(false);
         jTabbedPane6.addTab("Accomodation name", proname2);
 
-        prodescription2.setText("jTextField12");
+        prodescription2.setEditable(false);
         jTabbedPane6.addTab("Description", prodescription2);
 
         nextPage.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -524,10 +534,8 @@ int indexFirstPropOnPage;
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-        
-        Property add = new Property(jFrameInstance, propertyId,email);
-        jFrameInstance.changePanelToSpecific(add);
+        //int propertyId = propertyList[(currentPage-1)*4].getPropertyId();
+        //jFrameInstance.changePanelToSpecific(new Property(jFrameInstance, propertyId, jFrameInstance.getEmail(), this));
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -574,6 +582,14 @@ int indexFirstPropOnPage;
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_locationActionPerformed
+
+    private void prolocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prolocationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prolocationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

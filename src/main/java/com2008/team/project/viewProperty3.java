@@ -1417,7 +1417,7 @@ public class viewProperty3 extends javax.swing.JPanel {
     }//GEN-LAST:event_bathingPrevButtonActionPerformed
 
     private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
-     git Guestmain main = new Guestmain(jFrameInstance, email);
+     Guestmain main = new Guestmain(jFrameInstance, email);
      jFrameInstance.changePanelToSpecific(main);
     }//GEN-LAST:event_returnButtonActionPerformed
 

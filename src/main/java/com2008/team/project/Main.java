@@ -23,9 +23,19 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        // VPN connection test
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")){
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+        
         initComponents();
         fetchPropertyData();
-        changePanelToSpecific(new HostViewAllProperties(this, email));
     }
 
     static String hashString(String stringToHash){

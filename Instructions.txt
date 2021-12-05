@@ -1,0 +1,9 @@
+Note: Application requires active university vpn connection.
+
+Minimum Java version required: 11.0 (LTS)
+
+To run the application, go to the 'executables' directory and pick either 'Property booking system.jar' or 'Property booking system.exe'.
+Both files offer exactly the same functionality.
+
+Project was built using Gradle and Netbeans.
+Source code with which the executables were built is located in the 'source code' directory.

@@ -27,6 +27,8 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="lblPropertyBookingSystem" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="logoutButton4" min="-2" pref="169" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="logoutButton3" min="-2" pref="169" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="viewAccount" min="-2" pref="168" max="-2" attributes="0"/>
@@ -49,6 +51,7 @@
                   <Component id="viewAccount" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   <Component id="lblPropertyBookingSystem" alignment="3" max="-2" attributes="0"/>
                   <Component id="logoutButton3" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="logoutButton4" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="navigation" min="-2" max="-2" attributes="0"/>
@@ -940,6 +943,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButton3ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="logoutButton4">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="14" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Switch to Guest view"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logoutButton4ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

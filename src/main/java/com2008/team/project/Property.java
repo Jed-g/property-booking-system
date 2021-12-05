@@ -4,10 +4,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.sql.*;
 import java.time.LocalDate;
-/**
- *
- * @author Matyas Szert
- */
+
 public class Property extends javax.swing.JPanel {
 
     enum PageView {

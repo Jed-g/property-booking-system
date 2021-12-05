@@ -6,10 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
-
 public class Main extends javax.swing.JFrame {
 
-    private String email = "admin";
+    private String email = "";
   
     private String location;
     private String people;
@@ -23,6 +22,18 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     public Main() {
+        // VPN connection test
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")){
+        } catch (Exception ex) {
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String message = "Connection to database failed, University VPN is required. Application will now terminate.";
+            String[] options = {"OK"};
+            int answer = javax.swing.JOptionPane.showOptionDialog(null, message, "Error", javax.swing.JOptionPane.YES_NO_OPTION,
+                javax.swing.JOptionPane.INFORMATION_MESSAGE, icon, options, null);
+            
+            System.exit(1);
+        }
+        
         initComponents();
         fetchPropertyData();
     }

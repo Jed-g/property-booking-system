@@ -96,6 +96,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         searchButton = new javax.swing.JButton();
         pageNumber = new javax.swing.JLabel();
         logoutButton3 = new javax.swing.JButton();
+        viewChange = new javax.swing.JButton();
 
         Property6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         Property6.setPreferredSize(new java.awt.Dimension(515, 130));
@@ -755,6 +756,14 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
             }
         });
 
+        viewChange.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        viewChange.setText("Switch to Guest view");
+        viewChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewChangeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -766,6 +775,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewChange, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -779,7 +790,8 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewChange, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1152,6 +1164,10 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButton3ActionPerformed
 
+    private void viewChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChangeActionPerformed
+        jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
+    }//GEN-LAST:event_viewChangeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton PropEdit5;
@@ -1214,5 +1230,6 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
     private javax.swing.JButton upcomingBookings;
     private javax.swing.JButton viewAccount;
     private javax.swing.JButton viewAllProperties;
+    private javax.swing.JButton viewChange;
     // End of variables declaration//GEN-END:variables
 } 

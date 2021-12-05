@@ -86,6 +86,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         searchInput = new javax.swing.JTextField();
         pageNumber = new javax.swing.JLabel();
         logoutButton3 = new javax.swing.JButton();
+        viewChange = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -652,6 +653,14 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             }
         });
 
+        viewChange.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        viewChange.setText("Switch to Guest view");
+        viewChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewChangeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -661,6 +670,8 @@ public class HostPreviousBookings extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewChange, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -673,11 +684,15 @@ public class HostPreviousBookings extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(logoutButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewChange, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(7, 7, 7)))
                 .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(previousBkgs, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1023,6 +1038,10 @@ public class HostPreviousBookings extends javax.swing.JPanel {
         
     }//GEN-LAST:event_searchButtonActionPerformed
 
+    private void viewChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChangeActionPerformed
+        jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
+    }//GEN-LAST:event_viewChangeActionPerformed
+
     private void logoutButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton3ActionPerformed
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
@@ -1055,9 +1074,6 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     private javax.swing.JLabel lblGuest4;
     private javax.swing.JLabel lblPreviousBookings;
     private javax.swing.JLabel lblPropertyBookingSystem;
-    private javax.swing.JButton logoutButton;
-    private javax.swing.JButton logoutButton1;
-    private javax.swing.JButton logoutButton2;
     private javax.swing.JButton logoutButton3;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
@@ -1087,5 +1103,6 @@ public class HostPreviousBookings extends javax.swing.JPanel {
     private javax.swing.JButton upcomingBookings;
     private javax.swing.JButton viewAccount;
     private javax.swing.JButton viewAllProperties;
+    private javax.swing.JButton viewChange;
     // End of variables declaration//GEN-END:variables
 }

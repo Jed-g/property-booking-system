@@ -1,19 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com2008.team.project;
 
 import java.sql.*;
 
-
-
-
-/**
- *
- * @author 86182
- */
 public class MainsearchA extends javax.swing.JPanel {
 private Main jFrameInstance;
 private String location;

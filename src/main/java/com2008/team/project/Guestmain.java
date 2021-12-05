@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com2008.team.project;
 
 import java.sql.Connection;
@@ -11,12 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 
-
-
-/**
- *
- * @author 86182
- */
 public class Guestmain extends javax.swing.JPanel {
 private Main jFrameInstance;
 private String location1;
@@ -103,6 +92,11 @@ int indexFirstPropOnPage;
 
         jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setText("Switch to Host View");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
         jButton5.setText("Search");
@@ -318,11 +312,10 @@ int indexFirstPropOnPage;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(accountButton)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                    .addComponent(accountButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -548,6 +541,39 @@ int indexFirstPropOnPage;
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+
+            PreparedStatement pstmt = con.prepareStatement("SELECT isHost FROM Users WHERE email=?");
+            pstmt.setString(1, jFrameInstance.getEmail());
+            ResultSet res = pstmt.executeQuery();
+
+            if (res.next()){
+                boolean isHost = res.getBoolean("isHost");
+                
+                if (isHost){
+                    jFrameInstance.changePanelToSpecific(new HostViewAllProperties(jFrameInstance, jFrameInstance.getEmail()));
+                } else {
+                    javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+                    String errorMessage = "Access denied. You are not a Host. To become a host please go to the account page.";
+                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+                    
+                    jButton1.setEnabled(false);
+                }
+            }
+            
+            res.close();
+            pstmt.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();            
+            
+            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
+            String errorMessage = "Connection to database failed. University VPN is required.";
+            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

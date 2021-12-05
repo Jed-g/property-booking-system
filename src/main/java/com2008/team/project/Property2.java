@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com2008.team.project;
 
 import java.sql.Connection;
@@ -11,10 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-/**
- *
- * @author serio
- */
 public class Property2 extends javax.swing.JPanel {
         private class Chargeband{
         private Date startDate;

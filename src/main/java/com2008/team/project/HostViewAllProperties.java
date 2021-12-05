@@ -79,7 +79,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         searchButton = new javax.swing.JButton();
         pageNumber = new javax.swing.JLabel();
         logoutButton3 = new javax.swing.JButton();
-        logoutButton4 = new javax.swing.JButton();
+        viewChange = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 576));
 
@@ -552,11 +552,11 @@ public class HostViewAllProperties extends javax.swing.JPanel {
             }
         });
 
-        logoutButton4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        logoutButton4.setText("Switch to Guest view");
-        logoutButton4.addActionListener(new java.awt.event.ActionListener() {
+        viewChange.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        viewChange.setText("Switch to Guest view");
+        viewChange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButton4ActionPerformed(evt);
+                viewChangeActionPerformed(evt);
             }
         });
 
@@ -570,7 +570,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logoutButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(viewChange, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -589,7 +589,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
                     .addComponent(viewAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPropertyBookingSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logoutButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(logoutButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(viewChange, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(navigation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -894,9 +894,9 @@ public class HostViewAllProperties extends javax.swing.JPanel {
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButton3ActionPerformed
 
-    private void logoutButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButton4ActionPerformed
+    private void viewChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChangeActionPerformed
         jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
-    }//GEN-LAST:event_logoutButton4ActionPerformed
+    }//GEN-LAST:event_viewChangeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -904,7 +904,6 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     private javax.swing.JLabel lblMyProperties;
     private javax.swing.JLabel lblPropertyBookingSystem;
     private javax.swing.JButton logoutButton3;
-    private javax.swing.JButton logoutButton4;
     private javax.swing.JPanel navigation;
     private javax.swing.JButton nextPage;
     private javax.swing.JLabel pageNumber;
@@ -944,6 +943,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     private javax.swing.JButton upcomingBookings;
     private javax.swing.JButton viewAccount;
     private javax.swing.JButton viewAllProperties;
+    private javax.swing.JButton viewChange;
     private javax.swing.JPanel viewProperties;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,7 +29,7 @@ private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
 int indexFirstPropOnPage;
-
+private Boolean isbooking = false;
 
     /**
      * Creates new form NewJPanel
@@ -38,7 +38,14 @@ int indexFirstPropOnPage;
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.locationname.setText(location);
+        
+        if (isbooking = true){
         fetchPropertyData();
+        }
+        else
+        {
+        emptyPropertyData();
+        }
     }
 
     /**
@@ -182,6 +189,11 @@ int indexFirstPropOnPage;
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
         jButton9.setText("View more information");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Upcoming accomodations under search:");
 
@@ -199,6 +211,11 @@ int indexFirstPropOnPage;
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
         jButton10.setText("View more information");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         prolocation2.setText("jTextField9");
         jTabbedPane3.addTab("Location", prolocation2);
@@ -226,9 +243,19 @@ int indexFirstPropOnPage;
 
         jButton11.setBackground(new java.awt.Color(255, 153, 153));
         jButton11.setText("View more information");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
         jButton12.setText("View more information");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -514,10 +541,27 @@ int indexFirstPropOnPage;
         } else {
             
         }
-        
-       
-           
+      
         fillPropertyBoxes(0);
+        
+    }
+    
+    
+    private void emptyPropertyData() {
+        
+        
+        propertyList = PropertyList.getAllPropertyList();
+        
+        int n = propertyList.length;
+        
+        if (n <= 4){
+            removePropertyBoxes(4-n);
+        } else {
+            
+        }
+      
+        removePropertyBoxes(0);
+        
     }
     
     private void removePropertyBoxes(int numBoxesToBeRemoved) {
@@ -627,16 +671,7 @@ int indexFirstPropOnPage;
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        location = locationname.getText();
-        locationname.setText("");
-        startdate = startdatefield.getText();
-        startdatefield.setText("");
-        enddate = enddatefield.getText();
-        enddatefield.setText("");
         
-        if (search(location,startdate,enddate)) {
-                       
-        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
@@ -672,6 +707,30 @@ int indexFirstPropOnPage;
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = propertyList[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = propertyList[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = propertyList[(currentPage-1)*4+2].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = propertyList[(currentPage-1)*4+3].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton11ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

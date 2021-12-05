@@ -60,8 +60,8 @@ int indexFirstPropOnPage;
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        view3 = new javax.swing.JButton();
+        view1 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         prolocation = new javax.swing.JTextField();
         prorating = new javax.swing.JTextField();
@@ -72,8 +72,8 @@ int indexFirstPropOnPage;
         rating = new javax.swing.JTextField();
         name = new javax.swing.JTextField();
         description = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        view4 = new javax.swing.JButton();
+        view2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jTextField17 = new javax.swing.JTextField();
@@ -120,19 +120,19 @@ int indexFirstPropOnPage;
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(255, 153, 153));
-        jButton9.setText("View more information");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        view3.setBackground(new java.awt.Color(255, 153, 153));
+        view3.setText("View more information");
+        view3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                view3ActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(255, 153, 153));
-        jButton10.setText("View more information");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        view1.setBackground(new java.awt.Color(255, 153, 153));
+        view1.setText("View more information");
+        view1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                view1ActionPerformed(evt);
             }
         });
 
@@ -160,11 +160,21 @@ int indexFirstPropOnPage;
         description.setText("jTextField16");
         jTabbedPane4.addTab("Description", description);
 
-        jButton11.setBackground(new java.awt.Color(255, 153, 153));
-        jButton11.setText("View more information");
+        view4.setBackground(new java.awt.Color(255, 153, 153));
+        view4.setText("View more information");
+        view4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view4ActionPerformed(evt);
+            }
+        });
 
-        jButton12.setBackground(new java.awt.Color(255, 153, 153));
-        jButton12.setText("View more information");
+        view2.setBackground(new java.awt.Color(255, 153, 153));
+        view2.setText("View more information");
+        view2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view2ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -278,10 +288,10 @@ int indexFirstPropOnPage;
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton10)
+                            .addComponent(view1)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12)
+                            .addComponent(view2)
                             .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -291,9 +301,9 @@ int indexFirstPropOnPage;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton9)
+                                    .addComponent(view3)
                                     .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton11))
+                                    .addComponent(view4))
                                 .addContainerGap(103, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -318,11 +328,10 @@ int indexFirstPropOnPage;
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(accountButton)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                    .addComponent(accountButton)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,11 +352,11 @@ int indexFirstPropOnPage;
                     .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton9)
+                        .addComponent(view3)
                         .addGap(18, 18, 18)
                         .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)
+                        .addComponent(view4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -355,11 +364,11 @@ int indexFirstPropOnPage;
                             .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jButton10)
+                        .addComponent(view1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12)
+                        .addComponent(view2)
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -530,39 +539,47 @@ int indexFirstPropOnPage;
         
     }//GEN-LAST:event_previousPageActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+    private void view1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view1ActionPerformed
         // TODO add your handling code here:
+         int propertyId =  propertyList[(currentPage-1)*4].getPropertyId();
+       jFrameInstance.changePanelToSpecific(new viewProperty3(jFrameInstance, propertyId));
         
-        Property add = new Property(jFrameInstance, propertyId,email);
-        jFrameInstance.changePanelToSpecific(add);
-    }//GEN-LAST:event_jButton10ActionPerformed
+    }//GEN-LAST:event_view1ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void view3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view3ActionPerformed
         // TODO add your handling code here:
-        AddProperty add1 = new AddProperty (jFrameInstance,email);
-        jFrameInstance.changePanelToSpecific(add1);
+         int propertyId =  propertyList[(currentPage-1)*4+2].getPropertyId();
+       jFrameInstance.changePanelToSpecific(new viewProperty3(jFrameInstance, propertyId));
         
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_view3ActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void view2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view2ActionPerformed
+        // TODO add your handling code here:
+         int propertyId =  propertyList[(currentPage-1)*4+1].getPropertyId();
+       jFrameInstance.changePanelToSpecific(new viewProperty3(jFrameInstance, propertyId));
+    }//GEN-LAST:event_view2ActionPerformed
+
+    private void view4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view4ActionPerformed
+        // TODO add your handling code here:
+         int propertyId =  propertyList[(currentPage-1)*4+3].getPropertyId();
+       jFrameInstance.changePanelToSpecific(new viewProperty3(jFrameInstance, propertyId));
+    }//GEN-LAST:event_view4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton;
     private javax.swing.JTextField description;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -590,5 +607,9 @@ int indexFirstPropOnPage;
     private javax.swing.JTextField prorating1;
     private javax.swing.JTextField prorating2;
     private javax.swing.JTextField rating;
+    private javax.swing.JButton view1;
+    private javax.swing.JButton view2;
+    private javax.swing.JButton view3;
+    private javax.swing.JButton view4;
     // End of variables declaration//GEN-END:variables
 }

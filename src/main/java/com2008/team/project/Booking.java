@@ -7,6 +7,7 @@ public class Booking extends javax.swing.JPanel {
     private Main jFrameInstance;
     private String email;
     private int propertyId;
+    private String location;
     /**
      * Creates new form Booking
      */
@@ -334,7 +335,8 @@ public class Booking extends javax.swing.JPanel {
 
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jFrameInstance.changePanelToDefault();
+        Guestsearch search = new Guestsearch(jFrameInstance, email,location);
+        jFrameInstance.changePanelToSpecific(search);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

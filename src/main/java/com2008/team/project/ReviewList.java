@@ -36,7 +36,7 @@ public class ReviewList {
         return reviewDesc;
     }
     
-    static ReviewList[] getList(String propertyId){
+    static ReviewList[] getList(int propertyId){
         DriverManager.setLoginTimeout(3);
         
         ReviewList[] reviewList = null;
@@ -46,7 +46,7 @@ public class ReviewList {
             PreparedStatement pstmt = con.prepareStatement("SELECT forename, surname, avgRating, reviewDescription FROM Reviews JOIN Bookings"
                     + " JOIN Users ON Reviews.bookingId = Bookings.bookingId AND Bookings.email = Users.email WHERE propertyId = ?;",
                     ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            pstmt.setString(1, propertyId);
+            pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
                         
             int numberOfReviews = 0;

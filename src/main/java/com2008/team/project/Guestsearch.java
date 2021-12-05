@@ -25,11 +25,12 @@ private String enddate;
 private String email;
 private Boolean hostView = false;
 private PropertyList[] propertyList;
+PropertyList[] searchResults1;
 private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
 int indexFirstPropOnPage;
-private boolean isbooking;
+private boolean isbooking = false;
 
 
     /**
@@ -41,7 +42,7 @@ private boolean isbooking;
         this.locationname.setText(location);
         this.email = email;
         
-        
+        fetchPropertyData(); 
     }
 
     /**
@@ -116,6 +117,11 @@ private boolean isbooking;
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
         jButton5.setText("Search");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setText("Homepage");
@@ -183,6 +189,11 @@ private boolean isbooking;
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
         jButton9.setText("View more information");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Recommended accomodations under search:");
 
@@ -200,6 +211,11 @@ private boolean isbooking;
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
         jButton10.setText("View more information");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         prolocation2.setText("jTextField9");
         jTabbedPane3.addTab("Location", prolocation2);
@@ -227,9 +243,19 @@ private boolean isbooking;
 
         jButton11.setBackground(new java.awt.Color(255, 153, 153));
         jButton11.setText("View more information");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
         jButton12.setText("View more information");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -668,20 +694,111 @@ private boolean isbooking;
         jFrameInstance.changePanelToSpecific(guestupcomingbooking);
     }//GEN-LAST:event_jButton13ActionPerformed
 
+     private void fetchSearchData(String location) {
+        
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        searchResults1 = PropertyList.searchByLocation1(location);
+        
+        int n = searchResults1.length;
+        
+        
+        if (n <= 4){
+            removePropertyBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
+        pageNumber.setText("1/" + numberOfPages);
+        
+        fillSearchResults(0);
+        
+    }
+     private void fillSearchResults(int indexFirstPropOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > searchResults1.length){
+            maxAmountBoxes = searchResults1.length - indexFirstPropOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            proname1.setText(searchResults1[indexFirstPropOnPage].getPropertyName());
+            prolocation1.setText(searchResults1[indexFirstPropOnPage].getLocation());
+            prorating1.setText(searchResults1[indexFirstPropOnPage].getRating());
+            prodescription1.setText(searchResults1[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes >= 2){
+           proname2.setText(searchResults1[indexFirstPropOnPage +1].getPropertyName());
+            prolocation2.setText(searchResults1[indexFirstPropOnPage +1].getLocation());
+            prorating2.setText(searchResults1[indexFirstPropOnPage +1].getRating());
+            prodescription2.setText(searchResults1[indexFirstPropOnPage +1].getDescription());
+        }
+        if (maxAmountBoxes >= 3){
+            proname3.setText(searchResults1[indexFirstPropOnPage +2].getPropertyName());
+            prolocation3.setText(searchResults1[indexFirstPropOnPage +2].getLocation());
+            prorating3.setText(searchResults1[indexFirstPropOnPage +2].getRating());
+            prodescription3.setText(searchResults1[indexFirstPropOnPage +2].getDescription());
+        }
+        if (maxAmountBoxes == 4){
+            proname4.setText(searchResults1[indexFirstPropOnPage +3].getPropertyName());
+            prolocation4.setText(searchResults1[indexFirstPropOnPage +3].getLocation());
+            prorating4.setText(searchResults1[indexFirstPropOnPage +3].getRating());
+            prodescription4.setText(searchResults1[indexFirstPropOnPage +3].getDescription());
+        }
+        
+    }
+     
+    private void resetPropertyBoxes() {
+        
+        
+            prolocation1.setVisible(true);
+            prorating1.setVisible(true);
+            proname1.setVisible(true);
+            prodescription1.setVisible(true);
+        
+       
+            prolocation2.setVisible(true);
+            prorating2.setVisible(true);
+            proname2.setVisible(true);
+            prodescription2.setVisible(true);
+        
+     
+           prolocation3.setVisible(true);
+            prorating3.setVisible(true);
+            proname3.setVisible(true);
+            prodescription3.setVisible(true);
+        
+        
+           prolocation4.setVisible(true);
+            prorating4.setVisible(true);
+            proname4.setVisible(true);
+            prodescription4.setVisible(true);
+        
+        
+    } 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        location = locationname.getText();
-        locationname.setText("");
-        startdate = startdatefield.getText();
-        startdatefield.setText("");
-        enddate = enddatefield.getText();
-        enddatefield.setText("");
-        search(location,startdate,enddate);        
+        String location111 = locationname.getText();
+        System.out.println(location111);
+        fetchSearchData(location111); 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
+        if(isbooking=true){
         Booking booking1 =new Booking(jFrameInstance,email,propertyId);
         jFrameInstance.changePanelToSpecific(booking1);
         }
@@ -694,7 +811,7 @@ private boolean isbooking;
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
+        if(isbooking=true){
         Booking booking2 =new Booking(jFrameInstance,email,propertyId);
         jFrameInstance.changePanelToSpecific(booking2);
         }
@@ -706,7 +823,7 @@ private boolean isbooking;
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
+        if(isbooking=true){
         Booking booking3 =new Booking(jFrameInstance,email,propertyId);
         jFrameInstance.changePanelToSpecific(booking3);
         }
@@ -718,7 +835,7 @@ private boolean isbooking;
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        if(isbooking==true){
+        if(isbooking=true){
         Booking booking4 =new Booking(jFrameInstance,email,propertyId);
         jFrameInstance.changePanelToSpecific(booking4);
         }
@@ -745,7 +862,7 @@ private boolean isbooking;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
-
+        resetPropertyBoxes();
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
@@ -761,6 +878,7 @@ private boolean isbooking;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
 
         if (indexFirstPropOnPage + 4 > propertyList.length){
             removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
@@ -771,6 +889,35 @@ private boolean isbooking;
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4].getPropertyId() : searchResults1[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+1].getPropertyId() : searchResults1[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+2].getPropertyId() : searchResults1[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+3].getPropertyId() : searchResults1[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new viewProperty2(jFrameInstance, propertyId));
+   
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

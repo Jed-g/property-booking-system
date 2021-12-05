@@ -113,11 +113,11 @@ public class Main extends javax.swing.JFrame {
         });
 
         jButton1.setBackground(new java.awt.Color(204, 204, 255));
-        jButton1.setFont(new java.awt.Font("??", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("ËÎÌו", 0, 18)); // NOI18N
         jButton1.setText("Homepage");
 
         jButton2.setBackground(new java.awt.Color(204, 204, 255));
-        jButton2.setFont(new java.awt.Font("??", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("ËÎÌו", 0, 18)); // NOI18N
         jButton2.setText("Search");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,6 +188,11 @@ public class Main extends javax.swing.JFrame {
 
         jButton13.setBackground(new java.awt.Color(255, 153, 153));
         jButton13.setText("View more information");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setBackground(new java.awt.Color(255, 153, 153));
         jButton14.setText("View more information");
@@ -356,7 +361,7 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       
+      
         //Guestmain search = new Guestmain(this, email);
         //Booking search = new Booking(this,email,propertyId);
        MainsearchA search = new MainsearchA(this,location);
@@ -386,7 +391,8 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here
-      
+    int propertyId =  propertyList[(currentPage-1)*4].getPropertyId();
+    this.changePanelToSpecific(new viewProperty(this, propertyId));    
     }//GEN-LAST:event_jButton11ActionPerformed
 
    
@@ -526,24 +532,25 @@ public class Main extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        propertyList = PropertyList.getAllPropertyList();
-        if(num == propertyList[indexFirstPropOnPage].getPropertyId()||num == propertyList[indexFirstPropOnPage+1].getPropertyId()||
-                num == propertyList[indexFirstPropOnPage+2].getPropertyId()||num == propertyList[indexFirstPropOnPage+3].getPropertyId()){
-                propertyId =num;
-            }
-        
-        //viewProperty(num);
-        //jScrollPane1.setViewportView(new Property(this, "", ));
+       int propertyId =  propertyList[(currentPage-1)*4+1].getPropertyId();
+       this.changePanelToSpecific(new viewProperty(this, propertyId));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-     
+     int propertyId =  propertyList[(currentPage-1)*4+2].getPropertyId();
+     this.changePanelToSpecific(new viewProperty(this, propertyId));
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
-
+        
     }//GEN-LAST:event_accountButtonActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+     int propertyId =  propertyList[(currentPage-1)*4+3].getPropertyId();
+     this.changePanelToSpecific(new viewProperty(this, propertyId));
+    }//GEN-LAST:event_jButton13ActionPerformed
     
     void changePanelToDefault() {
         jScrollPane1.setViewportView(defaultPanel);

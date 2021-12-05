@@ -553,8 +553,8 @@ public class User extends javax.swing.JPanel {
                 jFrameInstance.changePanelToSpecific(new Guestpastbooking(jFrameInstance, jFrameInstance.getEmail()));
             } else if (parentInstance instanceof Guestsearch) {
                 jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
-            } else if (parentInstance instanceof Guestsearch1){
-                jFrameInstance.changePanelToSpecific(new Guestsearch1(jFrameInstance, jFrameInstance.getEmail(), ""));
+            } else if (parentInstance instanceof Guestsearch){
+                jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
             } else if (parentInstance instanceof Guestupcomingbooking){
                 jFrameInstance.changePanelToSpecific(new Guestupcomingbooking(jFrameInstance, ""));
             } else {
@@ -740,7 +740,7 @@ public class User extends javax.swing.JPanel {
             // Remove whitespace
             String postCodeTruncated = postCodeTextField.getText().replaceAll("\\s","");
             
-            String emailRegex = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+            String emailRegex = "^[\\w!#$%&?*+/=?`{|}~^-]+(?:\\.[\\w!#$%&?*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
             
             // Regex check for email
             if (!emailTextField.getText().matches(emailRegex)) {

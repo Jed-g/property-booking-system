@@ -872,7 +872,7 @@ public class HostViewAllProperties extends javax.swing.JPanel {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         
         String location = searchInput.getText();
-
+        System.out.println(location);
         fetchSearchData(email, location);
         
     }//GEN-LAST:event_searchButtonActionPerformed

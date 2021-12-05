@@ -13,7 +13,7 @@ public class Review extends javax.swing.JPanel {
     /**
      * Creates new form Review
      */
-    public Review(Main jFrameInstance, String propertyId, javax.swing.JPanel parentInstance) {
+    public Review(Main jFrameInstance, int propertyId, javax.swing.JPanel parentInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.parentInstance = parentInstance;       
@@ -67,7 +67,7 @@ public class Review extends javax.swing.JPanel {
         returnButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         returnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/back_arrow_resized.png"))); // NOI18N
         returnButton.setText("Return");
-        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        returnButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         returnButton.setIconTextGap(8);
         returnButton.setMaximumSize(new java.awt.Dimension(168, 54));
         returnButton.setMinimumSize(new java.awt.Dimension(168, 54));
@@ -133,7 +133,7 @@ public class Review extends javax.swing.JPanel {
 
         nextButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         nextButton.setText("Next");
-        nextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        nextButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         nextButton.setEnabled(false);
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,7 +143,7 @@ public class Review extends javax.swing.JPanel {
 
         previousButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         previousButton.setText("Previous");
-        previousButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        previousButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         previousButton.setEnabled(false);
         previousButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,12 +353,13 @@ public class Review extends javax.swing.JPanel {
         fillInReviewBoxes(indexOfFirstReviewOnPage);
         resetReviewSections();
     }//GEN-LAST:event_previousButtonActionPerformed
-
-    private void fetchData(String propertyId){
+   
+    
+    private void fetchData(int propertyId){
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
            
             PreparedStatement pstmt = con.prepareStatement("SELECT propertyName, location, description FROM Properties WHERE propertyId = ?;");
-            pstmt.setString(1, propertyId);
+            pstmt.setInt(1, propertyId);
             ResultSet res = pstmt.executeQuery();
                         
             if (res.next()) {
@@ -369,6 +370,7 @@ public class Review extends javax.swing.JPanel {
             
             res.close();
             pstmt.close();
+           
             
             reviewList = ReviewList.getList(propertyId);
             

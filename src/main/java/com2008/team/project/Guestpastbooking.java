@@ -28,7 +28,8 @@ private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
 int indexFirstPropOnPage;
-
+private int bookingId;
+private javax.swing.JPanel parentInstance;
 
     /**
      * Creates new form NewJPanel
@@ -175,6 +176,11 @@ int indexFirstPropOnPage;
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
         jButton9.setText("Leave a review");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
         jButton10.setText("Leave a review");
@@ -186,6 +192,11 @@ int indexFirstPropOnPage;
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
         jButton12.setText("Leave a review");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -217,6 +228,11 @@ int indexFirstPropOnPage;
 
         jButton17.setBackground(new java.awt.Color(255, 153, 153));
         jButton17.setText("Review");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         accountButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         accountButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/User_Icon_Wikipedia_Resized.png"))); // NOI18N
@@ -255,6 +271,11 @@ int indexFirstPropOnPage;
 
         jButton18.setBackground(new java.awt.Color(255, 153, 153));
         jButton18.setText("Leave a review");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         jButton19.setBackground(new java.awt.Color(255, 153, 153));
         jButton19.setText("Review");
@@ -531,7 +552,7 @@ int indexFirstPropOnPage;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(15, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -668,7 +689,8 @@ int indexFirstPropOnPage;
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-     
+     Guestmain main = new Guestmain(jFrameInstance, email);
+     jFrameInstance.changePanelToSpecific(main);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -718,12 +740,14 @@ int indexFirstPropOnPage;
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        Review review = new Review( jFrameInstance,propertyId, parentInstance);
+        jFrameInstance.changePanelToSpecific(review);
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        //ReviewComment1 comment = new ReviewComment1(jFrameInstance);
-        //jFrameInstance.changePanelToSpecific(comment);
+        ReviewComment1 comment = new ReviewComment1(jFrameInstance, bookingId);
+        jFrameInstance.changePanelToSpecific(comment);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
@@ -732,10 +756,14 @@ int indexFirstPropOnPage;
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
+         Review review1 = new Review( jFrameInstance,propertyId, parentInstance);
+        jFrameInstance.changePanelToSpecific(review1);
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
         // TODO add your handling code here:
+         Review review3 = new Review( jFrameInstance,propertyId, parentInstance);
+        jFrameInstance.changePanelToSpecific(review3);
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed
@@ -817,6 +845,30 @@ int indexFirstPropOnPage;
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        ReviewComment1 comment1 = new ReviewComment1(jFrameInstance, bookingId);
+        jFrameInstance.changePanelToSpecific(comment1);
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        ReviewComment1 comment2 = new ReviewComment1(jFrameInstance, bookingId);
+        jFrameInstance.changePanelToSpecific(comment2);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        ReviewComment1 comment3 = new ReviewComment1(jFrameInstance, bookingId);
+        jFrameInstance.changePanelToSpecific(comment3);
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // TODO add your handling code here:
+         Review review2 = new Review( jFrameInstance,propertyId, parentInstance);
+        jFrameInstance.changePanelToSpecific(review2);
+    }//GEN-LAST:event_jButton17ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

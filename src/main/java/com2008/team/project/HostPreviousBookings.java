@@ -948,7 +948,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
 
     private void reviews1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews1ActionPerformed
         int propertyId = searchResults == null ? previousList[(currentPage-1)*4].getPropertyId() : searchResults[(currentPage-1)*4].getPropertyId();
-        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance,propertyId, this));
     }//GEN-LAST:event_reviews1ActionPerformed
 
     private void contactGuest2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest2ActionPerformed
@@ -957,7 +957,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
 
     private void reviews2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews2ActionPerformed
         int propertyId = searchResults == null ? previousList[(currentPage-1)*4+1].getPropertyId() : searchResults[(currentPage-1)*4+1].getPropertyId();
-        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, propertyId, this));
     }//GEN-LAST:event_reviews2ActionPerformed
 
     private void contactGuest3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest3ActionPerformed
@@ -966,7 +966,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
 
     private void reviews3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews3ActionPerformed
         int propertyId = searchResults == null ? previousList[(currentPage-1)*4+2].getPropertyId() : searchResults[(currentPage-1)*4+2].getPropertyId();
-        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance,  propertyId, this));
     }//GEN-LAST:event_reviews3ActionPerformed
 
     private void contactGuest4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactGuest4ActionPerformed
@@ -975,7 +975,7 @@ public class HostPreviousBookings extends javax.swing.JPanel {
 
     private void reviews4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reviews4ActionPerformed
         int propertyId = searchResults == null ? previousList[(currentPage-1)*4+3].getPropertyId() : searchResults[(currentPage-1)*4+3].getPropertyId();
-        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance, "" + propertyId, this));
+        jFrameInstance.changePanelToSpecific(new Review(jFrameInstance,  propertyId, this));
     }//GEN-LAST:event_reviews4ActionPerformed
 
     private void previousPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousPageActionPerformed

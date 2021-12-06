@@ -20,8 +20,8 @@ private String location;
 private String location1;
 private String location2;
 private String location3;
-private String startdate;
-private String enddate;
+private Date startdate;
+private Date enddate;
 private String email;
 private Boolean hostView = false;
 private PropertyList[] propertyList;
@@ -466,48 +466,6 @@ private javax.swing.JPanel parentInstance;
                 .addGap(4, 4, 4))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void search(String location,String startdate,String enddate) {
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-                PreparedStatement pstmt = con.prepareStatement("SELECT Information FROM Porperty location=?,startdate=?,enddate=?");
-                pstmt.setString(1,location);
-                pstmt.setString(2,startdate);
-                pstmt.setString(2,enddate);
-                ResultSet res1 = pstmt.executeQuery();
-
-                if (res1.next()) {
-                    String locationInDB = res1.getString("location");  
-                    String startdateInDB = res1.getString("startdate");
-                    String enddateInDB = res1.getString("enddate");                   
-                    if ((Main.hashString(location).equals(locationInDB))|| (Main.hashString(startdate).equals(startdateInDB))&&(Main.hashString(enddate).equals(enddateInDB)) ){                  
-                        propertyList = PropertyList.getAllPropertyList();
-                    }
-                    else {                       
-                        String errorMessage = "Incorrect details";
-                        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                        propertyList = null;
-                    }
-                }
-                else {
-                    
-                    String errorMessage = "The accomodation of this location is not found";
-                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    
-                    propertyList = null;
-                }    
-            }
-
-        catch (Exception ex) {
-            ex.printStackTrace();
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-        propertyList = null;
-        
-    }
-
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:

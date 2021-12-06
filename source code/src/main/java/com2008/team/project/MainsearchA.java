@@ -14,6 +14,7 @@ private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
 int indexFirstPropOnPage;
+private PropertyList[] searchResults1;
 
 
 
@@ -196,12 +197,22 @@ int indexFirstPropOnPage;
         jTabbedPane1.addTab("Description", prodescription1);
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
-        jButton9.setText("View more information");
+        jButton9.setText("View more information/Book");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Recommended accomodations under search:");
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
-        jButton10.setText("View more information");
+        jButton10.setText("View more information/Book");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         prolocation2.setText("jTextField9");
         jTabbedPane3.addTab("Location", prolocation2);
@@ -231,10 +242,20 @@ int indexFirstPropOnPage;
         jTabbedPane3.addTab("Description", prodescription2);
 
         jButton11.setBackground(new java.awt.Color(255, 153, 153));
-        jButton11.setText("View more information");
+        jButton11.setText("View more information/Book");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
-        jButton12.setText("View more information");
+        jButton12.setText("View more information/Book");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         prolocation4.setText("jTextField1");
         prolocation4.addActionListener(new java.awt.event.ActionListener() {
@@ -452,46 +473,101 @@ int indexFirstPropOnPage;
     }// </editor-fold>//GEN-END:initComponents
 
 
-     private boolean search(String location,String startdate,String enddate) {
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
-                PreparedStatement pstmt = con.prepareStatement("SELECT Information FROM Porperty location=?,startdate=?,enddate=?");
-                pstmt.setString(1,location);
-                pstmt.setString(2,startdate);
-                pstmt.setString(3,enddate);
-                ResultSet res1 = pstmt.executeQuery();
-
-                if (res1.next()) {
-                    String locationInDB = res1.getString("location");  
-                    String startdateInDB = res1.getString("startdate");
-                    String enddateInDB = res1.getString("enddate");                   
-                    if ((Main.hashString(location).equals(locationInDB))|| (Main.hashString(startdate).equals(startdateInDB))&&(Main.hashString(enddate).equals(enddateInDB)) ){                  
-                        return true;
-                    }
-                    else {                       
-                        String errorMessage = "Incorrect details";
-                        javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                        return false;
-                    }
-                }
-                else {
-                    
-                    String errorMessage = "The accomodation of this location is not found";
-                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-                    
-                    return false;
-                }    
-            }
-
-        catch (Exception ex) {
-            ex.printStackTrace();
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
+     private void fetchSearchData(String location) {
+        
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        searchResults1 = PropertyList.searchByLocation1(location);
+        
+        int n = searchResults1.length;
+        System.out.println(n);
+        
+        if (n <= 4){
+            removePropertyBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
         }
-        return false;
+        
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
+        pageNumber.setText("1/" + numberOfPages);
+        
+        fillSearchResults(0);
         
     }
+     private void fillSearchResults(int indexFirstPropOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > searchResults1.length){
+            maxAmountBoxes = searchResults1.length - indexFirstPropOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            proname1.setText(searchResults1[indexFirstPropOnPage].getPropertyName());
+            prolocation1.setText(searchResults1[indexFirstPropOnPage].getLocation());
+            prorating1.setText(searchResults1[indexFirstPropOnPage].getRating());
+            prodescription1.setText(searchResults1[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes >= 2){
+            proname2.setText(searchResults1[indexFirstPropOnPage +1].getPropertyName());
+            prolocation2.setText(searchResults1[indexFirstPropOnPage +1].getLocation());
+            prorating2.setText(searchResults1[indexFirstPropOnPage +1].getRating());
+            prodescription2.setText(searchResults1[indexFirstPropOnPage +1].getDescription());
+        }
+        if (maxAmountBoxes >= 3){
+            proname3.setText(searchResults1[indexFirstPropOnPage +2].getPropertyName());
+            prolocation3.setText(searchResults1[indexFirstPropOnPage +2].getLocation());
+            prorating3.setText(searchResults1[indexFirstPropOnPage +2].getRating());
+            prodescription3.setText(searchResults1[indexFirstPropOnPage +2].getDescription());
+        }
+        if (maxAmountBoxes >= 4){
+            proname4.setText(searchResults1[indexFirstPropOnPage +3].getPropertyName());
+            prolocation4.setText(searchResults1[indexFirstPropOnPage +3].getLocation());
+            prorating4.setText(searchResults1[indexFirstPropOnPage +3].getRating());
+            prodescription4.setText(searchResults1[indexFirstPropOnPage +3].getDescription());
+        }
+        
+    }
+     
+    private void resetPropertyBoxes() {
+        
+        
+            prolocation1.setVisible(true);
+            prorating1.setVisible(true);
+            proname1.setVisible(true);
+            prodescription1.setVisible(true);
+        
+       
+            prolocation2.setVisible(true);
+            prorating2.setVisible(true);
+            proname2.setVisible(true);
+            prodescription2.setVisible(true);
+        
+     
+            prolocation3.setVisible(true);
+            prorating3.setVisible(true);
+            proname3.setVisible(true);
+            prodescription3.setVisible(true);
+        
+        
+            prolocation4.setVisible(true);
+            prorating4.setVisible(true);
+            proname4.setVisible(true);
+            prodescription4.setVisible(true);
+        
+        
+    } 
      
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         jFrameInstance.changePanelToDefault();
@@ -524,17 +600,11 @@ int indexFirstPropOnPage;
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        location = locationname.getText();
-        locationname.setText("");
-        startdate = startdatefield.getText();
-        startdatefield.setText("");
-        enddate = enddatefield.getText();
-        enddatefield.setText("");
-        
-        if (search(location,startdate,enddate)==true) {
-           System.out.println("there have this");            
-        }
-        
+       
+        String location111 = locationname.getText();
+        System.out.println(location111);
+
+        fetchSearchData(location111);   
     }//GEN-LAST:event_jButton6ActionPerformed
 
    
@@ -609,7 +679,7 @@ int indexFirstPropOnPage;
 
     
     
-    private void fillPropertyBoxes(int numBoxesToBeRemoved) {
+    private void fillPropertyBoxes(int indexFirstPropOnPage) {
 
         int maxAmountBoxes = 4;
         
@@ -758,6 +828,30 @@ int indexFirstPropOnPage;
         Register registrationPage = new Register(jFrameInstance);
         jFrameInstance.changePanelToSpecific(registrationPage);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+         int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4].getPropertyId() : searchResults1[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+         int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+1].getPropertyId() : searchResults1[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+         int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+2].getPropertyId() : searchResults1[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+         int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+3].getPropertyId() : searchResults1[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     
 

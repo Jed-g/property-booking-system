@@ -45,7 +45,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel8" min="-2" pref="293" max="-2" attributes="0"/>
-                                  <Component id="servicefield" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -74,7 +74,7 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="servicefield" max="32767" attributes="0"/>
+                  <Component id="jPanel2" max="32767" attributes="0"/>
                   <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -229,7 +229,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="servicefield">
+    <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -254,15 +254,15 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="chargefield" max="32767" attributes="0"/>
+                                      <Component id="jTextField7" max="32767" attributes="0"/>
                                       <Component id="jLabel9" alignment="0" min="-2" pref="160" max="-2" attributes="0"/>
                                       <Component id="propertyIdTextField" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel6" alignment="1" pref="199" max="32767" attributes="0"/>
-                                      <Component id="pricefield" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jTextField4" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="nightsfield" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jTextField6" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="cleanfield" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="jTextField2" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="123" max="32767" attributes="0"/>
                               </Group>
@@ -283,7 +283,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel9" min="-2" pref="29" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="pricefield" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel11" min="-2" pref="26" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
@@ -291,15 +291,15 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" pref="23" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="cleanfield" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="nightsfield" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="chargefield" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextField7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -339,20 +339,20 @@
             <Property name="text" type="java.lang.String" value="Cleaning charge"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="cleanfield">
+        <Component class="javax.swing.JTextField" name="jTextField2">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cleanfieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="pricefield">
+        <Component class="javax.swing.JTextField" name="jTextField4">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pricefieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField4ActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel13">
@@ -360,7 +360,7 @@
             <Property name="text" type="java.lang.String" value="Total price of nights"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nightsfield">
+        <Component class="javax.swing.JTextField" name="jTextField6">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
@@ -373,7 +373,7 @@
             <Property name="text" type="java.lang.String" value="Total charge"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="chargefield">
+        <Component class="javax.swing.JTextField" name="jTextField7">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>

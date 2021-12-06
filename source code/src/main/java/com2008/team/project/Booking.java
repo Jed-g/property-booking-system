@@ -7,18 +7,29 @@ public class Booking extends javax.swing.JPanel {
     private Main jFrameInstance;
     private String email;
     private int propertyId;
-    private String location;
-    private ChargeBand[] getChargeBandList;
-    private Date startDate;
-    private Date endDate;
+    private javax.swing.JPanel propertyInstance;
+    
     /**
      * Creates new form Booking
      */
-    public Booking(Main jFrameInstance,String email,int propertyId) {
+    public Booking(Main jFrameInstance,String email,int propertyId, Date startDate, Date endDate, javax.swing.JPanel propertyInstance) {
         initComponents();
         this.jFrameInstance = jFrameInstance;
         this.email = email;
-        this.propertyId = propertyId ;
+        this.propertyId = propertyId;
+        this.propertyInstance = propertyInstance;
+        
+        java.time.LocalDate startDateLocalDate = startDate.toLocalDate();
+        java.time.LocalDate endDateLocalDate = endDate.toLocalDate();
+        
+        String startDayAndMonthString = (startDateLocalDate.getDayOfMonth() < 10 ? "0" + startDateLocalDate.getDayOfMonth() : startDateLocalDate.getDayOfMonth())
+                + "/" + (startDateLocalDate.getMonthValue() < 10 ? "0" + startDateLocalDate.getMonthValue() : startDateLocalDate.getMonthValue());
+        
+        String endDayAndMonthString = (endDateLocalDate.getDayOfMonth() < 10 ? "0" + endDateLocalDate.getDayOfMonth() : endDateLocalDate.getDayOfMonth())
+                + "/" + (endDateLocalDate.getMonthValue() < 10 ? "0" + endDateLocalDate.getMonthValue() : endDateLocalDate.getMonthValue());
+        
+        jFormattedTextField1.setText(startDayAndMonthString + "/" + startDateLocalDate.getYear());
+        jFormattedTextField2.setText(endDayAndMonthString + "/" + endDateLocalDate.getYear());
         
         DriverManager.setLoginTimeout(3);
         
@@ -41,6 +52,8 @@ public class Booking extends javax.swing.JPanel {
             String errorMessage = "Connection to database failed. University VPN is required.";
             javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
         }
+        
+        jButton2ActionPerformed(null);
     }
 
     /**
@@ -63,19 +76,19 @@ public class Booking extends javax.swing.JPanel {
         java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");
         jFormattedTextField1 = new javax.swing.JFormattedTextField(dateFormat);
         jFormattedTextField2 = new javax.swing.JFormattedTextField(dateFormat);
-        servicefield = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         propertyIdTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cleanfield = new javax.swing.JTextField();
-        pricefield = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        nightsfield = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        chargefield = new javax.swing.JTextField();
+        jTextField7 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
@@ -165,7 +178,7 @@ public class Booking extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        servicefield.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         jLabel6.setFont(new java.awt.Font("Yu Gothic UI Semilight", 0, 14)); // NOI18N
         jLabel6.setText("Accomodation name");
@@ -180,60 +193,60 @@ public class Booking extends javax.swing.JPanel {
 
         jLabel3.setText("Cleaning charge");
 
-        cleanfield.setEditable(false);
-        cleanfield.addActionListener(new java.awt.event.ActionListener() {
+        jTextField2.setEditable(false);
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cleanfieldActionPerformed(evt);
+                jTextField2ActionPerformed(evt);
             }
         });
 
-        pricefield.setEditable(false);
-        pricefield.addActionListener(new java.awt.event.ActionListener() {
+        jTextField4.setEditable(false);
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pricefieldActionPerformed(evt);
+                jTextField4ActionPerformed(evt);
             }
         });
 
         jLabel13.setText("Total price of nights");
 
-        nightsfield.setEditable(false);
+        jTextField6.setEditable(false);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel14.setText("Total charge");
 
-        chargefield.setEditable(false);
+        jTextField7.setEditable(false);
 
-        javax.swing.GroupLayout servicefieldLayout = new javax.swing.GroupLayout(servicefield);
-        servicefield.setLayout(servicefieldLayout);
-        servicefieldLayout.setHorizontalGroup(
-            servicefieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(servicefieldLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(servicefieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(servicefieldLayout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(servicefieldLayout.createSequentialGroup()
-                        .addGroup(servicefieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(servicefieldLayout.createSequentialGroup()
-                                .addGroup(servicefieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chargefield)
+                                    .addComponent(jTextField7)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(propertyIdTextField)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-                                    .addComponent(pricefield)
+                                    .addComponent(jTextField4)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(nightsfield)
+                                    .addComponent(jTextField6)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cleanfield))
+                                    .addComponent(jTextField2))
                                 .addGap(0, 123, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
-        servicefieldLayout.setVerticalGroup(
-            servicefieldLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(servicefieldLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
@@ -241,7 +254,7 @@ public class Booking extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pricefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
@@ -249,15 +262,15 @@ public class Booking extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cleanfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nightsfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chargefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -307,7 +320,7 @@ public class Booking extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(servicefield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -326,7 +339,7 @@ public class Booking extends javax.swing.JPanel {
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(servicefield, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -337,24 +350,8 @@ public class Booking extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void fetchPropertyData() {
-        
-        
-        getChargeBandList = ChargeBand.getChargeBandList(propertyId);
-        
-        int n = getChargeBandList.length;
-    
-        fillPropertyBoxes();
-
-    }
-    
-    private void fillPropertyBoxes() {
-           
-        
-    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Guestsearch search = new Guestsearch(jFrameInstance, email,location);
-        jFrameInstance.changePanelToSpecific(search);
+        jFrameInstance.changePanelToSpecific(propertyInstance);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -368,11 +365,11 @@ public class Booking extends javax.swing.JPanel {
                 
                 if (priceInfo.getTotalCost() >= 0 && startDateParsed.after(Date.valueOf("2021-12-31")) && endDateParsed.before(Date.valueOf("2023-01-01"))){
                     if (validateDates(startDateParsed, endDateParsed)){
-                    pricefield.setText(String.format("%.2f", priceInfo.getAveragePPN()));
+                    jTextField4.setText(String.format("%.2f", priceInfo.getAveragePPN()));
                     jTextField1.setText(String.format("%.2f", priceInfo.getServiceCharge()));
-                    cleanfield.setText(String.format("%.2f", priceInfo.getCleaningCharge()));
-                    nightsfield.setText(String.format("%.2f", priceInfo.getTotalPPN()));
-                    chargefield.setText(String.format("%.2f", priceInfo.getTotalCost()));
+                    jTextField2.setText(String.format("%.2f", priceInfo.getCleaningCharge()));
+                    jTextField6.setText(String.format("%.2f", priceInfo.getTotalPPN()));
+                    jTextField7.setText(String.format("%.2f", priceInfo.getTotalCost()));
                     } else {
                         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
                         String errorMessage = "Someone else already has a booking for this property approved by the host during the dates selected.";
@@ -410,11 +407,11 @@ public class Booking extends javax.swing.JPanel {
                 
                 if (priceInfo.getTotalCost() >= 0 && startDateParsed.after(Date.valueOf("2021-12-31")) && endDateParsed.before(Date.valueOf("2023-01-01"))){
                     if (validateDates(startDateParsed, endDateParsed)){
-                    pricefield.setText(String.format("%.2f", priceInfo.getAveragePPN()));
+                    jTextField4.setText(String.format("%.2f", priceInfo.getAveragePPN()));
                     jTextField1.setText(String.format("%.2f", priceInfo.getServiceCharge()));
-                    cleanfield.setText(String.format("%.2f", priceInfo.getCleaningCharge()));
-                    nightsfield.setText(String.format("%.2f", priceInfo.getTotalPPN()));
-                    chargefield.setText(String.format("%.2f", priceInfo.getTotalCost()));
+                    jTextField2.setText(String.format("%.2f", priceInfo.getCleaningCharge()));
+                    jTextField6.setText(String.format("%.2f", priceInfo.getTotalPPN()));
+                    jTextField7.setText(String.format("%.2f", priceInfo.getTotalCost()));
 
                     PreparedStatement pstmt = con.prepareStatement("INSERT INTO Bookings VALUES(NULL, ?, ?, ?, ?, 1)");
                     pstmt.setString(1, email);
@@ -429,7 +426,7 @@ public class Booking extends javax.swing.JPanel {
                     javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Success!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
 
                     // Redirect
-                    jButton1ActionPerformed(null);
+                    jFrameInstance.changePanelToSpecific(new Guestmain(jFrameInstance, jFrameInstance.getEmail()));
                     } else {
                         javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
                         String errorMessage = "Someone else already has a booking for this property approved by the host during the dates selected.";
@@ -493,17 +490,15 @@ public class Booking extends javax.swing.JPanel {
         jButton1ActionPerformed(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void pricefieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pricefieldActionPerformed
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_pricefieldActionPerformed
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void cleanfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cleanfieldActionPerformed
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cleanfieldActionPerformed
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField chargefield;
-    private javax.swing.JTextField cleanfield;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -521,11 +516,13 @@ public class Booking extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel name;
-    private javax.swing.JTextField nightsfield;
-    private javax.swing.JTextField pricefield;
     private javax.swing.JTextField propertyIdTextField;
-    private javax.swing.JPanel servicefield;
     // End of variables declaration//GEN-END:variables
 }

@@ -836,7 +836,7 @@ public class HostUpcomingBookings extends javax.swing.JPanel {
         
     }
     
-        private void fetchSearchData(String email, String propertyName) {
+    private void fetchSearchData(String email, String propertyName) {
         
         previousPage.setEnabled(false);
         nextPage.setEnabled(false);

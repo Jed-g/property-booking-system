@@ -1,7 +1,19 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com2008.team.project;
 
 import java.sql.*;
 
+
+
+
+/**
+ *
+ * @author 86182
+ */
 public class Guestsearch extends javax.swing.JPanel {
 private Main jFrameInstance;
 private String location;
@@ -13,11 +25,14 @@ private String enddate;
 private String email;
 private Boolean hostView = false;
 private PropertyList[] propertyList;
+PropertyList[] searchResults1;
 private int currentPage = 1;
 private int numberOfPages;
 private int propertyId;
 int indexFirstPropOnPage;
-private boolean isbooking;
+private boolean isbooking = false;
+private javax.swing.JPanel parentInstance;
+
 
 
     /**
@@ -29,7 +44,7 @@ private boolean isbooking;
         this.locationname.setText(location);
         this.email = email;
         
-        
+        fetchPropertyData(); 
     }
 
     /**
@@ -97,14 +112,14 @@ private boolean isbooking;
 
         jButton1.setBackground(new java.awt.Color(255, 204, 204));
         jButton1.setText("Switch to Host View");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 153));
         jButton5.setText("Search");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 153));
         jButton3.setText("Homepage");
@@ -171,7 +186,12 @@ private boolean isbooking;
         jTabbedPane1.addTab("Description", prodescription1);
 
         jButton9.setBackground(new java.awt.Color(255, 153, 153));
-        jButton9.setText("View more information / Book");
+        jButton9.setText("View more information/Book");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Recommended accomodations under search:");
 
@@ -188,7 +208,12 @@ private boolean isbooking;
         jTabbedPane2.addTab("Description", prodescription3);
 
         jButton10.setBackground(new java.awt.Color(255, 153, 153));
-        jButton10.setText("View more information / Book");
+        jButton10.setText("View more information/Book");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         prolocation2.setText("jTextField9");
         jTabbedPane3.addTab("Location", prolocation2);
@@ -215,10 +240,20 @@ private boolean isbooking;
         jTabbedPane4.addTab("Description", prodescription4);
 
         jButton11.setBackground(new java.awt.Color(255, 153, 153));
-        jButton11.setText("View more information / Book");
+        jButton11.setText("View more information/Book");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setBackground(new java.awt.Color(255, 153, 153));
-        jButton12.setText("View more information / Book");
+        jButton12.setText("View more information/Book");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -294,7 +329,7 @@ private boolean isbooking;
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 197, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -515,28 +550,28 @@ private boolean isbooking;
     private void removePropertyBoxes(int numBoxesToBeRemoved) {
 
         if (numBoxesToBeRemoved >= 1){
-            prolocation1.setVisible(false);
-            prorating1.setVisible(false);
-            proname1.setVisible(false);
-            prodescription1.setVisible(false);
+            prolocation4.setVisible(false);
+            prorating4.setVisible(false);
+            proname4.setVisible(false);
+            prodescription4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
-            prolocation2.setVisible(false);
-            prorating2.setVisible(false);
-            proname2.setVisible(false);
-            prodescription2.setVisible(false);
-        }
-        if (numBoxesToBeRemoved >= 3){
-           prolocation3.setVisible(false);
+            prolocation3.setVisible(false);
             prorating3.setVisible(false);
             proname3.setVisible(false);
             prodescription3.setVisible(false);
         }
+        if (numBoxesToBeRemoved >= 3){
+           prolocation2.setVisible(false);
+            prorating2.setVisible(false);
+            proname2.setVisible(false);
+            prodescription2.setVisible(false);
+        }
         if (numBoxesToBeRemoved == 4){
-           prolocation4.setVisible(false);
-            prorating4.setVisible(false);
-            proname4.setVisible(false);
-            prodescription4.setVisible(false);
+           prolocation1.setVisible(false);
+            prorating1.setVisible(false);
+            proname1.setVisible(false);
+            prodescription1.setVisible(false);
         }
         
     }
@@ -608,15 +643,108 @@ private boolean isbooking;
         jFrameInstance.changePanelToSpecific(guestupcomingbooking);
     }//GEN-LAST:event_jButton13ActionPerformed
 
+     private void fetchSearchData(String location) {
+        
+        previousPage.setEnabled(false);
+        nextPage.setEnabled(false);
+        
+        searchResults1 = PropertyList.searchByLocation1(location);
+        
+        int n = searchResults1.length;
+        System.out.println(n);
+        
+        if (n <= 4){
+            removePropertyBoxes(4-n);
+        } else {
+            nextPage.setEnabled(true);
+        }
+        
+        if (n <= 4) {
+            
+            numberOfPages = 1;
+            
+        } else if (n%4 == 0) {
+            
+            numberOfPages = n/4;
+            
+        } else {
+            numberOfPages = (n/4) + 1;
+        }
+        
+        pageNumber.setText("1/" + numberOfPages);
+        
+        fillSearchResults(0);
+        
+    }
+     private void fillSearchResults(int indexFirstPropOnPage) {
+        
+        int maxAmountBoxes = 4;
+        
+        if (indexFirstPropOnPage + 4 > searchResults1.length){
+            maxAmountBoxes = searchResults1.length - indexFirstPropOnPage;
+        }
+        if (maxAmountBoxes >= 1){
+            proname1.setText(searchResults1[indexFirstPropOnPage].getPropertyName());
+            prolocation1.setText(searchResults1[indexFirstPropOnPage].getLocation());
+            prorating1.setText(searchResults1[indexFirstPropOnPage].getRating());
+            prodescription1.setText(searchResults1[indexFirstPropOnPage].getDescription());
+        }
+        if (maxAmountBoxes >= 2){
+            proname2.setText(searchResults1[indexFirstPropOnPage +1].getPropertyName());
+            prolocation2.setText(searchResults1[indexFirstPropOnPage +1].getLocation());
+            prorating2.setText(searchResults1[indexFirstPropOnPage +1].getRating());
+            prodescription2.setText(searchResults1[indexFirstPropOnPage +1].getDescription());
+        }
+        if (maxAmountBoxes >= 3){
+            proname3.setText(searchResults1[indexFirstPropOnPage +2].getPropertyName());
+            prolocation3.setText(searchResults1[indexFirstPropOnPage +2].getLocation());
+            prorating3.setText(searchResults1[indexFirstPropOnPage +2].getRating());
+            prodescription3.setText(searchResults1[indexFirstPropOnPage +2].getDescription());
+        }
+        if (maxAmountBoxes >= 4){
+            proname4.setText(searchResults1[indexFirstPropOnPage +3].getPropertyName());
+            prolocation4.setText(searchResults1[indexFirstPropOnPage +3].getLocation());
+            prorating4.setText(searchResults1[indexFirstPropOnPage +3].getRating());
+            prodescription4.setText(searchResults1[indexFirstPropOnPage +3].getDescription());
+        }
+        
+    }
+     
+    private void resetPropertyBoxes() {
+        
+        
+            prolocation1.setVisible(true);
+            prorating1.setVisible(true);
+            proname1.setVisible(true);
+            prodescription1.setVisible(true);
+        
+       
+            prolocation2.setVisible(true);
+            prorating2.setVisible(true);
+            proname2.setVisible(true);
+            prodescription2.setVisible(true);
+        
+     
+            prolocation3.setVisible(true);
+            prorating3.setVisible(true);
+            proname3.setVisible(true);
+            prodescription3.setVisible(true);
+        
+        
+            prolocation4.setVisible(true);
+            prorating4.setVisible(true);
+            proname4.setVisible(true);
+            prodescription4.setVisible(true);
+        
+        
+    } 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        location = locationname.getText();
-        locationname.setText("");
-        startdate = startdatefield.getText();
-        startdatefield.setText("");
-        enddate = enddatefield.getText();
-        enddatefield.setText("");
-        search(location,startdate,enddate);        
+        String location111 = locationname.getText();
+        System.out.println(location111);
+
+        fetchSearchData(location111); 
+ 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void accountButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_accountButtonActionPerformed
@@ -636,7 +764,7 @@ private boolean isbooking;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
-
+        resetPropertyBoxes();
     }//GEN-LAST:event_previousPageActionPerformed
 
     private void nextPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextPageActionPerformed
@@ -652,6 +780,7 @@ private boolean isbooking;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
         fillPropertyBoxes(indexFirstPropOnPage);
+        resetPropertyBoxes();
 
         if (indexFirstPropOnPage + 4 > propertyList.length){
             removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
@@ -663,38 +792,34 @@ private boolean isbooking;
         jFrameInstance.changePanelToDefault();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")) {
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4].getPropertyId() : searchResults1[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton10ActionPerformed
 
-            PreparedStatement pstmt = con.prepareStatement("SELECT isHost FROM Users WHERE email=?");
-            pstmt.setString(1, jFrameInstance.getEmail());
-            ResultSet res = pstmt.executeQuery();
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+1].getPropertyId() : searchResults1[(currentPage-1)*4+1].getPropertyId();
+       jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton12ActionPerformed
 
-            if (res.next()){
-                boolean isHost = res.getBoolean("isHost");
-                
-                if (isHost){
-                    jFrameInstance.changePanelToSpecific(new HostViewAllProperties(jFrameInstance, jFrameInstance.getEmail()));
-                } else {
-                    javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-                    String errorMessage = "Access denied. You are not a Host. To become a host please go to the account page.";
-                    javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-                    
-                    jButton1.setEnabled(false);
-                }
-            }
-            
-            res.close();
-            pstmt.close();
-        }
-        catch (Exception ex) {
-            ex.printStackTrace();            
-            
-            javax.swing.ImageIcon icon = new javax.swing.ImageIcon(getClass().getResource("/images/warning_icon_resized.png"));
-            String errorMessage = "Connection to database failed. University VPN is required.";
-            javax.swing.JOptionPane.showMessageDialog(null, errorMessage, "Error", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+2].getPropertyId() : searchResults1[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        int propertyId = searchResults1 == null ? propertyList[(currentPage-1)*4+3].getPropertyId() : searchResults1[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance,propertyId, email, this));
+   
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

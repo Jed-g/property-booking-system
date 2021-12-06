@@ -16,7 +16,7 @@ public class Main extends javax.swing.JFrame {
     private PropertyList[] propertyList;
     private int currentPage = 1;
     private int numberOfPages;
-    int indexFirstPropOnPage;
+    private int indexFirstPropOnPage;
     private int num;
     /**
      * Creates new form Main
@@ -437,12 +437,52 @@ public class Main extends javax.swing.JFrame {
         
         pageNumber.setText("1/" + numberOfPages);
         
+        resetPropertyBoxes();
         fillPropertyBoxes(0);
 
     }
     
+    private void resetPropertyBoxes() {
+        prolocation4.setVisible(true);
+        prorating4.setVisible(true);
+        proname4.setVisible(true);
+        prodescription4.setVisible(true);
+        jButton11.setVisible(true);
+        prolocation3.setVisible(true);
+        prorating3.setVisible(true);
+        proname3.setVisible(true);
+        prodescription3.setVisible(true);
+        jButton12.setVisible(true);
+        prolocation2.setVisible(true);
+        prorating2.setVisible(true);
+        proname2.setVisible(true);
+        prodescription2.setVisible(true);
+        jButton14.setVisible(true);
+        prolocation1.setVisible(true);
+        prorating1.setVisible(true);
+        proname1.setVisible(true);
+        prodescription1.setVisible(true);
+        jButton13.setVisible(true);
+        
+        prolocation4.setText("");
+        prorating4.setText("");
+        proname4.setText("");
+        prodescription4.setText("");
+        prolocation3.setText("");
+        prorating3.setText("");
+        proname3.setText("");
+        prodescription3.setText("");
+        prolocation2.setText("");
+        prorating2.setText("");
+        proname2.setText("");
+        prodescription2.setText("");
+        prolocation1.setText("");
+        prorating1.setText("");
+        proname1.setText("");
+        prodescription1.setText("");
+    }
+    
     private void removePropertyBoxes(int numBoxesToBeRemoved) {
-
         if (numBoxesToBeRemoved >= 1){
             prolocation4.setVisible(false);
             prorating4.setVisible(false);
@@ -455,18 +495,21 @@ public class Main extends javax.swing.JFrame {
             prorating3.setVisible(false);
             proname3.setVisible(false);
             prodescription3.setVisible(false);
+            jButton14.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 3){
            prolocation2.setVisible(false);
             prorating2.setVisible(false);
             proname2.setVisible(false);
             prodescription2.setVisible(false);
+            jButton12.setVisible(false);
         }
         if (numBoxesToBeRemoved == 4){
            prolocation1.setVisible(false);
             prorating1.setVisible(false);
             proname1.setVisible(false);
             prodescription1.setVisible(false);
+            jButton11.setVisible(false);
         }
         
     }
@@ -517,9 +560,11 @@ public class Main extends javax.swing.JFrame {
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*4;
+        indexFirstPropOnPage = (currentPage-1)*4;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
+        
+        resetPropertyBoxes();
         fillPropertyBoxes(indexFirstPropOnPage);
     }//GEN-LAST:event_previousPageActionPerformed
 
@@ -532,23 +577,25 @@ public class Main extends javax.swing.JFrame {
             nextPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*4;
+        indexFirstPropOnPage = (currentPage-1)*4;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
-        fillPropertyBoxes(indexFirstPropOnPage);
-
+        
+        resetPropertyBoxes();
+        fillPropertyBoxes(propertyList.length);
+        
         if (indexFirstPropOnPage + 4 > propertyList.length){
-            removePropertyBoxes(indexFirstPropOnPage - propertyList.length + 4);
+            removePropertyBoxes(4 - (propertyList.length - indexFirstPropOnPage));
         }
     }//GEN-LAST:event_nextPageActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        int propertyId = propertyList[(currentPage-1)*4+2].getPropertyId();
+        int propertyId = propertyList[(currentPage-1)*4+1].getPropertyId();
         changePanelToSpecific(new Property(this, propertyId, "", defaultPanel));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        int propertyId = propertyList[(currentPage-1)*4+1].getPropertyId();
+        int propertyId = propertyList[(currentPage-1)*4+2].getPropertyId();
         changePanelToSpecific(new Property(this, propertyId, "", defaultPanel));
      
     }//GEN-LAST:event_jButton14ActionPerformed

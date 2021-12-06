@@ -553,8 +553,6 @@ public class User extends javax.swing.JPanel {
                 jFrameInstance.changePanelToSpecific(new Guestpastbooking(jFrameInstance, jFrameInstance.getEmail()));
             } else if (parentInstance instanceof Guestsearch) {
                 jFrameInstance.changePanelToSpecific(new Guestsearch(jFrameInstance, jFrameInstance.getEmail(), ""));
-            } else if (parentInstance instanceof Guestsearch1){
-                jFrameInstance.changePanelToSpecific(new Guestsearch1(jFrameInstance, jFrameInstance.getEmail(), ""));
             } else if (parentInstance instanceof Guestupcomingbooking){
                 jFrameInstance.changePanelToSpecific(new Guestupcomingbooking(jFrameInstance, ""));
             } else {

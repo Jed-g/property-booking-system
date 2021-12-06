@@ -49,20 +49,20 @@ int indexFirstPropOnPage;
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
+        viewPropertyButton2 = new javax.swing.JButton();
+        viewPropertyButton1 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
-        prolocation = new javax.swing.JTextField();
-        prorating = new javax.swing.JTextField();
-        proname = new javax.swing.JTextField();
-        prodescription = new javax.swing.JTextField();
+        prolocation3 = new javax.swing.JTextField();
+        prorating3 = new javax.swing.JTextField();
+        proname3 = new javax.swing.JTextField();
+        prodescription3 = new javax.swing.JTextField();
         jTabbedPane4 = new javax.swing.JTabbedPane();
-        location = new javax.swing.JTextField();
-        rating = new javax.swing.JTextField();
-        name = new javax.swing.JTextField();
-        description = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        prolocation4 = new javax.swing.JTextField();
+        prorating4 = new javax.swing.JTextField();
+        proname4 = new javax.swing.JTextField();
+        prodescription4 = new javax.swing.JTextField();
+        viewPropertyButton4 = new javax.swing.JButton();
+        viewPropertyButton3 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jTextField17 = new javax.swing.JTextField();
@@ -114,61 +114,71 @@ int indexFirstPropOnPage;
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(255, 153, 153));
-        jButton9.setText("View more information / Book");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        viewPropertyButton2.setBackground(new java.awt.Color(255, 153, 153));
+        viewPropertyButton2.setText("View more information / Book");
+        viewPropertyButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                viewPropertyButton2ActionPerformed(evt);
             }
         });
 
-        jButton10.setBackground(new java.awt.Color(255, 153, 153));
-        jButton10.setText("View more information / Book");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
+        viewPropertyButton1.setBackground(new java.awt.Color(255, 153, 153));
+        viewPropertyButton1.setText("View more information / Book");
+        viewPropertyButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
+                viewPropertyButton1ActionPerformed(evt);
             }
         });
 
-        prolocation.setEditable(false);
-        prolocation.addActionListener(new java.awt.event.ActionListener() {
+        prolocation3.setEditable(false);
+        prolocation3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prolocationActionPerformed(evt);
+                prolocation3ActionPerformed(evt);
             }
         });
-        jTabbedPane3.addTab("Location", prolocation);
+        jTabbedPane3.addTab("Location", prolocation3);
 
-        prorating.setEditable(false);
-        jTabbedPane3.addTab("Rating", prorating);
+        prorating3.setEditable(false);
+        jTabbedPane3.addTab("Rating", prorating3);
 
-        proname.setEditable(false);
-        jTabbedPane3.addTab("Accomodation name", proname);
+        proname3.setEditable(false);
+        jTabbedPane3.addTab("Accomodation name", proname3);
 
-        prodescription.setEditable(false);
-        jTabbedPane3.addTab("Description", prodescription);
+        prodescription3.setEditable(false);
+        jTabbedPane3.addTab("Description", prodescription3);
 
-        location.setEditable(false);
-        location.addActionListener(new java.awt.event.ActionListener() {
+        prolocation4.setEditable(false);
+        prolocation4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                locationActionPerformed(evt);
+                prolocation4ActionPerformed(evt);
             }
         });
-        jTabbedPane4.addTab("Location", location);
+        jTabbedPane4.addTab("Location", prolocation4);
 
-        rating.setEditable(false);
-        jTabbedPane4.addTab("Rating", rating);
+        prorating4.setEditable(false);
+        jTabbedPane4.addTab("Rating", prorating4);
 
-        name.setEditable(false);
-        jTabbedPane4.addTab("Accomodation name", name);
+        proname4.setEditable(false);
+        jTabbedPane4.addTab("Accomodation name", proname4);
 
-        description.setEditable(false);
-        jTabbedPane4.addTab("Description", description);
+        prodescription4.setEditable(false);
+        jTabbedPane4.addTab("Description", prodescription4);
 
-        jButton11.setBackground(new java.awt.Color(255, 153, 153));
-        jButton11.setText("View more information / Book");
+        viewPropertyButton4.setBackground(new java.awt.Color(255, 153, 153));
+        viewPropertyButton4.setText("View more information / Book");
+        viewPropertyButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPropertyButton4ActionPerformed(evt);
+            }
+        });
 
-        jButton12.setBackground(new java.awt.Color(255, 153, 153));
-        jButton12.setText("View more information / Book");
+        viewPropertyButton3.setBackground(new java.awt.Color(255, 153, 153));
+        viewPropertyButton3.setText("View more information / Book");
+        viewPropertyButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPropertyButton3ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -282,10 +292,10 @@ int indexFirstPropOnPage;
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton10)
+                            .addComponent(viewPropertyButton1)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton12)
+                            .addComponent(viewPropertyButton3)
                             .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -295,9 +305,9 @@ int indexFirstPropOnPage;
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton9)
+                                    .addComponent(viewPropertyButton2)
                                     .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton11))
+                                    .addComponent(viewPropertyButton4))
                                 .addContainerGap(103, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -346,11 +356,11 @@ int indexFirstPropOnPage;
                     .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton9)
+                        .addComponent(viewPropertyButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton11)
+                        .addComponent(viewPropertyButton4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,11 +368,11 @@ int indexFirstPropOnPage;
                             .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jButton10)
+                        .addComponent(viewPropertyButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton12)
+                        .addComponent(viewPropertyButton3)
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -398,40 +408,79 @@ int indexFirstPropOnPage;
         
         pageNumber.setText("1/" + numberOfPages);
         
+        resetPropertyBoxes();
         fillPropertyBoxes(0);
 
     }
     
-    
-    
-    
-    
+        private void resetPropertyBoxes() {
+        prolocation4.setVisible(true);
+        prorating4.setVisible(true);
+        proname4.setVisible(true);
+        prodescription4.setVisible(true);
+        viewPropertyButton4.setVisible(true);
+        prolocation3.setVisible(true);
+        prorating3.setVisible(true);
+        proname3.setVisible(true);
+        prodescription3.setVisible(true);
+        viewPropertyButton3.setVisible(true);
+        prolocation2.setVisible(true);
+        prorating2.setVisible(true);
+        proname2.setVisible(true);
+        prodescription2.setVisible(true);
+        viewPropertyButton2.setVisible(true);
+        prolocation1.setVisible(true);
+        prorating1.setVisible(true);
+        proname1.setVisible(true);
+        prodescription1.setVisible(true);
+        viewPropertyButton1.setVisible(true);
+
+        prolocation4.setText("");
+        prorating4.setText("");
+        proname4.setText("");
+        prodescription4.setText("");
+        prolocation3.setText("");
+        prorating3.setText("");
+        proname3.setText("");
+        prodescription3.setText("");
+        prolocation2.setText("");
+        prorating2.setText("");
+        proname2.setText("");
+        prodescription2.setText("");
+        prolocation1.setText("");
+        prorating1.setText("");
+        proname1.setText("");
+        prodescription1.setText("");
+    }
     
     private void removePropertyBoxes(int numBoxesToBeRemoved) {
-
         if (numBoxesToBeRemoved >= 1){
-            location.setVisible(false);
-            rating.setVisible(false);
-            name.setVisible(false);
-            description.setVisible(false);
+            prolocation4.setVisible(false);
+            prorating4.setVisible(false);
+            proname4.setVisible(false);
+            prodescription4.setVisible(false);
+            viewPropertyButton4.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 2){
-            prolocation.setVisible(false);
-            prorating.setVisible(false);
-            proname.setVisible(false);
-            prodescription.setVisible(false);
+            prolocation3.setVisible(false);
+            prorating3.setVisible(false);
+            proname3.setVisible(false);
+            prodescription3.setVisible(false);
+            viewPropertyButton3.setVisible(false);
         }
         if (numBoxesToBeRemoved >= 3){
            prolocation2.setVisible(false);
             prorating2.setVisible(false);
             proname2.setVisible(false);
             prodescription2.setVisible(false);
+            viewPropertyButton2.setVisible(false);
         }
         if (numBoxesToBeRemoved == 4){
-            prolocation1.setVisible(false);
+           prolocation1.setVisible(false);
             prorating1.setVisible(false);
             proname1.setVisible(false);
             prodescription1.setVisible(false);
+            viewPropertyButton1.setVisible(false);
         }
         
     }
@@ -457,16 +506,16 @@ int indexFirstPropOnPage;
             prodescription2.setText(propertyList[indexFirstPropOnPage+1].getDescription());
         }
         if (maxAmountBoxes >= 3){
-            proname.setText(propertyList[indexFirstPropOnPage+2].getPropertyName());
-            prolocation.setText(propertyList[indexFirstPropOnPage+2].getLocation());
-            prorating.setText(propertyList[indexFirstPropOnPage+2].getRating());
-            prodescription.setText(propertyList[indexFirstPropOnPage+2].getDescription());
+            proname3.setText(propertyList[indexFirstPropOnPage+2].getPropertyName());
+            prolocation3.setText(propertyList[indexFirstPropOnPage+2].getLocation());
+            prorating3.setText(propertyList[indexFirstPropOnPage+2].getRating());
+            prodescription3.setText(propertyList[indexFirstPropOnPage+2].getDescription());
         }
         if (maxAmountBoxes == 4){
-            name.setText(propertyList[indexFirstPropOnPage+3].getPropertyName());
-            location.setText(propertyList[indexFirstPropOnPage+3].getLocation());
-            rating.setText(propertyList[indexFirstPropOnPage+3].getRating());
-            description.setText(propertyList[indexFirstPropOnPage+3].getDescription());
+            proname4.setText(propertyList[indexFirstPropOnPage+3].getPropertyName());
+            prolocation4.setText(propertyList[indexFirstPropOnPage+3].getLocation());
+            prorating4.setText(propertyList[indexFirstPropOnPage+3].getRating());
+            prodescription4.setText(propertyList[indexFirstPropOnPage+3].getDescription());
         }
         
     }
@@ -510,6 +559,7 @@ int indexFirstPropOnPage;
         indexFirstPropOnPage = (currentPage-1)*4;
         
         pageNumber.setText(currentPage + "/" + numberOfPages);
+        resetPropertyBoxes();
         fillPropertyBoxes(indexFirstPropOnPage);
        
         if (indexFirstPropOnPage + 4 > propertyList.length){
@@ -526,25 +576,26 @@ int indexFirstPropOnPage;
             previousPage.setEnabled(false);
         }
 
-        int indexFirstPropOnPage = (currentPage-1)*4;
+        indexFirstPropOnPage = (currentPage-1)*4;
 
         pageNumber.setText(currentPage + "/" + numberOfPages);
+        
+        resetPropertyBoxes();
         fillPropertyBoxes(indexFirstPropOnPage);
         
     }//GEN-LAST:event_previousPageActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        //int propertyId = propertyList[(currentPage-1)*4].getPropertyId();
-        //jFrameInstance.changePanelToSpecific(new Property(jFrameInstance, propertyId, jFrameInstance.getEmail(), this));
-    }//GEN-LAST:event_jButton10ActionPerformed
+    private void viewPropertyButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPropertyButton1ActionPerformed
+        int propertyId = propertyList[(currentPage-1)*4].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance, propertyId, jFrameInstance.getEmail(), this));
+    }//GEN-LAST:event_viewPropertyButton1ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        AddProperty add1 = new AddProperty (jFrameInstance,email);
-        jFrameInstance.changePanelToSpecific(add1);
-        
-    }//GEN-LAST:event_jButton9ActionPerformed
+    private void viewPropertyButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPropertyButton2ActionPerformed
+        int propertyId = propertyList[(currentPage-1)*4+1].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance, propertyId, jFrameInstance.getEmail(), this));
+    }//GEN-LAST:event_viewPropertyButton2ActionPerformed
 
+    
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         jFrameInstance.setEmail("");
         jFrameInstance.changePanelToDefault();
@@ -583,28 +634,33 @@ int indexFirstPropOnPage;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void locationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_locationActionPerformed
+    private void prolocation4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prolocation4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_locationActionPerformed
+    }//GEN-LAST:event_prolocation4ActionPerformed
 
-    private void prolocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prolocationActionPerformed
+    private void prolocation3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prolocation3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_prolocationActionPerformed
+    }//GEN-LAST:event_prolocation3ActionPerformed
+
+    private void viewPropertyButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPropertyButton3ActionPerformed
+        int propertyId = propertyList[(currentPage-1)*4+2].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance, propertyId, jFrameInstance.getEmail(), this));
+    }//GEN-LAST:event_viewPropertyButton3ActionPerformed
+
+    private void viewPropertyButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPropertyButton4ActionPerformed
+        int propertyId = propertyList[(currentPage-1)*4+3].getPropertyId();
+        jFrameInstance.changePanelToSpecific(new Property(jFrameInstance, propertyId, jFrameInstance.getEmail(), this));
+    }//GEN-LAST:event_viewPropertyButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton;
-    private javax.swing.JTextField description;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -613,24 +669,29 @@ int indexFirstPropOnPage;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField location;
     private javax.swing.JButton logoutButton;
-    private javax.swing.JTextField name;
     private javax.swing.JButton nextPage;
     private javax.swing.JLabel pageNumber;
     private javax.swing.JButton previousPage;
-    private javax.swing.JTextField prodescription;
     private javax.swing.JTextField prodescription1;
     private javax.swing.JTextField prodescription2;
-    private javax.swing.JTextField prolocation;
+    private javax.swing.JTextField prodescription3;
+    private javax.swing.JTextField prodescription4;
     private javax.swing.JTextField prolocation1;
     private javax.swing.JTextField prolocation2;
-    private javax.swing.JTextField proname;
+    private javax.swing.JTextField prolocation3;
+    private javax.swing.JTextField prolocation4;
     private javax.swing.JTextField proname1;
     private javax.swing.JTextField proname2;
-    private javax.swing.JTextField prorating;
+    private javax.swing.JTextField proname3;
+    private javax.swing.JTextField proname4;
     private javax.swing.JTextField prorating1;
     private javax.swing.JTextField prorating2;
-    private javax.swing.JTextField rating;
+    private javax.swing.JTextField prorating3;
+    private javax.swing.JTextField prorating4;
+    private javax.swing.JButton viewPropertyButton1;
+    private javax.swing.JButton viewPropertyButton2;
+    private javax.swing.JButton viewPropertyButton3;
+    private javax.swing.JButton viewPropertyButton4;
     // End of variables declaration//GEN-END:variables
 }

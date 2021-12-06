@@ -60,14 +60,14 @@ private boolean isbooking;
         prorating1 = new javax.swing.JTextField();
         proname1 = new javax.swing.JTextField();
         prodescription1 = new javax.swing.JTextField();
-        jButton9 = new javax.swing.JButton();
+        moreInfoButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         prolocation3 = new javax.swing.JTextField();
         prorating3 = new javax.swing.JTextField();
         proname3 = new javax.swing.JTextField();
         prodescription3 = new javax.swing.JTextField();
-        jButton10 = new javax.swing.JButton();
+        moreInfoButton1 = new javax.swing.JButton();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         prolocation2 = new javax.swing.JTextField();
         prorating2 = new javax.swing.JTextField();
@@ -78,8 +78,8 @@ private boolean isbooking;
         prorating4 = new javax.swing.JTextField();
         proname4 = new javax.swing.JTextField();
         prodescription4 = new javax.swing.JTextField();
-        jButton11 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        moreInfoButton4 = new javax.swing.JButton();
+        moreInfoButton2 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jTextField17 = new javax.swing.JTextField();
@@ -170,8 +170,13 @@ private boolean isbooking;
         prodescription1.setText("jTextField4");
         jTabbedPane1.addTab("Description", prodescription1);
 
-        jButton9.setBackground(new java.awt.Color(255, 153, 153));
-        jButton9.setText("View more information / Book");
+        moreInfoButton3.setBackground(new java.awt.Color(255, 153, 153));
+        moreInfoButton3.setText("View more information / Book");
+        moreInfoButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreInfoButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Recommended accomodations under search:");
 
@@ -187,8 +192,13 @@ private boolean isbooking;
         prodescription3.setText("jTextField8");
         jTabbedPane2.addTab("Description", prodescription3);
 
-        jButton10.setBackground(new java.awt.Color(255, 153, 153));
-        jButton10.setText("View more information / Book");
+        moreInfoButton1.setBackground(new java.awt.Color(255, 153, 153));
+        moreInfoButton1.setText("View more information / Book");
+        moreInfoButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moreInfoButton1ActionPerformed(evt);
+            }
+        });
 
         prolocation2.setText("jTextField9");
         jTabbedPane3.addTab("Location", prolocation2);
@@ -214,11 +224,11 @@ private boolean isbooking;
         prodescription4.setText("jTextField16");
         jTabbedPane4.addTab("Description", prodescription4);
 
-        jButton11.setBackground(new java.awt.Color(255, 153, 153));
-        jButton11.setText("View more information / Book");
+        moreInfoButton4.setBackground(new java.awt.Color(255, 153, 153));
+        moreInfoButton4.setText("View more information / Book");
 
-        jButton12.setBackground(new java.awt.Color(255, 153, 153));
-        jButton12.setText("View more information / Book");
+        moreInfoButton2.setBackground(new java.awt.Color(255, 153, 153));
+        moreInfoButton2.setText("View more information / Book");
 
         jButton7.setBackground(new java.awt.Color(255, 204, 153));
         jButton7.setText("Past Booking");
@@ -344,10 +354,10 @@ private boolean isbooking;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton12)
+                            .addComponent(moreInfoButton2)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton10)
+                                    .addComponent(moreInfoButton1)
                                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,9 +370,9 @@ private boolean isbooking;
                                     .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton9)
+                                        .addComponent(moreInfoButton3)
                                         .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButton11))))))
+                                        .addComponent(moreInfoButton4))))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(209, 209, 209)
@@ -410,22 +420,22 @@ private boolean isbooking;
                     .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton9))
+                    .addComponent(moreInfoButton1)
+                    .addComponent(moreInfoButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton11)
+                        .addComponent(moreInfoButton4)
                         .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(pageNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(nextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton12)
+                        .addComponent(moreInfoButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(previousPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4))
@@ -437,7 +447,7 @@ private boolean isbooking;
                 PreparedStatement pstmt = con.prepareStatement("SELECT Information FROM Porperty location=?,startdate=?,enddate=?");
                 pstmt.setString(1,location);
                 pstmt.setString(2,startdate);
-                pstmt.setString(2,enddate);
+                pstmt.setString(3,enddate);
                 ResultSet res1 = pstmt.executeQuery();
 
                 if (res1.next()) {
@@ -696,14 +706,21 @@ private boolean isbooking;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void moreInfoButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreInfoButton1ActionPerformed
+        Property propertyView = new Property(jFrameInstance, propertyId, email, this);
+        jFrameInstance.changePanelToSpecific(propertyView);
+        
+    }//GEN-LAST:event_moreInfoButton1ActionPerformed
+
+    private void moreInfoButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreInfoButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_moreInfoButton3ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton accountButton;
     private javax.swing.JFormattedTextField enddatefield;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -711,7 +728,6 @@ private boolean isbooking;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -724,6 +740,10 @@ private boolean isbooking;
     private javax.swing.JTextField jTextField17;
     private javax.swing.JTextField locationname;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JButton moreInfoButton1;
+    private javax.swing.JButton moreInfoButton2;
+    private javax.swing.JButton moreInfoButton3;
+    private javax.swing.JButton moreInfoButton4;
     private javax.swing.JButton nextPage;
     private javax.swing.JLabel pageNumber;
     private javax.swing.JButton previousPage;

@@ -23,7 +23,6 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         DriverManager.setLoginTimeout(3);
-        
         // VPN connection test
         try (Connection con = DriverManager.getConnection("jdbc:mysql://stusql.dcs.shef.ac.uk/team024", "team024", "c0857903")){
         } catch (Exception ex) {
